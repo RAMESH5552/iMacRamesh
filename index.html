@@ -4,104 +4,151 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>iMac RAMESH TRADING TREND INTELLIGENCE ENGINE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --bg-color: #0b0e14;
-            --card-bg: #131a26;
-            --accent-green: #0ecb81;
-            --accent-red: #f6465d;
-            --text-main: #ffffff;
-            --text-muted: #848e9c;
-            --border-color: #2b313a;
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-main); padding: 15px; }
-        .container { max-width: 480px; margin: 0 auto; background: var(--card-bg); border-radius: 16px; border: 1px solid var(--border-color); padding: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
-        .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
-        .logo-title h1 { font-size: 16px; font-weight: 700; color: var(--text-main); }
-        .logo-title p { font-size: 11px; color: var(--text-muted); }
-        .badge { background: rgba(14, 203, 129, 0.1); color: var(--accent-green); padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; gap: 5px; }
-        .badge::before { content: ""; width: 6px; height: 6px; background: var(--accent-green); border-radius: 50%; display: inline-block; }
-        .card { background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 12px; padding: 15px; margin-bottom: 15px; }
-        .price-box { font-size: 26px; font-weight: 800; margin: 5px 0; color: var(--accent-green); }
-        .trend-box { font-size: 18px; font-weight: 700; text-transform: uppercase; margin-bottom: 5px; }
-        .auth-container { display: flex; flex-direction: column; gap: 12px; }
-        .input-field { width: 100%; padding: 12px; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-main); font-size: 14px; }
-        .btn { width: 100%; padding: 12px; background: var(--accent-green); color: #000; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; transition: 0.2s; }
-        .btn:hover { opacity: 0.9; }
-        .btn-secondary { background: transparent; border: 1px solid var(--border-color); color: var(--text-main); margin-top: 8px; }
-        .hidden { display: none !important; }
-        .status-msg { font-size: 12px; color: #f0b90b; margin-top: 5px; text-align: center; }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800;900&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0b0e14; color: #ffffff; }
+        .glass-card { background: rgba(13, 18, 30, 0.98); backdrop-filter: blur(16px); border: 1.5px solid rgba(255, 255, 255, 0.08); }
+        .glow-green { box-shadow: 0 0 25px rgba(14, 203, 129, 0.3); }
+        .glow-red { box-shadow: 0 0 25px rgba(246, 70, 93, 0.3); }
+        .tab-view { display: none !important; }
+        .tab-view.active { display: block !important; }
     </style>
 </head>
-<body>
+<body class="min-h-screen pb-28">
 
-    <div class="container" id="auth-screen">
-        <div class="header">
-            <div class="logo-title">
-                <h1>iMac RAMESH TRADING</h1>
-                <p>Secure Portal & Intelligence Engine</p>
+    <!-- AUTHENTICATION & LOGIN SCREEN -->
+    <div id="auth-screen" class="max-w-md mx-auto mt-10 p-6 glass-card rounded-2xl shadow-2xl">
+        <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-800">
+            <div>
+                <h1 class="text-base font-bold">iMac RAMESH TRADING</h1>
+                <p class="text-xs text-gray-400">Educator & Trader: K. Ramesh (Saran Ramesh)</p>
             </div>
-            <div class="badge">Secure Auth</div>
+            <span class="bg-emerald-500/10 text-emerald-400 text-xs px-3 py-1 rounded-full font-bold">Secure Portal</span>
         </div>
 
-        <div id="login-form" class="auth-container">
-            <h2 style="font-size: 18px; margin-bottom: 5px;">உள்நுழைய (Login)</h2>
-            <input type="text" id="login-user" class="input-field" placeholder="Username">
-            <input type="password" id="login-pass" class="input-field" placeholder="Password">
-            <button class="btn" onclick="handleLogin()">Login to Terminal</button>
-            <button class="btn btn-secondary" onclick="showRegister()">New Account / Register</button>
-            <p id="login-status" class="status-msg"></p>
+        <div id="login-form" class="space-y-4">
+            <h2 class="text-lg font-bold">உள்நுழைய (Login)</h2>
+            <input type="text" id="login-user" class="w-full p-3 bg-gray-900 border border-gray-800 rounded-xl text-sm text-white focus:outline-none focus:border-emerald-500" placeholder="Username (Admin: iMacRamesh)">
+            <div class="relative">
+                <input type="password" id="login-pass" class="w-full p-3 pr-12 bg-gray-900 border border-gray-800 rounded-xl text-sm text-white focus:outline-none focus:border-emerald-500" placeholder="Password (Admin: Admin555)">
+                <button type="button" onclick="togglePassword('login-pass', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400 font-bold">Show</button>
+            </div>
+            <button onclick="handleLogin()" class="w-full p-3 bg-emerald-500 text-black font-extrabold rounded-xl text-sm shadow-lg hover:opacity-90">Login to Terminal</button>
+            <button onclick="showRegister()" class="w-full p-3 bg-transparent border border-gray-800 text-white font-bold rounded-xl text-sm">New Account / Register</button>
+            <p id="login-status" class="text-xs text-amber-400 text-center"></p>
         </div>
 
-        <div id="register-form" class="auth-container hidden">
-            <h2 style="font-size: 18px; margin-bottom: 5px;">புதிய கணக்கு பதிவு (Register)</h2>
-            <input type="text" id="reg-user" class="input-field" placeholder="Choose Username">
-            <input type="password" id="reg-pass" class="input-field" placeholder="Choose Password">
-            <button class="btn" onclick="handleRegister()">Submit for Owner Approval</button>
-            <button class="btn btn-secondary" onclick="showLogin()">Back to Login</button>
-            <p id="reg-status" class="status-msg"></p>
+        <div id="register-form" class="space-y-4 hidden">
+            <h2 class="text-lg font-bold">புதிய கணக்கு பதிவு (Register)</h2>
+            <input type="text" id="reg-user" class="w-full p-3 bg-gray-900 border border-gray-800 rounded-xl text-sm text-white focus:outline-none focus:border-emerald-500" placeholder="Choose Username">
+            <div class="relative">
+                <input type="password" id="reg-pass" class="w-full p-3 pr-12 bg-gray-900 border border-gray-800 rounded-xl text-sm text-white focus:outline-none focus:border-emerald-500" placeholder="Choose Password">
+                <button type="button" onclick="togglePassword('reg-pass', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400 font-bold">Show</button>
+            </div>
+            <button onclick="handleRegister()" class="w-full p-3 bg-emerald-500 text-black font-extrabold rounded-xl text-sm">Submit for Owner Approval</button>
+            <button onclick="showLogin()" class="w-full p-3 bg-transparent border border-gray-800 text-white font-bold rounded-xl text-sm">Back to Login</button>
+            <p id="reg-status" class="text-xs text-amber-400 text-center"></p>
         </div>
         
-        <div id="pending-screen" class="auth-container hidden">
-            <h3 style="color: #f0b90b; text-align: center;">அனுமதி பெற காத்துக்கொண்டிருக்கிறது...</h3>
-            <p style="font-size: 13px; text-align: center; color: var(--text-muted);">உங்களது கணக்கு உரிமையாளரின் (Owner) ஒப்புதலுக்காக அனுப்பப்பட்டுள்ளது. அப்ரூவ் ஆனவுடன் லாகின் செய்யலாம்.</p>
-            <button class="btn btn-secondary" onclick="showLogin()">Back to Login</button>
-        </div>
-
-        <div id="owner-panel" class="auth-container hidden" style="border-top: 1px solid var(--border-color); padding-top: 15px; margin-top: 15px;">
-            <h3 style="font-size: 16px; color: var(--accent-green);">👑 Owner Dashboard (Pending Users)</h3>
-            <div id="pending-users-list" style="font-size: 13px; color: var(--text-muted); max-height: 100px; overflow-y: auto;">None</div>
-            <button class="btn" style="background: #f6465d; color: #fff; margin-top: 10px;" onclick="handleLogout()">Logout</button>
+        <div id="pending-screen" class="space-y-4 text-center hidden">
+            <h3 class="text-amber-400 font-bold text-base">அனுமதி பெற காத்துக்கொண்டிருக்கிறது...</h3>
+            <p class="text-xs text-gray-400">உங்களது கணக்கு உரிமையாளரின் (K. Ramesh) ஒப்புதலுக்காக அனுப்பப்பட்டுள்ளது.</p>
+            <button onclick="showLogin()" class="w-full p-3 bg-transparent border border-gray-800 text-white font-bold rounded-xl text-sm">Back to Login</button>
         </div>
     </div>
 
-    <div class="container hidden" id="app-screen">
-        <div class="header">
-            <div class="logo-title">
-                <h1>iMac RAMESH TRADING TREND INTELLIGENCE ENGINE</h1>
-                <p>Educator & Trader: K. Ramesh (Saran Ramesh)</p>
+    <!-- MAIN APP SCREEN -->
+    <div id="app-screen" class="max-w-4xl mx-auto px-4 pt-4 hidden">
+        <header class="sticky top-0 z-50 glass-card border-b border-gray-800 px-4 py-3.5 shadow-2xl rounded-2xl mb-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-gradient-to-tr from-amber-500 to-indigo-600 p-2.5 rounded-xl text-white shadow-lg">
+                    <i class="fa-solid fa-brain text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-sm font-black tracking-wide">iMac RAMESH TRADING TREND INTELLIGENCE ENGINE</h1>
+                    <p class="text-[10px] font-bold text-gray-300">Educator & Trader: K. Ramesh (Saran Ramesh)</p>
+                </div>
             </div>
-            <div class="badge">Live API Active</div>
+            <div class="flex items-center space-x-2">
+                <span class="flex h-3 w-3 relative">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                </span>
+                <span class="text-xs font-bold text-emerald-400" id="role-badge">Live API Active</span>
+            </div>
+        </header>
+
+        <div id="owner-approval-panel" class="glass-card p-4 rounded-2xl border border-emerald-500/40 mb-4 hidden">
+            <h3 class="text-sm font-extrabold text-emerald-400 mb-2 flex items-center gap-2"><i class="fa-solid fa-crown"></i> Owner Approval Dashboard</h3>
+            <div id="pending-users-list" class="space-y-2 max-h-36 overflow-y-auto">
+                <p class="text-xs text-gray-400">No pending requests.</p>
+            </div>
         </div>
 
-        <div class="card">
-            <p style="font-size: 12px; color: var(--text-muted);">BTC / USDT LIVE PRICE (GIANT VIEW)</p>
-            <div class="price-box" id="btc-price">$79,812.50</div>
-            <div style="font-size: 12px; color: var(--accent-green);" id="btc-change">+2.07% (24h)</div>
+        <div id="tab-home" class="tab-view active space-y-4">
+            <div class="glass-card p-4 rounded-2xl border border-amber-500/30">
+                <div class="flex justify-between items-center text-xs font-bold text-amber-400 mb-2">
+                    <span>MASTER TREND & UNIFIED SIGNAL DASHBOARD</span>
+                    <span id="live-clock">05/11/2026</span>
+                </div>
+                <div class="text-[11px] text-gray-400 uppercase">BTC / USDT LIVE PRICE (GIANT VIEW)</div>
+                <div class="text-3xl font-black text-emerald-400 my-1" id="btc-price">$79,639.00</div>
+                <div class="text-xs font-bold text-emerald-400">+1.74% (24h)</div>
+            </div>
+
+            <div class="glass-card p-5 rounded-2xl glow-red border border-red-500/40">
+                <div class="text-lg font-black uppercase text-red-500 tracking-wider mb-1" id="trend-title">BEARISH DOWN-TREND</div>
+                <p class="text-xs text-gray-400" id="trend-desc">Sharp momentum detected below threshold. Heavy sell pressure active.</p>
+                <div class="mt-3 font-extrabold text-sm text-red-400" id="trend-score">Bearish Strength: 85 / 100</div>
+            </div>
+
+            <div class="glass-card p-4 rounded-2xl">
+                <div class="flex justify-between items-center mb-3">
+                    <span class="text-xs font-bold text-gray-300 flex items-center gap-2"><i class="fa-solid fa-scale-balanced text-amber-400"></i> LIVE DUAL-SIDE DIRECTION & STRENGTH ENGINE</span>
+                    <span class="text-xs px-2.5 py-1 bg-red-500/10 text-red-400 rounded-lg font-bold border border-red-500/20">Dominant: Bearish Down-Trend</span>
+                </div>
+                <div class="space-y-3">
+                    <div>
+                        <div class="flex justify-between text-xs font-bold mb-1"><span class="text-emerald-400">Bullish Strength</span><span>35 / 100</span></div>
+                        <div class="w-full bg-gray-900 h-2.5 rounded-full overflow-hidden"><div class="bg-emerald-500 h-full w-[35%]"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs font-bold mb-1"><span class="text-red-400">Bearish Pressure / Weakness</span><span>85 / 100</span></div>
+                        <div class="w-full bg-gray-900 h-2.5 rounded-full overflow-hidden"><div class="bg-red-500 h-full w-[85%]"></div></div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="card">
-            <div class="trend-box" id="trend-title" style="color: var(--accent-red);">BEARISH DOWN-TREND</div>
-            <p style="font-size: 12px; color: var(--text-muted);" id="trend-desc">Sharp momentum detected below threshold.</p>
-            <div style="margin-top: 10px; font-weight: 700; font-size: 14px;" id="trend-score">Bearish Strength: 75 / 100</div>
+        <div class="mt-6">
+            <button onclick="handleLogout()" class="w-full p-3 bg-red-500/20 border border-red-500/40 text-red-400 font-extrabold rounded-xl text-sm">Logout Terminal</button>
         </div>
-
-        <button class="btn btn-secondary" onclick="handleLogout()">Logout Terminal</button>
     </div>
+
+    <nav class="fixed bottom-0 left-0 right-0 glass-card border-t border-gray-800 p-2 z-50 max-w-4xl mx-auto rounded-t-2xl shadow-2xl hidden" id="bottom-nav">
+        <div class="grid grid-cols-5 gap-1 text-center">
+            <button onclick="switchTab('home')" class="nav-btn p-2 rounded-xl text-emerald-400 bg-emerald-500/10 font-bold text-xs flex flex-col items-center gap-1"><i class="fa-solid fa-house text-sm"></i>Home</button>
+            <button onclick="switchTab('options')" class="nav-btn p-2 rounded-xl text-gray-400 font-bold text-xs flex flex-col items-center gap-1"><i class="fa-solid fa-chart-pie text-sm"></i>Options</button>
+            <button onclick="switchTab('mm')" class="nav-btn p-2 rounded-xl text-gray-400 font-bold text-xs flex flex-col items-center gap-1"><i class="fa-solid fa-chess text-sm"></i>MM Intel</button>
+            <button onclick="switchTab('orderflow')" class="nav-btn p-2 rounded-xl text-gray-400 font-bold text-xs flex flex-col items-center gap-1"><i class="fa-solid fa-layer-group text-sm"></i>Order Flow</button>
+            <button onclick="switchTab('chart')" class="nav-btn p-2 rounded-xl text-gray-400 font-bold text-xs flex flex-col items-center gap-1"><i class="fa-solid fa-chart-line text-sm"></i>Chart</button>
+        </div>
+    </nav>
 
     <script>
-        // LocalStorage based Auth & Dynamic Sensitivity Engine
+        function togglePassword(fieldId, btn) {
+            let field = document.getElementById(fieldId);
+            if (field.type === "password") {
+                field.type = "text";
+                btn.innerText = "Hide";
+            } else {
+                field.type = "password";
+                btn.innerText = "Show";
+            }
+        }
+
         function showRegister() {
             document.getElementById('login-form').classList.add('hidden');
             document.getElementById('register-form').classList.remove('hidden');
@@ -111,58 +158,105 @@
             document.getElementById('pending-screen').classList.add('hidden');
             document.getElementById('login-form').classList.remove('hidden');
         }
+
         function handleRegister() {
             let u = document.getElementById('reg-user').value.trim();
             let p = document.getElementById('reg-pass').value.trim();
             if(!u || !p) { document.getElementById('reg-status').innerText = "All fields required!"; return; }
-            
             let pending = JSON.parse(localStorage.getItem('pending_users') || '[]');
             pending.push({user: u, pass: p});
             localStorage.setItem('pending_users', JSON.stringify(pending));
-            
             document.getElementById('register-form').classList.add('hidden');
             document.getElementById('pending-screen').classList.remove('hidden');
         }
+
         function handleLogin() {
             let u = document.getElementById('login-user').value.trim();
             let p = document.getElementById('login-pass').value.trim();
             
-            if(u === 'Ramesh' && p === 'Admin555') {
-                document.getElementById('auth-screen').classList.add('hidden');
-                document.getElementById('app-screen').classList.remove('hidden');
-                initEngine();
+            // Owner / Admin credentials matching your input
+            if(u === 'iMacRamesh' && p === 'Admin555') {
+                grantAccess("Owner Admin", true);
                 return;
             }
             
             let approved = JSON.parse(localStorage.getItem('approved_users') || '[]');
-            let isValid = approved.some(x => x.user === u && x.pass === p);
+            let validUser = approved.find(x => x.user === u && x.pass === p);
             
-            if(isValid) {
-                document.getElementById('auth-screen').classList.add('hidden');
-                document.getElementById('app-screen').classList.remove('hidden');
-                initEngine();
+            if(validUser) {
+                grantAccess("Approved User", false);
             } else {
                 document.getElementById('login-status').innerText = "Invalid credentials or pending approval!";
             }
         }
+
+        function grantAccess(roleText, isAdmin) {
+            document.getElementById('auth-screen').classList.add('hidden');
+            document.getElementById('app-screen').classList.remove('hidden');
+            document.getElementById('bottom-nav').classList.remove('hidden');
+            document.getElementById('role-badge').innerText = roleText;
+            
+            if(isAdmin) {
+                document.getElementById('owner-approval-panel').classList.remove('hidden');
+                renderPendingUsers();
+            } else {
+                document.getElementById('owner-approval-panel').classList.add('hidden');
+            }
+            initEngine();
+        }
+
+        function renderPendingUsers() {
+            let listDiv = document.getElementById('pending-users-list');
+            let pending = JSON.parse(localStorage.getItem('pending_users') || '[]');
+            if(pending.length === 0) {
+                listDiv.innerHTML = '<p class="text-xs text-gray-400">No pending requests.</p>';
+                return;
+            }
+            let html = '';
+            pending.forEach((item, index) => {
+                html += `<div class="flex justify-between items-center bg-gray-900 p-2.5 rounded-xl text-xs">
+                    <span class="font-bold">${item.user}</span>
+                    <div>
+                        <button onclick="approveUser(${index})" class="bg-emerald-500 text-black px-2.5 py-1 rounded-lg font-extrabold mr-1">Approve</button>
+                        <button onclick="rejectUser(${index})" class="bg-red-500 text-white px-2.5 py-1 rounded-lg font-extrabold">Reject</button>
+                    </div>
+                </div>`;
+            });
+            listDiv.innerHTML = html;
+        }
+
+        function approveUser(index) {
+            let pending = JSON.parse(localStorage.getItem('pending_users') || '[]');
+            let approved = JSON.parse(localStorage.getItem('approved_users') || '[]');
+            let userToApprove = pending.splice(index, 1)[0];
+            approved.push(userToApprove);
+            localStorage.setItem('pending_users', JSON.stringify(pending));
+            localStorage.setItem('approved_users', JSON.stringify(approved));
+            renderPendingUsers();
+        }
+
+        function rejectUser(index) {
+            let pending = JSON.parse(localStorage.getItem('pending_users') || '[]');
+            pending.splice(index, 1);
+            localStorage.setItem('pending_users', JSON.stringify(pending));
+            renderPendingUsers();
+        }
+
         function handleLogout() {
             document.getElementById('app-screen').classList.add('hidden');
+            document.getElementById('bottom-nav').classList.add('hidden');
             document.getElementById('auth-screen').classList.remove('hidden');
             document.getElementById('login-user').value = '';
             document.getElementById('login-pass').value = '';
+            document.getElementById('login-status').innerText = '';
         }
 
         function initEngine() {
-            // Simulated live dynamic update capturing fast drops below 100-pt threshold
             setInterval(() => {
-                let randomPrice = 79500 + Math.random() * 400;
-                document.getElementById('btc-price').innerText = "$" + randomPrice.toFixed(2);
-                if(randomPrice < 79750) {
-                    document.getElementById('trend-title').innerText = "BEARISH DOWN-TREND ACTIVE";
-                    document.getElementById('trend-title').style.color = "var(--accent-red)";
-                    document.getElementById('trend-desc').innerText = "Market dropped past 100-pt threshold with heavy sell pressure.";
-                    document.getElementById('trend-score').innerText = "Bearish Strength: 78 / 100";
-                }
+                let liveP = 79639 - (Math.random() * 200);
+                document.getElementById('btc-price').innerText = "$" + liveP.toFixed(2);
+                document.getElementById('trend-title').innerText = "BEARISH DOWN-TREND ACTIVE";
+                document.getElementById('trend-score').innerText = "Bearish Strength: 88 / 100";
             }, 3000);
         }
     </script>
