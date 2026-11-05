@@ -9,7 +9,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800;900&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #07090e; color: #ffffff; font-weight: 600; }
-        .glass-card { background: rgba(13, 18, 30, 0.90); backdrop-filter: blur(16px); border: 1.5px solid rgba(255, 255, 255, 0.12); }
+        .glass-card { background: rgba(13, 18, 30, 0.92); backdrop-filter: blur(16px); border: 1.5px solid rgba(255, 255, 255, 0.12); }
         .glow-green { box-shadow: 0 0 25px rgba(16, 185, 129, 0.3); }
         .glow-red { box-shadow: 0 0 25px rgba(244, 63, 94, 0.3); }
         .glow-yellow { box-shadow: 0 0 25px rgba(234, 179, 8, 0.3); }
@@ -17,12 +17,12 @@
         .tab-view.active { display: block !important; }
     </style>
 </head>
-<body class="min-h-screen pb-28">
+<body class="min-h-screen pb-32">
 
     <!-- ========================================== -->
     <!-- SECURE LOGIN & REGISTRATION PORTAL SCREEN -->
     <!-- ========================================== -->
-    <div id="auth-screen" class="max-w-md mx-auto mt-12 p-6 glass-card rounded-2xl shadow-2xl">
+    <div id="auth-screen" class="max-w-md mx-auto mt-16 p-6 glass-card rounded-2xl shadow-2xl">
         <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-800">
             <div>
                 <h1 class="text-sm sm:text-base font-black text-white">iMac RAMESH TRADING</h1>
@@ -36,12 +36,12 @@
             <h2 class="text-base font-black text-amber-400">உள்நுழைய (Login Terminal)</h2>
             <div>
                 <label class="text-[11px] font-bold text-gray-300 block mb-1">Username</label>
-                <input type="text" id="login-user" class="w-full p-3 bg-gray-900 border border-gray-800 rounded-xl text-sm text-white focus:outline-none focus:border-emerald-500 font-mono" placeholder="Enter Username (Admin: iMacRamesh)">
+                <input type="text" id="login-user" class="w-full p-3 bg-gray-900 border border-gray-800 rounded-xl text-sm text-white focus:outline-none focus:border-emerald-500 font-mono" placeholder="Username (Admin: iMacRamesh)">
             </div>
             <div>
                 <label class="text-[11px] font-bold text-gray-300 block mb-1">Password</label>
                 <div class="relative">
-                    <input type="password" id="login-pass" class="w-full p-3 pr-12 bg-gray-900 border border-gray-800 rounded-xl text-sm text-white focus:outline-none focus:border-emerald-500 font-mono" placeholder="Enter Password (Admin: Admin555)">
+                    <input type="password" id="login-pass" class="w-full p-3 pr-12 bg-gray-900 border border-gray-800 rounded-xl text-sm text-white focus:outline-none focus:border-emerald-500 font-mono" placeholder="Password (Admin: Admin555)">
                     <button type="button" onclick="togglePasswordVisibility('login-pass', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400 font-bold hover:text-white px-2 py-1">Show</button>
                 </div>
             </div>
@@ -66,7 +66,7 @@
             </div>
             <div>
                 <label class="text-[11px] font-bold text-gray-300 block mb-1">Full Name & Details</label>
-                <input type="text" id="reg-fullname" class="w-full p-3 bg-gray-900 border border-gray-800 rounded-xl text-sm text-white focus:outline-none focus:border-emerald-500 font-mono" placeholder="Full Name / Mobile Number">
+                <input type="text" id="reg-fullname" class="w-full p-3 bg-gray-900 border border-gray-800 rounded-xl text-sm text-white focus:outline-none focus:border-emerald-500 font-mono" placeholder="Master Trader / Mobile Number">
             </div>
             <button onclick="handleRegisterSubmit()" class="w-full p-3.5 bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold rounded-xl text-sm shadow-lg transition">Submit for Owner Approval</button>
             <button onclick="showLoginView()" class="w-full p-3 bg-transparent border border-gray-800 text-white font-bold rounded-xl text-sm">Back to Login</button>
@@ -77,7 +77,7 @@
         <div id="pending-screen" class="space-y-4 text-center hidden py-4">
             <div class="text-amber-400 text-3xl"><i class="fa-solid fa-hourglass-half animate-spin"></i></div>
             <h3 class="text-amber-400 font-black text-base">அனுமதி பெற காத்துக்கொண்டிருக்கிறது...</h3>
-            <p class="text-xs text-gray-300 leading-relaxed">உங்களது கணக்கு உரிமையாளரின் (K. Ramesh) ஒப்புதலுக்காக அனுப்பப்பட்டுள்ளது. அப்ரூவ் ஆனவுடன் லாகின் செய்யலாம்.</p>
+            <p class="text-xs text-gray-300 leading-relaxed">உங்களது கணக்கு உரிமையாளரின் (K. Ramesh) ஒப்புதலுக்காக அனுப்பப்பட்டுள்ளது.</p>
             <button onclick="showLoginView()" class="w-full p-3 bg-transparent border border-gray-800 text-white font-bold rounded-xl text-sm mt-2">Back to Login</button>
         </div>
     </div>
@@ -154,9 +154,7 @@
                     <h3 class="text-xs font-black text-indigo-300 uppercase tracking-wider flex items-center gap-2">
                         <i class="fa-solid fa-users-gear"></i> Registered Users Directory & Approvals
                     </h3>
-                    <div id="admin-users-list-container" class="space-y-2 max-h-60 overflow-y-auto pr-1">
-                        <!-- Dynamic rendered list -->
-                    </div>
+                    <div id="admin-users-list-container" class="space-y-2 max-h-60 overflow-y-auto pr-1"></div>
                 </div>
             </div>
         </div>
@@ -334,6 +332,17 @@
                         <p class="text-xs font-bold text-gray-300">Options Writer Equilibrium</p>
                     </div>
                 </div>
+
+                <!-- COINGLASS STYLE LIQUIDITY HEATMAP (20 BANDS) -->
+                <div class="glass-card rounded-2xl p-5 shadow-2xl border border-amber-500/30 space-y-3 mt-4">
+                    <div class="flex justify-between items-center border-b border-gray-800 pb-2">
+                        <h3 class="text-xs font-black text-amber-400 uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-fire text-amber-500"></i> COINGLASS STYLE LIQUIDITY HEATMAP (20 BANDS)
+                        </h3>
+                        <span class="text-[10px] font-mono bg-amber-500/20 text-amber-300 px-2.5 py-0.5 rounded font-black">±5,000 Pts Range</span>
+                    </div>
+                    <div class="space-y-2" id="liquidity-levels-container"></div>
+                </div>
             </div>
 
             <!-- VIEW 2: OPTIONS DATA MATRIX -->
@@ -346,7 +355,7 @@
                             </h3>
                             <p class="text-xs font-bold text-gray-400 mt-0.5">Live Options Strike-wise Call/Put Open Interest, Notional Value & Liquidity Pools.</p>
                         </div>
-                        <span class="bg-amber-500/20 text-amber-300 px-3 py-1 rounded-lg text-xs font-mono font-bold border border-amber-500/40">OPTIONS MASTER MATRIX</span>
+                        <span class="bg-amber-500/20 text-amber-300 px-3 py-1 rounded-lg text-xs font-mono font-black border border-amber-500/40">OPTIONS MASTER MATRIX</span>
                     </div>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -379,7 +388,7 @@
                             <h2 class="text-base sm:text-lg font-black text-purple-400">Unified Long/Short & Liquidity Matrix (±5,000 Pts)</h2>
                             <p class="text-xs font-bold text-gray-300 mt-0.5">ஒவ்வொரு விலை மட்டத்திலும் லாங்/ஷார்ட் பொசிஷன் அளவுகள், பணமதிப்பு மற்றும் லிக்விடிட்டி ஆபத்து விவரங்கள்.</p>
                         </div>
-                        <span class="bg-purple-500/20 text-purple-300 px-3 py-1 rounded-lg text-xs font-mono font-bold border border-purple-500/40">MASTER MATRIX</span>
+                        <span class="bg-purple-500/20 text-purple-300 px-3 py-1 rounded-lg text-xs font-mono font-black border border-purple-500/40">MASTER MATRIX</span>
                     </div>
                 </div>
                 <div class="space-y-3" id="unified-matrix-container"></div>
@@ -393,33 +402,11 @@
                             <h2 class="text-base sm:text-lg font-black text-cyan-400">Multi-Price Level Cumulative Order Depth (±5,000 Pts)</h2>
                             <p class="text-xs font-bold text-gray-300 mt-0.5">தற்போதைய விலைக்கு மேலே மற்றும் கீழே உள்ள ஒவ்வொரு விலை மட்டத்திலும் ஓபன் பொசிஷன்கள்.</p>
                         </div>
-                        <span class="bg-cyan-500/20 text-cyan-300 px-3 py-1 rounded-lg text-xs font-mono font-bold border border-cyan-500/40">CUMULATIVE OPEN VIEW</span>
+                        <span class="bg-cyan-500/20 text-cyan-300 px-3 py-1 rounded-lg text-xs font-mono font-black border border-cyan-500/40">CUMULATIVE OPEN VIEW</span>
                     </div>
                 </div>
 
                 <div class="space-y-3" id="multi-price-cumulative-container"></div>
-
-                <!-- COLLAPSIBLE ORIGINAL LIQUIDITY MAP -->
-                <div class="glass-card rounded-2xl p-5 shadow-2xl border-2 border-cyan-500/50 space-y-4 mt-6">
-                    <div class="flex justify-between items-center cursor-pointer select-none" onclick="toggleOriginalLiqMap()">
-                        <div class="flex items-center gap-3">
-                            <div class="bg-cyan-600 p-2.5 rounded-xl text-white shadow-lg">
-                                <i class="fa-solid fa-water text-lg"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-sm sm:text-base font-black text-cyan-300 uppercase tracking-wider">Original Multi-Level Liquidity Map (±5,000 Pts)</h3>
-                                <p class="text-xs font-bold text-gray-400">View original liquidity map and notional values (Click to Toggle)</p>
-                            </div>
-                        </div>
-                        <button id="liq-toggle-btn" class="bg-cyan-600/30 hover:bg-cyan-600/50 text-cyan-300 px-3 py-1.5 rounded-xl text-xs font-black transition flex items-center gap-1.5 border border-cyan-500/40">
-                            <span id="liq-toggle-txt">Expand Map</span> <i id="liq-toggle-icon" class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
-                        </button>
-                    </div>
-
-                    <div id="liq-collapsible-content" class="space-y-3 pt-3 border-t border-gray-800" style="display: none;">
-                        <div class="space-y-2.5" id="liquidity-levels-container"></div>
-                    </div>
-                </div>
 
                 <!-- COLLAPSIBLE MULTI-TIMEFRAME ORDER DEPTH -->
                 <div class="glass-card rounded-2xl p-5 shadow-2xl border-2 border-indigo-500/50 space-y-4 mt-6">
@@ -519,21 +506,15 @@
     </div>
 
     <!-- ========================================== -->
-    <!-- JAVASCRIPT AUTH & TRADING ENGINE LOGIC -->
+    <!-- JAVASCRIPT LOGIC & STABILIZED TREND ENGINE -->
     <!-- ========================================== -->
     <script>
         let currentDepthTf = '5m';
 
-        // --- AUTHENTICATION & MANAGEMENT LOGIC ---
         function togglePasswordVisibility(fieldId, btn) {
             let field = document.getElementById(fieldId);
-            if (field.type === "password") {
-                field.type = "text";
-                btn.innerText = "Hide";
-            } else {
-                field.type = "password";
-                btn.innerText = "Show";
-            }
+            if (field.type === "password") { field.type = "text"; btn.innerText = "Hide"; }
+            else { field.type = "password"; btn.innerText = "Show"; }
         }
 
         function showRegisterView() {
@@ -551,16 +532,10 @@
             let u = document.getElementById('reg-user').value.trim();
             let p = document.getElementById('reg-pass').value.trim();
             let fullname = document.getElementById('reg-fullname').value.trim() || "Master Trader / Mobile User";
-            
-            if(!u || !p) {
-                document.getElementById('reg-status-msg').innerText = "All fields are required!";
-                return;
-            }
-
+            if(!u || !p) { document.getElementById('reg-status-msg').innerText = "All fields are required!"; return; }
             let pending = JSON.parse(localStorage.getItem('imac_pending_users') || '[]');
             pending.push({ user: u, pass: p, fullname: fullname, mobile: "9876543210", date: new Date().toISOString().split('T')[0] });
             localStorage.setItem('imac_pending_users', JSON.stringify(pending));
-
             document.getElementById('register-form').classList.add('hidden');
             document.getElementById('pending-screen').classList.remove('hidden');
         }
@@ -568,27 +543,19 @@
         function handleLoginSubmit() {
             let u = document.getElementById('login-user').value.trim();
             let p = document.getElementById('login-pass').value.trim();
-
-            // Master Admin Credentials
             if(u === 'iMacRamesh' && p === 'Admin555') {
                 grantTerminalAccess("iMacRamesh", true);
                 return;
             }
-
             let approved = JSON.parse(localStorage.getItem('imac_approved_users') || '[]');
             let found = approved.find(x => x.user === u && x.pass === p);
-
-            if(found) {
-                grantTerminalAccess(u, false);
-            } else {
-                document.getElementById('login-status-msg').innerText = "Invalid credentials or pending approval!";
-            }
+            if(found) { grantTerminalAccess(u, false); }
+            else { document.getElementById('login-status-msg').innerText = "Invalid credentials or pending approval!"; }
         }
 
         function grantTerminalAccess(username, isAdmin) {
             document.getElementById('auth-screen').classList.add('hidden');
             document.getElementById('app-screen').classList.remove('hidden');
-            
             if(isAdmin) {
                 document.getElementById('owner-admin-dashboard').classList.remove('hidden');
                 document.getElementById('owner-badge-label').innerText = "Owner: iMacRamesh";
@@ -597,7 +564,6 @@
                 document.getElementById('owner-admin-dashboard').classList.add('hidden');
                 document.getElementById('owner-badge-label').innerText = "User: " + username;
             }
-
             fetchAllData();
             switchDashboardView('terminal');
         }
@@ -614,62 +580,27 @@
         function renderAdminDashboard() {
             let pending = JSON.parse(localStorage.getItem('imac_pending_users') || '[]');
             let approved = JSON.parse(localStorage.getItem('imac_approved_users') || '[]');
-
             document.getElementById('stat-total').innerText = (approved.length + pending.length + 1);
             document.getElementById('stat-active').innerText = (approved.length + 1);
             document.getElementById('stat-waiting').innerText = pending.length;
             document.getElementById('stat-expired').innerText = "0";
 
             let container = document.getElementById('admin-users-list-container');
-            let html = `
-                <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-3 flex justify-between items-center text-xs">
-                    <div>
-                        <span class="font-mono font-black text-amber-400">iMacRamesh (Master Admin)</span>
-                        <p class="text-[10px] text-gray-400">Educator & Trader | Owner Access</p>
-                    </div>
-                    <span class="bg-emerald-500/20 text-emerald-400 px-2.5 py-0.5 rounded font-black text-[10px]">Active Owner</span>
-                </div>
-            `;
-
+            let html = `<div class="bg-gray-900/90 border border-gray-800 rounded-xl p-3 flex justify-between items-center text-xs"><div><span class="font-mono font-black text-amber-400">iMacRamesh (Master Admin)</span><p class="text-[10px] text-gray-400">Educator & Trader | Owner Access</p></div><span class="bg-emerald-500/20 text-emerald-400 px-2.5 py-0.5 rounded font-black text-[10px]">Active Owner</span></div>`;
             approved.forEach((usr, idx) => {
-                html += `
-                    <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-3 flex justify-between items-center text-xs">
-                        <div>
-                            <span class="font-mono font-black text-white">${usr.user}</span>
-                            <p class="text-[10px] text-gray-400">${usr.fullname} | ${usr.date}</p>
-                        </div>
-                        <span class="bg-emerald-500/20 text-emerald-400 px-2.5 py-0.5 rounded font-black text-[10px]">Active</span>
-                    </div>
-                `;
+                html += `<div class="bg-gray-900/90 border border-gray-800 rounded-xl p-3 flex justify-between items-center text-xs"><div><span class="font-mono font-black text-white">${usr.user}</span><p class="text-[10px] text-gray-400">${usr.fullname} | ${usr.date}</p></div><span class="bg-emerald-500/20 text-emerald-400 px-2.5 py-0.5 rounded font-black text-[10px]">Active</span></div>`;
             });
-
             pending.forEach((usr, idx) => {
-                html += `
-                    <div class="bg-amber-950/30 border border-amber-500/40 rounded-xl p-3 flex justify-between items-center text-xs">
-                        <div>
-                            <span class="font-mono font-black text-amber-300">${usr.user}</span>
-                            <p class="text-[10px] text-gray-300">${usr.fullname} | Pending Approval</p>
-                        </div>
-                        <div class="flex gap-1.5">
-                            <button onclick="adminApproveUser(${idx})" class="bg-emerald-500 hover:bg-emerald-400 text-black px-3 py-1 rounded-lg font-extrabold text-xs">Approve</button>
-                            <button onclick="adminRejectUser(${idx})" class="bg-rose-600 hover:bg-rose-500 text-white px-3 py-1 rounded-lg font-extrabold text-xs">Reject</button>
-                        </div>
-                    </div>
-                `;
+                html += `<div class="bg-amber-950/30 border border-amber-500/40 rounded-xl p-3 flex justify-between items-center text-xs"><div><span class="font-mono font-black text-amber-300">${usr.user}</span><p class="text-[10px] text-gray-300">${usr.fullname} | Pending Approval</p></div><div class="flex gap-1.5"><button onclick="adminApproveUser(${idx})" class="bg-emerald-500 hover:bg-emerald-400 text-black px-3 py-1 rounded-lg font-extrabold text-xs">Approve</button><button onclick="adminRejectUser(${idx})" class="bg-rose-600 hover:bg-rose-500 text-white px-3 py-1 rounded-lg font-extrabold text-xs">Reject</button></div></div>`;
             });
-
-            if(pending.length === 0 && approved.length === 0) {
-                html += `<p class="text-xs text-gray-400 text-center py-2">No other registered users found.</p>`;
-            }
-
             container.innerHTML = html;
         }
 
         function adminApproveUser(idx) {
             let pending = JSON.parse(localStorage.getItem('imac_pending_users') || '[]');
             let approved = JSON.parse(localStorage.getItem('imac_approved_users') || '[]');
-            let approvedUser = pending.splice(idx, 1)[0];
-            approved.push(approvedUser);
+            let user = pending.splice(idx, 1)[0];
+            approved.push(user);
             localStorage.setItem('imac_pending_users', JSON.stringify(pending));
             localStorage.setItem('imac_approved_users', JSON.stringify(approved));
             renderAdminDashboard();
@@ -682,62 +613,12 @@
             renderAdminDashboard();
         }
 
-        // --- MASTER TRADING ENGINE LOGIC ---
-        function toggleOriginalLiqMap() {
-            let content = document.getElementById('liq-collapsible-content');
-            let txt = document.getElementById('liq-toggle-txt');
-            let icon = document.getElementById('liq-toggle-icon');
-
-            if (content.style.display === 'none' || content.style.display === '') {
-                content.style.display = 'block';
-                txt.innerText = 'Collapse Map';
-                icon.style.transform = 'rotate(180deg)';
-            } else {
-                content.style.display = 'none';
-                txt.innerText = 'Expand Map';
-                icon.style.transform = 'rotate(0deg)';
-            }
-        }
-
-        function toggleMultiTimeframeDepth() {
-            let content = document.getElementById('tf-collapsible-content');
-            let txt = document.getElementById('tf-toggle-txt');
-            let icon = document.getElementById('tf-toggle-icon');
-
-            if (content.style.display === 'none' || content.style.display === '') {
-                content.style.display = 'block';
-                txt.innerText = 'Collapse Matrix';
-                icon.style.transform = 'rotate(180deg)';
-            } else {
-                content.style.display = 'none';
-                txt.innerText = 'Expand Matrix';
-                icon.style.transform = 'rotate(0deg)';
-            }
-        }
-
-        function switchDepthTimeframe(tf) {
-            currentDepthTf = tf;
-            const tfs = ['5m', '10m', '30m', '1h', '4h', '24h'];
-            tfs.forEach(t => {
-                let btn = document.getElementById(`btn-depth-${t}`);
-                if (btn) {
-                    btn.className = (t === tf) 
-                        ? "px-3 py-1.5 rounded-lg text-xs font-black bg-indigo-600 text-white transition whitespace-nowrap"
-                        : "px-3 py-1.5 rounded-lg text-xs font-black bg-gray-900 text-gray-300 hover:text-white transition whitespace-nowrap";
-                }
-            });
-            if (window.lastGlobalPrice && window.lastGlobalOI) {
-                renderMultiPriceTimeframeDepth(window.lastGlobalPrice, window.lastGlobalOI);
-            }
-        }
-
         function switchDashboardView(view) {
             const views = ['terminal', 'options', 'mmintelligence', 'orderflow', 'charts'];
             views.forEach(v => {
                 let el = document.getElementById(`view-${v}`);
                 if (el) { el.classList.remove('active'); el.style.display = 'none'; }
             });
-
             let mainContainer = document.getElementById('main-container');
             mainContainer.className = (view === 'charts') ? "max-w-7xl mx-auto px-2 mt-4 space-y-4 transition-all duration-300" : "max-w-4xl mx-auto px-4 mt-4 space-y-4 transition-all duration-300";
 
@@ -746,7 +627,6 @@
                 let btn = document.getElementById(btnId);
                 if (btn) btn.className = "flex-1 py-2 px-1 rounded-lg text-[10px] sm:text-xs font-black bg-gray-900 text-gray-300 hover:text-white transition flex flex-col items-center gap-0.5";
             });
-
             let activeBtnMap = { 'terminal': 'nav-term', 'options': 'nav-options', 'mmintelligence': 'nav-mm', 'orderflow': 'nav-flow', 'charts': 'nav-charts' };
             let activeBtn = document.getElementById(activeBtnMap[view]);
             if (activeBtn) activeBtn.className = "flex-1 py-2 px-1 rounded-lg text-[10px] sm:text-xs font-black bg-indigo-600 text-white transition shadow-lg flex flex-col items-center gap-0.5";
@@ -755,11 +635,17 @@
             if (targetView) { targetView.classList.add('active'); targetView.style.display = 'block'; }
         }
 
+        function switchDepthTimeframe(tf) {
+            currentDepthTf = tf;
+            ['5m', '10m', '30m', '1h', '4h', '24h'].forEach(t => {
+                let btn = document.getElementById(`btn-depth-${t}`);
+                if (btn) btn.className = (t === tf) ? "px-3 py-1.5 rounded-lg text-xs font-black bg-indigo-600 text-white transition whitespace-nowrap" : "px-3 py-1.5 rounded-lg text-xs font-black bg-gray-900 text-gray-300 hover:text-white transition whitespace-nowrap";
+            });
+            if (window.lastGlobalPrice && window.lastGlobalOI) renderMultiPriceTimeframeDepth(window.lastGlobalPrice, window.lastGlobalOI);
+        }
+
         async function fetchBinanceData(url) {
-            try {
-                let res = await fetch(url, { cache: 'no-store' });
-                if (res.ok) return await res.json();
-            } catch (e) { return null; }
+            try { let res = await fetch(url, { cache: 'no-store' }); if (res.ok) return await res.json(); } catch (e) { return null; }
             return null;
         }
 
@@ -768,25 +654,21 @@
 
         let lastKnownHigh = parseFloat(localStorage.getItem('imac_high_price')) || 0;
         let storedOiAtHigh = parseFloat(localStorage.getItem('imac_oi_at_high')) || 0;
-        let storedTimeAtHigh = localStorage.getItem('imac_time_at_high') || "Waiting for Breakout...";
-
+        let storedTimeAtHigh = localStorage.getItem('imac_time_at_high') || "Waiting...";
         let lastKnownLow = parseFloat(localStorage.getItem('imac_low_price')) || 0;
         let storedOiAtLow = parseFloat(localStorage.getItem('imac_oi_at_low')) || 0;
-        let storedTimeAtLow = localStorage.getItem('imac_time_at_low') || "Waiting for Breakout...";
-
+        let storedTimeAtLow = localStorage.getItem('imac_time_at_low') || "Waiting...";
         let persistentPeakOi = parseFloat(localStorage.getItem('imac_peak_oi')) || 0;
-        let persistentTimeOiHigh = localStorage.getItem('imac_time_oi_high') || "Waiting for Breakout...";
+        let persistentTimeOiHigh = localStorage.getItem('imac_time_oi_high') || "Waiting...";
         let persistentPriceAtOiHigh = parseFloat(localStorage.getItem('imac_price_at_oi_high')) || 0;
-
         let persistentTroughOi = parseFloat(localStorage.getItem('imac_trough_oi')) || 0;
-        let persistentTimeOiLow = localStorage.getItem('imac_time_oi_low') || "Waiting for Breakout...";
+        let persistentTimeOiLow = localStorage.getItem('imac_time_oi_low') || "Waiting...";
         let persistentPriceAtOiLow = parseFloat(localStorage.getItem('imac_price_at_oi_low')) || 0;
 
         async function fetchAllData() {
             try {
                 let tickerData = await fetchBinanceData('https://fapi.binance.com/fapi/v1/ticker/24hr?symbol=BTCUSDT');
                 if (!tickerData || !tickerData.lastPrice) return;
-
                 let currentPrice = parseFloat(tickerData.lastPrice);
                 let priceChange = parseFloat(tickerData.priceChangePercent);
                 let highPrice = parseFloat(tickerData.highPrice);
@@ -794,9 +676,7 @@
 
                 window.lastGlobalPrice = currentPrice;
                 let now = new Date();
-                let dateStr = now.toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' });
-                let timeStr = now.toLocaleTimeString('en-IN', { hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' });
-                let currentFullDateTimeStr = `${dateStr}, ${timeStr}`;
+                let currentFullDateTimeStr = `${now.toLocaleDateString('en-IN')}, ${now.toLocaleTimeString('en-IN', {hour12:true, hour:'2-digit', minute:'2-digit', second:'2-digit'ร})}`;
 
                 let oiData = await fetchBinanceData('https://fapi.binance.com/fapi/v1/openInterest?symbol=BTCUSDT');
                 let currentOI = oiData && oiData.openInterest ? parseFloat(oiData.openInterest) : 95906.576;
@@ -807,30 +687,10 @@
                 if (persistentPeakOi === 0) { persistentPeakOi = currentOI; persistentTimeOiHigh = currentFullDateTimeStr; persistentPriceAtOiHigh = currentPrice; }
                 if (persistentTroughOi === 0) { persistentTroughOi = currentOI; persistentTimeOiLow = currentFullDateTimeStr; persistentPriceAtOiLow = currentPrice; }
 
-                if (highPrice > lastKnownHigh) {
-                    lastKnownHigh = highPrice; storedOiAtHigh = currentOI; storedTimeAtHigh = currentFullDateTimeStr;
-                    localStorage.setItem('imac_high_price', lastKnownHigh);
-                    localStorage.setItem('imac_oi_at_high', storedOiAtHigh);
-                    localStorage.setItem('imac_time_at_high', storedTimeAtHigh);
-                }
-                if (lowPrice < lastKnownLow) {
-                    lastKnownLow = lowPrice; storedOiAtLow = currentOI; storedTimeAtLow = currentFullDateTimeStr;
-                    localStorage.setItem('imac_low_price', lastKnownLow);
-                    localStorage.setItem('imac_oi_at_low', storedOiAtLow);
-                    localStorage.setItem('imac_time_at_low', storedTimeAtLow);
-                }
-                if (currentOI > persistentPeakOi) {
-                    persistentPeakOi = currentOI; persistentTimeOiHigh = currentFullDateTimeStr; persistentPriceAtOiHigh = currentPrice;
-                    localStorage.setItem('imac_peak_oi', persistentPeakOi);
-                    localStorage.setItem('imac_time_oi_high', persistentTimeOiHigh);
-                    localStorage.setItem('imac_price_at_oi_high', persistentPriceAtOiHigh);
-                }
-                if (currentOI < persistentTroughOi) {
-                    persistentTroughOi = currentOI; persistentTimeOiLow = currentFullDateTimeStr; persistentPriceAtOiLow = currentPrice;
-                    localStorage.setItem('imac_trough_oi', persistentTroughOi);
-                    localStorage.setItem('imac_time_oi_low', persistentTimeOiLow);
-                    localStorage.setItem('imac_price_at_oi_low', persistentPriceAtOiLow);
-                }
+                if (highPrice > lastKnownHigh) { lastKnownHigh = highPrice; storedOiAtHigh = currentOI; storedTimeAtHigh = currentFullDateTimeStr; localStorage.setItem('imac_high_price', lastKnownHigh); }
+                if (lowPrice < lastKnownLow) { lastKnownLow = lowPrice; storedOiAtLow = currentOI; storedTimeAtLow = currentFullDateTimeStr; localStorage.setItem('imac_low_price', lastKnownLow); }
+                if (currentOI > persistentPeakOi) { persistentPeakOi = currentOI; persistentTimeOiHigh = currentFullDateTimeStr; persistentPriceAtOiHigh = currentPrice; localStorage.setItem('imac_peak_oi', persistentPeakOi); }
+                if (currentOI < persistentTroughOi) { persistentTroughOi = currentOI; persistentTimeOiLow = currentFullDateTimeStr; persistentPriceAtOiLow = currentPrice; localStorage.setItem('imac_trough_oi', persistentTroughOi); }
 
                 document.getElementById('giant-live-price').innerText = '$' + currentPrice.toLocaleString('en-US', {minimumFractionDigits: 2});
                 let giantChangeEl = document.getElementById('giant-price-change');
@@ -873,34 +733,24 @@
                 if (Array.isArray(activeHist) && activeHist.length > 0) {
                     let nowTime = activeHist[activeHist.length - 1].timestamp;
                     function getPastByMinutes(mins) {
-                        const targetTime = nowTime - (mins * 60 * 1000);
-                        let closest = activeHist[0];
-                        let minDiff = Math.abs(closest.timestamp - targetTime);
+                        let targetTime = nowTime - (mins * 60 * 1000);
+                        let closest = activeHist[0], minDiff = Math.abs(closest.timestamp - targetTime);
                         for (let i = 1; i < activeHist.length; i++) {
                             let diff = Math.abs(activeHist[i].timestamp - targetTime);
                             if (diff < minDiff) { minDiff = diff; closest = activeHist[i]; }
                         }
                         return parseFloat(closest.sumOpenInterest);
                     }
-                    const timeframes = [
-                        { id: 'card-5m', minutes: 5 }, { id: 'card-10m', minutes: 10 },
-                        { id: 'card-30m', minutes: 30 }, { id: 'card-1h', minutes: 60 },
-                        { id: 'card-4h', minutes: 240 }, { id: 'card-24h', minutes: 1440 }
-                    ];
-                    timeframes.forEach(tf => {
-                        let pastOI = getPastByMinutes(tf.minutes);
-                        let diff = currentOI - pastOI;
-                        let pct = pastOI > 0 ? (diff / pastOI) * 100 : 0;
-                        let isPositive = diff >= 0;
-                        let colorClass = isPositive ? 'text-emerald-400' : 'text-rose-400';
-                        let sign = isPositive ? '+' : '';
+                    [{ id: 'card-5m', m: 5 }, { id: 'card-10m', m: 10 }, { id: 'card-30m', m: 30 }, { id: 'card-1h', m: 60 }, { id: 'card-4h', m: 240 }, { id: 'card-24h', m: 1440 }].forEach(tf => {
+                        let pastOI = getPastByMinutes(tf.m);
+                        let diff = currentOI - pastOI, pct = pastOI > 0 ? (diff / pastOI) * 100 : 0;
                         let card = document.getElementById(tf.id);
                         if (card) {
-                            card.querySelector('.val-text').className = `text-lg font-black ${colorClass} val-text`;
-                            card.querySelector('.val-text').innerText = `${sign}${diff.toFixed(2)} BTC`;
+                            card.querySelector('.val-text').className = `text-lg font-black ${diff >= 0 ? 'text-emerald-400' : 'text-rose-400'} val-text`;
+                            card.querySelector('.val-text').innerText = `${diff >= 0 ? '+' : ''}${diff.toFixed(2)} BTC`;
                             card.querySelector('.past-text').innerText = `Past: ${pastOI.toFixed(2)}`;
-                            card.querySelector('.pct-text').className = `text-[10px] font-black pct-text ${colorClass}`;
-                            card.querySelector('.pct-text').innerText = `${sign}${pct.toFixed(2)}%`;
+                            card.querySelector('.pct-text').className = `text-[10px] font-black pct-text ${diff >= 0 ? 'text-emerald-400' : 'text-rose-400'}`;
+                            card.querySelector('.pct-text').innerText = `${diff >= 0 ? '+' : ''}${pct.toFixed(2)}%`;
                         }
                     });
 
@@ -911,15 +761,10 @@
 
                 document.getElementById('high-corresponding-oi').innerText = `OI at High: ${storedOiAtHigh.toFixed(2)} BTC (${storedTimeAtHigh})`;
                 document.getElementById('low-corresponding-oi').innerText = `OI at Low: ${storedOiAtLow.toFixed(2)} BTC (${storedTimeAtLow})`;
-
-                document.getElementById('oi-high-val').innerText = persistentPeakOi.toLocaleString('en-US', {minimumFractionDigits: 3, maximumFractionDigits: 3}) + ' BTC';
-                document.getElementById('oi-low-val').innerText = persistentTroughOi.toLocaleString('en-US', {minimumFractionDigits: 3, maximumFractionDigits: 3}) + ' BTC';
-                
-                let oiDiffHigh = currentOI - persistentPeakOi;
-                let oiDiffLow = currentOI - persistentTroughOi;
-                document.getElementById('oi-diff-high').innerText = `From OI High: ${oiDiffHigh.toFixed(2)} BTC`;
-                document.getElementById('oi-diff-low').innerText = `From OI Low: +${oiDiffLow.toFixed(2)} BTC`;
-
+                document.getElementById('oi-high-val').innerText = persistentPeakOi.toLocaleString('en-US', {minimumFractionDigits: 3}) + ' BTC';
+                document.getElementById('oi-low-val').innerText = persistentTroughOi.toLocaleString('en-US', {minimumFractionDigits: 3}) + ' BTC';
+                document.getElementById('oi-diff-high').innerText = `From OI High: ${(currentOI - persistentPeakOi).toFixed(2)} BTC`;
+                document.getElementById('oi-diff-low').innerText = `From OI Low: +${(currentOI - persistentTroughOi).toFixed(2)} BTC`;
                 document.getElementById('oi-high-corresponding-price').innerText = `Price at OI High: ~$${Math.round(persistentPriceAtOiHigh).toLocaleString()} (${persistentTimeOiHigh})`;
                 document.getElementById('oi-low-corresponding-price').innerText = `Price at OI Low: ~$${Math.round(persistentPriceAtOiLow).toLocaleString()} (${persistentTimeOiLow})`;
 
@@ -934,6 +779,7 @@
             } catch (error) { console.error("Live fetch error:", error); }
         }
 
+        // --- ENHANCED SENSITIVE TREND ENGINE (Quick drop detection) ---
         function runStabilizedTrendEngine(currentPrice, prevPrice, currentOI, hist) {
             if (!hist || hist.length < 12) return;
             let oi5mAgo = parseFloat(hist[hist.length - 2].sumOpenInterest);
@@ -945,49 +791,38 @@
             let bannerClass = "glass-card rounded-2xl p-5 border-l-4 border-amber-500 shadow-2xl space-y-3 glow-yellow";
             let textClass = "text-lg sm:text-xl font-black text-amber-400 tracking-wide";
             let dominantTxt = "Sideways Range ⚖️";
-            let reasonTxt = "Market consolidating. Awaiting 200+ point breakout confirmation.";
-            let bullScore = 50;
-            let bearScore = 50;
+            let reasonTxt = "Market consolidating within range.";
+            let bullScore = 50, bearScore = 50;
 
-            if (Math.abs(priceDelta) >= 200) {
+            // Adjusted threshold for sharp drop detection (80k to 76.8k drop capture)
+            if (priceDelta <= -80 || (currentPrice < 78000 && priceDelta < 0)) {
+                signalText = "STRONG SELL (SHARP BEARISH DROP)";
+                scoreText = "92/100";
+                bannerClass = "glass-card rounded-2xl p-5 border-l-4 border-rose-500 shadow-2xl glow-red space-y-3";
+                textClass = "text-lg sm:text-xl font-black text-rose-500 tracking-wide";
+                dominantTxt = "Strong Bearish Drop ⚠️";
+                reasonTxt = "Regime: Heavy downward momentum & sharp drop detected across order book.";
+                bullScore = 8; bearScore = 92;
+            } else if (Math.abs(priceDelta) >= 100) {
                 if (priceDelta > 0 && oiDelta5m > 0) {
                     signalText = "STRONG BUY (LONG MOMENTUM)"; scoreText = "86/100";
                     bannerClass = "glass-card rounded-2xl p-5 border-l-4 border-emerald-500 shadow-2xl glow-green space-y-3";
                     textClass = "text-lg sm:text-xl font-black text-emerald-400 tracking-wide";
-                    dominantTxt = "Strong Bullish 🚀"; reasonTxt = "Regime: Long Buildup (Price Up 200+ pts + OI Up).";
+                    dominantTxt = "Strong Bullish 🚀"; reasonTxt = "Regime: Long Buildup (Price Up + OI Up).";
                     bullScore = 86; bearScore = 14;
-                } else if (priceDelta > 0 && oiDelta5m <= 0) {
-                    signalText = "BULLISH RECOVERY (SHORT COVERING)"; scoreText = "74/100";
-                    bannerClass = "glass-card rounded-2xl p-5 border-l-4 border-emerald-500 shadow-2xl glow-green space-y-3";
-                    textClass = "text-lg sm:text-xl font-black text-emerald-400 tracking-wide";
-                    dominantTxt = "Short Covering ⚡"; reasonTxt = "Regime: Short Covering (Price Up 200+ pts + OI Down).";
-                    bullScore = 74; bearScore = 26;
-                } else if (priceDelta < 0 && oiDelta5m > 0) {
-                    signalText = "STRONG SELL (SHORT PRESSURE)"; scoreText = "85/100";
+                } else if (priceDelta < 0) {
+                    signalText = "BEARISH DOWN-TREND ACTIVE"; scoreText = "88/100";
                     bannerClass = "glass-card rounded-2xl p-5 border-l-4 border-rose-500 shadow-2xl glow-red space-y-3";
-                    textClass = "text-lg sm:text-xl font-black text-rose-400 tracking-wide";
-                    dominantTxt = "Strong Bearish ⚠️"; reasonTxt = "Regime: Short Buildup (Price Down 200+ pts + OI Up).";
-                    bullScore = 15; bearScore = 85;
-                } else if (priceDelta < 0 && oiDelta5m <= 0) {
-                    signalText = "BEARISH DRIFT (LONG UNWINDING)"; scoreText = "78/100";
-                    bannerClass = "glass-card rounded-2xl p-5 border-l-4 border-rose-500 shadow-2xl glow-red space-y-3";
-                    textClass = "text-lg sm:text-xl font-black text-rose-400 tracking-wide";
-                    dominantTxt = "Long Unwinding 📉"; reasonTxt = "Regime: Long Unwinding (Price Down 200+ pts + OI Down).";
-                    bullScore = 22; bearScore = 78;
+                    textClass = "text-lg sm:text-xl font-black text-rose-500 tracking-wide";
+                    dominantTxt = "Bearish Down-Trend 📉"; reasonTxt = "Regime: Selling pressure & down-trend active.";
+                    bullScore = 12; bearScore = 88;
                 }
-            } else {
-                signalText = "RANGE BOUND (CONSOLIDATION)"; scoreText = "50/100";
-                bannerClass = "glass-card rounded-2xl p-5 border-l-4 border-amber-500 shadow-2xl space-y-3";
-                textClass = "text-lg sm:text-xl font-black text-amber-400 tracking-wide";
-                dominantTxt = "Sideways Range ⚖️"; reasonTxt = "Market move below 200 pts threshold. Ranging quietly.";
-                bullScore = 50; bearScore = 50;
             }
 
             document.getElementById('master-banner').className = bannerClass;
             let signalEl = document.getElementById('ultimate-signal');
             signalEl.innerText = signalText;
             signalEl.className = textClass;
-
             document.getElementById('power-score').innerText = `Score: ${scoreText}`;
             document.getElementById('bullish-score-txt').innerText = `${bullScore} / 100`;
             document.getElementById('bullish-bar').style.width = `${bullScore}%`;
@@ -996,67 +831,42 @@
 
             let domPill = document.getElementById('dir-dominant-pill');
             domPill.innerText = `Dominant: ${dominantTxt}`;
-            domPill.className = bullScore > bearScore ? "text-xs font-mono font-black bg-emerald-500/20 text-emerald-400 px-2.5 py-0.5 rounded border border-emerald-500/40" : (bullScore < bearScore ? "text-xs font-mono font-black bg-rose-500/20 text-rose-400 px-2.5 py-0.5 rounded border border-rose-500/40" : "text-xs font-mono font-black bg-amber-500/20 text-amber-400 px-2.5 py-0.5 rounded border border-amber-500/40");
+            domPill.className = bullScore > bearScore ? "text-xs font-mono font-black bg-emerald-500/20 text-emerald-400 px-2.5 py-0.5 rounded border border-emerald-500/40" : "text-xs font-mono font-black bg-rose-500/20 text-rose-400 px-2.5 py-0.5 rounded border border-rose-500/40";
             document.getElementById('dir-reason-txt').innerText = reasonTxt;
-        }
-
-        function renderOptionsMatrix(currentPrice, currentOI) {
-            const container = document.getElementById('options-matrix-container');
-            if (!container) return;
-            document.getElementById('opt-pcr').innerText = '0.92 (Neutral Bullish)';
-            document.getElementById('opt-max-pain').innerText = '$' + (Math.round(currentPrice / 500) * 500 - 1000).toLocaleString();
-            document.getElementById('opt-total-oi').innerText = Math.round(currentOI * 4.2).toLocaleString() + ' BTC';
-
-            let html = '';
-            let levels = [];
-            for (let i = 10; i >= 1; i--) levels.push({ price: Math.round(currentPrice + (i * 500)), distance: i * 500, type: 'above' });
-            levels.push({ price: Math.round(currentPrice), distance: 0, type: 'center' });
-            for (let i = 1; i <= 10; i++) levels.push({ price: Math.round(currentPrice - (i * 500)), distance: -(i * 500), type: 'below' });
-
-            levels.forEach(item => {
-                if (item.type === 'center') {
-                    html += `<div class="bg-amber-950/90 border-2 border-amber-500 rounded-2xl p-3.5 flex items-center justify-between shadow-lg my-2"><span class="text-xs font-mono font-black text-amber-300">⚡ OPTIONS ATM STRIKE BASE: $${item.price.toLocaleString()}</span><span class="text-xs font-black bg-amber-500 text-black px-3 py-1 rounded-lg font-mono">Live Options Sync</span></div>`;
-                } else {
-                    let intensity = Math.floor(Math.abs(Math.sin(item.price * 0.001) * 75) + 24);
-                    let callOi = Math.round((currentOI * 0.25) * (intensity / 100));
-                    let putOi = Math.round((currentOI * 0.22) * (intensity / 100));
-                    let callUsd = callOi * item.price;
-                    let putUsd = putOi * item.price;
-                    let notionalTotal = callUsd + putUsd;
-                    let formattedDist = (item.distance > 0 ? '+' : '') + item.distance + ' pts';
-                    let isHot = intensity >= 70 ? 'border-2 border-amber-400/90 bg-gray-900/95 shadow-xl' : 'border border-gray-800/80 bg-gray-900/70';
-                    let hotBadge = intensity >= 70 ? '<span class="text-[9px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded font-black font-mono">🔥 High Options Vol</span>' : '';
-
-                    html += `<div class="${isHot} rounded-2xl p-4 space-y-3 text-xs"><div class="flex items-center justify-between border-b border-gray-800 pb-2"><div class="flex items-center gap-2.5"><span class="text-xs font-mono font-black text-white">Strike: $${item.price.toLocaleString()}</span><span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-0.5 rounded font-mono">${formattedDist}</span>${hotBadge}</div><span class="text-[11px] font-mono font-black text-amber-400 bg-amber-950/60 px-2.5 py-0.5 rounded border border-amber-800/40">Notional Pool: $${notionalTotal.toLocaleString()} (${intensity}%)</span></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5"><div class="bg-cyan-950/40 border border-cyan-500/30 p-2.5 rounded-xl flex justify-between items-center"><span class="text-cyan-400 font-bold">📈 Call OI (Resistance):</span><span class="font-mono font-black text-white">${callOi.toLocaleString()} BTC</span></div><div class="bg-purple-950/40 border border-purple-500/30 p-2.5 rounded-xl flex justify-between items-center"><span class="text-purple-400 font-bold">📉 Put OI (Support):</span><span class="font-mono font-black text-white">${putOi.toLocaleString()} BTC</span></div></div></div>`;
-                }
-            });
-            container.innerHTML = html;
         }
 
         function renderLiquidityMap(currentPrice, currentOI) {
             const container = document.getElementById('liquidity-levels-container');
             if (!container) return;
             let html = '';
-            let levels = [];
-            for (let i = 10; i >= 1; i--) levels.push({ price: Math.round(currentPrice + (i * 500)), distance: i * 500 });
-            levels.push({ price: Math.round(currentPrice), distance: 0, isCenter: true });
-            for (let i = 1; i <= 10; i++) levels.push({ price: Math.round(currentPrice - (i * 500)), distance: -(i * 500) });
+            for (let i = 10; i >= 1; i--) {
+                let p = Math.round(currentPrice + (i * 500)), pct = Math.floor(Math.sin(p * 0.001) * 40 + 60);
+                html += `<div class="flex justify-between items-center text-xs bg-gray-900/60 p-2 rounded-xl border border-rose-500/20"><span class="text-rose-400 font-mono font-bold">+${~~(i*500)} pts ($${p.toLocaleString()})</span><div class="w-1/2 bg-gray-800 h-2 rounded-full overflow-hidden"><div class="bg-rose-500 h-full" style="width: ${pct}%"></div></div><span class="text-gray-400 text-[10px]">Sell Wall (${pct}%)</span></div>`;
+            }
+            html += `<div class="text-center text-xs font-black text-amber-400 py-1 bg-amber-950/40 rounded-xl">--- CURRENT PRICE: $${currentPrice.toLocaleString()} ---</div>`;
+            for (let i = 1; i <= 10; i++) {
+                let p = Math.round(currentPrice - (i * 500)), pct = Math.floor(Math.cos(p * 0.001) * 40 + 60);
+                html += `<div class="flex justify-between items-center text-xs bg-gray-900/60 p-2 rounded-xl border border-emerald-500/20"><span class="text-emerald-400 font-mono font-bold">-${~~(i*500)} pts ($${p.toLocaleString()})</span><div class="w-1/2 bg-gray-800 h-2 rounded-full overflow-hidden"><div class="bg-emerald-500 h-full" style="width: ${pct}%"></div></div><span class="text-gray-400 text-[10px]">Buy Wall (${pct}%)</span></div>`;
+            }
+            container.innerHTML = html;
+        }
 
-            levels.forEach(item => {
-                if (item.isCenter) {
-                    html += `<div class="bg-indigo-950/90 border-2 border-indigo-500 rounded-xl p-3.5 flex items-center justify-between shadow-lg my-2"><span class="text-xs font-mono font-black text-indigo-300">📍 LIVE PRICE: $${item.price.toLocaleString()}</span><span class="text-xs font-black bg-indigo-500 text-white px-3 py-1 rounded-lg font-mono">Live Sync</span></div>`;
+        function renderOptionsMatrix(currentPrice, currentOI) {
+            const container = document.getElementById('options-matrix-container');
+            if (!container) return;
+            document.getElementById('opt-pcr').innerText = '0.92 (Neutral)';
+            document.getElementById('opt-max-pain').innerText = '$' + (Math.round(currentPrice / 500) * 500).toLocaleString();
+            document.getElementById('opt-total-oi').innerText = Math.round(currentOI * 4.2).toLocaleString() + ' BTC';
+
+            let html = '';
+            for (let i = 5; i >= -5; i--) {
+                let strike = Math.round(currentPrice / 500) * 500 + (i * 500);
+                if (i === 0) {
+                    html += `<div class="bg-amber-950/90 border-2 border-amber-500 rounded-2xl p-3 text-center font-mono font-black text-amber-300 text-xs">⚡ OPTIONS ATM STRIKE BASE: $${strike.toLocaleString()}</div>`;
                 } else {
-                    let isAbove = item.distance > 0;
-                    let liqPct = Math.floor(Math.abs(Math.sin(item.price * 0.001) * 75) + 24);
-                    let barColor = isAbove ? 'bg-emerald-500' : 'bg-rose-500';
-                    let textColor = isAbove ? 'text-emerald-400' : 'text-rose-400';
-                    let orderCount = Math.round((currentOI * 0.08) * (liqPct / 100));
-                    let notionalUSD = orderCount * item.price;
-                    let formattedDistance = (item.distance > 0 ? '+' : '') + item.distance + ' pts';
-
-                    html += `<div class="bg-gray-900/80 border border-gray-800 rounded-xl p-3 flex flex-col sm:flex-row items-center justify-between gap-2"><div class="flex items-center gap-3"><span class="text-xs font-mono font-black ${textColor}">$${item.price.toLocaleString()}</span><span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-0.5 rounded font-mono">${formattedDistance}</span></div><div class="flex-1 w-full sm:mx-4 sm:max-w-[180px]"><div class="w-full bg-gray-800 h-2.5 rounded-full overflow-hidden p-0.5 border border-gray-700"><div class="${barColor} h-full rounded-full" style="width: ${liqPct}%"></div></div></div><div class="flex items-center justify-between w-full sm:w-auto gap-4 text-right"><div><span class="text-[10px] font-black text-white">${orderCount.toLocaleString()} BTC</span></div><span class="text-[11px] font-black ${textColor} bg-gray-800/90 px-2.5 py-1 rounded-lg font-mono">${liqPct}% Liq</span></div></div>`;
+                    html += `<div class="bg-gray-900/80 border border-gray-800 rounded-xl p-3 flex justify-between items-center text-xs"><span class="font-mono font-black text-white">Strike: $${strike.toLocaleString()}</span><span class="text-cyan-400 font-bold">Call: ${~~(currentOI * 0.2)} BTC</span><span class="text-purple-400 font-bold">Put: ${~~(currentOI * 0.18)} BTC</span></div>`;
                 }
-            });
+            }
             container.innerHTML = html;
         }
 
@@ -1064,26 +874,10 @@
             const container = document.getElementById('unified-matrix-container');
             if (!container) return;
             let html = '';
-            let levels = [];
-            for (let i = 10; i >= 1; i--) levels.push({ price: Math.round(currentPrice + (i * 500)), distance: i * 500, type: 'above' });
-            levels.push({ price: Math.round(currentPrice), distance: 0, type: 'center' });
-            for (let i = 1; i <= 10; i++) levels.push({ price: Math.round(currentPrice - (i * 500)), distance: -(i * 500), type: 'below' });
-
-            levels.forEach(item => {
-                if (item.type === 'center') {
-                    html += `<div class="bg-indigo-950/90 border-2 border-indigo-500 rounded-2xl p-3.5 flex items-center justify-between shadow-lg my-2"><span class="text-xs font-mono font-black text-indigo-300">📍 LIVE MARKET BASE: $${item.price.toLocaleString()}</span><span class="text-xs font-black bg-indigo-500 text-white px-3 py-1 rounded-lg font-mono">Live Sync</span></div>`;
-                } else {
-                    let isAbove = item.type === 'above';
-                    let intensity = Math.floor(Math.abs(Math.sin(item.price * 0.001) * 75) + 24);
-                    let totalBtcAtLevel = Math.round((currentOI * 0.08) * (intensity / 100));
-                    let longBtc = isAbove ? Math.round(totalBtcAtLevel * 0.35) : Math.round(totalBtcAtLevel * 0.75);
-                    let shortBtc = isAbove ? Math.round(totalBtcAtLevel * 0.65) : Math.round(totalBtcAtLevel * 0.25);
-                    let formattedDist = (item.distance > 0 ? '+' : '') + item.distance + ' pts';
-                    let isHot = intensity >= 70 ? 'border-2 border-amber-400/90 bg-gray-900/95 shadow-xl' : 'border border-gray-800/80 bg-gray-900/70';
-
-                    html += `<div class="${isHot} rounded-2xl p-4 space-y-3 text-xs"><div class="flex items-center justify-between border-b border-gray-800 pb-2"><div class="flex items-center gap-2.5"><span class="text-xs font-mono font-black text-white">$${item.price.toLocaleString()}</span><span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-0.5 rounded font-mono">${formattedDist}</span></div></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5"><div class="bg-emerald-950/40 border border-emerald-500/30 p-2.5 rounded-xl flex justify-between items-center"><span class="text-emerald-400 font-bold">🟢 Long Position:</span><span class="font-mono font-black text-white">${longBtc.toLocaleString()} BTC</span></div><div class="bg-rose-950/40 border border-rose-500/30 p-2.5 rounded-xl flex justify-between items-center"><span class="text-rose-400 font-bold">🔴 Short Position:</span><span class="font-mono font-black text-white">${shortBtc.toLocaleString()} BTC</span></div></div></div>`;
-                }
-            });
+            for (let i = 5; i >= -5; i--) {
+                let p = Math.round(currentPrice + (i * 500));
+                html += `<div class="bg-gray-900/80 border border-gray-800 rounded-xl p-3 flex justify-between items-center text-xs"><span class="font-mono font-black text-white">$${p.toLocaleString()}</span><span class="text-emerald-400 font-bold">🟢 Long: ${~~(currentOI * 0.05)} BTC</span><span class="text-rose-400 font-bold">🔴 Short: ${~~(currentOI * 0.04)} BTC</span></div>`;
+            }
             container.innerHTML = html;
         }
 
@@ -1091,68 +885,26 @@
             const container = document.getElementById('multi-price-cumulative-container');
             if (!container) return;
             let html = '';
-            let levels = [];
-            for (let i = 10; i >= 1; i--) levels.push({ price: Math.round(currentPrice + (i * 500)), distance: i * 500, type: 'above' });
-            levels.push({ price: Math.round(currentPrice), distance: 0, type: 'center' });
-            for (let i = 1; i <= 10; i++) levels.push({ price: Math.round(currentPrice - (i * 500)), distance: -(i * 500), type: 'below' });
-
-            levels.forEach(item => {
-                if (item.type === 'center') {
-                    html += `<div class="bg-indigo-950/90 border-2 border-indigo-500 rounded-xl p-3.5 flex items-center justify-between shadow-lg my-2"><span class="text-xs font-mono font-black text-indigo-300">📍 LIVE PRICE: $${item.price.toLocaleString()}</span><span class="text-xs font-black bg-indigo-500 text-white px-3 py-1 rounded-lg font-mono">Live Sync</span></div>`;
-                } else {
-                    let isAbove = item.type === 'above';
-                    let intensity = Math.floor(Math.abs(Math.sin(item.price * 0.001) * 75) + 24);
-                    let totalBtcAtLevel = Math.round((currentOI * 0.08) * (intensity / 100));
-                    let longBtc = isAbove ? Math.round(totalBtcAtLevel * 0.35) : Math.round(totalBtcAtLevel * 0.75);
-                    let shortBtc = isAbove ? Math.round(totalBtcAtLevel * 0.65) : Math.round(totalBtcAtLevel * 0.25);
-                    let formattedDist = (item.distance > 0 ? '+' : '') + item.distance + ' pts';
-                    let isHot = intensity >= 70 ? 'border-2 border-amber-400/90 bg-gray-900/95 shadow-xl' : 'border border-gray-800/80 bg-gray-900/70';
-
-                    html += `<div class="${isHot} rounded-2xl p-3.5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs"><div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-start"><span class="text-xs font-mono font-black text-white">$${item.price.toLocaleString()}</span><span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-0.5 rounded font-mono">${formattedDist}</span></div><div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto justify-end"><div class="bg-emerald-950/50 border border-emerald-500/30 px-3.5 py-1.5 rounded-xl flex items-center justify-between gap-3"><span class="text-[11px] font-bold text-emerald-400">🟢 Long:</span><span class="font-mono font-black text-white">${longBtc.toLocaleString()} BTC</span></div><div class="bg-rose-950/50 border border-rose-500/30 px-3.5 py-1.5 rounded-xl flex items-center justify-between gap-3"><span class="text-[11px] font-bold text-rose-400">🔴 Short:</span><span class="font-mono font-black text-white">${shortBtc.toLocaleString()} BTC</span></div></div></div>`;
-                }
-            });
+            for (let i = 5; i >= -5; i--) {
+                let p = Math.round(currentPrice + (i * 500));
+                html += `<div class="bg-gray-900/80 border border-gray-800 rounded-xl p-3 flex justify-between items-center text-xs"><span class="font-mono font-black text-white">$${p.toLocaleString()}</span><span class="text-emerald-400 font-bold">Buy Depth: ${~~(currentOI * 0.03)} BTC</span><span class="text-rose-400 font-bold">Sell Depth: ${~~(currentOI * 0.035)} BTC</span></div>`;
+            }
             container.innerHTML = html;
         }
 
         function renderMultiPriceTimeframeDepth(currentPrice, currentOI) {
             const container = document.getElementById('multi-price-depth-container');
             if (!container) return;
-            let tfMultipliers = { '5m': 0.15, '10m': 0.25, '30m': 0.45, '1h': 0.65, '4h': 0.85, '24h': 1.0 };
-            let factor = tfMultipliers[currentDepthTf] || 0.45;
             let html = '';
-            let levels = [];
-            for (let i = 10; i >= 1; i--) levels.push({ price: Math.round(currentPrice + (i * 500)), distance: i * 500, type: 'above' });
-            levels.push({ price: Math.round(currentPrice), distance: 0, type: 'center' });
-            for (let i = 1; i <= 10; i++) levels.push({ price: Math.round(currentPrice - (i * 500)), distance: -(i * 500), type: 'below' });
-
-            levels.forEach(item => {
-                if (item.type === 'center') {
-                    html += `<div class="bg-indigo-950/90 border-2 border-indigo-500 rounded-xl p-3 flex items-center justify-between shadow-lg my-2"><span class="text-xs font-mono font-black text-indigo-300">📍 LIVE PRICE LEVEL: $${item.price.toLocaleString()}</span><span class="text-[10px] font-black bg-indigo-500 text-white px-2.5 py-1 rounded font-mono">Live Base</span></div>`;
-                } else {
-                    let isAbove = item.type === 'above';
-                    let intensity = Math.floor(Math.abs(Math.sin(item.price * 0.001) * 75) + 24);
-                    let totalBtcAtLevel = Math.round((currentOI * 0.06 * factor) * (intensity / 100));
-                    let longBtc = isAbove ? Math.round(totalBtcAtLevel * 0.35) : Math.round(totalBtcAtLevel * 0.75);
-                    let shortBtc = isAbove ? Math.round(totalBtcAtLevel * 0.65) : Math.round(totalBtcAtLevel * 0.25);
-                    let formattedDist = (item.distance > 0 ? '+' : '') + item.distance + ' pts';
-                    let isHot = intensity >= 70 ? 'border-2 border-amber-400/80 bg-gray-900/95' : 'border border-gray-800 bg-gray-900/80';
-
-                    html += `<div class="${isHot} rounded-xl p-3 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs"><div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-start"><span class="text-xs font-mono font-black text-white">$${item.price.toLocaleString()}</span><span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-0.5 rounded font-mono">${formattedDist}</span></div><div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto justify-end"><div class="bg-emerald-950/50 border border-emerald-500/30 px-3.5 py-1.5 rounded-xl flex items-center justify-between gap-3"><span class="text-[10px] text-emerald-400 font-bold">🟢 Long:</span><span class="font-mono font-black text-white">${longBtc.toLocaleString()} BTC</span></div><div class="bg-rose-950/50 border border-rose-500/30 px-3.5 py-1.5 rounded-xl flex items-center justify-between gap-3"><span class="text-[10px] text-rose-400 font-bold">🔴 Short:</span><span class="font-mono font-black text-white">${shortBtc.toLocaleString()} BTC</span></div></div></div>`;
-                }
-            });
+            for (let i = 5; i >= -5; i--) {
+                let p = Math.round(currentPrice + (i * 500));
+                html += `<div class="bg-gray-900/80 border border-gray-800 rounded-xl p-3 flex justify-between items-center text-xs"><span class="font-mono font-black text-white">$${p.toLocaleString()} (${currentDepthTf})</span><span class="text-indigo-300 font-bold">Cluster Depth Active</span></div>`;
+            }
             container.innerHTML = html;
         }
 
-        window.onload = function() {
-            // Check if already logged in session
-            // Default to showing auth screen
-        };
-
-        setInterval(() => {
-            if(!document.getElementById('app-screen').classList.contains('hidden')) {
-                fetchAllData();
-            }
-        }, 5000);
+        window.onload = function() { fetchAllData(); };
+        setInterval(() => { if (!document.getElementById('app-screen').classList.contains('hidden')) fetchAllData(); }, 5000);
     </script>
 </body>
 </html>
