@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iMac RAMESH TRADING TREND INTELLIGENCE ENGINE</title>
+    <title>iMac Ramesh trading trent intelligence</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <style>
@@ -25,7 +25,7 @@
     <div id="auth-screen" class="max-w-md mx-auto mt-16 p-6 glass-card rounded-2xl shadow-2xl">
         <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-800">
             <div>
-                <h1 class="text-sm sm:text-base font-black text-white">iMac RAMESH TRADING</h1>
+                <h1 class="text-sm sm:text-base font-black text-white">iMac Ramesh trading trent intelligence</h1>
                 <p class="text-[10px] font-bold text-gray-400">Educator & Trader: K. Ramesh (Saran Ramesh)</p>
             </div>
             <span class="bg-emerald-500/10 text-emerald-400 text-xs px-3 py-1 rounded-full font-bold">Secure Portal</span>
@@ -41,8 +41,8 @@
             <div>
                 <label class="text-[11px] font-bold text-gray-300 block mb-1">Password</label>
                 <div class="relative">
-                    <input type="password" id="login-pass" class="w-full p-3 pr-12 bg-gray-900 border border-gray-800 rounded-xl text-sm text-white focus:outline-none focus:border-emerald-500 font-mono" placeholder="Enter Password">
-                    <button type="button" onclick="togglePasswordVisibility('login-pass', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400 font-bold hover:text-white px-2 py-1">Show</button>
+                    <input type="password" id="login-pass" class="w-full p-3 pr-16 bg-gray-900 border border-gray-800 rounded-xl text-sm text-white focus:outline-none focus:border-emerald-500 font-mono" placeholder="Enter Password">
+                    <button type="button" id="pass-toggle-btn" onclick="togglePasswordVisibility()" class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400 font-bold hover:text-white px-2 py-1">Show</button>
                 </div>
             </div>
             <button onclick="handleLoginSubmit()" class="w-full p-3.5 bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold rounded-xl text-sm shadow-lg transition">Login to Terminal</button>
@@ -59,10 +59,7 @@
             </div>
             <div>
                 <label class="text-[11px] font-bold text-gray-300 block mb-1">Choose Password</label>
-                <div class="relative">
-                    <input type="password" id="reg-pass" class="w-full p-3 pr-12 bg-gray-900 border border-gray-800 rounded-xl text-sm text-white focus:outline-none focus:border-emerald-500 font-mono" placeholder="Choose Password">
-                    <button type="button" onclick="togglePasswordVisibility('reg-pass', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400 font-bold hover:text-white px-2 py-1">Show</button>
-                </div>
+                <input type="password" id="reg-pass" class="w-full p-3 bg-gray-900 border border-gray-800 rounded-xl text-sm text-white focus:outline-none focus:border-emerald-500 font-mono" placeholder="Choose Password">
             </div>
             <div>
                 <label class="text-[11px] font-bold text-gray-300 block mb-1">Full Name & Details</label>
@@ -95,7 +92,7 @@
                         <i class="fa-solid fa-brain text-xl"></i>
                     </div>
                     <div>
-                        <h1 class="text-xs sm:text-sm font-black text-white tracking-wide">iMac RAMESH TRADING TREND INTELLIGENCE ENGINE</h1>
+                        <h1 class="text-xs sm:text-sm font-black text-white tracking-wide">iMac Ramesh trading trent intelligence</h1>
                         <p class="text-[10px] font-bold text-gray-300">Educator & Trader: K. Ramesh (Saran Ramesh)</p>
                     </div>
                 </div>
@@ -509,10 +506,16 @@
     <script>
         let currentDepthTf = '5m';
 
-        function togglePasswordVisibility(fieldId, btn) {
-            let field = document.getElementById(fieldId);
-            if (field.type === "password") { field.type = "text"; btn.innerText = "Hide"; }
-            else { field.type = "password"; btn.innerText = "Show"; }
+        function togglePasswordVisibility() {
+            let field = document.getElementById('login-pass');
+            let btn = document.getElementById('pass-toggle-btn');
+            if (field.type === "password") {
+                field.type = "text";
+                btn.innerText = "Hide";
+            } else {
+                field.type = "password";
+                btn.innerText = "Show";
+            }
         }
 
         function showRegisterView() {
@@ -674,7 +677,7 @@
 
                 window.lastGlobalPrice = currentPrice;
                 let now = new Date();
-                let currentFullDateTimeStr = `${now.toLocaleDateString('en-IN')}, ${now.toLocaleTimeString('en-IN', {hour12:true, hour:'2-digit', minute:'2-digit', second:'2-digit'ร})}`;
+                let currentFullDateTimeStr = `${now.toLocaleDateString('en-IN')}, ${now.toLocaleTimeString('en-IN', {hour12:true, hour:'2-digit', minute:'2-digit', second:'2-digit'})}`;
 
                 let oiData = await fetchBinanceData('https://fapi.binance.com/fapi/v1/openInterest?symbol=BTCUSDT');
                 let currentOI = oiData && oiData.openInterest ? parseFloat(oiData.openInterest) : 95906.576;
