@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iMac RAMESH TRADING TREND INTELLIGENCE ENGINE</title>
+    <title>iMac RAMESH MASTER TRADING TREND INTELLIGENCE</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <style>
@@ -27,7 +27,7 @@
                     <i class="fa-solid fa-brain text-xl"></i>
                 </div>
                 <div>
-                    <h1 class="text-xs sm:text-sm font-black text-white tracking-wide">iMac RAMESH TRADING TREND INTELLIGENCE ENGINE</h1>
+                    <h1 class="text-xs sm:text-sm font-black text-white tracking-wide">iMac RAMESH MASTER TRADING TREND INTELLIGENCE</h1>
                     <p class="text-[10px] font-bold text-gray-300">Educator & Trader: K. Ramesh (Saran Ramesh)</p>
                 </div>
             </div>
@@ -198,6 +198,82 @@
                 </div>
             </div>
 
+            <!-- LAST 7 DAYS PRICE & OPEN INTEREST MATRIX -->
+            <div class="glass-card rounded-2xl p-5 shadow-2xl border-2 border-purple-500/60 space-y-4 mt-4">
+                <div class="flex justify-between items-center cursor-pointer select-none" onclick="toggle7DayOiMatrix()">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-purple-600 p-2.5 rounded-xl text-white shadow-lg">
+                            <i class="fa-solid fa-calendar-days text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-sm sm:text-base font-black text-purple-300 uppercase tracking-wider">Last 7 Days Price & Open Interest Intelligence Matrix</h3>
+                            <p class="text-xs font-bold text-gray-400">Track 7D Price Cards & Separate OI Cards with Cross Metrics (Click to Toggle)</p>
+                        </div>
+                    </div>
+                    <button id="oi-7d-toggle-btn" class="bg-purple-600/30 hover:bg-purple-600/50 text-purple-300 px-3 py-1.5 rounded-xl text-xs font-black transition flex items-center gap-1.5 border border-purple-500/40">
+                        <span id="oi-7d-toggle-txt">Expand 7D Matrix</span> <i id="oi-7d-toggle-icon" class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                    </button>
+                </div>
+
+                <div id="oi-7d-collapsible-content" class="space-y-4 pt-3 border-t border-gray-800" style="display: none;">
+                    
+                    <!-- SECTION 1: 7D PRICE CARDS -->
+                    <div class="space-y-2">
+                        <span class="text-[11px] font-black text-indigo-300 uppercase tracking-widest"><i class="fa-solid fa-coins"></i> 7-Days Price Details</span>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="bg-gray-900/90 border border-emerald-500/30 rounded-2xl p-4 space-y-1.5">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs font-black text-gray-400 uppercase">7-Days Price Peak (High)</span>
+                                    <span class="text-[10px] font-mono px-2 py-0.5 rounded font-black bg-emerald-500/20 text-emerald-400">7D Price High</span>
+                                </div>
+                                <h3 id="oi-7d-high-price-val" class="text-2xl font-black text-emerald-400 font-mono">$0.00</h3>
+                                <p id="oi-7d-high-price-diff" class="text-xs font-bold text-gray-300">From 7D High Price: --</p>
+                                <p id="oi-7d-high-price-oi" class="text-xs font-bold text-purple-300 pt-1 border-t border-gray-800 mt-1">OI at this High Price: --</p>
+                                <p id="oi-7d-high-date" class="text-[11px] font-mono font-bold text-cyan-300">Date & Time: --</p>
+                            </div>
+                            <div class="bg-gray-900/90 border border-rose-500/30 rounded-2xl p-4 space-y-1.5">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs font-black text-gray-400 uppercase">7-Days Price Trough (Low)</span>
+                                    <span class="text-[10px] font-mono px-2 py-0.5 rounded font-black bg-rose-500/20 text-rose-400">7D Price Low</span>
+                                </div>
+                                <h3 id="oi-7d-low-price-val" class="text-2xl font-black text-rose-400 font-mono">$0.00</h3>
+                                <p id="oi-7d-low-price-diff" class="text-xs font-bold text-gray-300">From 7D Low Price: --</p>
+                                <p id="oi-7d-low-price-oi" class="text-xs font-bold text-purple-300 pt-1 border-t border-gray-800 mt-1">OI at this Low Price: --</p>
+                                <p id="oi-7d-low-date" class="text-[11px] font-mono font-bold text-cyan-300">Date & Time: --</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 2: 7D OPEN INTEREST CARDS -->
+                    <div class="space-y-2 pt-2">
+                        <span class="text-[11px] font-black text-purple-300 uppercase tracking-widest"><i class="fa-solid fa-layer-group"></i> 7-Days Open Interest Details</span>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="bg-gray-900/90 border border-purple-500/30 rounded-2xl p-4 space-y-1.5">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs font-black text-gray-400 uppercase">7-Days Open Interest Peak (High)</span>
+                                    <span class="text-[10px] font-mono px-2 py-0.5 rounded font-black bg-purple-500/20 text-purple-300">7D OI High</span>
+                                </div>
+                                <h3 id="oi-7d-high-oi-val" class="text-2xl font-black text-purple-400 font-mono">0.000 BTC</h3>
+                                <p id="oi-7d-high-oi-diff" class="text-xs font-bold text-gray-300">From 7D OI High: --</p>
+                                <p id="oi-7d-high-oi-price" class="text-xs font-bold text-amber-300 pt-1 border-t border-gray-800 mt-1">Price at this OI High: --</p>
+                                <p id="oi-7d-high-oi-date" class="text-[11px] font-mono font-bold text-cyan-300">Date & Time: --</p>
+                            </div>
+                            <div class="bg-gray-900/90 border border-purple-500/30 rounded-2xl p-4 space-y-1.5">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs font-black text-gray-400 uppercase">7-Days Open Interest Trough (Low)</span>
+                                    <span class="text-[10px] font-mono px-2 py-0.5 rounded font-black bg-purple-500/20 text-purple-300">7D OI Low</span>
+                                </div>
+                                <h3 id="oi-7d-low-oi-val" class="text-2xl font-black text-purple-400 font-mono">0.000 BTC</h3>
+                                <p id="oi-7d-low-oi-diff" class="text-xs font-bold text-gray-300">From 7D OI Low: --</p>
+                                <p id="oi-7d-low-oi-price" class="text-xs font-bold text-amber-300 pt-1 border-t border-gray-800 mt-1">Price at this OI Low: --</p>
+                                <p id="oi-7d-low-oi-date" class="text-[11px] font-mono font-bold text-cyan-300">Date & Time: --</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
             <!-- SECTION C: EQUILIBRIUM & MEETING POINTS -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                 <div class="glass-card rounded-2xl p-4 border-l-4 border-amber-500 shadow-xl space-y-1">
@@ -276,7 +352,7 @@
                         <h2 class="text-base sm:text-lg font-black text-cyan-400">Multi-Price Level Cumulative Order Depth (±5,000 Pts)</h2>
                         <p class="text-xs font-bold text-gray-300 mt-0.5">தற்போதைய விலைக்கு மேலே மற்றும் கீழே உள்ள ஒவ்வொரு விலை மட்டத்திலும் ஓபன் பொசிஷன்கள்.</p>
                     </div>
-                    <span class="bg-cyan-500/20 text-cyan-300 px-3 py-1 rounded-lg text-xs font-mono font-bold border border-cyan-500/40">CUMULATIVE OPEN VIEW</span>
+                    <span class="bg-cyan-500/20 text-cyan-300 px-3 py-1 rounded-lg text-xs font-mono font-black border border-cyan-500/40">CUMULATIVE OPEN VIEW</span>
                 </div>
             </div>
 
@@ -400,8 +476,27 @@
 
     </main>
 
+    <!-- ========================================== -->
+    <!-- JAVASCRIPT TRADING ENGINE & VIEWS LOGIC -->
+    <!-- ========================================== -->
     <script>
         let currentDepthTf = '5m';
+
+        function toggle7DayOiMatrix() {
+            let content = document.getElementById('oi-7d-collapsible-content');
+            let txt = document.getElementById('oi-7d-toggle-txt');
+            let icon = document.getElementById('oi-7d-toggle-icon');
+
+            if (content.style.display === 'none' || content.style.display === '') {
+                content.style.display = 'block';
+                txt.innerText = 'Collapse 7D Matrix';
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.style.display = 'none';
+                txt.innerText = 'Expand 7D Matrix';
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
 
         function toggleOriginalLiqMap() {
             let content = document.getElementById('liq-collapsible-content');
@@ -441,11 +536,7 @@
             tfs.forEach(t => {
                 let btn = document.getElementById(`btn-depth-${t}`);
                 if (btn) {
-                    if (t === tf) {
-                        btn.className = "px-3 py-1.5 rounded-lg text-xs font-black bg-indigo-600 text-white transition whitespace-nowrap";
-                    } else {
-                        btn.className = "px-3 py-1.5 rounded-lg text-xs font-black bg-gray-900 text-gray-300 hover:text-white transition whitespace-nowrap";
-                    }
+                    btn.className = (t === tf) ? "px-3 py-1.5 rounded-lg text-xs font-black bg-indigo-600 text-white transition whitespace-nowrap" : "px-3 py-1.5 rounded-lg text-xs font-black bg-gray-900 text-gray-300 hover:text-white transition whitespace-nowrap";
                 }
             });
             if (window.lastGlobalPrice && window.lastGlobalOI) {
@@ -490,24 +581,6 @@
         }
 
         let lastValidHistData = null;
-        let prevPriceForRegime = null;
-
-        // --- STICKY LOCALSTORAGE PERSISTENT BREAKOUT ENGINE WITH CLEAN DEFAULT SNAPSHOTS ---
-        let lastKnownHigh = parseFloat(localStorage.getItem('imac_high_price')) || 0;
-        let storedOiAtHigh = parseFloat(localStorage.getItem('imac_oi_at_high')) || 0;
-        let storedTimeAtHigh = localStorage.getItem('imac_time_at_high') || "Waiting for Breakout...";
-
-        let lastKnownLow = parseFloat(localStorage.getItem('imac_low_price')) || 0;
-        let storedOiAtLow = parseFloat(localStorage.getItem('imac_oi_at_low')) || 0;
-        let storedTimeAtLow = localStorage.getItem('imac_time_at_low') || "Waiting for Breakout...";
-
-        let persistentPeakOi = parseFloat(localStorage.getItem('imac_peak_oi')) || 0;
-        let persistentTimeOiHigh = localStorage.getItem('imac_time_oi_high') || "Waiting for Breakout...";
-        let persistentPriceAtOiHigh = parseFloat(localStorage.getItem('imac_price_at_oi_high')) || 0;
-
-        let persistentTroughOi = parseFloat(localStorage.getItem('imac_trough_oi')) || 0;
-        let persistentTimeOiLow = localStorage.getItem('imac_time_oi_low') || "Waiting for Breakout...";
-        let persistentPriceAtOiLow = parseFloat(localStorage.getItem('imac_price_at_oi_low')) || 0;
 
         async function fetchAllData() {
             try {
@@ -529,68 +602,6 @@
                 let currentOI = oiData && oiData.openInterest ? parseFloat(oiData.openInterest) : 95906.576;
                 window.lastGlobalOI = currentOI;
 
-                if (lastKnownHigh === 0) {
-                    lastKnownHigh = highPrice;
-                    storedOiAtHigh = currentOI;
-                    storedTimeAtHigh = currentFullDateTimeStr;
-                }
-                if (lastKnownLow === 0) {
-                    lastKnownLow = lowPrice;
-                    storedOiAtLow = currentOI;
-                    storedTimeAtLow = currentFullDateTimeStr;
-                }
-                if (persistentPeakOi === 0) {
-                    persistentPeakOi = currentOI;
-                    persistentTimeOiHigh = currentFullDateTimeStr;
-                    persistentPriceAtOiHigh = currentPrice;
-                }
-                if (persistentTroughOi === 0) {
-                    persistentTroughOi = currentOI;
-                    persistentTimeOiLow = currentFullDateTimeStr;
-                    persistentPriceAtOiLow = currentPrice;
-                }
-
-                // 1. 24H Price High Breakout (Fresh real-time capture)
-                if (highPrice > lastKnownHigh) {
-                    lastKnownHigh = highPrice;
-                    storedOiAtHigh = currentOI;
-                    storedTimeAtHigh = currentFullDateTimeStr;
-                    localStorage.setItem('imac_high_price', lastKnownHigh);
-                    localStorage.setItem('imac_oi_at_high', storedOiAtHigh);
-                    localStorage.setItem('imac_time_at_high', storedTimeAtHigh);
-                }
-
-                // 2. 24H Price Low Breakout (Fresh real-time capture)
-                if (lowPrice < lastKnownLow) {
-                    lastKnownLow = lowPrice;
-                    storedOiAtLow = currentOI;
-                    storedTimeAtLow = currentFullDateTimeStr;
-                    localStorage.setItem('imac_low_price', lastKnownLow);
-                    localStorage.setItem('imac_oi_at_low', storedOiAtLow);
-                    localStorage.setItem('imac_time_at_low', storedTimeAtLow);
-                }
-
-                // 3. 24H OI Peak Breakout
-                if (currentOI > persistentPeakOi) {
-                    persistentPeakOi = currentOI;
-                    persistentTimeOiHigh = currentFullDateTimeStr;
-                    persistentPriceAtOiHigh = currentPrice;
-                    localStorage.setItem('imac_peak_oi', persistentPeakOi);
-                    localStorage.setItem('imac_time_oi_high', persistentTimeOiHigh);
-                    localStorage.setItem('imac_price_at_oi_high', persistentPriceAtOiHigh);
-                }
-
-                // 4. 24H OI Trough Breakout
-                if (currentOI < persistentTroughOi) {
-                    persistentTroughOi = currentOI;
-                    persistentTimeOiLow = currentFullDateTimeStr;
-                    persistentPriceAtOiLow = currentPrice;
-                    localStorage.setItem('imac_trough_oi', persistentTroughOi);
-                    localStorage.setItem('imac_time_oi_low', persistentTimeOiLow);
-                    localStorage.setItem('imac_price_at_oi_low', persistentPriceAtOiLow);
-                }
-
-                // Update Giant Live Price Display
                 document.getElementById('giant-live-price').innerText = '$' + currentPrice.toLocaleString('en-US', {minimumFractionDigits: 2});
                 let giantChangeEl = document.getElementById('giant-price-change');
                 giantChangeEl.innerText = (priceChange >= 0 ? '+' : '') + priceChange.toFixed(2) + '% (24h)';
@@ -601,15 +612,15 @@
                 changeEl.innerText = (priceChange >= 0 ? '+' : '') + priceChange.toFixed(2) + '% (24h)';
                 changeEl.className = `text-xs font-black mt-1 ${priceChange >= 0 ? 'text-emerald-400' : 'text-rose-400'}`;
 
-                document.getElementById('high-price').innerText = '$' + lastKnownHigh.toLocaleString('en-US', {minimumFractionDigits: 2});
-                document.getElementById('low-price').innerText = '$' + lastKnownLow.toLocaleString('en-US', {minimumFractionDigits: 2});
+                document.getElementById('high-price').innerText = '$' + highPrice.toLocaleString('en-US', {minimumFractionDigits: 2});
+                document.getElementById('low-price').innerText = '$' + lowPrice.toLocaleString('en-US', {minimumFractionDigits: 2});
 
-                let diffHigh = currentPrice - lastKnownHigh;
-                let diffLow = currentPrice - lastKnownLow;
+                let diffHigh = currentPrice - highPrice;
+                let diffLow = currentPrice - lowPrice;
                 document.getElementById('price-diff-high').innerText = `From High: ${diffHigh.toFixed(2)} USDT`;
                 document.getElementById('price-diff-low').innerText = `From Low: +${Math.abs(diffLow).toFixed(2)} USDT`;
 
-                let centerPoint = (lastKnownHigh + lastKnownLow) / 2;
+                let centerPoint = (highPrice + lowPrice) / 2;
                 let diffFromCenter = currentPrice - centerPoint;
                 let isAbove = diffFromCenter >= 0;
 
@@ -625,69 +636,137 @@
                 document.getElementById('live-oi').innerText = currentOI.toLocaleString('en-US', {minimumFractionDigits: 3, maximumFractionDigits: 3}) + ' BTC';
                 document.getElementById('oi-value').innerText = 'Value: $' + Math.round(currentOI * currentPrice).toLocaleString('en-US');
 
-                // --- HISTORICAL OI FETCH & DELTA TRACKER ---
-                let histData = await fetchBinanceData('https://fapi.binance.com/futures/data/openInterestHist?symbol=BTCUSDT&period=5m&limit=288');
-                if (Array.isArray(histData) && histData.length > 0) {
-                    lastValidHistData = histData;
+                // --- FETCH 24H HISTORICAL OI DATA ---
+                let histData24h = await fetchBinanceData('https://fapi.binance.com/futures/data/openInterestHist?symbol=BTCUSDT&period=1h&limit=24');
+                if (Array.isArray(histData24h) && histData24h.length > 0) {
+                    let peak24 = histData24h[0], trough24 = histData24h[0];
+                    histData24h.forEach(item => {
+                        let val = parseFloat(item.sumOpenInterest);
+                        if (val > parseFloat(peak24.sumOpenInterest)) peak24 = item;
+                        if (val < parseFloat(trough24.sumOpenInterest)) trough24 = item;
+                    });
+                    let pVal24 = parseFloat(peak24.sumOpenInterest);
+                    let tVal24 = parseFloat(trough24.sumOpenInterest);
+                    let pTime24 = new Date(peak24.timestamp).toLocaleString('en-IN', { hour12: true });
+                    let tTime24 = new Date(trough24.timestamp).toLocaleString('en-IN', { hour12: true });
+
+                    document.getElementById('oi-high-val').innerText = pVal24.toLocaleString('en-US', {minimumFractionDigits: 3}) + ' BTC';
+                    document.getElementById('oi-diff-high').innerText = `From OI High: ${(currentOI - pVal24).toFixed(2)} BTC`;
+                    document.getElementById('oi-high-corresponding-price').innerText = `Price at OI High: ~$${currentPrice.toLocaleString()} (${pTime24})`;
+
+                    document.getElementById('oi-low-val').innerText = tVal24.toLocaleString('en-US', {minimumFractionDigits: 3}) + ' BTC';
+                    document.getElementById('oi-diff-low').innerText = `From OI Low: +${(currentOI - tVal24).toFixed(2)} BTC`;
+                    document.getElementById('oi-low-corresponding-price').innerText = `Price at OI Low: ~$${currentPrice.toLocaleString()} (${tTime24})`;
                 }
+
+                // --- FETCH 7-DAY HISTORICAL PRICE & OI DATA WITH CROSS METRICS ---
+                let klines7d = await fetchBinanceData('https://fapi.binance.com/fapi/v1/klines?symbol=BTCUSDT&interval=1h&limit=168');
+                let histData7d = await fetchBinanceData('https://fapi.binance.com/futures/data/openInterestHist?symbol=BTCUSDT&period=1h&limit=168');
+                
+                if (Array.isArray(klines7d) && klines7d.length > 0) {
+                    let maxK = klines7d[0], minK = klines7d[0];
+                    klines7d.forEach(k => {
+                        let hPrice = parseFloat(k[2]);
+                        let lPrice = parseFloat(k[3]);
+                        if (hPrice > parseFloat(maxK[2])) maxK = k;
+                        if (lPrice < parseFloat(minK[3])) minK = k;
+                    });
+
+                    let maxPriceVal = parseFloat(maxK[2]);
+                    let minPriceVal = parseFloat(minK[3]);
+                    let maxTime7 = new Date(maxK[0]).toLocaleString('en-IN', { hour12: true });
+                    let minTime7 = new Date(minK[0]).toLocaleString('en-IN', { hour12: true });
+
+                    let oiAtPriceHigh = "N/A", oiAtPriceLow = "N/A";
+                    let peakOiVal = "N/A", peakOiDiff = "N/A", peakOiPrice = "N/A", peakOiDate = "N/A";
+                    let troughOiVal = "N/A", troughOiDiff = "N/A", troughOiPrice = "N/A", troughOiDate = "N/A";
+
+                    if (Array.isArray(histData7d) && histData7d.length > 0) {
+                        let matchHigh = histData7d.find(h => Math.abs(h.timestamp - maxK[0]) < 3600000);
+                        let matchLow = histData7d.find(h => Math.abs(h.timestamp - minK[0]) < 3600000);
+                        if(matchHigh) oiAtPriceHigh = parseFloat(matchHigh.sumOpenInterest).toLocaleString('en-US', {minimumFractionDigits: 2}) + ' BTC';
+                        if(matchLow) oiAtPriceLow = parseFloat(matchLow.sumOpenInterest).toLocaleString('en-US', {minimumFractionDigits: 2}) + ' BTC';
+
+                        let peakOiObj = histData7d[0], troughOiObj = histData7d[0];
+                        histData7d.forEach(h => {
+                            if (parseFloat(h.sumOpenInterest) > parseFloat(peakOiObj.sumOpenInterest)) peakOiObj = h;
+                            if (parseFloat(h.sumOpenInterest) < parseFloat(troughOiObj.sumOpenInterest)) troughOiObj = h;
+                        });
+
+                        let pOiNum = parseFloat(peakOiObj.sumOpenInterest);
+                        let tOiNum = parseFloat(troughOiObj.sumOpenInterest);
+                        peakOiVal = pOiNum.toLocaleString('en-US', {minimumFractionDigits: 2}) + ' BTC';
+                        peakOiDiff = (currentOI - pOiNum).toFixed(2) + ' BTC';
+                        peakOiDate = new Date(peakOiObj.timestamp).toLocaleString('en-IN', { hour12: true });
+
+                        troughOiVal = tOiNum.toLocaleString('en-US', {minimumFractionDigits: 2}) + ' BTC';
+                        troughOiDiff = "+" + (currentOI - tOiNum).toFixed(2) + ' BTC';
+                        troughOiDate = new Date(troughOiObj.timestamp).toLocaleString('en-IN', { hour12: true });
+
+                        let matchPriceForOiHigh = klines7d.find(k => Math.abs(k[0] - peakOiObj.timestamp) < 3600000);
+                        let matchPriceForOiLow = klines7d.find(k => Math.abs(k[0] - troughOiObj.timestamp) < 3600000);
+                        peakOiPrice = matchPriceForOiHigh ? `$${parseFloat(matchPriceForOiHigh[2]).toLocaleString('en-US', {minimumFractionDigits: 2})}` : 'N/A';
+                        troughOiPrice = matchPriceForOiLow ? `$${parseFloat(matchPriceForOiLow[3]).toLocaleString('en-US', {minimumFractionDigits: 2})}` : 'N/A';
+                    }
+
+                    // 7D Price Cards
+                    document.getElementById('oi-7d-high-price-val').innerText = `$${maxPriceVal.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+                    document.getElementById('oi-7d-high-price-diff').innerText = `From 7D High Price: ${(currentPrice - maxPriceVal).toFixed(2)} USDT`;
+                    document.getElementById('oi-7d-high-price-oi').innerText = `OI at this High Price: ${oiAtPriceHigh}`;
+                    document.getElementById('oi-7d-high-date').innerText = `Date & Time: ${maxTime7}`;
+
+                    document.getElementById('oi-7d-low-price-val').innerText = `$${minPriceVal.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+                    document.getElementById('oi-7d-low-price-diff').innerText = `From 7D Low Price: +${(currentPrice - minPriceVal).toFixed(2)} USDT`;
+                    document.getElementById('oi-7d-low-price-oi').innerText = `OI at this Low Price: ${oiAtPriceLow}`;
+                    document.getElementById('oi-7d-low-date').innerText = `Date & Time: ${minTime7}`;
+
+                    // 7D OI Cards
+                    document.getElementById('oi-7d-high-oi-val').innerText = peakOiVal;
+                    document.getElementById('oi-7d-high-oi-diff').innerText = `From 7D OI High: ${peakOiDiff}`;
+                    document.getElementById('oi-7d-high-oi-price').innerText = `Price at this OI High: ${peakOiPrice}`;
+                    document.getElementById('oi-7d-high-oi-date').innerText = `Date & Time: ${peakOiDate}`;
+
+                    document.getElementById('oi-7d-low-oi-val').innerText = troughOiVal;
+                    document.getElementById('oi-7d-low-oi-diff').innerText = `From 7D OI Low: ${troughOiDiff}`;
+                    document.getElementById('oi-7d-low-oi-price').innerText = `Price at this OI Low: ${troughOiPrice}`;
+                    document.getElementById('oi-7d-low-oi-date').innerText = `Date & Time: ${troughOiDate}`;
+                }
+
+                let histData = await fetchBinanceData('https://fapi.binance.com/futures/data/openInterestHist?symbol=BTCUSDT&period=5m&limit=288');
+                if (Array.isArray(histData) && histData.length > 0) lastValidHistData = histData;
                 let activeHist = histData || lastValidHistData;
 
                 if (Array.isArray(activeHist) && activeHist.length > 0) {
                     let nowTime = activeHist[activeHist.length - 1].timestamp;
                     function getPastByMinutes(mins) {
                         const targetTime = nowTime - (mins * 60 * 1000);
-                        let closest = activeHist[0];
-                        let minDiff = Math.abs(closest.timestamp - targetTime);
+                        let closest = activeHist[0], minDiff = Math.abs(closest.timestamp - targetTime);
                         for (let i = 1; i < activeHist.length; i++) {
                             let diff = Math.abs(activeHist[i].timestamp - targetTime);
                             if (diff < minDiff) { minDiff = diff; closest = activeHist[i]; }
                         }
                         return parseFloat(closest.sumOpenInterest);
                     }
-                    const timeframes = [
+                    [
                         { id: 'card-5m', minutes: 5 }, { id: 'card-10m', minutes: 10 },
                         { id: 'card-30m', minutes: 30 }, { id: 'card-1h', minutes: 60 },
                         { id: 'card-4h', minutes: 240 }, { id: 'card-24h', minutes: 1440 }
-                    ];
-                    timeframes.forEach(tf => {
+                    ].forEach(tf => {
                         let pastOI = getPastByMinutes(tf.minutes);
-                        let diff = currentOI - pastOI;
-                        let pct = pastOI > 0 ? (diff / pastOI) * 100 : 0;
-                        let isPositive = diff >= 0;
-                        let colorClass = isPositive ? 'text-emerald-400' : 'text-rose-400';
-                        let sign = isPositive ? '+' : '';
+                        let diff = currentOI - pastOI, pct = pastOI > 0 ? (diff / pastOI) * 100 : 0;
                         let card = document.getElementById(tf.id);
                         if (card) {
-                            card.querySelector('.val-text').className = `text-lg font-black ${colorClass} val-text`;
-                            card.querySelector('.val-text').innerText = `${sign}${diff.toFixed(2)} BTC`;
+                            card.querySelector('.val-text').className = `text-lg font-black ${diff >= 0 ? 'text-emerald-400' : 'text-rose-400'} val-text`;
+                            card.querySelector('.val-text').innerText = `${diff >= 0 ? '+' : ''}${diff.toFixed(2)} BTC`;
                             card.querySelector('.past-text').innerText = `Past: ${pastOI.toFixed(2)}`;
-                            card.querySelector('.pct-text').className = `text-[10px] font-black pct-text ${colorClass}`;
-                            card.querySelector('.pct-text').innerText = `${sign}${pct.toFixed(2)}%`;
+                            card.querySelector('.pct-text').className = `text-[10px] font-black pct-text ${diff >= 0 ? 'text-emerald-400' : 'text-rose-400'}`;
+                            card.querySelector('.pct-text').innerText = `${diff >= 0 ? '+' : ''}${pct.toFixed(2)}%`;
                         }
                     });
 
-                    // --- RUN STABILIZED TREND ENGINE ---
-                    if (!prevPriceForRegime) prevPriceForRegime = currentPrice;
-                    runStabilizedTrendEngine(currentPrice, prevPriceForRegime, currentOI, activeHist);
-                    prevPriceForRegime = currentPrice;
+                    runAccurateTrendEngine(currentPrice, highPrice, lowPrice, currentOI, activeHist);
                 }
 
-                // Populate UI with Date & AM/PM Time Stamped Breakouts
-                document.getElementById('high-corresponding-oi').innerText = `OI at High: ${storedOiAtHigh.toFixed(2)} BTC (${storedTimeAtHigh})`;
-                document.getElementById('low-corresponding-oi').innerText = `OI at Low: ${storedOiAtLow.toFixed(2)} BTC (${storedTimeAtLow})`;
-
-                document.getElementById('oi-high-val').innerText = persistentPeakOi.toLocaleString('en-US', {minimumFractionDigits: 3, maximumFractionDigits: 3}) + ' BTC';
-                document.getElementById('oi-low-val').innerText = persistentTroughOi.toLocaleString('en-US', {minimumFractionDigits: 3, maximumFractionDigits: 3}) + ' BTC';
-                
-                let oiDiffHigh = currentOI - persistentPeakOi;
-                let oiDiffLow = currentOI - persistentTroughOi;
-                document.getElementById('oi-diff-high').innerText = `From OI High: ${oiDiffHigh.toFixed(2)} BTC`;
-                document.getElementById('oi-diff-low').innerText = `From OI Low: +${oiDiffLow.toFixed(2)} BTC`;
-
-                document.getElementById('oi-high-corresponding-price').innerText = `Price at OI High: ~$${Math.round(persistentPriceAtOiHigh).toLocaleString()} (${persistentTimeOiHigh})`;
-                document.getElementById('oi-low-corresponding-price').innerText = `Price at OI Low: ~$${Math.round(persistentPriceAtOiLow).toLocaleString()} (${persistentTimeOiLow})`;
-
-                // Render All Full Features Safely
                 renderLiquidityMap(currentPrice, currentOI);
                 renderUnifiedMatrix(currentPrice, currentOI);
                 renderMultiPriceCumulativeOrderFlow(currentPrice, currentOI);
@@ -699,63 +778,46 @@
             } catch (error) { console.error("Live fetch error:", error); }
         }
 
-        // --- STABILIZED TREND ENGINE (200+ Point Threshold + Text Color Sync) ---
-        function runStabilizedTrendEngine(currentPrice, prevPrice, currentOI, hist) {
+        // --- ACCURATE RECTIFIED TREND ENGINE ---
+        function runAccurateTrendEngine(currentPrice, highPrice, lowPrice, currentOI, hist) {
             if (!hist || hist.length < 12) return;
-            let oi5mAgo = parseFloat(hist[hist.length - 2].sumOpenInterest);
-            let oiDelta5m = currentOI - oi5mAgo;
-            let priceDelta = currentPrice - prevPrice;
+            let oi15mAgo = parseFloat(hist[Math.max(0, hist.length - 3)].sumOpenInterest);
+            let oiDelta15m = currentOI - oi15mAgo;
+            
+            let dropFromHigh = highPrice - currentPrice;
+            let bounceFromLow = currentPrice - lowPrice;
 
-            let signalText = "RANGE BOUND (CONSOLIDATION)";
+            let signalText = "RANGE BOUND (SIDEWAYS CONSOLIDATION)";
             let scoreText = "50/100";
             let bannerClass = "glass-card rounded-2xl p-5 border-l-4 border-amber-500 shadow-2xl space-y-3 glow-yellow";
             let textClass = "text-lg sm:text-xl font-black text-amber-400 tracking-wide";
             let dominantTxt = "Sideways Range ⚖️";
-            let reasonTxt = "Market consolidating. Awaiting 200+ point breakout confirmation.";
-            let bullScore = 50;
-            let bearScore = 50;
+            let reasonTxt = "Market consolidating within range.";
+            let bullScore = 50, bearScore = 50;
 
-            if (Math.abs(priceDelta) >= 200) {
-                if (priceDelta > 0 && oiDelta5m > 0) {
-                    signalText = "STRONG BUY (LONG MOMENTUM)";
-                    scoreText = "86/100";
-                    bannerClass = "glass-card rounded-2xl p-5 border-l-4 border-emerald-500 shadow-2xl glow-green space-y-3";
-                    textClass = "text-lg sm:text-xl font-black text-emerald-400 tracking-wide";
-                    dominantTxt = "Strong Bullish 🚀";
-                    reasonTxt = "Regime: Long Buildup (Price Up 200+ pts + OI Up). Fresh capital entering upwards.";
-                    bullScore = 86; bearScore = 14;
-                } else if (priceDelta > 0 && oiDelta5m <= 0) {
-                    signalText = "BULLISH RECOVERY (SHORT COVERING)";
-                    scoreText = "74/100";
-                    bannerClass = "glass-card rounded-2xl p-5 border-l-4 border-emerald-500 shadow-2xl glow-green space-y-3";
-                    textClass = "text-lg sm:text-xl font-black text-emerald-400 tracking-wide";
-                    dominantTxt = "Short Covering ⚡";
-                    reasonTxt = "Regime: Short Covering (Price Up 200+ pts + OI Down). Trapped shorts exiting.";
-                    bullScore = 74; bearScore = 26;
-                } else if (priceDelta < 0 && oiDelta5m > 0) {
-                    signalText = "STRONG SELL (SHORT PRESSURE)";
-                    scoreText = "85/100";
-                    bannerClass = "glass-card rounded-2xl p-5 border-l-4 border-rose-500 shadow-2xl glow-red space-y-3";
-                    textClass = "text-lg sm:text-xl font-black text-rose-400 tracking-wide";
-                    dominantTxt = "Strong Bearish ⚠️";
-                    reasonTxt = "Regime: Short Buildup (Price Down 200+ pts + OI Up). Aggressive short sellers active.";
-                    bullScore = 15; bearScore = 85;
-                } else if (priceDelta < 0 && oiDelta5m <= 0) {
-                    signalText = "BEARISH DRIFT (LONG UNWINDING)";
-                    scoreText = "78/100";
-                    bannerClass = "glass-card rounded-2xl p-5 border-l-4 border-rose-500 shadow-2xl glow-red space-y-3";
-                    textClass = "text-lg sm:text-xl font-black text-rose-400 tracking-wide";
-                    dominantTxt = "Long Unwinding 📉";
-                    reasonTxt = "Regime: Long Unwinding (Price Down 200+ pts + OI Down). Long positions liquidating.";
-                    bullScore = 22; bearScore = 78;
-                }
+            if (dropFromHigh >= 800 && currentPrice < highPrice - 500) {
+                signalText = "BEARISH DOWN-TREND ACTIVE";
+                scoreText = "88/100";
+                bannerClass = "glass-card rounded-2xl p-5 border-l-4 border-rose-500 shadow-2xl glow-red space-y-3";
+                textClass = "text-lg sm:text-xl font-black text-rose-500 tracking-wide";
+                dominantTxt = "Bearish Down-Trend 📉";
+                reasonTxt = `Regime: Heavy downward pressure. Price is down ${dropFromHigh.toFixed(0)} pts from 24h high.`;
+                bullScore = 12; bearScore = 88;
+            } else if (bounceFromLow >= 800 && currentPrice > lowPrice + 500) {
+                signalText = "BULLISH UP-TREND ACTIVE";
+                scoreText = "88/100";
+                bannerClass = "glass-card rounded-2xl p-5 border-l-4 border-emerald-500 shadow-2xl glow-green space-y-3";
+                textClass = "text-lg sm:text-xl font-black text-emerald-400 tracking-wide";
+                dominantTxt = "Bullish Up-Trend 🚀";
+                reasonTxt = `Regime: Strong upward momentum. Price rose +${bounceFromLow.toFixed(0)} pts from 24h low.`;
+                bullScore = 88; bearScore = 12;
             } else {
-                signalText = "RANGE BOUND (CONSOLIDATION)";
+                signalText = "RANGE BOUND (SIDEWAYS)";
                 scoreText = "50/100";
                 bannerClass = "glass-card rounded-2xl p-5 border-l-4 border-amber-500 shadow-2xl space-y-3";
                 textClass = "text-lg sm:text-xl font-black text-amber-400 tracking-wide";
                 dominantTxt = "Sideways Range ⚖️";
-                reasonTxt = "Market move below 200 pts threshold. Ranging quietly.";
+                reasonTxt = "Market moving sideways within range.";
                 bullScore = 50; bearScore = 50;
             }
 
@@ -763,7 +825,6 @@
             let signalEl = document.getElementById('ultimate-signal');
             signalEl.innerText = signalText;
             signalEl.className = textClass;
-
             document.getElementById('power-score').innerText = `Score: ${scoreText}`;
             document.getElementById('bullish-score-txt').innerText = `${bullScore} / 100`;
             document.getElementById('bullish-bar').style.width = `${bullScore}%`;
@@ -772,20 +833,13 @@
 
             let domPill = document.getElementById('dir-dominant-pill');
             domPill.innerText = `Dominant: ${dominantTxt}`;
-            domPill.className = bullScore > bearScore 
-                ? "text-xs font-mono font-black bg-emerald-500/20 text-emerald-400 px-2.5 py-0.5 rounded border border-emerald-500/40"
-                : (bullScore < bearScore 
-                    ? "text-xs font-mono font-black bg-rose-500/20 text-rose-400 px-2.5 py-0.5 rounded border border-rose-500/40"
-                    : "text-xs font-mono font-black bg-amber-500/20 text-amber-400 px-2.5 py-0.5 rounded border border-amber-500/40");
-
+            domPill.className = bullScore > bearScore ? "text-xs font-mono font-black bg-emerald-500/20 text-emerald-400 px-2.5 py-0.5 rounded border border-emerald-500/40" : (bullScore < bearScore ? "text-xs font-mono font-black bg-rose-500/20 text-rose-400 px-2.5 py-0.5 rounded border border-rose-500/40" : "text-xs font-mono font-black bg-amber-500/20 text-amber-400 px-2.5 py-0.5 rounded border border-amber-500/40");
             document.getElementById('dir-reason-txt').innerText = reasonTxt;
         }
 
-        // --- FULL MODULE RENDERERS (Fully Restored & Functional) ---
         function renderOptionsMatrix(currentPrice, currentOI) {
             const container = document.getElementById('options-matrix-container');
             if (!container) return;
-            
             let pcr = (0.92).toFixed(2);
             document.getElementById('opt-pcr').innerText = pcr + ' (Neutral Bullish)';
             document.getElementById('opt-max-pain').innerText = '$' + (Math.round(currentPrice / 500) * 500 - 1000).toLocaleString();
@@ -799,14 +853,8 @@
 
             levels.forEach(item => {
                 if (item.type === 'center') {
-                    html += `
-                        <div class="bg-amber-950/90 border-2 border-amber-500 rounded-2xl p-3.5 flex items-center justify-between shadow-lg my-2">
-                            <span class="text-xs font-mono font-black text-amber-300">⚡ OPTIONS ATM STRIKE BASE: $${item.price.toLocaleString()}</span>
-                            <span class="text-xs font-black bg-amber-500 text-black px-3 py-1 rounded-lg font-mono">Live Options Sync</span>
-                        </div>
-                    `;
+                    html += `<div class="bg-amber-950/90 border-2 border-amber-500 rounded-2xl p-3.5 flex items-center justify-between shadow-lg my-2"><span class="text-xs font-mono font-black text-amber-300">⚡ OPTIONS ATM STRIKE BASE: $${item.price.toLocaleString()}</span><span class="text-xs font-black bg-amber-500 text-black px-3 py-1 rounded-lg font-mono">Live Options Sync</span></div>`;
                 } else {
-                    let isAbove = item.type === 'above';
                     let intensity = Math.floor(Math.abs(Math.sin(item.price * 0.001) * 75) + 24);
                     let callOi = Math.round((currentOI * 0.25) * (intensity / 100));
                     let putOi = Math.round((currentOI * 0.22) * (intensity / 100));
@@ -817,28 +865,7 @@
                     let isHot = intensity >= 70 ? 'border-2 border-amber-400/90 bg-gray-900/95 shadow-xl' : 'border border-gray-800/80 bg-gray-900/70';
                     let hotBadge = intensity >= 70 ? '<span class="text-[9px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded font-black font-mono">🔥 High Options Vol</span>' : '';
 
-                    html += `
-                        <div class="${isHot} rounded-2xl p-4 space-y-3 text-xs">
-                            <div class="flex items-center justify-between border-b border-gray-800 pb-2">
-                                <div class="flex items-center gap-2.5">
-                                    <span class="text-xs font-mono font-black text-white">Strike: $${item.price.toLocaleString()}</span>
-                                    <span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-0.5 rounded font-mono">${formattedDist}</span>
-                                    ${hotBadge}
-                                </div>
-                                <span class="text-[11px] font-mono font-black text-amber-400 bg-amber-950/60 px-2.5 py-0.5 rounded border border-amber-800/40">Notional Pool: $${notionalTotal.toLocaleString()} (${intensity}%)</span>
-                            </div>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                                <div class="bg-cyan-950/40 border border-cyan-500/30 p-2.5 rounded-xl flex justify-between items-center">
-                                    <span class="text-cyan-400 font-bold">📈 Call OI (Resistance):</span>
-                                    <span class="font-mono font-black text-white">${callOi.toLocaleString()} BTC <span class="text-[10px] text-gray-400">($${Math.round(callUsd).toLocaleString()})</span></span>
-                                </div>
-                                <div class="bg-purple-950/40 border border-purple-500/30 p-2.5 rounded-xl flex justify-between items-center">
-                                    <span class="text-purple-400 font-bold">📉 Put OI (Support):</span>
-                                    <span class="font-mono font-black text-white">${putOi.toLocaleString()} BTC <span class="text-[10px] text-gray-400">($${Math.round(putUsd).toLocaleString()})</span></span>
-                                </div>
-                            </div>
-                        </div>
-                    `;
+                    html += `<div class="${isHot} rounded-2xl p-4 space-y-3 text-xs"><div class="flex items-center justify-between border-b border-gray-800 pb-2"><div class="flex items-center gap-2.5"><span class="text-xs font-mono font-black text-white">Strike: $${item.price.toLocaleString()}</span><span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-0.5 rounded font-mono">${formattedDist}</span>${hotBadge}</div><span class="text-[11px] font-mono font-black text-amber-400 bg-amber-950/60 px-2.5 py-0.5 rounded border border-amber-800/40">Notional Pool: $${notionalTotal.toLocaleString()} (${intensity}%)</span></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5"><div class="bg-cyan-950/40 border border-cyan-500/30 p-2.5 rounded-xl flex justify-between items-center"><span class="text-cyan-400 font-bold">📈 Call OI (Resistance):</span><span class="font-mono font-black text-white">${callOi.toLocaleString()} BTC <span class="text-[10px] text-gray-400">($${Math.round(callUsd).toLocaleString()})</span></span></div><div class="bg-purple-950/40 border border-purple-500/30 p-2.5 rounded-xl flex justify-between items-center"><span class="text-purple-400 font-bold">📉 Put OI (Support):</span><span class="font-mono font-black text-white">${putOi.toLocaleString()} BTC <span class="text-[10px] text-gray-400">($${Math.round(putUsd).toLocaleString()})</span></span></div></div></div>`;
                 }
             });
             container.innerHTML = html;
@@ -876,25 +903,13 @@
             if (!container) return;
             let html = '';
             let levels = [];
-
-            for (let i = 10; i >= 1; i--) {
-                let targetPrice = Math.round(currentPrice + (i * 500));
-                levels.push({ price: targetPrice, distance: i * 500, type: 'above' });
-            }
+            for (let i = 10; i >= 1; i--) levels.push({ price: Math.round(currentPrice + (i * 500)), distance: i * 500, type: 'above' });
             levels.push({ price: Math.round(currentPrice), distance: 0, type: 'center' });
-            for (let i = 1; i <= 10; i++) {
-                let targetPrice = Math.round(currentPrice - (i * 500));
-                levels.push({ price: targetPrice, distance: -(i * 500), type: 'below' });
-            }
+            for (let i = 1; i <= 10; i++) levels.push({ price: Math.round(currentPrice - (i * 500)), distance: -(i * 500), type: 'below' });
 
             levels.forEach(item => {
                 if (item.type === 'center') {
-                    html += `
-                        <div class="bg-indigo-950/90 border-2 border-indigo-500 rounded-2xl p-3.5 flex items-center justify-between shadow-lg my-2">
-                            <span class="text-xs font-mono font-black text-indigo-300">📍 LIVE MARKET BASE: $${item.price.toLocaleString()}</span>
-                            <span class="text-xs font-black bg-indigo-500 text-white px-3 py-1 rounded-lg font-mono">Live Sync</span>
-                        </div>
-                    `;
+                    html += `<div class="bg-indigo-950/90 border-2 border-indigo-500 rounded-xl p-3.5 flex items-center justify-between shadow-lg my-2"><span class="text-xs font-mono font-black text-indigo-300">📍 LIVE MARKET BASE: $${item.price.toLocaleString()}</span><span class="text-xs font-black bg-indigo-500 text-white px-3 py-1 rounded-lg font-mono">Live Sync</span></div>`;
                 } else {
                     let isAbove = item.type === 'above';
                     let intensity = Math.floor(Math.abs(Math.sin(item.price * 0.001) * 75) + 24);
@@ -903,34 +918,11 @@
                     let shortBtc = isAbove ? Math.round(totalBtcAtLevel * 0.65) : Math.round(totalBtcAtLevel * 0.25);
                     let longUsd = longBtc * item.price;
                     let shortUsd = shortBtc * item.price;
-                    let liqPct = intensity;
-                    let liqUsd = Math.round((longUsd + shortUsd) * (liqPct / 100));
+                    let liqPoolUsd = Math.round((longUsd + shortUsd) * (intensity / 100));
                     let formattedDist = (item.distance > 0 ? '+' : '') + item.distance + ' pts';
                     let isHot = intensity >= 70 ? 'border-2 border-amber-400/90 bg-gray-900/95 shadow-xl' : 'border border-gray-800/80 bg-gray-900/70';
-                    let hotBadge = intensity >= 70 ? '<span class="text-[9px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded font-black font-mono">🔥 High Liq Risk</span>' : '';
 
-                    html += `
-                        <div class="${isHot} rounded-2xl p-4 space-y-3 text-xs">
-                            <div class="flex items-center justify-between border-b border-gray-800 pb-2">
-                                <div class="flex items-center gap-2.5">
-                                    <span class="text-xs font-mono font-black text-white">$${item.price.toLocaleString()}</span>
-                                    <span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-0.5 rounded font-mono">${formattedDist}</span>
-                                    ${hotBadge}
-                                </div>
-                                <span class="text-[11px] font-mono font-black text-amber-400 bg-amber-950/60 px-2.5 py-0.5 rounded border border-amber-800/40">Liq Pool: $${liqUsd.toLocaleString()} (${liqPct}%)</span>
-                            </div>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                                <div class="bg-emerald-950/40 border border-emerald-500/30 p-2.5 rounded-xl flex justify-between items-center">
-                                    <span class="text-emerald-400 font-bold">🟢 Long Position:</span>
-                                    <span class="font-mono font-black text-white">${longBtc.toLocaleString()} BTC <span class="text-[10px] text-gray-400">($${Math.round(longUsd).toLocaleString()})</span></span>
-                                </div>
-                                <div class="bg-rose-950/40 border border-rose-500/30 p-2.5 rounded-xl flex justify-between items-center">
-                                    <span class="text-rose-400 font-bold">🔴 Short Position:</span>
-                                    <span class="font-mono font-black text-white">${shortBtc.toLocaleString()} BTC <span class="text-[10px] text-gray-400">($${Math.round(shortUsd).toLocaleString()})</span></span>
-                                </div>
-                            </div>
-                        </div>
-                    `;
+                    html += `<div class="${isHot} rounded-2xl p-4 space-y-3 text-xs"><div class="flex items-center justify-between border-b border-gray-800 pb-2"><div class="flex items-center gap-2.5"><span class="text-xs font-mono font-black text-white">$${item.price.toLocaleString()}</span><span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-0.5 rounded font-mono">${formattedDist}</span></div><span class="text-[11px] font-mono font-black text-amber-400 bg-amber-950/60 px-2.5 py-0.5 rounded border border-amber-800/40">Liq Pool: $${liqPoolUsd.toLocaleString()} (${intensity}%)</span></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5"><div class="bg-emerald-950/40 border border-emerald-500/30 p-2.5 rounded-xl flex justify-between items-center"><span class="text-emerald-400 font-bold">🟢 Long Position:</span><span class="font-mono font-black text-white">${longBtc.toLocaleString()} BTC</span></div><div class="bg-rose-950/40 border border-rose-500/30 p-2.5 rounded-xl flex justify-between items-center"><span class="text-rose-400 font-bold">🔴 Short Position:</span><span class="font-mono font-black text-white">${shortBtc.toLocaleString()} BTC</span></div></div></div>`;
                 }
             });
             container.innerHTML = html;
@@ -954,13 +946,10 @@
                     let totalBtcAtLevel = Math.round((currentOI * 0.08) * (intensity / 100));
                     let longBtc = isAbove ? Math.round(totalBtcAtLevel * 0.35) : Math.round(totalBtcAtLevel * 0.75);
                     let shortBtc = isAbove ? Math.round(totalBtcAtLevel * 0.65) : Math.round(totalBtcAtLevel * 0.25);
-                    let longUsd = longBtc * item.price;
-                    let shortUsd = shortBtc * item.price;
                     let formattedDist = (item.distance > 0 ? '+' : '') + item.distance + ' pts';
                     let isHot = intensity >= 70 ? 'border-2 border-amber-400/90 bg-gray-900/95 shadow-xl' : 'border border-gray-800/80 bg-gray-900/70';
-                    let hotBadge = intensity >= 70 ? '<span class="text-[9px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded font-black font-mono">🔥 High Volume</span>' : '';
 
-                    html += `<div class="${isHot} rounded-2xl p-3.5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs"><div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-start"><span class="text-xs font-mono font-black text-white">$${item.price.toLocaleString()}</span><span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-0.5 rounded font-mono">${formattedDist}</span>${hotBadge}</div><div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto justify-end"><div class="bg-emerald-950/50 border border-emerald-500/30 px-3.5 py-1.5 rounded-xl flex items-center justify-between gap-3"><span class="text-[11px] font-bold text-emerald-400">🟢 Long:</span><span class="font-mono font-black text-white">${longBtc.toLocaleString()} BTC <span class="text-[10px] text-gray-400">($${Math.round(longUsd).toLocaleString()})</span></span></div><div class="bg-rose-950/50 border border-rose-500/30 px-3.5 py-1.5 rounded-xl flex items-center justify-between gap-3"><span class="text-[11px] font-bold text-rose-400">🔴 Short:</span><span class="font-mono font-black text-white">${shortBtc.toLocaleString()} BTC <span class="text-[10px] text-gray-400">($${Math.round(shortUsd).toLocaleString()})</span></span></div></div></div>`;
+                    html += `<div class="${isHot} rounded-2xl p-3.5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs"><div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-start"><span class="text-xs font-mono font-black text-white">$${item.price.toLocaleString()}</span><span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-0.5 rounded font-mono">${formattedDist}</span></div><div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto justify-end"><div class="bg-emerald-950/50 border border-emerald-500/30 px-3.5 py-1.5 rounded-xl flex items-center justify-between gap-3"><span class="text-[11px] font-bold text-emerald-400">🟢 Long:</span><span class="font-mono font-black text-white">${longBtc.toLocaleString()} BTC</span></div><div class="bg-rose-950/50 border border-rose-500/30 px-3.5 py-1.5 rounded-xl flex items-center justify-between gap-3"><span class="text-[11px] font-bold text-rose-400">🔴 Short:</span><span class="font-mono font-black text-white">${shortBtc.toLocaleString()} BTC</span></div></div></div>`;
                 }
             });
             container.innerHTML = html;
@@ -969,13 +958,10 @@
         function renderMultiPriceTimeframeDepth(currentPrice, currentOI) {
             const container = document.getElementById('multi-price-depth-container');
             if (!container) return;
-
             let tfMultipliers = { '5m': 0.15, '10m': 0.25, '30m': 0.45, '1h': 0.65, '4h': 0.85, '24h': 1.0 };
             let factor = tfMultipliers[currentDepthTf] || 0.45;
-
             let html = '';
             let levels = [];
-
             for (let i = 10; i >= 1; i--) levels.push({ price: Math.round(currentPrice + (i * 500)), distance: i * 500, type: 'above' });
             levels.push({ price: Math.round(currentPrice), distance: 0, type: 'center' });
             for (let i = 1; i <= 10; i++) levels.push({ price: Math.round(currentPrice - (i * 500)), distance: -(i * 500), type: 'below' });
@@ -989,13 +975,10 @@
                     let totalBtcAtLevel = Math.round((currentOI * 0.06 * factor) * (intensity / 100));
                     let longBtc = isAbove ? Math.round(totalBtcAtLevel * 0.35) : Math.round(totalBtcAtLevel * 0.75);
                     let shortBtc = isAbove ? Math.round(totalBtcAtLevel * 0.65) : Math.round(totalBtcAtLevel * 0.25);
-                    let longUsd = longBtc * item.price;
-                    let shortUsd = shortBtc * item.price;
                     let formattedDist = (item.distance > 0 ? '+' : '') + item.distance + ' pts';
                     let isHot = intensity >= 70 ? 'border-2 border-amber-400/80 bg-gray-900/95' : 'border border-gray-800 bg-gray-900/80';
-                    let hotBadge = intensity >= 70 ? '<span class="text-[9px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded font-black font-mono">🔥 High Cluster</span>' : '';
 
-                    html += `<div class="${isHot} rounded-xl p-3 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs"><div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-start"><span class="text-xs font-mono font-black text-white">$${item.price.toLocaleString()}</span><span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-0.5 rounded font-mono">${formattedDist}</span>${hotBadge}</div><div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto justify-end"><div class="bg-emerald-950/50 border border-emerald-500/30 px-3.5 py-1.5 rounded-xl flex items-center justify-between gap-3"><span class="text-[10px] text-emerald-400 font-bold">🟢 Long:</span><span class="font-mono font-black text-white">${longBtc.toLocaleString()} BTC <span class="text-[9px] text-gray-400">($${Math.round(longUsd).toLocaleString()})</span></span></div><div class="bg-rose-950/50 border border-rose-500/30 px-3.5 py-1.5 rounded-xl flex items-center justify-between gap-3"><span class="text-[10px] text-rose-400 font-bold">🔴 Short:</span><span class="font-mono font-black text-white">${shortBtc.toLocaleString()} BTC <span class="text-[9px] text-gray-400">($${Math.round(shortUsd).toLocaleString()})</span></span></div></div></div>`;
+                    html += `<div class="${isHot} rounded-xl p-3 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs"><div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-start"><span class="text-xs font-mono font-black text-white">$${item.price.toLocaleString()}</span><span class="text-[10px] text-gray-300 px-2 py-0.5 rounded font-mono">${formattedDist}</span></div><div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto justify-end"><div class="bg-emerald-950/50 border border-emerald-500/30 px-3.5 py-1.5 rounded-xl flex items-center justify-between gap-3"><span class="text-[10px] text-emerald-400 font-bold">🟢 Long:</span><span class="font-mono font-black text-white">${longBtc.toLocaleString()} BTC</span></div><div class="bg-rose-950/50 border border-rose-500/30 px-3.5 py-1.5 rounded-xl flex items-center justify-between gap-3"><span class="text-[10px] text-rose-400 font-bold">🔴 Short:</span><span class="font-mono font-black text-white">${shortBtc.toLocaleString()} BTC</span></div></div></div>`;
                 }
             });
             container.innerHTML = html;
@@ -1008,7 +991,7 @@
 
         setInterval(() => {
             fetchAllData();
-        }, 5000);
+        }, 1000);
     </script>
 </body>
 </html>
