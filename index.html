@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iMac RAMESH MASTER TRADING TREND INTELLIGENCE</title>
+    <title>iMac Ramesh Trading Trend Intelligence</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <style>
@@ -19,7 +19,7 @@
 </head>
 <body class="min-h-screen pb-28">
 
-    <!-- Header (Optimized for Mobile Screen Layout) -->
+    <!-- Header (Optimized for Clean 2-Line Horizontal Layout) -->
     <header class="sticky top-0 z-50 glass-card border-b border-gray-800 px-3 py-2.5 shadow-2xl">
         <div class="max-w-7xl mx-auto flex items-center justify-between gap-2">
             <div class="flex items-center space-x-2.5 overflow-hidden">
@@ -27,7 +27,7 @@
                     <i class="fa-solid fa-brain text-base"></i>
                 </div>
                 <div class="min-w-0">
-                    <h1 class="text-[11px] sm:text-xs font-black text-white tracking-wide truncate">iMac RAMESH MASTER TRADING</h1>
+                    <h1 class="text-[10px] sm:text-xs font-black text-white tracking-tight leading-tight">iMac Ramesh Trading Trend Intelligence</h1>
                     <p class="text-[9px] font-bold text-gray-300 truncate">Trader: K. Ramesh (Saran Ramesh)</p>
                 </div>
             </div>
@@ -677,11 +677,19 @@
             if (targetView) { targetView.classList.add('active'); targetView.style.display = 'block'; }
         }
 
+        // SMART CORS PROXY FALLBACK TO BYPASS ISP RESTRICTIONS (JioFiber / Airtel / etc.)
         async function fetchBinanceData(url) {
             try {
                 let res = await fetch(url, { cache: 'no-store' });
                 if (res.ok) return await res.json();
-            } catch (e) { return null; }
+            } catch (e) {
+                // Fallback via Public CORS Proxy if direct ISP blocks Binance FAPI
+                try {
+                    let proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url);
+                    let proxyRes = await fetch(proxyUrl, { cache: 'no-store' });
+                    if (proxyRes.ok) return await proxyRes.json();
+                } catch (err) { return null; }
+            }
             return null;
         }
 
@@ -1184,7 +1192,7 @@
                     let formattedDist = (item.distance > 0 ? '+' : '') + item.distance + ' புள்ளிகள்';
                     let isHot = intensity >= 70 ? 'border-2 border-amber-400/80 bg-gray-900/95' : 'border border-gray-800 bg-gray-900/80';
 
-                    html += `<div class="${isHot} rounded-xl p-3 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs"><div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-start"><span class="text-xs font-mono font-black text-white">$${item.price.toLocaleString()}</span><span class="text-[10px] text-gray-300 px-2 py-0.5 rounded font-mono">${formattedDist}</span></div><div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto justify-end"><div class="bg-emerald-950/50 border border-emerald-500/30 px-3.5 py-1.5 rounded-xl flex items-center justify-between gap-3"><span class="text-[10px] text-emerald-400 font-bold">🟢 லாங்:</span><span class="font-mono font-black text-white">${longBtc.toLocaleString()} BTC</span></div><div class="bg-rose-950/50 border border-rose-500/30 px-3.5 py-1.5 rounded-xl flex items-center justify-between gap-3"><span class="text-[10px] font-bold text-rose-400">🔴 ஷார்ட்:</span><span class="font-mono font-black text-white">${shortBtc.toLocaleString()} BTC</span></div></div></div>`;
+                    html += `<div class="${isHot} rounded-xl p-3 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs"><div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-start"><span class="text-xs font-mono font-black text-white">$${item.price.toLocaleString()}</span><span class="text-[10px] text-gray-300 px-2 py-0.5 rounded font-mono">${formattedDist}</span></div><div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto justify-end"><div class="bg-emerald-950/50 border border-emerald-500/30 px-3.5 py-1.5 rounded-xl flex items-center justify-between gap-3"><span class="text-[10px] text-emerald-400 font-bold">🟢 லாங்:</span><span class="font-mono font-black text-white">${longBtc.toLocaleString()} BTC</span></div><div class="bg-rose-950/50 border border-rose-500/30 px-3.5 py-1.5 rounded-xl flex items-center justify-between gap-3"><span class="text-[10px] text-rose-400 font-bold">🔴 ஷார்ட்:</span><span class="font-mono font-black text-white">${shortBtc.toLocaleString()} BTC</span></div></div></div>`;
                 }
             });
             container.innerHTML = html;
