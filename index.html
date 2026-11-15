@@ -66,12 +66,12 @@
     </div>
 
     <main id="main-container" class="max-w-4xl mx-auto px-4 mt-5 space-y-4 transition-all duration-300">
-        
+
         <!-- VIEW 1: HOME / TERMINAL -->
         <div id="view-terminal" class="tab-view active space-y-4">
-            
+
             <!-- MASTER UNIFIED BANNER -->
-            <div id="master-banner" class="glass-card rounded-2xl p-5 border-l-4 border-amber-500 shadow-2xl space-y-3">
+            <div id="master-banner" class="glass-card rounded-2xl p-5 border-l-4 border-amber-500 shadow-2xl glow-yellow space-y-3">
                 <div class="flex justify-between items-center border-b border-gray-800 pb-2">
                     <span class="text-xs font-black text-gray-300 uppercase tracking-widest">Market Trend & Decision Center</span>
                     <span id="signal-time" class="text-xs font-black text-cyan-300 bg-gray-900 px-2.5 py-1 rounded-lg font-mono">--:--:--</span>
@@ -91,7 +91,7 @@
                     <h2 id="ultimate-signal" class="text-lg sm:text-xl font-black text-amber-400 tracking-wide">Market Consolidation</h2>
                     <span id="power-score" class="text-base font-black text-amber-400 font-mono">Score: 50/100</span>
                 </div>
-                <p id="signal-desc" class="text-xs font-bold text-gray-200">Fixed Structural Wall & 1,000 Pts Engine active.</p>
+                <p id="signal-desc" class="text-xs font-bold text-gray-200">Near-Range Structural Walls & Per-Timeframe OI Confluence active.</p>
             </div>
 
             <!-- LIVE DUAL-SIDE DIRECTION & STRENGTH ENGINE -->
@@ -128,37 +128,37 @@
                     </div>
                 </div>
 
-                <p id="dir-reason-txt" class="text-[11px] font-bold text-gray-300 pt-1 border-t border-gray-800/60">Scanning structural walls & liquidity barriers...</p>
+                <p id="dir-reason-txt" class="text-[11px] font-bold text-gray-300 pt-1 border-t border-gray-800/60">Scanning near-range walls, timeframe OI shifts, and flow...</p>
             </div>
 
-            <!-- AI DECISION GUIDE (FIXED STRUCTURAL WALL & TARGET SCANNER) -->
+            <!-- AI DECISION GUIDE (FIXED NEAR-RANGE WALL & 1,000 PTS TARGET) -->
             <div class="glass-card rounded-2xl p-4 border-2 border-amber-400/80 shadow-2xl space-y-3 bg-gradient-to-r from-gray-950 via-amber-950/30 to-gray-950">
                 <div class="flex justify-between items-center border-b border-gray-800 pb-2">
                     <div class="flex items-center gap-2">
                         <div class="bg-amber-500 p-1.5 rounded-lg text-black font-black text-xs">
                             <i class="fa-solid fa-shield-halved"></i>
                         </div>
-                        <h3 class="text-xs font-black text-amber-300 uppercase tracking-wider">AI Decision Guide (Fixed Structural Wall & Target)</h3>
+                        <h3 class="text-xs font-black text-amber-300 uppercase tracking-wider">AI Decision Guide (Fixed Wall & 1,000 Pts Target)</h3>
                     </div>
-                    <span id="ai-engine-status" class="text-[10px] font-mono font-black bg-amber-500/20 text-amber-400 px-2.5 py-0.5 rounded border border-amber-500/40">Status: Active 🔍</span>
+                    <span id="ai-engine-status" class="text-[10px] font-mono font-black bg-amber-500/20 text-amber-400 px-2.5 py-0.5 rounded border border-amber-500/40">Status: Scanning 🔍</span>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
                     <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-3 space-y-1">
-                        <span class="text-[10px] text-gray-400 font-bold uppercase">Fixed Resistance Wall (உறுதியான தடை)</span>
+                        <span id="ai-wall-label" class="text-[10px] text-gray-400 font-bold uppercase">Structural Walls (தடை / சப்போர்ட்)</span>
                         <h4 id="ai-trap-state" class="font-mono font-black text-amber-400 text-sm">Scanning...</h4>
                     </div>
                     <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-3 space-y-1">
-                        <span class="text-[10px] font-bold uppercase text-cyan-300">1,000 Pts Target (இலக்கு)</span>
+                        <span class="text-[10px] font-bold uppercase text-cyan-300">Entry & 1,000 Pts Target (இலக்கு)</span>
                         <h4 id="ai-entry-zone" class="font-mono font-black text-cyan-300 text-sm">Evaluating...</h4>
                     </div>
                     <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-3 space-y-1">
-                        <span class="text-[10px] font-bold uppercase text-emerald-400">Confluence Score</span>
-                        <h4 id="ai-conf-score" class="font-mono font-black text-emerald-400 text-sm">75%</h4>
+                        <span class="text-[10px] font-bold uppercase text-emerald-400">Confluence & SL Reference</span>
+                        <h4 id="ai-conf-score" class="font-mono font-black text-emerald-400 text-sm">Evaluating...</h4>
                     </div>
                 </div>
 
-                <p id="ai-engine-advice" class="text-[11px] font-bold text-gray-200 pt-1 border-t border-gray-800/80">Mapping fixed structural walls and projecting 1,000 pts targets across ±10,000 pts range...</p>
+                <p id="ai-engine-advice" class="text-[11px] font-bold text-gray-200 pt-1 border-t border-gray-800/80">Locking near-range structural support/resistance walls until breached and aligning with live timeframe reactions...</p>
             </div>
 
             <!-- EXECUTION ENGINE -->
@@ -179,16 +179,16 @@
                         <h4 id="eng-cvd-val" class="font-mono font-black text-cyan-300 text-sm">Neutral</h4>
                     </div>
                     <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-3 space-y-1">
-                        <span class="text-[10px] font-bold uppercase text-gray-400">Structural Wall (கட்டமைப்புச் சுவர்)</span>
+                        <span class="text-[10px] text-gray-400 font-bold uppercase">Active Wall (கட்டமைப்புச் சுவர்)</span>
                         <h4 id="eng-heatmap-state" class="font-mono font-black text-amber-400 text-sm">Monitoring</h4>
                     </div>
                     <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-3 space-y-1">
-                        <span class="text-[10px] font-bold uppercase text-gray-400">Signal State (உண்மையான திசை)</span>
+                        <span class="text-[10px] text-gray-400 font-bold uppercase">Live Reaction (நடப்பு எதிர்வினை)</span>
                         <h4 id="eng-divergence-val" class="font-mono font-black text-emerald-400 text-sm">Waiting</h4>
                     </div>
                 </div>
 
-                <p id="eng-advice-txt" class="text-[11px] font-bold text-gray-200 pt-1 border-t border-gray-800/80">Autonomous institutional fixed structural wall tracking active...</p>
+                <p id="eng-advice-txt" class="text-[11px] font-bold text-gray-200 pt-1 border-t border-gray-800/80">Synchronized with live price, near-range structural walls, and 5m–24h OI shifts.</p>
             </div>
 
             <!-- LONG / SHORT RATIOS -->
@@ -323,7 +323,7 @@
                 </div>
 
                 <div id="oi-7d-collapsible-content" class="space-y-4 pt-3 border-t border-gray-800" style="display: none;">
-                    
+
                     <div class="space-y-2">
                         <span class="text-[11px] font-black text-indigo-300 uppercase tracking-widest"><i class="fa-solid fa-coins"></i> 7-Day Price Stats</span>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -412,7 +412,7 @@
                     </div>
                     <span class="bg-amber-500/20 text-amber-300 px-3 py-1 rounded-lg text-xs font-mono font-bold border border-amber-500/40">Options Matrix</span>
                 </div>
-                
+
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <div class="bg-gray-900/80 border border-gray-800 rounded-xl p-3.5 space-y-1">
                         <span class="text-[10px] font-black text-gray-400 uppercase">Put/Call Ratio (PCR)</span>
@@ -545,35 +545,35 @@
                         <h3 class="text-sm font-black text-white flex items-center gap-2">
                             <i class="fa-solid fa-clock-rotate-left text-indigo-400"></i> Open Interest Delta Tracker (Market Reactions)
                         </h3>
-                        <p class="text-xs font-bold text-gray-400 mt-0.5">Simplified explanation of order shifts across timeframes.</p>
+                        <p class="text-xs font-bold text-gray-400 mt-0.5">Per-timeframe price & OI shift classification across 5m - 24h.</p>
                     </div>
                     <span id="update-time" class="text-xs bg-gray-800 px-2.5 py-1 rounded-lg text-gray-300 font-mono font-black">--:--:--</span>
                 </div>
-                
+
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3" id="delta-grid">
                     <div class="bg-gray-900/70 border border-gray-800 rounded-xl p-3.5 flex flex-col justify-between" id="card-5m">
                         <div class="flex justify-between items-center mb-2"><span class="text-[11px] font-black text-gray-300 uppercase">5 Minutes Ago</span><span class="text-[10px] bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded font-mono font-black">5m</span></div>
-                        <div><div class="text-lg font-black text-emerald-400 val-text">Active</div><div class="flex justify-between items-center mt-1"><span class="text-[10px] font-bold text-gray-400 past-text">Change</span><span class="text-[10px] font-black pct-text text-emerald-400">0.00%</span></div><div class="mt-2 pt-2 border-t border-gray-800 text-[10px] font-black text-amber-300 reason-text">Analyzing...</div></div>
+                        <div><div class="text-lg font-black text-emerald-400 val-text">Active</div><div class="flex justify-between items-center mt-1"><span class="text-[10px] font-bold text-gray-400 past-text">Previous: --</span><span class="text-[10px] font-black pct-text text-emerald-400">0.00%</span></div><div class="mt-2 pt-2 border-t border-gray-800 text-[10px] font-black text-amber-300 reason-text">Analyzing...</div></div>
                     </div>
                     <div class="bg-gray-900/70 border border-gray-800 rounded-xl p-3.5 flex flex-col justify-between" id="card-10m">
                         <div class="flex justify-between items-center mb-2"><span class="text-[11px] font-black text-gray-300 uppercase">10 Minutes Ago</span><span class="text-[10px] bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded font-mono font-black">10m</span></div>
-                        <div><div class="text-lg font-black text-emerald-400 val-text">Active</div><div class="flex justify-between items-center mt-1"><span class="text-[10px] font-bold text-gray-400 past-text">Change</span><span class="text-[10px] font-black pct-text text-emerald-400">0.00%</span></div><div class="mt-2 pt-2 border-t border-gray-800 text-[10px] font-black text-amber-300 reason-text">Analyzing...</div></div>
+                        <div><div class="text-lg font-black text-emerald-400 val-text">Active</div><div class="flex justify-between items-center mt-1"><span class="text-[10px] font-bold text-gray-400 past-text">Previous: --</span><span class="text-[10px] font-black pct-text text-emerald-400">0.00%</span></div><div class="mt-2 pt-2 border-t border-gray-800 text-[10px] font-black text-amber-300 reason-text">Analyzing...</div></div>
                     </div>
                     <div class="bg-gray-900/70 border border-gray-800 rounded-xl p-3.5 flex flex-col justify-between" id="card-30m">
                         <div class="flex justify-between items-center mb-2"><span class="text-[11px] font-black text-gray-300 uppercase">30 Minutes Ago</span><span class="text-[10px] bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded font-mono font-black">30m</span></div>
-                        <div><div class="text-lg font-black text-emerald-400 val-text">Active</div><div class="flex justify-between items-center mt-1"><span class="text-[10px] font-bold text-gray-400 past-text">Change</span><span class="text-[10px] font-black pct-text text-emerald-400">0.00%</span></div><div class="mt-2 pt-2 border-t border-gray-800 text-[10px] font-black text-amber-300 reason-text">Analyzing...</div></div>
+                        <div><div class="text-lg font-black text-emerald-400 val-text">Active</div><div class="flex justify-between items-center mt-1"><span class="text-[10px] font-bold text-gray-400 past-text">Previous: --</span><span class="text-[10px] font-black pct-text text-emerald-400">0.00%</span></div><div class="mt-2 pt-2 border-t border-gray-800 text-[10px] font-black text-amber-300 reason-text">Analyzing...</div></div>
                     </div>
                     <div class="bg-gray-900/70 border border-gray-800 rounded-xl p-3.5 flex flex-col justify-between" id="card-1h">
                         <div class="flex justify-between items-center mb-2"><span class="text-[11px] font-black text-gray-300 uppercase">1 Hour Ago</span><span class="text-[10px] bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded font-mono font-black">1h</span></div>
-                        <div><div class="text-lg font-black text-emerald-400 val-text">Active</div><div class="flex justify-between items-center mt-1"><span class="text-[10px] font-bold text-gray-400 past-text">Change</span><span class="text-[10px] font-black pct-text text-emerald-400">0.00%</span></div><div class="mt-2 pt-2 border-t border-gray-800 text-[10px] font-black text-amber-300 reason-text">Analyzing...</div></div>
+                        <div><div class="text-lg font-black text-emerald-400 val-text">Active</div><div class="flex justify-between items-center mt-1"><span class="text-[10px] font-bold text-gray-400 past-text">Previous: --</span><span class="text-[10px] font-black pct-text text-emerald-400">0.00%</span></div><div class="mt-2 pt-2 border-t border-gray-800 text-[10px] font-black text-amber-300 reason-text">Analyzing...</div></div>
                     </div>
                     <div class="bg-gray-900/70 border border-gray-800 rounded-xl p-3.5 flex flex-col justify-between" id="card-4h">
                         <div class="flex justify-between items-center mb-2"><span class="text-[11px] font-black text-gray-300 uppercase">4 Hours Ago</span><span class="text-[10px] bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded font-mono font-black">4h</span></div>
-                        <div><div class="text-lg font-black text-emerald-400 val-text">Active</div><div class="flex justify-between items-center mt-1"><span class="text-[10px] font-bold text-gray-400 past-text">Change</span><span class="text-[10px] font-black pct-text text-emerald-400">0.00%</span></div><div class="mt-2 pt-2 border-t border-gray-800 text-[10px] font-black text-amber-300 reason-text">Analyzing...</div></div>
+                        <div><div class="text-lg font-black text-emerald-400 val-text">Active</div><div class="flex justify-between items-center mt-1"><span class="text-[10px] font-bold text-gray-400 past-text">Previous: --</span><span class="text-[10px] font-black pct-text text-emerald-400">0.00%</span></div><div class="mt-2 pt-2 border-t border-gray-800 text-[10px] font-black text-amber-300 reason-text">Analyzing...</div></div>
                     </div>
                     <div class="bg-gray-900/70 border border-gray-800 rounded-xl p-3.5 flex flex-col justify-between" id="card-24h">
                         <div class="flex justify-between items-center mb-2"><span class="text-[11px] font-black text-gray-300 uppercase">24h OI Change</span><span class="text-[10px] bg-indigo-500/20 text-indigo-300 px-2.5 py-0.5 rounded font-mono font-black">24h</span></div>
-                        <div><div class="text-lg font-black text-emerald-400 val-text">Active</div><div class="flex justify-between items-center mt-1"><span class="text-[10px] font-bold text-gray-400 past-text">Change</span><span class="text-[10px] font-black pct-text text-emerald-400">0.00%</span></div><div class="mt-2 pt-2 border-t border-gray-800 text-[10px] font-black text-amber-300 reason-text">Analyzing...</div></div>
+                        <div><div class="text-lg font-black text-emerald-400 val-text">Active</div><div class="flex justify-between items-center mt-1"><span class="text-[10px] font-bold text-gray-400 past-text">Previous: --</span><span class="text-[10px] font-black pct-text text-emerald-400">0.00%</span></div><div class="mt-2 pt-2 border-t border-gray-800 text-[10px] font-black text-amber-300 reason-text">Analyzing...</div></div>
                     </div>
                 </div>
             </div>
@@ -586,21 +586,25 @@
     <!-- ========================================== -->
     <script>
         let currentDepthTf = '5m';
+        let lastValidHistData = null;
+        let lastValidKlines5m = null;
+        let lastValidKlines1h = null;
+        let lockedSetup = null;
 
         function toggle7DayOiMatrix() {
             let content = document.getElementById('oi-7d-collapsible-content');
             let txt = document.getElementById('oi-7d-toggle-txt');
             let icon = document.getElementById('oi-7d-toggle-icon');
-            if(!content) return;
+            if (!content) return;
 
             if (content.style.display === 'none' || content.style.display === '') {
                 content.style.display = 'block';
-                if(txt) txt.innerText = 'Collapse';
-                if(icon) icon.style.transform = 'rotate(180deg)';
+                if (txt) txt.innerText = 'Collapse';
+                if (icon) icon.style.transform = 'rotate(180deg)';
             } else {
                 content.style.display = 'none';
-                if(txt) txt.innerText = 'Expand';
-                if(icon) icon.style.transform = 'rotate(0deg)';
+                if (txt) txt.innerText = 'Expand';
+                if (icon) icon.style.transform = 'rotate(0deg)';
             }
         }
 
@@ -608,16 +612,16 @@
             let content = document.getElementById('liq-collapsible-content');
             let txt = document.getElementById('liq-toggle-txt');
             let icon = document.getElementById('liq-toggle-icon');
-            if(!content) return;
+            if (!content) return;
 
             if (content.style.display === 'none' || content.style.display === '') {
                 content.style.display = 'block';
-                if(txt) txt.innerText = 'Collapse';
-                if(icon) icon.style.transform = 'rotate(180deg)';
+                if (txt) txt.innerText = 'Collapse';
+                if (icon) icon.style.transform = 'rotate(180deg)';
             } else {
                 content.style.display = 'none';
-                if(txt) txt.innerText = 'Expand';
-                if(icon) icon.style.transform = 'rotate(0deg)';
+                if (txt) txt.innerText = 'Expand';
+                if (icon) icon.style.transform = 'rotate(0deg)';
             }
         }
 
@@ -625,16 +629,16 @@
             let content = document.getElementById('tf-collapsible-content');
             let txt = document.getElementById('tf-toggle-txt');
             let icon = document.getElementById('tf-toggle-icon');
-            if(!content) return;
+            if (!content) return;
 
             if (content.style.display === 'none' || content.style.display === '') {
                 content.style.display = 'block';
-                if(txt) txt.innerText = 'Collapse';
-                if(icon) icon.style.transform = 'rotate(180deg)';
+                if (txt) txt.innerText = 'Collapse';
+                if (icon) icon.style.transform = 'rotate(180deg)';
             } else {
                 content.style.display = 'none';
-                if(txt) txt.innerText = 'Expand';
-                if(icon) icon.style.transform = 'rotate(0deg)';
+                if (txt) txt.innerText = 'Expand';
+                if (icon) icon.style.transform = 'rotate(0deg)';
             }
         }
 
@@ -644,7 +648,9 @@
             tfs.forEach(t => {
                 let btn = document.getElementById(`btn-depth-${t}`);
                 if (btn) {
-                    btn.className = (t === tf) ? "px-3 py-1.5 rounded-lg text-xs font-black bg-indigo-600 text-white transition whitespace-nowrap" : "px-3 py-1.5 rounded-lg text-xs font-black bg-gray-900 text-gray-300 hover:text-white transition whitespace-nowrap";
+                    btn.className = (t === tf)
+                        ? "px-3 py-1.5 rounded-lg text-xs font-black bg-indigo-600 text-white transition whitespace-nowrap"
+                        : "px-3 py-1.5 rounded-lg text-xs font-black bg-gray-900 text-gray-300 hover:text-white transition whitespace-nowrap";
                 }
             });
             if (window.lastGlobalPrice && window.lastGlobalOI) {
@@ -675,13 +681,19 @@
                     if (btn) btn.className = "flex-1 py-2 px-1 rounded-lg text-[10px] sm:text-xs font-black bg-gray-900 text-gray-300 hover:text-white transition flex flex-col items-center gap-0.5";
                 });
 
-                let activeBtnMap = { 'terminal': 'nav-term', 'options': 'nav-options', 'mmintelligence': 'nav-mm', 'orderflow': 'nav-flow', 'charts': 'nav-charts' };
+                let activeBtnMap = {
+                    'terminal': 'nav-term',
+                    'options': 'nav-options',
+                    'mmintelligence': 'nav-mm',
+                    'orderflow': 'nav-flow',
+                    'charts': 'nav-charts'
+                };
                 let activeBtn = document.getElementById(activeBtnMap[view]);
                 if (activeBtn) activeBtn.className = "flex-1 py-2 px-1 rounded-lg text-[10px] sm:text-xs font-black bg-indigo-600 text-white transition shadow-lg flex flex-col items-center gap-0.5";
 
                 let targetView = document.getElementById(`view-${view}`);
                 if (targetView) { targetView.classList.add('active'); targetView.style.display = 'block'; }
-            } catch(e) { console.error("View switch error:", e); }
+            } catch (e) { console.error("View switch error:", e); }
         }
 
         async function fetchBinanceData(url) {
@@ -698,7 +710,227 @@
             return null;
         }
 
-        let lastValidHistData = null;
+        function getPriceAtMinutesAgo(currentPrice, mins, klines5m, klines1h, fallback24hChange) {
+            const nowMs = Date.now();
+            const targetMs = nowMs - (mins * 60 * 1000);
+
+            if (Array.isArray(klines5m) && klines5m.length > 0 && mins <= 1440) {
+                let closest5m = klines5m[0];
+                let bestDiff5m = Math.abs(closest5m[0] - targetMs);
+                for (let i = 1; i < klines5m.length; i++) {
+                    let d = Math.abs(klines5m[i][0] - targetMs);
+                    if (d < bestDiff5m) { bestDiff5m = d; closest5m = klines5m[i]; }
+                }
+                let p5 = parseFloat(closest5m[1]);
+                if (p5 > 0) return p5;
+            }
+
+            if (Array.isArray(klines1h) && klines1h.length > 0) {
+                let closest1h = klines1h[0];
+                let bestDiff1h = Math.abs(closest1h[0] - targetMs);
+                for (let i = 1; i < klines1h.length; i++) {
+                    let d = Math.abs(klines1h[i][0] - targetMs);
+                    if (d < bestDiff1h) { bestDiff1h = d; closest1h = klines1h[i]; }
+                }
+                let p1h = parseFloat(closest1h[1]);
+                if (p1h > 0) return p1h;
+            }
+
+            const denom = 1 + (fallback24hChange / 100);
+            return denom !== 0 ? currentPrice / denom : currentPrice;
+        }
+
+        function analyzeReactionByTimeframe(oiDiff, priceDelta) {
+            if (oiDiff > 0) {
+                return priceDelta >= 0
+                    ? "🟢 Long Buildup (புதிய வாங்குவோர்)"
+                    : "🔴 Short Buildup (புதிய விற்பனையாளர்கள்)";
+            } else if (oiDiff < 0) {
+                return priceDelta >= 0
+                    ? "⚡ Short Squeeze (ஷார்ட் க்ளோசிங்)"
+                    : "⚠️ Long Liquidation (லாங் க்ளோசிங்)";
+            }
+            return "⚖️ Equilibrium (சமநிலை)";
+        }
+
+        // Pick strongest near-range wall within +-2,500 pts (avoids distant 10k-pt wall confusion)
+        function findNearStructuralWalls(currentPrice, currentOI) {
+            const baseRounded = Math.round(currentPrice / 500) * 500;
+            let bestRes = { price: baseRounded + 1000, pool: -1 };
+            let bestSup = { price: baseRounded - 1000, pool: -1 };
+
+            for (let step = 1; step <= 5; step++) {
+                let upPrice = baseRounded + (step * 500);
+                let dnPrice = baseRounded - (step * 500);
+
+                let upIntensity = Math.floor(Math.abs(Math.sin(upPrice * 0.001) * 75) + 24);
+                let dnIntensity = Math.floor(Math.abs(Math.sin(dnPrice * 0.001) * 75) + 24);
+
+                let upPool = Math.round((currentOI * 0.08) * (upIntensity / 100) * 0.65) * upPrice;
+                let dnPool = Math.round((currentOI * 0.08) * (dnIntensity / 100) * 0.75) * dnPrice;
+
+                if (upPrice > currentPrice + 150 && upPool > bestRes.pool) {
+                    bestRes = { price: upPrice, pool: upPool };
+                }
+                if (dnPrice < currentPrice - 150 && dnPool > bestSup.pool) {
+                    bestSup = { price: dnPrice, pool: dnPool };
+                }
+            }
+
+            return { resPrice: bestRes.price, supPrice: bestSup.price };
+        }
+
+        function getLockedOrUpdatedSetup(currentPrice, currentOI, isBearish) {
+            const walls = findNearStructuralWalls(currentPrice, currentOI);
+
+            if (isBearish) {
+                const breached = lockedSetup && lockedSetup.side === 'SHORT' && currentPrice > lockedSetup.slPrice;
+                const invalidMode = lockedSetup && lockedSetup.side !== 'SHORT';
+                if (!lockedSetup || breached || invalidMode) {
+                    const entryZoneLow = Math.round(currentPrice + 100);
+                    const entryZoneHigh = Math.min(walls.resPrice, Math.round(currentPrice + 350));
+                    const targetPrice = Math.max(walls.supPrice, Math.round(currentPrice - 1000));
+                    const slPrice = Math.max(walls.resPrice + 150, entryZoneHigh + 250);
+                    lockedSetup = {
+                        side: 'SHORT',
+                        wallPrice: walls.resPrice,
+                        supWallPrice: walls.supPrice,
+                        entryLow: entryZoneLow,
+                        entryHigh: Math.max(entryZoneLow + 100, entryZoneHigh),
+                        targetPrice: targetPrice,
+                        slPrice: slPrice
+                    };
+                }
+            } else {
+                const breached = lockedSetup && lockedSetup.side === 'LONG' && currentPrice < lockedSetup.slPrice;
+                const invalidMode = lockedSetup && lockedSetup.side !== 'LONG';
+                if (!lockedSetup || breached || invalidMode) {
+                    const entryZoneHigh = Math.round(currentPrice - 100);
+                    const entryZoneLow = Math.max(walls.supPrice, Math.round(currentPrice - 350));
+                    const targetPrice = Math.min(walls.resPrice, Math.round(currentPrice + 1000));
+                    const slPrice = Math.min(walls.supPrice - 150, entryZoneLow - 250);
+                    lockedSetup = {
+                        side: 'LONG',
+                        wallPrice: walls.supPrice,
+                        resWallPrice: walls.resPrice,
+                        entryLow: Math.min(entryZoneHigh - 100, entryZoneLow),
+                        entryHigh: entryZoneHigh,
+                        targetPrice: targetPrice,
+                        slPrice: slPrice
+                    };
+                }
+            }
+
+            return lockedSetup;
+        }
+
+        function evaluateUnifiedMarket(currentPrice, highPrice, lowPrice, currentOI, tfSummary, cvd4h) {
+            const centerPoint = (highPrice + lowPrice) / 2;
+            const rangeSpan = Math.max(1, highPrice - lowPrice);
+            const offsetRatio = (currentPrice - centerPoint) / rangeSpan;
+
+            let bullScore = Math.max(15, Math.min(88, Math.round(50 + (offsetRatio * 75) + (cvd4h > 0 ? 6 : -6))));
+            let bearScore = 100 - bullScore;
+            const isBearish = currentPrice < centerPoint;
+
+            const setup = getLockedOrUpdatedSetup(currentPrice, currentOI, isBearish);
+            const latest5m = tfSummary['5m'] ? tfSummary['5m'].reaction : "Monitoring";
+
+            const signalText = isBearish
+                ? "Bearish Trend (விற்பனையாளர் ஆதிக்கம்)"
+                : "Bullish Trend (வாங்குவோர் ஆதிக்கம்)";
+            const activeScore = isBearish ? bearScore : bullScore;
+            const bannerClass = isBearish
+                ? "glass-card rounded-2xl p-5 border-l-4 border-rose-500 shadow-2xl glow-red space-y-3"
+                : "glass-card rounded-2xl p-5 border-l-4 border-emerald-500 shadow-2xl glow-green space-y-3";
+            const titleClass = isBearish
+                ? "text-lg sm:text-xl font-black text-rose-500 tracking-wide"
+                : "text-lg sm:text-xl font-black text-emerald-400 tracking-wide";
+
+            let mb = document.getElementById('master-banner');
+            if (mb) mb.className = bannerClass;
+            let signalEl = document.getElementById('ultimate-signal');
+            if (signalEl) {
+                signalEl.innerText = signalText;
+                signalEl.className = titleClass;
+            }
+            let ps = document.getElementById('power-score');
+            if (ps) ps.innerText = `Score: ${activeScore}/100`;
+
+            let bst = document.getElementById('bullish-score-txt');
+            if (bst) bst.innerText = `${bullScore} / 100`;
+            let bb = document.getElementById('bullish-bar');
+            if (bb) bb.style.width = `${bullScore}%`;
+            let bst2 = document.getElementById('bearish-score-txt');
+            if (bst2) bst2.innerText = `${bearScore} / 100`;
+            let brb = document.getElementById('bearish-bar');
+            if (brb) brb.style.width = `${bearScore}%`;
+
+            let domPill = document.getElementById('dir-dominant-pill');
+            if (domPill) {
+                domPill.innerText = isBearish ? "Dominance: Downward Trend 📉" : "Dominance: Upward Trend 🚀";
+                domPill.className = isBearish
+                    ? "text-xs font-mono font-black bg-rose-500/20 text-rose-400 px-2.5 py-0.5 rounded border border-rose-500/40"
+                    : "text-xs font-mono font-black bg-emerald-500/20 text-emerald-400 px-2.5 py-0.5 rounded border border-emerald-500/40";
+            }
+
+            let drt = document.getElementById('dir-reason-txt');
+            if (drt) {
+                drt.innerText = isBearish
+                    ? `Price below 24h center ($${centerPoint.toFixed(0)}); Res Wall $${setup.wallPrice.toLocaleString()} | Sup Wall $${setup.supWallPrice.toLocaleString()}.`
+                    : `Price above 24h center ($${centerPoint.toFixed(0)}); Sup Wall $${setup.wallPrice.toLocaleString()} | Res Wall $${setup.resWallPrice.toLocaleString()}.`;
+            }
+
+            if (isBearish) {
+                let wLabel = document.getElementById('ai-wall-label');
+                if (wLabel) wLabel.innerText = "Structural Walls (ரெசிஸ்டன்ஸ் / சப்போர்ட்)";
+                let trapEl = document.getElementById('ai-trap-state');
+                if (trapEl) trapEl.innerText = `Res: $${setup.wallPrice.toLocaleString()} | Sup: $${setup.supWallPrice.toLocaleString()}`;
+                let entryEl = document.getElementById('ai-entry-zone');
+                if (entryEl) entryEl.innerText = `Short $${setup.entryLow.toLocaleString()}-$${setup.entryHigh.toLocaleString()} -> Tgt $${setup.targetPrice.toLocaleString()}`;
+                let confEl = document.getElementById('ai-conf-score');
+                if (confEl) confEl.innerText = `SL Above $${setup.slPrice.toLocaleString()} (Locked)`;
+                let statEl = document.getElementById('ai-engine-status');
+                if (statEl) statEl.innerText = "Status: Fixed Short Wall ⚠️";
+                let advEl = document.getElementById('ai-engine-advice');
+                if (advEl) {
+                    advEl.innerText = `Fixed levels held until breached: Pullback Short zone $${setup.entryLow.toLocaleString()}-$${setup.entryHigh.toLocaleString()}, 1,000-pt target near $${setup.targetPrice.toLocaleString()}, SL reference above $${setup.slPrice.toLocaleString()}.`;
+                }
+
+                let hmEl = document.getElementById('eng-heatmap-state');
+                if (hmEl) hmEl.innerText = `Fixed Res Wall: $${setup.wallPrice.toLocaleString()}`;
+                let divEl = document.getElementById('eng-divergence-val');
+                if (divEl) divEl.innerText = latest5m;
+                let engAdvEl = document.getElementById('eng-advice-txt');
+                if (engAdvEl) {
+                    engAdvEl.innerText = `Live Price: $${currentPrice.toLocaleString('en-US', { minimumFractionDigits: 2 })}. Short setup locked until $${setup.slPrice.toLocaleString()} breach.`;
+                }
+            } else {
+                let wLabel = document.getElementById('ai-wall-label');
+                if (wLabel) wLabel.innerText = "Structural Walls (சப்போர்ட் / ரெசிஸ்டன்ஸ்)";
+                let trapEl = document.getElementById('ai-trap-state');
+                if (trapEl) trapEl.innerText = `Sup: $${setup.wallPrice.toLocaleString()} | Res: $${setup.resWallPrice.toLocaleString()}`;
+                let entryEl = document.getElementById('ai-entry-zone');
+                if (entryEl) entryEl.innerText = `Long $${setup.entryLow.toLocaleString()}-$${setup.entryHigh.toLocaleString()} -> Tgt $${setup.targetPrice.toLocaleString()}`;
+                let confEl = document.getElementById('ai-conf-score');
+                if (confEl) confEl.innerText = `SL Below $${setup.slPrice.toLocaleString()} (Locked)`;
+                let statEl = document.getElementById('ai-engine-status');
+                if (statEl) statEl.innerText = "Status: Fixed Long Wall 🟢";
+                let advEl = document.getElementById('ai-engine-advice');
+                if (advEl) {
+                    advEl.innerText = `Fixed levels held until breached: Pullback Long zone $${setup.entryLow.toLocaleString()}-$${setup.entryHigh.toLocaleString()}, 1,000-pt target near $${setup.targetPrice.toLocaleString()}, SL reference below $${setup.slPrice.toLocaleString()}.`;
+                }
+
+                let hmEl = document.getElementById('eng-heatmap-state');
+                if (hmEl) hmEl.innerText = `Fixed Sup Wall: $${setup.wallPrice.toLocaleString()}`;
+                let divEl = document.getElementById('eng-divergence-val');
+                if (divEl) divEl.innerText = latest5m;
+                let engAdvEl = document.getElementById('eng-advice-txt');
+                if (engAdvEl) {
+                    engAdvEl.innerText = `Live Price: $${currentPrice.toLocaleString('en-US', { minimumFractionDigits: 2 })}. Long setup locked until $${setup.slPrice.toLocaleString()} breach.`;
+                }
+            }
+        }
 
         async function fetchAllData() {
             try {
@@ -729,51 +961,63 @@
                     let gLong = parseFloat(globalLsData[0].longAccount) * 100;
                     let gShort = parseFloat(globalLsData[0].shortAccount) * 100;
                     let el = document.getElementById('global-ls-ratio');
-                    if(el) el.innerText = `Long: ${gLong.toFixed(1)}% | Short: ${gShort.toFixed(1)}%`;
+                    if (el) el.innerText = `Long: ${gLong.toFixed(1)}% | Short: ${gShort.toFixed(1)}%`;
                     let lb = document.getElementById('global-long-bar');
-                    if(lb) lb.style.width = `${gLong}%`;
+                    if (lb) lb.style.width = `${gLong}%`;
                     let sb = document.getElementById('global-short-bar');
-                    if(sb) sb.style.width = `${gShort}%`;
+                    if (sb) sb.style.width = `${gShort}%`;
                 }
 
                 if (Array.isArray(lsAccountData) && lsAccountData.length > 0) {
                     let accLong = parseFloat(lsAccountData[0].longAccount) * 100;
                     let accShort = parseFloat(lsAccountData[0].shortAccount) * 100;
                     let el = document.getElementById('ls-account-ratio');
-                    if(el) el.innerText = `Long: ${accLong.toFixed(1)}% | Short: ${accShort.toFixed(1)}%`;
+                    if (el) el.innerText = `Long: ${accLong.toFixed(1)}% | Short: ${accShort.toFixed(1)}%`;
                     let lb = document.getElementById('ls-account-long-bar');
-                    if(lb) lb.style.width = `${accLong}%`;
+                    if (lb) lb.style.width = `${accLong}%`;
                     let sb = document.getElementById('ls-account-short-bar');
-                    if(sb) sb.style.width = `${accShort}%`;
+                    if (sb) sb.style.width = `${accShort}%`;
                 }
 
                 if (Array.isArray(lsPositionData) && lsPositionData.length > 0) {
                     let posLong = parseFloat(lsPositionData[0].longAccount) * 100;
                     let posShort = parseFloat(lsPositionData[0].shortAccount) * 100;
                     let el = document.getElementById('ls-position-ratio');
-                    if(el) el.innerText = `Long: ${posLong.toFixed(1)}% | Short: ${posShort.toFixed(1)}%`;
+                    if (el) el.innerText = `Long: ${posLong.toFixed(1)}% | Short: ${posShort.toFixed(1)}%`;
                     let lb = document.getElementById('ls-position-long-bar');
-                    if(lb) lb.style.width = `${posLong}%`;
+                    if (lb) lb.style.width = `${posLong}%`;
                     let sb = document.getElementById('ls-position-short-bar');
-                    if(sb) sb.style.width = `${posShort}%`;
+                    if (sb) sb.style.width = `${posShort}%`;
                 }
 
-                // --- HISTORICAL DATA FOR DELTA TRACKER ---
+                // --- KLINES & OI HISTORY ---
+                let klines5m = await fetchBinanceData('https://fapi.binance.com/fapi/v1/klines?symbol=BTCUSDT&interval=5m&limit=288');
+                if (Array.isArray(klines5m) && klines5m.length > 0) lastValidKlines5m = klines5m;
+                let activeKlines5m = klines5m || lastValidKlines5m;
+
+                let klines1h = await fetchBinanceData('https://fapi.binance.com/fapi/v1/klines?symbol=BTCUSDT&interval=1h&limit=168');
+                if (Array.isArray(klines1h) && klines1h.length > 0) lastValidKlines1h = klines1h;
+                let activeKlines1h = klines1h || lastValidKlines1h;
+
+                let cvd4h = 0;
+                if (Array.isArray(activeKlines1h) && activeKlines1h.length > 0) {
+                    activeKlines1h.forEach((k, idx) => {
+                        let open = parseFloat(k[1]), close = parseFloat(k[4]), vol = parseFloat(k[5]);
+                        let delta = (close >= open ? vol : -vol) * 0.15;
+                        if (idx >= activeKlines1h.length - 4) cvd4h += delta;
+                    });
+                }
+                let cvdText = cvd4h >= 0 ? `+$${Math.abs(cvd4h).toFixed(0)}M (Inflow)` : `-$${Math.abs(cvd4h).toFixed(0)}M (Outflow)`;
+                let cvdEl = document.getElementById('eng-cvd-val');
+                if (cvdEl) cvdEl.innerText = cvdText;
+
                 let histData = await fetchBinanceData('https://fapi.binance.com/futures/data/openInterestHist?symbol=BTCUSDT&period=5m&limit=288');
                 if (Array.isArray(histData) && histData.length > 0) lastValidHistData = histData;
                 let activeHist = histData || lastValidHistData;
 
+                let tfSummary = {};
                 if (Array.isArray(activeHist) && activeHist.length > 0) {
                     let nowTime = activeHist[activeHist.length - 1].timestamp;
-
-                    function analyzeReactionEnglish(diff, priceRising) {
-                        if (diff > 0) {
-                            return priceRising ? "🟢 Long Buildup (புதிய வாங்குவோர்)" : "🔴 Short Buildup (புதிய விற்பனையாளர்கள்)";
-                        } else if (diff < 0) {
-                            return priceRising ? "⚡ Short Squeeze (ஷார்ட் வெளியேற்றம்)" : "⚠️ Long Liquidation (ஸ்டாப் லாஸ் வேட்டை)";
-                        }
-                        return "⚖️ Equilibrium";
-                    }
 
                     function getPastByMinutes(mins) {
                         const targetTime = nowTime - (mins * 60 * 1000);
@@ -785,136 +1029,98 @@
                         return parseFloat(closest.sumOpenInterest);
                     }
 
-                    let priceRising = priceChange >= 0;
-
                     [
-                        { id: 'card-5m', minutes: 5 }, { id: 'card-10m', minutes: 10 },
-                        { id: 'card-30m', minutes: 30 }, { id: 'card-1h', minutes: 60 },
-                        { id: 'card-4h', minutes: 240 }, { id: 'card-24h', minutes: 1440 }
+                        { key: '5m', id: 'card-5m', minutes: 5 },
+                        { key: '10m', id: 'card-10m', minutes: 10 },
+                        { key: '30m', id: 'card-30m', minutes: 30 },
+                        { key: '1h', id: 'card-1h', minutes: 60 },
+                        { key: '4h', id: 'card-4h', minutes: 240 },
+                        { key: '24h', id: 'card-24h', minutes: 1440 }
                     ].forEach(tf => {
                         let pastOI = getPastByMinutes(tf.minutes);
-                        let diff = currentOI - pastOI, pct = pastOI > 0 ? (diff / pastOI) * 100 : 0;
-                        let reactionText = analyzeReactionEnglish(diff, priceRising);
+                        let diff = currentOI - pastOI;
+                        let pct = pastOI > 0 ? (diff / pastOI) * 100 : 0;
+                        let pastPrice = getPriceAtMinutesAgo(currentPrice, tf.minutes, activeKlines5m, activeKlines1h, priceChange);
+                        let priceDelta = currentPrice - pastPrice;
+                        let reactionText = analyzeReactionByTimeframe(diff, priceDelta);
+
+                        tfSummary[tf.key] = { diff, pct, priceDelta, reaction: reactionText };
 
                         let card = document.getElementById(tf.id);
                         if (card) {
                             let valEl = card.querySelector('.val-text');
-                            if(valEl) {
+                            if (valEl) {
                                 valEl.className = `text-lg font-black ${diff >= 0 ? 'text-emerald-400' : 'text-rose-400'} val-text`;
                                 valEl.innerText = `${diff >= 0 ? '+' : ''}${diff.toFixed(2)} BTC`;
                             }
                             let pastEl = card.querySelector('.past-text');
-                            if(pastEl) pastEl.innerText = `Previous: ${pastOI.toFixed(2)}`;
+                            if (pastEl) pastEl.innerText = `Previous: ${pastOI.toFixed(2)}`;
                             let pctEl = card.querySelector('.pct-text');
-                            if(pctEl) {
+                            if (pctEl) {
                                 pctEl.className = `text-[10px] font-black pct-text ${diff >= 0 ? 'text-emerald-400' : 'text-rose-400'}`;
                                 pctEl.innerText = `${diff >= 0 ? '+' : ''}${pct.toFixed(2)}%`;
                             }
                             let reasonEl = card.querySelector('.reason-text');
-                            if(reasonEl) reasonEl.innerText = reactionText;
+                            if (reasonEl) reasonEl.innerText = reactionText;
                         }
                     });
-
-                    runAccurateTrendEngine(currentPrice, highPrice, lowPrice, currentOI, activeHist);
                 }
 
-                // --- FIXED STRUCTURAL WALL & 1,000 PTS TARGET ENGINE ---
-                let klines1h = await fetchBinanceData('https://fapi.binance.com/fapi/v1/klines?symbol=BTCUSDT&interval=1h&limit=24');
-                let cvd4h = 0;
-                if (Array.isArray(klines1h) && klines1h.length > 0) {
-                    klines1h.forEach((k, idx) => {
-                        let open = parseFloat(k[1]), close = parseFloat(k[4]), vol = parseFloat(k[5]);
-                        let delta = (close >= open ? vol : -vol) * 0.15;
-                        if (idx >= klines1h.length - 4) cvd4h += delta;
-                    });
-                }
-                let cvdText = cvd4h >= 0 ? `+$${Math.abs(cvd4h).toFixed(0)}M (Inflow)` : `-$${Math.abs(cvd4h).toFixed(0)}M (Outflow)`;
-                let cvdEl = document.getElementById('eng-cvd-val');
-                if(cvdEl) cvdEl.innerText = cvdText;
-
-                // Fixed Structural Wall Calculation (Anchored to nearest 500 Pts major high/wall)
-                let fixedStructuralWall = Math.ceil(currentPrice / 500) * 500 + 350;
-                let fixedTargetDown = fixedStructuralWall - 1350;
-
-                let heatmapState = `Fixed Structural Wall: $${fixedStructuralWall}`;
-                let divergenceVal = "Short Buildup (புதிய விற்பனையாளர்கள்)";
-                let precisionTrigger = `Target: -$1,000 Pts ($${fixedTargetDown})`;
-                let aiTrapState = `$${fixedStructuralWall} (Fixed Call Wall)`;
-                let aiActionZone = `-$1,000 Pts Target ($${fixedTargetDown})`;
-                let aiConfScore = "98% (Structural Wall Validated)";
-                let aiAdviceText = `Fixed structural resistance wall is locked at $${fixedStructuralWall} (does not float). Pullbacks towards this wall offer optimal Short entries with stop-loss above $${fixedStructuralWall + 150}. Downward target: $${fixedTargetDown}.`;
-                let statusBadgeText = "Status: Structural Wall Active ⚠️";
-
-                let hmEl = document.getElementById('eng-heatmap-state');
-                if(hmEl) hmEl.innerText = heatmapState;
-                let divEl = document.getElementById('eng-divergence-val');
-                if(divEl) divEl.innerText = divergenceVal;
-                let entryEl = document.getElementById('ai-entry-zone');
-                if(entryEl) entryEl.innerText = precisionTrigger;
-                let trapEl = document.getElementById('ai-trap-state');
-                if(trapEl) trapEl.innerText = aiTrapState;
-                let confEl = document.getElementById('ai-conf-score');
-                if(confEl) confEl.innerText = aiConfScore;
-                let advEl = document.getElementById('ai-engine-advice');
-                if(advEl) advEl.innerText = aiAdviceText;
-                let statEl = document.getElementById('ai-engine-status');
-                if(statEl) statEl.innerText = statusBadgeText;
-                let engAdvEl = document.getElementById('eng-advice-txt');
-                if(engAdvEl) engAdvEl.innerText = `Live Price: $${currentPrice.toLocaleString()}. Fixed Structural Wall & Target Engine Active.`;
+                evaluateUnifiedMarket(currentPrice, highPrice, lowPrice, currentOI, tfSummary, cvd4h);
 
                 let gLiveP = document.getElementById('giant-live-price');
-                if(gLiveP) gLiveP.innerText = '$' + currentPrice.toLocaleString('en-US', {minimumFractionDigits: 2});
-                
+                if (gLiveP) gLiveP.innerText = '$' + currentPrice.toLocaleString('en-US', { minimumFractionDigits: 2 });
+
                 let giantChangeEl = document.getElementById('giant-price-change');
-                if(giantChangeEl) {
+                if (giantChangeEl) {
                     giantChangeEl.innerText = (priceChange >= 0 ? '+' : '') + priceChange.toFixed(2) + '% (24h)';
                     giantChangeEl.className = `text-xs sm:text-sm font-black px-3 py-1.5 rounded-lg font-mono border ${priceChange >= 0 ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/40' : 'bg-rose-500/20 text-rose-400 border-rose-500/40'}`;
                 }
 
                 let btcP = document.getElementById('btc-price');
-                if(btcP) btcP.innerText = '$' + currentPrice.toLocaleString('en-US', {minimumFractionDigits: 2});
-                
+                if (btcP) btcP.innerText = '$' + currentPrice.toLocaleString('en-US', { minimumFractionDigits: 2 });
+
                 let changeEl = document.getElementById('btc-change');
-                if(changeEl) {
+                if (changeEl) {
                     changeEl.innerText = (priceChange >= 0 ? '+' : '') + priceChange.toFixed(2) + '% (24h)';
                     changeEl.className = `text-xs font-black mt-1 ${priceChange >= 0 ? 'text-emerald-400' : 'text-rose-400'}`;
                 }
 
                 let highP = document.getElementById('high-price');
-                if(highP) highP.innerText = '$' + highPrice.toLocaleString('en-US', {minimumFractionDigits: 2});
+                if (highP) highP.innerText = '$' + highPrice.toLocaleString('en-US', { minimumFractionDigits: 2 });
                 let lowP = document.getElementById('low-price');
-                if(lowP) lowP.innerText = '$' + lowPrice.toLocaleString('en-US', {minimumFractionDigits: 2});
+                if (lowP) lowP.innerText = '$' + lowPrice.toLocaleString('en-US', { minimumFractionDigits: 2 });
 
                 let diffHigh = currentPrice - highPrice;
                 let diffLow = currentPrice - lowPrice;
                 let diffHighEl = document.getElementById('price-diff-high');
-                if(diffHighEl) diffHighEl.innerText = `From High: ${diffHigh.toFixed(2)} USDT`;
+                if (diffHighEl) diffHighEl.innerText = `From High: ${diffHigh.toFixed(2)} USDT`;
                 let diffLowEl = document.getElementById('price-diff-low');
-                if(diffLowEl) diffLowEl.innerText = `From Low: +${Math.abs(diffLow).toFixed(2)} USDT`;
+                if (diffLowEl) diffLowEl.innerText = `From Low: +${Math.abs(diffLow).toFixed(2)} USDT`;
 
                 let centerPoint = (highPrice + lowPrice) / 2;
                 let diffFromCenter = currentPrice - centerPoint;
                 let isAbove = diffFromCenter >= 0;
 
                 let centerPVal = document.getElementById('center-point-val');
-                if(centerPVal) centerPVal.innerText = '$' + centerPoint.toLocaleString('en-US', {minimumFractionDigits: 2});
-                
+                if (centerPVal) centerPVal.innerText = '$' + centerPoint.toLocaleString('en-US', { minimumFractionDigits: 2 });
+
                 let posStatus = document.getElementById('position-status');
-                if(posStatus) {
+                if (posStatus) {
                     posStatus.innerText = isAbove ? `Above Center (+${Math.abs(diffFromCenter).toFixed(2)})` : `Below Center (${diffFromCenter.toFixed(2)})`;
                     posStatus.className = `text-[10px] font-mono px-2 py-0.5 rounded font-black ${isAbove ? 'bg-emerald-500/20 text-emerald-400' : 'bg-rose-500/20 text-rose-400'}`;
                 }
                 let centerDiff = document.getElementById('center-diff');
-                if(centerDiff) centerDiff.innerText = `Distance: ${isAbove ? '+' : ''}${diffFromCenter.toFixed(2)} USDT`;
+                if (centerDiff) centerDiff.innerText = `Distance: ${isAbove ? '+' : ''}${diffFromCenter.toFixed(2)} USDT`;
 
                 let maxPain = centerPoint * 0.992;
                 let maxPainVal = document.getElementById('max-pain-val');
-                if(maxPainVal) maxPainVal.innerText = '$' + Math.round(maxPain).toLocaleString();
+                if (maxPainVal) maxPainVal.innerText = '$' + Math.round(maxPain).toLocaleString();
 
                 let liveOiEl = document.getElementById('live-oi');
-                if(liveOiEl) liveOiEl.innerText = currentOI.toLocaleString('en-US', {minimumFractionDigits: 3, maximumFractionDigits: 3}) + ' BTC';
+                if (liveOiEl) liveOiEl.innerText = currentOI.toLocaleString('en-US', { minimumFractionDigits: 3, maximumFractionDigits: 3 }) + ' BTC';
                 let oiValEl = document.getElementById('oi-value');
-                if(oiValEl) oiValEl.innerText = 'Notional: $' + Math.round(currentOI * currentPrice).toLocaleString('en-US');
+                if (oiValEl) oiValEl.innerText = 'Notional: $' + Math.round(currentOI * currentPrice).toLocaleString('en-US');
 
                 // --- 24H HISTORICAL OI ---
                 let histData24h = await fetchBinanceData('https://fapi.binance.com/futures/data/openInterestHist?symbol=BTCUSDT&period=1h&limit=24');
@@ -931,32 +1137,31 @@
                     let tTime24 = new Date(trough24.timestamp).toLocaleTimeString('en-IN', { hour12: true, hour: '2-digit', minute: '2-digit' });
 
                     let oihV = document.getElementById('oi-high-val');
-                    if(oihV) oihV.innerText = pVal24.toLocaleString('en-US', {minimumFractionDigits: 3}) + ' BTC';
+                    if (oihV) oihV.innerText = pVal24.toLocaleString('en-US', { minimumFractionDigits: 3 }) + ' BTC';
                     let oidh = document.getElementById('oi-diff-high');
-                    if(oidh) oidh.innerText = `From Peak: ${(currentOI - pVal24).toFixed(2)} BTC`;
+                    if (oidh) oidh.innerText = `From Peak: ${(currentOI - pVal24).toFixed(2)} BTC`;
                     let oihp = document.getElementById('oi-high-corresponding-price');
-                    if(oihp) oihp.innerText = `Price: ~$${highPrice.toLocaleString()} (${pTime24})`;
+                    if (oihp) oihp.innerText = `Price: ~$${highPrice.toLocaleString()} (${pTime24})`;
 
                     let oilV = document.getElementById('oi-low-val');
-                    if(oilV) oilV.innerText = tVal24.toLocaleString('en-US', {minimumFractionDigits: 3}) + ' BTC';
+                    if (oilV) oilV.innerText = tVal24.toLocaleString('en-US', { minimumFractionDigits: 3 }) + ' BTC';
                     let oidl = document.getElementById('oi-diff-low');
-                    if(oidl) oidl.innerText = `From Trough: +${(currentOI - tVal24).toFixed(2)} BTC`;
+                    if (oidl) oidl.innerText = `From Trough: +${(currentOI - tVal24).toFixed(2)} BTC`;
                     let oilp = document.getElementById('oi-low-corresponding-price');
-                    if(oilp) oilp.innerText = `Price: ~$${lowPrice.toLocaleString()} (${tTime24})`;
+                    if (oilp) oilp.innerText = `Price: ~$${lowPrice.toLocaleString()} (${tTime24})`;
 
                     let hcoi = document.getElementById('high-corresponding-oi');
-                    if(hcoi) hcoi.innerText = `OI at High: ${pVal24.toLocaleString('en-US', {maximumFractionDigits: 2})} BTC (${pTime24})`;
+                    if (hcoi) hcoi.innerText = `OI at High: ${pVal24.toLocaleString('en-US', { maximumFractionDigits: 2 })} BTC (${pTime24})`;
                     let lcoi = document.getElementById('low-corresponding-oi');
-                    if(lcoi) lcoi.innerText = `OI at Low: ${tVal24.toLocaleString('en-US', {maximumFractionDigits: 2})} BTC (${tTime24})`;
+                    if (lcoi) lcoi.innerText = `OI at Low: ${tVal24.toLocaleString('en-US', { maximumFractionDigits: 2 })} BTC (${tTime24})`;
                 }
 
                 // --- 7D HISTORICAL DATA ---
-                let klines7d = await fetchBinanceData('https://fapi.binance.com/fapi/v1/klines?symbol=BTCUSDT&interval=1h&limit=168');
                 let histData7d = await fetchBinanceData('https://fapi.binance.com/futures/data/openInterestHist?symbol=BTCUSDT&period=1h&limit=168');
-                
-                if (Array.isArray(klines7d) && klines7d.length > 0) {
-                    let maxK = klines7d[0], minK = klines7d[0];
-                    klines7d.forEach(k => {
+
+                if (Array.isArray(activeKlines1h) && activeKlines1h.length > 0) {
+                    let maxK = activeKlines1h[0], minK = activeKlines1h[0];
+                    activeKlines1h.forEach(k => {
                         let hPrice = parseFloat(k[2]);
                         let lPrice = parseFloat(k[3]);
                         if (hPrice > parseFloat(maxK[2])) maxK = k;
@@ -975,8 +1180,8 @@
                     if (Array.isArray(histData7d) && histData7d.length > 0) {
                         let matchHigh = histData7d.find(h => Math.abs(h.timestamp - maxK[0]) < 3600000);
                         let matchLow = histData7d.find(h => Math.abs(h.timestamp - minK[0]) < 3600000);
-                        if(matchHigh) oiAtPriceHigh = parseFloat(matchHigh.sumOpenInterest).toLocaleString('en-US', {minimumFractionDigits: 2}) + ' BTC';
-                        if(matchLow) oiAtPriceLow = parseFloat(matchLow.sumOpenInterest).toLocaleString('en-US', {minimumFractionDigits: 2}) + ' BTC';
+                        if (matchHigh) oiAtPriceHigh = parseFloat(matchHigh.sumOpenInterest).toLocaleString('en-US', { minimumFractionDigits: 2 }) + ' BTC';
+                        if (matchLow) oiAtPriceLow = parseFloat(matchLow.sumOpenInterest).toLocaleString('en-US', { minimumFractionDigits: 2 }) + ' BTC';
 
                         let peakOiObj = histData7d[0], troughOiObj = histData7d[0];
                         histData7d.forEach(h => {
@@ -986,55 +1191,55 @@
 
                         let pOiNum = parseFloat(peakOiObj.sumOpenInterest);
                         let tOiNum = parseFloat(troughOiObj.sumOpenInterest);
-                        peakOiVal = pOiNum.toLocaleString('en-US', {minimumFractionDigits: 2}) + ' BTC';
+                        peakOiVal = pOiNum.toLocaleString('en-US', { minimumFractionDigits: 2 }) + ' BTC';
                         peakOiDiff = (currentOI - pOiNum).toFixed(2) + ' BTC';
                         peakOiDate = new Date(peakOiObj.timestamp).toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit' });
 
-                        troughOiVal = tOiNum.toLocaleString('en-US', {minimumFractionDigits: 2}) + ' BTC';
+                        troughOiVal = tOiNum.toLocaleString('en-US', { minimumFractionDigits: 2 }) + ' BTC';
                         troughOiDiff = "+" + (currentOI - tOiNum).toFixed(2) + ' BTC';
                         troughOiDate = new Date(troughOiObj.timestamp).toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit' });
 
-                        let matchPriceForOiHigh = klines7d.find(k => Math.abs(k[0] - peakOiObj.timestamp) < 3600000);
-                        let matchPriceForOiLow = klines7d.find(k => Math.abs(k[0] - troughOiObj.timestamp) < 3600000);
-                        peakOiPrice = matchPriceForOiHigh ? `$${parseFloat(matchPriceForOiHigh[2]).toLocaleString('en-US', {minimumFractionDigits: 2})}` : 'No Data';
-                        troughOiPrice = matchPriceForOiLow ? `$${parseFloat(matchPriceForOiLow[3]).toLocaleString('en-US', {minimumFractionDigits: 2})}` : 'No Data';
+                        let matchPriceForOiHigh = activeKlines1h.find(k => Math.abs(k[0] - peakOiObj.timestamp) < 3600000);
+                        let matchPriceForOiLow = activeKlines1h.find(k => Math.abs(k[0] - troughOiObj.timestamp) < 3600000);
+                        peakOiPrice = matchPriceForOiHigh ? `$${parseFloat(matchPriceForOiHigh[2]).toLocaleString('en-US', { minimumFractionDigits: 2 })}` : 'No Data';
+                        troughOiPrice = matchPriceForOiLow ? `$${parseFloat(matchPriceForOiLow[3]).toLocaleString('en-US', { minimumFractionDigits: 2 })}` : 'No Data';
                     }
 
                     let o7hpv = document.getElementById('oi-7d-high-price-val');
-                    if(o7hpv) o7hpv.innerText = `$${maxPriceVal.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+                    if (o7hpv) o7hpv.innerText = `$${maxPriceVal.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
                     let o7hpd = document.getElementById('oi-7d-high-price-diff');
-                    if(o7hpd) o7hpd.innerText = `From High: ${(currentPrice - maxPriceVal).toFixed(2)} USDT`;
+                    if (o7hpd) o7hpd.innerText = `From High: ${(currentPrice - maxPriceVal).toFixed(2)} USDT`;
                     let o7hpo = document.getElementById('oi-7d-high-price-oi');
-                    if(o7hpo) o7hpo.innerText = `OI at High: ${oiAtPriceHigh}`;
+                    if (o7hpo) o7hpo.innerText = `OI at High: ${oiAtPriceHigh}`;
                     let o7hd = document.getElementById('oi-7d-high-date');
-                    if(o7hd) o7hd.innerText = `Date: ${maxTime7}`;
+                    if (o7hd) o7hd.innerText = `Date: ${maxTime7}`;
 
                     let o7lpv = document.getElementById('oi-7d-low-price-val');
-                    if(o7lpv) o7lpv.innerText = `$${minPriceVal.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+                    if (o7lpv) o7lpv.innerText = `$${minPriceVal.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
                     let o7lpd = document.getElementById('oi-7d-low-price-diff');
-                    if(o7lpd) o7lpd.innerText = `From Low: +${(currentPrice - minPriceVal).toFixed(2)} USDT`;
+                    if (o7lpd) o7lpd.innerText = `From Low: +${(currentPrice - minPriceVal).toFixed(2)} USDT`;
                     let o7lpo = document.getElementById('oi-7d-low-price-oi');
-                    if(o7lpo) o7lpo.innerText = `OI at Low: ${oiAtPriceLow}`;
+                    if (o7lpo) o7lpo.innerText = `OI at Low: ${oiAtPriceLow}`;
                     let o7ld = document.getElementById('oi-7d-low-date');
-                    if(o7ld) o7ld.innerText = `Date: ${minTime7}`;
+                    if (o7ld) o7ld.innerText = `Date: ${minTime7}`;
 
                     let o7hov = document.getElementById('oi-7d-high-oi-val');
-                    if(o7hov) o7hov.innerText = peakOiVal;
+                    if (o7hov) o7hov.innerText = peakOiVal;
                     let o7hod = document.getElementById('oi-7d-high-oi-diff');
-                    if(o7hod) o7hod.innerText = `From Peak: ${peakOiDiff}`;
+                    if (o7hod) o7hod.innerText = `From Peak: ${peakOiDiff}`;
                     let o7hop = document.getElementById('oi-7d-high-oi-price');
-                    if(o7hop) o7hop.innerText = `Price: ${peakOiPrice}`;
+                    if (o7hop) o7hop.innerText = `Price: ${peakOiPrice}`;
                     let o7hodate = document.getElementById('oi-7d-high-oi-date');
-                    if(o7hodate) o7hodate.innerText = `Date: ${peakOiDate}`;
+                    if (o7hodate) o7hodate.innerText = `Date: ${peakOiDate}`;
 
                     let o7lov = document.getElementById('oi-7d-low-oi-val');
-                    if(o7lov) o7lov.innerText = troughOiVal;
+                    if (o7lov) o7lov.innerText = troughOiVal;
                     let o7lod = document.getElementById('oi-7d-low-oi-diff');
-                    if(o7lod) o7lod.innerText = `From Trough: ${troughOiDiff}`;
+                    if (o7lod) o7lod.innerText = `From Trough: ${troughOiDiff}`;
                     let o7lop = document.getElementById('oi-7d-low-oi-price');
-                    if(o7lop) o7lop.innerText = `Price: ${troughOiPrice}`;
+                    if (o7lop) o7lop.innerText = `Price: ${troughOiPrice}`;
                     let o7lodate = document.getElementById('oi-7d-low-oi-date');
-                    if(o7lodate) o7lodate.innerText = `Date: ${peakOiDate}`;
+                    if (o7lodate) o7lodate.innerText = `Date: ${troughOiDate}`;
                 }
 
                 // --- RENDER MATRICES ---
@@ -1045,48 +1250,10 @@
                 renderOptionsMatrix(currentPrice, currentOI);
 
                 let stEl = document.getElementById('signal-time');
-                if(stEl) stEl.innerText = currentFullDateTimeStr;
+                if (stEl) stEl.innerText = currentFullDateTimeStr;
                 let utEl = document.getElementById('update-time');
-                if(utEl) utEl.innerText = currentFullDateTimeStr;
+                if (utEl) utEl.innerText = currentFullDateTimeStr;
             } catch (error) { console.error("Live fetch error:", error); }
-        }
-
-        function runAccurateTrendEngine(currentPrice, highPrice, lowPrice, currentOI, hist) {
-            let isBearish = currentPrice < ((highPrice + lowPrice) / 2);
-            let signalText = isBearish ? "Bearish Trend (விற்பனையாளர் ஆதிக்கம்)" : "Bullish Trend (வாங்குவோர் ஆதிக்கம்)";
-            let scoreText = "88/100";
-            let bannerClass = isBearish ? "glass-card rounded-2xl p-5 border-l-4 border-rose-500 shadow-2xl glow-red space-y-3" : "glass-card rounded-2xl p-5 border-l-4 border-emerald-500 shadow-2xl glow-green space-y-3";
-            let textClass = isBearish ? "text-lg sm:text-xl font-black text-rose-500 tracking-wide" : "text-lg sm:text-xl font-black text-emerald-400 tracking-wide";
-            let dominantTxt = isBearish ? "Downward Trend 📉" : "Upward Trend 🚀";
-            let reasonTxt = isBearish ? "Market is under strict seller control." : "Market is under buyer control.";
-            let bullScore = isBearish ? 12 : 88;
-            let bearScore = isBearish ? 88 : 12;
-
-            let mb = document.getElementById('master-banner');
-            if(mb) mb.className = bannerClass;
-            let signalEl = document.getElementById('ultimate-signal');
-            if(signalEl) {
-                signalEl.innerText = signalText;
-                signalEl.className = textClass;
-            }
-            let ps = document.getElementById('power-score');
-            if(ps) ps.innerText = `Score: ${scoreText}`;
-            let bst = document.getElementById('bullish-score-txt');
-            if(bst) bst.innerText = `${bullScore} / 100`;
-            let bb = document.getElementById('bullish-bar');
-            if(bb) bb.style.width = `${bullScore}%`;
-            let bst2 = document.getElementById('bearish-score-txt');
-            if(bst2) bst2.innerText = `${bearScore} / 100`;
-            let brb = document.getElementById('bearish-bar');
-            if(brb) brb.style.width = `${bearScore}%`;
-
-            let domPill = document.getElementById('dir-dominant-pill');
-            if(domPill) {
-                domPill.innerText = `Dominance: ${dominantTxt}`;
-                domPill.className = isBearish ? "text-xs font-mono font-black bg-rose-500/20 text-rose-400 px-2.5 py-0.5 rounded border border-rose-500/40" : "text-xs font-mono font-black bg-emerald-500/20 text-emerald-400 px-2.5 py-0.5 rounded border border-emerald-500/40";
-            }
-            let drt = document.getElementById('dir-reason-txt');
-            if(drt) drt.innerText = reasonTxt;
         }
 
         function renderOptionsMatrix(currentPrice, currentOI) {
@@ -1094,11 +1261,11 @@
             if (!container) return;
             let pcr = (0.92).toFixed(2);
             let op = document.getElementById('opt-pcr');
-            if(op) op.innerText = pcr + ' (Neutral)';
+            if (op) op.innerText = pcr + ' (Neutral)';
             let omp = document.getElementById('opt-max-pain');
-            if(omp) omp.innerText = '$' + (Math.round(currentPrice / 500) * 500 - 1000).toLocaleString();
+            if (omp) omp.innerText = '$' + (Math.round(currentPrice / 500) * 500 - 1000).toLocaleString();
             let oto = document.getElementById('opt-total-oi');
-            if(oto) oto.innerText = Math.round(currentOI * 4.2).toLocaleString() + ' BTC';
+            if (oto) oto.innerText = Math.round(currentOI * 4.2).toLocaleString() + ' BTC';
 
             let basePriceRounded = Math.round(currentPrice);
             let html = '';
@@ -1250,7 +1417,7 @@
             try {
                 fetchAllData();
                 switchDashboardView('terminal');
-            } catch(e) { console.error("Init error:", e); }
+            } catch (e) { console.error("Init error:", e); }
         };
 
         setInterval(() => {
