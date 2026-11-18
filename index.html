@@ -905,8 +905,10 @@
             if (cvd4h > 0) rawSupHold += 7;
             else if (cvd4h < 0) rawSupHold -= 7;
 
+            // New buyers / short covering near support helps support hold
             if (r5.includes("Long Buildup")) rawSupHold += 7;
             if (r5.includes("Short Squeeze")) rawSupHold += 5;
+            // New sellers or long liquidation/closing near support weakens support (higher break risk)
             if (r5.includes("Long Liquidation")) rawSupHold -= 9;
             if (r5.includes("Short Buildup")) rawSupHold -= 7;
             if (r1h.includes("Long Buildup")) rawSupHold += 4;
@@ -920,8 +922,10 @@
             if (cvd4h < 0) rawResHold += 7;
             else if (cvd4h > 0) rawResHold -= 7;
 
+            // New sellers or long closing/liquidation near resistance helps resistance hold
             if (r5.includes("Short Buildup")) rawResHold += 7;
             if (r5.includes("Long Liquidation")) rawResHold += 5;
+            // Strong buying, short squeeze, or long buildup pushing into resistance weakens resistance (higher breakout risk)
             if (r5.includes("Short Squeeze")) rawResHold -= 8;
             if (r5.includes("Long Buildup")) rawResHold -= 7;
             if (r1h.includes("Short Buildup")) rawResHold += 4;
@@ -951,6 +955,7 @@
             const supHoldsStrong = supHold >= 55;
             const resHoldsStrong = resHold >= 55;
 
+            // Build specific driver explanation for Support
             let supDriver = "";
             if (r5.includes("Long Liquidation")) supDriver = "Long positions closing/liquidating on drop (உடைப்பு அபாயம்)";
             else if (r5.includes("Short Buildup")) supDriver = "New short sellers pressing down (கீழ் அழுத்தம்)";
@@ -958,6 +963,7 @@
             else if (r5.includes("Short Squeeze")) supDriver = "Shorts closing / covering (ஷார்ட் க்ளோசிங்)";
             else supDriver = cvd4h >= 0 ? "Net inflow supports floor (பண வரவு)" : "Net outflow / light buyer defense";
 
+            // Build specific driver explanation for Resistance
             let resDriver = "";
             if (r5.includes("Short Squeeze")) resDriver = "Shorts closing/covering pushing up (உடைப்பு அழுத்தம்)";
             else if (r5.includes("Long Buildup")) resDriver = "New long buyers pushing into wall (புதிய பை அழுத்தம்)";
@@ -968,6 +974,7 @@
             const supReason = `Pool ${supPoolInfo.intensity}% (${supPoolInfo.btcAtLevel.toLocaleString()} BTC) | ${supDriver}.`;
             const resReason = `Pool ${resPoolInfo.intensity}% (${resPoolInfo.btcAtLevel.toLocaleString()} BTC) | ${resDriver}.`;
 
+            // Update Support DOM
             let swt = document.getElementById('sup-wall-title');
             if (swt) swt.innerText = `Support Wall ($${supPrice.toLocaleString()})`;
             let stg = document.getElementById('sup-wall-tag');
@@ -989,6 +996,7 @@
             let ssr = document.getElementById('sup-strength-reason');
             if (ssr) ssr.innerText = supReason;
 
+            // Update Resistance DOM
             let rwt = document.getElementById('res-wall-title');
             if (rwt) rwt.innerText = `Resistance Wall ($${resPrice.toLocaleString()})`;
             let rtg = document.getElementById('res-wall-tag');
@@ -1010,6 +1018,7 @@
             let rsr = document.getElementById('res-strength-reason');
             if (rsr) rsr.innerText = resReason;
 
+            // Summary banner based on approach direction & closer wall
             let wfb = document.getElementById('wall-focus-badge');
             let wss = document.getElementById('wall-strength-summary');
             if (distToRes < distToSup || movingUp) {
@@ -1541,18 +1550,60 @@
                     html += `<div class="bg-indigo-950/90 border-2 border-indigo-500 rounded-xl p-3.5 flex items-center justify-between shadow-lg my-2"><span class="text-xs font-mono font-black text-indigo-300">📍 Market Center: $${item.price.toLocaleString()}</span><span class="text-xs font-black bg-indigo-500 text-white px-3 py-1 rounded-lg font-mono">Live</span></div>`;
                 } else {
                     let isAbove = item.type === 'above';
-                    let intensity = Math.floor(Math.abs(Math.sin(item.price * 0.001) * 75) + 24);
-                    let totalBtcAtLevel = Math.round((currentOI * 0.08) * (intensity / 100));
-                    let longBtc = isAbove ? Math.round(totalBtcAtLevel * 0.35) : Math.round(totalBtcAtLevel * 0.75);
-                    let shortBtc = isAbove ? Math.round(totalBtcAtLevel * 0.65) : Math.round(totalBtcAtLevel * 0.25);
+                    let absDist = Math.abs(item.distance);
+
+                    // Level total intensity out of 100% (24% to 99%, just like previous 50%-98% intensity)
+                    let levelTotalPct = Math.floor(Math.abs(Math.sin(item.price * 0.001) * 75) + 24);
+
+                    // Level-specific Long vs Short ratio out of that level's 100% (e.g., 31% Long / 69% Short)
+                    let distFactor = Math.min(0.14, (absDist / 10000) * 0.14);
+                    let waveBias = Math.sin(item.price * 0.002) * 0.05;
+                    let longRatioWithinLevel = isAbove
+                        ? (0.34 - distFactor + waveBias)
+                        : (0.72 + distFactor + waveBias);
+                    longRatioWithinLevel = Math.max(0.22, Math.min(0.80, longRatioWithinLevel));
+
+                    let longPctOf100 = Math.round(longRatioWithinLevel * 100);
+                    let shortPctOf100 = 100 - longPctOf100;
+
+                    // Portion of levelTotalPct contributed by Long and Short so Long% + Short% = levelTotalPct
+                    let longPartPct = Number(((levelTotalPct * longPctOf100) / 100).toFixed(1));
+                    let shortPartPct = Number(Math.max(0, levelTotalPct - longPartPct).toFixed(1));
+
+                    let totalBtcAtLevel = Math.round((currentOI * 0.08) * (levelTotalPct / 100));
+                    let longBtc = Math.round(totalBtcAtLevel * (longPctOf100 / 100));
+                    let shortBtc = Math.max(0, totalBtcAtLevel - longBtc);
+
                     let longUsd = longBtc * item.price;
                     let shortUsd = shortBtc * item.price;
-                    let liqPoolUsd = Math.round((longUsd + shortUsd) * (intensity / 100));
+                    let liqPoolUsd = Math.round((longUsd + shortUsd) * (levelTotalPct / 100));
                     let formattedDist = (item.distance > 0 ? '+' : '') + item.distance + ' Pts';
-                    let isHot = intensity >= 70 ? 'border-2 border-amber-400/90 bg-gray-900/95 shadow-xl' : 'border border-gray-800/80 bg-gray-900/70';
-                    let hotBadge = intensity >= 70 ? '<span class="text-[9px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded font-black font-mono ml-2">🔥 High</span>' : '';
+                    let isHot = levelTotalPct >= 70 ? 'border-2 border-amber-400/90 bg-gray-900/95 shadow-xl' : 'border border-gray-800/80 bg-gray-900/70';
+                    let hotBadge = levelTotalPct >= 70 ? '<span class="text-[9px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded font-black font-mono ml-2">🔥 High</span>' : '';
 
-                    html += `<div class="${isHot} rounded-2xl p-4 space-y-3 text-xs"><div class="flex items-center justify-between border-b border-gray-800 pb-2"><div class="flex items-center gap-2.5"><span class="text-xs font-mono font-black text-white">$${item.price.toLocaleString()}</span><span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-0.5 rounded font-mono">${formattedDist}</span>${hotBadge}</div><span class="text-[11px] font-mono font-black text-amber-400 bg-amber-950/60 px-2.5 py-0.5 rounded border border-amber-800/40">Pool: $${liqPoolUsd.toLocaleString()} (${intensity}%)</span></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5"><div class="bg-emerald-950/40 border border-emerald-500/30 p-2.5 rounded-xl flex justify-between items-center"><span class="text-emerald-400 font-bold">🟢 Long Position:</span><span class="font-mono font-black text-white">${longBtc.toLocaleString()} BTC</span></div><div class="bg-rose-950/40 border border-rose-500/30 p-2.5 rounded-xl flex justify-between items-center"><span class="text-rose-400 font-bold">🔴 Short Position:</span><span class="font-mono font-black text-white">${shortBtc.toLocaleString()} BTC</span></div></div></div>`;
+                    html += `<div class="${isHot} rounded-2xl p-4 space-y-3 text-xs">
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-gray-800 pb-2">
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs font-mono font-black text-white">$${item.price.toLocaleString()}</span>
+                                <span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-0.5 rounded font-mono">${formattedDist}</span>
+                                ${hotBadge}
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-[11px] font-mono font-black text-cyan-300 bg-cyan-950/60 px-2.5 py-0.5 rounded border border-cyan-700/40">Total: ${levelTotalPct}%</span>
+                                <span class="text-[11px] font-mono font-black text-amber-400 bg-amber-950/60 px-2.5 py-0.5 rounded border border-amber-800/40">Pool: $${liqPoolUsd.toLocaleString()}</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                            <div class="bg-emerald-950/40 border border-emerald-500/30 p-2.5 rounded-xl flex justify-between items-center">
+                                <span class="text-emerald-400 font-bold">🟢 Long (${longPartPct}% | ${longPctOf100}%):</span>
+                                <span class="font-mono font-black text-white">${longBtc.toLocaleString()} BTC</span>
+                            </div>
+                            <div class="bg-rose-950/40 border border-rose-500/30 p-2.5 rounded-xl flex justify-between items-center">
+                                <span class="text-rose-400 font-bold">🔴 Short (${shortPartPct}% | ${shortPctOf100}%):</span>
+                                <span class="font-mono font-black text-white">${shortBtc.toLocaleString()} BTC</span>
+                            </div>
+                        </div>
+                    </div>`;
                 }
             });
             container.innerHTML = html;
