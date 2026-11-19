@@ -131,6 +131,69 @@
                 <p id="dir-reason-txt" class="text-[11px] font-bold text-gray-300 pt-1 border-t border-gray-800/60">Scanning near-range walls, timeframe OI shifts, and flow...</p>
             </div>
 
+            <!-- MASTER WEIGHTED 9-TOOL CONFLUENCE & POWER DRIVER ENGINE (v11) -->
+            <div class="glass-card rounded-2xl p-4 border-2 border-violet-400/85 shadow-2xl space-y-3 bg-gradient-to-r from-gray-950 via-violet-950/25 to-gray-950">
+                <div class="flex flex-wrap justify-between items-center gap-2 border-b border-gray-800 pb-2">
+                    <div class="flex items-center gap-2">
+                        <div class="bg-violet-500 p-1.5 rounded-lg text-black font-black text-xs">
+                            <i class="fa-solid fa-weight-scale"></i>
+                        </div>
+                        <h3 class="text-xs font-black text-violet-300 uppercase tracking-wider">Weighted 9-Tool Confluence & Power Driver (எடை அடிப்படையிலான பலம்)</h3>
+                    </div>
+                    <span id="conf-verdict-badge" class="text-[10px] font-mono font-black bg-violet-500/20 text-violet-200 px-2.5 py-0.5 rounded border border-violet-500/40">Calculating Weighted Strength...</span>
+                </div>
+
+                <!-- Overall Weighted Upward vs Downward Strength Bar (100% Scale) -->
+                <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-3 space-y-1.5">
+                    <div class="flex justify-between items-center text-[11px] font-mono font-black">
+                        <span id="conf-up-pct-txt" class="text-emerald-400">🟢 Upward Strength: 50% (0/9 Tools)</span>
+                        <span id="conf-dn-pct-txt" class="text-rose-400">🔴 Downward Strength: 50% (0/9 Tools)</span>
+                    </div>
+                    <div class="w-full bg-gray-800 h-3 rounded-full overflow-hidden flex p-0.5 border border-gray-700">
+                        <div id="conf-up-bar" class="bg-emerald-500 h-full rounded-l-full transition-all duration-500" style="width: 50%"></div>
+                        <div id="conf-dn-bar" class="bg-rose-500 h-full rounded-r-full transition-all duration-500" style="width: 50%"></div>
+                    </div>
+                </div>
+
+                <!-- Dedicated High-Weight Power Driver Spotlight -->
+                <div id="power-driver-box" class="bg-indigo-950/40 border border-amber-400/50 rounded-xl p-3 space-y-1.5">
+                    <div class="flex flex-wrap justify-between items-center gap-1 text-xs">
+                        <span class="font-black text-amber-300 flex items-center gap-1.5"><i class="fa-solid fa-bolt"></i> Dominant Power Driver (அதிக பலம் கொண்ட முக்கியக் கருவி)</span>
+                        <span id="power-driver-badge" class="text-[10px] font-mono font-black px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40">Scanning...</span>
+                    </div>
+                    <div class="flex flex-wrap justify-between items-center gap-2 text-[11px] font-mono font-black">
+                        <span id="power-driver-name" class="text-white">Primary Driver: Evaluating...</span>
+                        <span id="power-driver-sw" class="text-cyan-300">Strength: --% | Weakness: --%</span>
+                    </div>
+                    <p id="power-driver-note" class="text-[10px] font-bold text-gray-300 leading-snug">Checking whether a single high-impact driver opposes the majority tool count...</p>
+                </div>
+
+                <!-- Two-Column Breakdown with Individual Tool Weight % -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div class="bg-emerald-950/25 border border-emerald-500/35 rounded-xl p-3 space-y-1.5">
+                        <div class="flex justify-between items-center text-xs border-b border-emerald-500/20 pb-1">
+                            <span class="font-black text-emerald-300">🟢 மேல்நோக்கி பலம் தருபவை (Bullish)</span>
+                            <span id="conf-bull-count" class="text-[10px] font-mono font-black bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded">0% (0/9)</span>
+                        </div>
+                        <ul id="conf-bull-list" class="text-[10px] font-bold text-gray-200 space-y-1 leading-snug">
+                            <li>• Scanning bullish weighted engines...</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-rose-950/25 border border-rose-500/35 rounded-xl p-3 space-y-1.5">
+                        <div class="flex justify-between items-center text-xs border-b border-rose-500/20 pb-1">
+                            <span class="font-black text-rose-300">🔴 கீழ்நோக்கி பலம் தருபவை (Bearish)</span>
+                            <span id="conf-bear-count" class="text-[10px] font-mono font-black bg-rose-500/20 text-rose-300 px-2 py-0.5 rounded">0% (0/9)</span>
+                        </div>
+                        <ul id="conf-bear-list" class="text-[10px] font-bold text-gray-200 space-y-1 leading-snug">
+                            <li>• Scanning bearish weighted engines...</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p id="conf-master-summary" class="text-[11px] font-bold text-violet-200 pt-1 border-t border-gray-800/80 leading-relaxed">Weighting Whale Radar (16%), Wall Defense (15%), 4h CVD (14%), Mid-Term OI (12%), Short-Term OI (12%), Strength Score (10%), 24h Center (8%), Market Center (7%), and Position Ratio (6%)...</p>
+            </div>
+
             <!-- AI DECISION GUIDE (FIXED NEAR-RANGE WALL & 1,000 PTS TARGET) -->
             <div class="glass-card rounded-2xl p-4 border-2 border-amber-400/80 shadow-2xl space-y-3 bg-gradient-to-r from-gray-950 via-amber-950/30 to-gray-950">
                 <div class="flex justify-between items-center border-b border-gray-800 pb-2">
@@ -208,6 +271,55 @@
                 </div>
 
                 <p id="wall-strength-summary" class="text-[11px] font-bold text-cyan-200 pt-1 border-t border-gray-800/80 leading-relaxed">Tracking price approach toward Support/Resistance using OI buildup/closing, CVD flow, pool intensity, and 100-pt smoothing...</p>
+            </div>
+
+            <!-- WHALE / INSTITUTIONAL LIQUIDITY & ORDER RADAR (v9) -->
+            <div class="glass-card rounded-2xl p-4 border-2 border-fuchsia-400/75 shadow-2xl space-y-3 bg-gradient-to-r from-gray-950 via-fuchsia-950/20 to-gray-950">
+                <div class="flex justify-between items-center border-b border-gray-800 pb-2">
+                    <div class="flex items-center gap-2">
+                        <div class="bg-fuchsia-500 p-1.5 rounded-lg text-black font-black text-xs">
+                            <i class="fa-solid fa-radar"></i>
+                        </div>
+                        <h3 class="text-xs font-black text-fuchsia-300 uppercase tracking-wider">Whale Order & Liquidity Radar (பெரிய முதலீட்டாளர் குவியல்)</h3>
+                    </div>
+                    <span id="whale-macro-badge" class="text-[10px] font-mono font-black bg-fuchsia-500/20 text-fuchsia-300 px-2.5 py-0.5 rounded border border-fuchsia-500/40">Scanning ±10k...</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                    <!-- Above Price: Heavy Short / Sell Accumulation -->
+                    <div class="bg-rose-950/25 border border-rose-500/35 rounded-xl p-3.5 space-y-2">
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="font-black text-rose-300">🔴 Above Price: Short / Sell Cluster</span>
+                            <span id="whale-above-pool-tag" class="text-[10px] font-mono font-black px-2 py-0.5 rounded bg-rose-500/20 text-rose-300">$--</span>
+                        </div>
+                        <p id="whale-top-short-levels" class="text-xs font-mono font-black text-white">Top Short Zones: Evaluating...</p>
+                        <p id="whale-short-detail" class="text-[10px] font-bold text-gray-300 leading-relaxed">Scanning sell/short order concentration and liquidity above live price...</p>
+                    </div>
+
+                    <!-- Below Price: Heavy Long / Buy Accumulation -->
+                    <div class="bg-emerald-950/25 border border-emerald-500/35 rounded-xl p-3.5 space-y-2">
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="font-black text-emerald-300">🟢 Below Price: Long / Buy Cluster</span>
+                            <span id="whale-below-pool-tag" class="text-[10px] font-mono font-black px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">$--</span>
+                        </div>
+                        <p id="whale-top-long-levels" class="text-xs font-mono font-black text-white">Top Long Zones: Evaluating...</p>
+                        <p id="whale-long-detail" class="text-[10px] font-bold text-gray-300 leading-relaxed">Scanning buy/long order concentration and liquidity below live price...</p>
+                    </div>
+                </div>
+
+                <!-- Macro Balance Bar (Above Short Money vs Below Long Money) -->
+                <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-3 space-y-1.5">
+                    <div class="flex justify-between items-center text-[10px] font-mono font-black">
+                        <span id="whale-above-pct-txt" class="text-rose-300">Above Short Money: 50%</span>
+                        <span id="whale-below-pct-txt" class="text-emerald-300">Below Long Money: 50%</span>
+                    </div>
+                    <div class="w-full bg-gray-800 h-2.5 rounded-full overflow-hidden flex">
+                        <div id="whale-above-bar" class="bg-rose-500 h-full transition-all duration-500" style="width: 50%"></div>
+                        <div id="whale-below-bar" class="bg-emerald-500 h-full transition-all duration-500" style="width: 50%"></div>
+                    </div>
+                </div>
+
+                <p id="whale-radar-summary" class="text-[11px] font-bold text-fuchsia-200 pt-1 border-t border-gray-800/80 leading-relaxed">Comparing total money, order volume, and liquidity above vs below live price...</p>
             </div>
 
             <!-- EXECUTION ENGINE -->
@@ -1034,6 +1146,399 @@
             }
         }
 
+        // v9 Whale Order & Liquidity Radar: identifies heavy Short/Sell zones above price,
+        // heavy Long/Buy zones below price, and compares total money, order size, and liquidity pool across +-10,000 pts.
+        function evaluateWhaleLiquidityRadar(currentPrice, currentOI) {
+            const baseRounded = Math.round(currentPrice / 500) * 500;
+            let aboveClusters = [];
+            let belowClusters = [];
+            let totalAboveShortUsd = 0;
+            let totalBelowLongUsd = 0;
+            let totalAboveShortBtc = 0;
+            let totalBelowLongBtc = 0;
+            let totalAbovePoolUsd = 0;
+            let totalBelowPoolUsd = 0;
+
+            for (let step = 1; step <= 20; step++) {
+                let upPrice = baseRounded + (step * 500);
+                let upIntensity = Math.floor(Math.abs(Math.sin(upPrice * 0.001) * 75) + 24);
+                let upTotalBtc = Math.round((currentOI * 0.08) * (upIntensity / 100));
+                let upDistFactor = Math.min(0.14, ((step * 500) / 10000) * 0.14);
+                let upWave = Math.sin(upPrice * 0.002) * 0.05;
+                let upLongWeight = Math.max(0.20, Math.min(0.75, 0.34 - upDistFactor + upWave));
+                let upLongBtc = Math.round(upTotalBtc * upLongWeight);
+                let upShortBtc = Math.max(0, upTotalBtc - upLongBtc);
+                let upShortUsd = upShortBtc * upPrice;
+                let upPoolUsd = Math.round(((upLongBtc + upShortBtc) * upPrice) * (upIntensity / 100));
+
+                totalAboveShortUsd += upShortUsd;
+                totalAboveShortBtc += upShortBtc;
+                totalAbovePoolUsd += upPoolUsd;
+                aboveClusters.push({
+                    price: upPrice,
+                    shortBtc: upShortBtc,
+                    shortUsd: upShortUsd,
+                    poolUsd: upPoolUsd,
+                    intensity: upIntensity
+                });
+
+                let dnPrice = baseRounded - (step * 500);
+                let dnIntensity = Math.floor(Math.abs(Math.sin(dnPrice * 0.001) * 75) + 24);
+                let dnTotalBtc = Math.round((currentOI * 0.08) * (dnIntensity / 100));
+                let dnDistFactor = Math.min(0.14, ((step * 500) / 10000) * 0.14);
+                let dnWave = Math.sin(dnPrice * 0.002) * 0.05;
+                let dnLongWeight = Math.max(0.25, Math.min(0.82, 0.72 + dnDistFactor + dnWave));
+                let dnLongBtc = Math.round(dnTotalBtc * dnLongWeight);
+                let dnShortBtc = Math.max(0, dnTotalBtc - dnLongBtc);
+                let dnLongUsd = dnLongBtc * dnPrice;
+                let dnPoolUsd = Math.round(((dnLongBtc + dnShortBtc) * dnPrice) * (dnIntensity / 100));
+
+                totalBelowLongUsd += dnLongUsd;
+                totalBelowLongBtc += dnLongBtc;
+                totalBelowPoolUsd += dnPoolUsd;
+                belowClusters.push({
+                    price: dnPrice,
+                    longBtc: dnLongBtc,
+                    longUsd: dnLongUsd,
+                    poolUsd: dnPoolUsd,
+                    intensity: dnIntensity
+                });
+            }
+
+            aboveClusters.sort((a, b) => b.poolUsd - a.poolUsd);
+            belowClusters.sort((a, b) => b.poolUsd - a.poolUsd);
+
+            const topShort1 = aboveClusters[0];
+            const topShort2 = aboveClusters[1];
+            const topLong1 = belowClusters[0];
+            const topLong2 = belowClusters[1];
+
+            const combinedMoney = Math.max(1, totalAboveShortUsd + totalBelowLongUsd);
+            const aboveSharePct = Math.round((totalAboveShortUsd / combinedMoney) * 100);
+            const belowSharePct = 100 - aboveSharePct;
+
+            const fmtMoney = (v) => {
+                if (Math.abs(v) >= 1e9) return '$' + (v / 1e9).toFixed(2) + 'B';
+                if (Math.abs(v) >= 1e6) return '$' + (v / 1e6).toFixed(0) + 'M';
+                return '$' + Math.round(v).toLocaleString();
+            };
+
+            let wmb = document.getElementById('whale-macro-badge');
+            if (wmb) {
+                wmb.innerText = aboveSharePct >= belowSharePct
+                    ? `Overhead Short Pool Heavy (${aboveSharePct}%)`
+                    : `Downside Long Pool Heavy (${belowSharePct}%)`;
+            }
+
+            let wapt = document.getElementById('whale-above-pool-tag');
+            if (wapt) wapt.innerText = `Pool ${fmtMoney(totalAbovePoolUsd)}`;
+
+            let wbpt = document.getElementById('whale-below-pool-tag');
+            if (wbpt) wbpt.innerText = `Pool ${fmtMoney(totalBelowPoolUsd)}`;
+
+            let wtsl = document.getElementById('whale-top-short-levels');
+            if (wtsl && topShort1 && topShort2) {
+                wtsl.innerText = `Peak Sell Zones: $${topShort1.price.toLocaleString()} & $${topShort2.price.toLocaleString()}`;
+            }
+
+            let wtll = document.getElementById('whale-top-long-levels');
+            if (wtll && topLong1 && topLong2) {
+                wtll.innerText = `Peak Buy Zones: $${topLong1.price.toLocaleString()} & $${topLong2.price.toLocaleString()}`;
+            }
+
+            let wsd = document.getElementById('whale-short-detail');
+            if (wsd && topShort1) {
+                wsd.innerText = `Above Short Volume: ${totalAboveShortBtc.toLocaleString()} BTC (${fmtMoney(totalAboveShortUsd)}) | Top zone $${topShort1.price.toLocaleString()} (${topShort1.shortBtc.toLocaleString()} Short BTC, Liqd ${topShort1.intensity}%).`;
+            }
+
+            let wld = document.getElementById('whale-long-detail');
+            if (wld && topLong1) {
+                wld.innerText = `Below Long Volume: ${totalBelowLongBtc.toLocaleString()} BTC (${fmtMoney(totalBelowLongUsd)}) | Top zone $${topLong1.price.toLocaleString()} (${topLong1.longBtc.toLocaleString()} Long BTC, Liqd ${topLong1.intensity}%).`;
+            }
+
+            let waptTxt = document.getElementById('whale-above-pct-txt');
+            if (waptTxt) waptTxt.innerText = `Above Short Money: ${aboveSharePct}% (${fmtMoney(totalAboveShortUsd)})`;
+
+            let wbptTxt = document.getElementById('whale-below-pct-txt');
+            if (wbptTxt) wbptTxt.innerText = `Below Long Money: ${belowSharePct}% (${fmtMoney(totalBelowLongUsd)})`;
+
+            let wab = document.getElementById('whale-above-bar');
+            if (wab) wab.style.width = `${aboveSharePct}%`;
+
+            let wbb = document.getElementById('whale-below-bar');
+            if (wbb) wbb.style.width = `${belowSharePct}%`;
+
+            let wrs = document.getElementById('whale-radar-summary');
+            if (wrs && topShort1 && topLong1) {
+                if (aboveSharePct >= belowSharePct) {
+                    wrs.innerText = `Radar view: Higher short/sell money (${aboveSharePct}% | ${fmtMoney(totalAboveShortUsd)}) & liquidity (${fmtMoney(totalAbovePoolUsd)}) sit above price (key ceiling $${topShort1.price.toLocaleString()}) vs below long money (${belowSharePct}% | ${fmtMoney(totalBelowLongUsd)}, key floor $${topLong1.price.toLocaleString()}).`;
+                } else {
+                    wrs.innerText = `Radar view: Higher long/buy money (${belowSharePct}% | ${fmtMoney(totalBelowLongUsd)}) & liquidity (${fmtMoney(totalBelowPoolUsd)}) sit below price (key floor $${topLong1.price.toLocaleString()}) vs above short money (${aboveSharePct}% | ${fmtMoney(totalAboveShortUsd)}, key ceiling $${topShort1.price.toLocaleString()}).`;
+                }
+            }
+
+            return { aboveSharePct, belowSharePct, totalAboveShortUsd, totalBelowLongUsd };
+        }
+
+        // v11 Weighted 9-Tool Confluence & High-Power Driver Engine:
+        // Assigns market-moving weights totaling 100% across all 9 tools and isolates the dominant high-power driver.
+        function evaluateMaster9ToolConfluence(ctx) {
+            const supHold = smoothedWallState.supHold !== null ? smoothedWallState.supHold : 50;
+            const resHold = smoothedWallState.resHold !== null ? smoothedWallState.resHold : 50;
+            const r5 = (ctx.tfSummary['5m'] && ctx.tfSummary['5m'].reaction) ? ctx.tfSummary['5m'].reaction : "";
+            const r30 = (ctx.tfSummary['30m'] && ctx.tfSummary['30m'].reaction) ? ctx.tfSummary['30m'].reaction : "";
+            const r1h = (ctx.tfSummary['1h'] && ctx.tfSummary['1h'].reaction) ? ctx.tfSummary['1h'].reaction : "";
+            const r4h = (ctx.tfSummary['4h'] && ctx.tfSummary['4h'].reaction) ? ctx.tfSummary['4h'].reaction : "";
+            const posLong = typeof window.lastPosLongPct === 'number' ? window.lastPosLongPct : 50;
+
+            // Define all 9 tools with specific weights summing to 100% and dynamic internal conviction (0..100)
+            let tools = [];
+
+            // 1. Whale Order & Liquidity Radar (Weight: 16%)
+            const whaleBull = ctx.whaleStats.belowSharePct > ctx.whaleStats.aboveSharePct;
+            const whaleConviction = Math.min(95, Math.max(52, Math.max(ctx.whaleStats.belowSharePct, ctx.whaleStats.aboveSharePct) + 15));
+            tools.push({
+                id: 1,
+                name: 'Whale Radar (±10k)',
+                weight: 16,
+                side: whaleBull ? 'BULL' : 'BEAR',
+                conviction: whaleConviction,
+                label: whaleBull
+                    ? `[16%] Whale Radar: Below Buy Money Heavy (${ctx.whaleStats.belowSharePct}%)`
+                    : `[16%] Whale Radar: Above Sell Money Heavy (${ctx.whaleStats.aboveSharePct}%)`
+            });
+
+            // 2. Wall Hold % vs Break % (Weight: 15%)
+            const wallBull = supHold >= resHold;
+            const wallConviction = Math.min(95, Math.max(50, Math.max(supHold, resHold)));
+            tools.push({
+                id: 2,
+                name: 'Wall Hold/Break Defense',
+                weight: 15,
+                side: wallBull ? 'BULL' : 'BEAR',
+                conviction: wallConviction,
+                label: wallBull
+                    ? `[15%] Wall Defense: Sup Hold ${supHold}% vs Res Hold ${resHold}%`
+                    : `[15%] Wall Defense: Res Hold ${resHold}% vs Sup Hold ${supHold}%`
+            });
+
+            // 3. 4h CVD Money Flow (Weight: 14%)
+            const cvdBull = ctx.cvd4h >= 0;
+            const cvdConviction = Math.min(92, 58 + Math.min(34, Math.round(Math.abs(ctx.cvd4h) / 60)));
+            tools.push({
+                id: 3,
+                name: '4h CVD Money Flow',
+                weight: 14,
+                side: cvdBull ? 'BULL' : 'BEAR',
+                conviction: cvdConviction,
+                label: cvdBull
+                    ? `[14%] 4h CVD Flow: Net Inflow (+$${Math.abs(ctx.cvd4h).toFixed(0)}M)`
+                    : `[14%] 4h CVD Flow: Net Outflow (-$${Math.abs(ctx.cvd4h).toFixed(0)}M)`
+            });
+
+            // 4. Mid-Term OI + Price Reaction 1h/4h (Weight: 12%)
+            const mtText = r1h + " " + r4h;
+            const mtBull = mtText.includes("Long Buildup") || mtText.includes("Short Squeeze");
+            const mtConviction = (r1h.includes("Short Squeeze") || r4h.includes("Short Squeeze") || r1h.includes("Long Buildup")) ? 74 : 68;
+            tools.push({
+                id: 4,
+                name: 'Mid-Term OI (1h/4h)',
+                weight: 12,
+                side: mtBull ? 'BULL' : 'BEAR',
+                conviction: mtConviction,
+                label: mtBull
+                    ? `[12%] Mid-Term OI (1h/4h): ${r1h ? r1h.split('(')[0].trim() : 'Bullish Shift'}`
+                    : `[12%] Mid-Term OI (1h/4h): ${r1h ? r1h.split('(')[0].trim() : 'Bearish Shift'}`
+            });
+
+            // 5. Short-Term OI + Price Reaction 5m/30m (Weight: 12%)
+            const stText = r5 + " " + r30;
+            const stBull = stText.includes("Long Buildup") || stText.includes("Short Squeeze");
+            const stConviction = r5.includes("Short Buildup") || r5.includes("Long Liquidation") ? 72 : 66;
+            tools.push({
+                id: 5,
+                name: 'Short-Term OI (5m/30m)',
+                weight: 12,
+                side: stBull ? 'BULL' : 'BEAR',
+                conviction: stConviction,
+                label: stBull
+                    ? `[12%] Short-Term OI (5m/30m): ${r5 ? r5.split('(')[0].trim() : 'Bullish Reaction'}`
+                    : `[12%] Short-Term OI (5m/30m): ${r5 ? r5.split('(')[0].trim() : 'Sell/Close Pressure'}`
+            });
+
+            // 6. Buyers vs Sellers Strength Score (Weight: 10%)
+            const strBull = ctx.bullScore >= ctx.bearScore;
+            const strConviction = Math.max(ctx.bullScore, ctx.bearScore);
+            tools.push({
+                id: 6,
+                name: 'Buyers vs Sellers Strength',
+                weight: 10,
+                side: strBull ? 'BULL' : 'BEAR',
+                conviction: strConviction,
+                label: strBull
+                    ? `[10%] Strength Score: Bullish (${ctx.bullScore} vs ${ctx.bearScore})`
+                    : `[10%] Strength Score: Bearish (${ctx.bearScore} vs ${ctx.bullScore})`
+            });
+
+            // 7. 24h Center Point Position (Weight: 8%)
+            const cenBull = ctx.currentPrice >= ctx.centerPoint;
+            const cenConviction = Math.min(85, 55 + Math.min(30, Math.round(Math.abs(ctx.currentPrice - ctx.centerPoint) / 40)));
+            tools.push({
+                id: 7,
+                name: '24h Center Point',
+                weight: 8,
+                side: cenBull ? 'BULL' : 'BEAR',
+                conviction: cenConviction,
+                label: cenBull
+                    ? `[8%] 24h Center: Above ($${Math.round(ctx.centerPoint).toLocaleString()})`
+                    : `[8%] 24h Center: Below ($${Math.round(ctx.centerPoint).toLocaleString()})`
+            });
+
+            // 8. Market Center Immediate Bias MM Intel (Weight: 7%)
+            const mmBull = ctx.bullScore >= 50;
+            const mmConviction = Math.max(ctx.bullScore, ctx.bearScore);
+            tools.push({
+                id: 8,
+                name: 'Market Center (MM Intel)',
+                weight: 7,
+                side: mmBull ? 'BULL' : 'BEAR',
+                conviction: mmConviction,
+                label: mmBull
+                    ? `[7%] Market Center (MM): Active Long Bias (${ctx.bullScore}%)`
+                    : `[7%] Market Center (MM): Active Short Bias (${ctx.bearScore}%)`
+            });
+
+            // 9. Top Traders Position Ratio (Weight: 6%)
+            const posBull = posLong <= 55;
+            const posConviction = posBull ? Math.round(100 - posLong) : Math.min(88, Math.round(posLong));
+            tools.push({
+                id: 9,
+                name: 'Top Position Ratio',
+                weight: 6,
+                side: posBull ? 'BULL' : 'BEAR',
+                conviction: posConviction,
+                label: posBull
+                    ? `[6%] Top Position Ratio: Healthy Long Room (${posLong.toFixed(1)}% L)`
+                    : `[6%] Top Position Ratio: Crowded Long Sweep Risk (${posLong.toFixed(1)}% L)`
+            });
+
+            let bullWeightSum = 0;
+            let bearWeightSum = 0;
+            let bullTools = [];
+            let bearTools = [];
+
+            tools.forEach(t => {
+                if (t.side === 'BULL') {
+                    bullWeightSum += t.weight;
+                    bullTools.push(t);
+                } else {
+                    bearWeightSum += t.weight;
+                    bearTools.push(t);
+                }
+            });
+
+            // Sort lists by highest weight first
+            bullTools.sort((a, b) => b.weight - a.weight);
+            bearTools.sort((a, b) => b.weight - a.weight);
+
+            const upPct = Math.round(bullWeightSum);
+            const dnPct = 100 - upPct;
+
+            // Identify Dominant High-Power Driver (highest effective power = weight * conviction)
+            let topDriver = tools[0];
+            let maxPower = -1;
+            tools.forEach(t => {
+                let effectivePower = t.weight * t.conviction;
+                if (effectivePower > maxPower) {
+                    maxPower = effectivePower;
+                    topDriver = t;
+                }
+            });
+
+            const driverStrength = topDriver.conviction;
+            const driverWeakness = 100 - driverStrength;
+            const driverSideLabel = topDriver.side === 'BULL' ? 'UPWARD (மேல்நோக்கி)' : 'DOWNWARD (கீழ்நோக்கி)';
+            const isCounterMajority = (topDriver.side === 'BEAR' && upPct > dnPct) || (topDriver.side === 'BULL' && dnPct > upPct);
+
+            let badgeEl = document.getElementById('conf-verdict-badge');
+            if (badgeEl) {
+                if (upPct > dnPct) {
+                    badgeEl.innerText = `Weighted Upward: ${upPct}% (${bullTools.length}/9) 🚀`;
+                    badgeEl.className = "text-[10px] font-mono font-black bg-emerald-500/20 text-emerald-300 px-2.5 py-0.5 rounded border border-emerald-500/40";
+                } else if (dnPct > upPct) {
+                    badgeEl.innerText = `Weighted Downward: ${dnPct}% (${bearTools.length}/9) 📉`;
+                    badgeEl.className = "text-[10px] font-mono font-black bg-rose-500/20 text-rose-300 px-2.5 py-0.5 rounded border border-rose-500/40";
+                } else {
+                    badgeEl.innerText = `Weighted Split: 50% / 50% ⚖️`;
+                }
+            }
+
+            let upTxt = document.getElementById('conf-up-pct-txt');
+            if (upTxt) upTxt.innerText = `🟢 Upward Strength: ${upPct}% (${bullTools.length}/9 Tools)`;
+            let dnTxt = document.getElementById('conf-dn-pct-txt');
+            if (dnTxt) dnTxt.innerText = `🔴 Downward Strength: ${dnPct}% (${bearTools.length}/9 Tools)`;
+
+            let upBar = document.getElementById('conf-up-bar');
+            if (upBar) upBar.style.width = `${upPct}%`;
+            let dnBar = document.getElementById('conf-dn-bar');
+            if (dnBar) dnBar.style.width = `${dnPct}%`;
+
+            let pdBadge = document.getElementById('power-driver-badge');
+            if (pdBadge) {
+                pdBadge.innerText = isCounterMajority
+                    ? `⚠️ Counter-Trend Power Alert (${topDriver.weight}% Weight)`
+                    : `Aligned Leader (${topDriver.weight}% Weight)`;
+                pdBadge.className = isCounterMajority
+                    ? "text-[10px] font-mono font-black px-2 py-0.5 rounded bg-amber-500/25 text-amber-300 border border-amber-400/60"
+                    : "text-[10px] font-mono font-black px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/40";
+            }
+
+            let pdName = document.getElementById('power-driver-name');
+            if (pdName) pdName.innerText = `${topDriver.name} -> ${driverSideLabel}`;
+
+            let pdSw = document.getElementById('power-driver-sw');
+            if (pdSw) pdSw.innerText = `Strength: ${driverStrength}% | Weakness: ${driverWeakness}%`;
+
+            let pdNote = document.getElementById('power-driver-note');
+            if (pdNote) {
+                if (isCounterMajority) {
+                    pdNote.innerText = `Caution: Even though ${upPct > dnPct ? bullTools.length : bearTools.length}/9 tools lean ${upPct > dnPct ? 'Upward' : 'Downward'}, high-weight ${topDriver.name} (${topDriver.weight}% weight, ${driverStrength}% strength) pulls ${driverSideLabel} — watch for sudden sweep/reversal!`;
+                } else {
+                    pdNote.innerText = `Confirmed: Highest-weight driver ${topDriver.name} (${topDriver.weight}% weight, ${driverStrength}% strength) aligns with the dominant ${driverSideLabel} direction.`;
+                }
+            }
+
+            let bCntEl = document.getElementById('conf-bull-count');
+            if (bCntEl) bCntEl.innerText = `${upPct}% (${bullTools.length}/9)`;
+            let sCntEl = document.getElementById('conf-bear-count');
+            if (sCntEl) sCntEl.innerText = `${dnPct}% (${bearTools.length}/9)`;
+
+            let bListEl = document.getElementById('conf-bull-list');
+            if (bListEl) {
+                bListEl.innerHTML = bullTools.length > 0
+                    ? bullTools.map(t => `<li>• ${t.label}</li>`).join('')
+                    : `<li class="text-gray-400">• No weighted tools currently favoring upside</li>`;
+            }
+
+            let sListEl = document.getElementById('conf-bear-list');
+            if (sListEl) {
+                sListEl.innerHTML = bearTools.length > 0
+                    ? bearTools.map(t => `<li>• ${t.label}</li>`).join('')
+                    : `<li class="text-gray-400">• No weighted tools currently favoring downside</li>`;
+            }
+
+            let sumEl = document.getElementById('conf-master-summary');
+            if (sumEl) {
+                if (dnPct > upPct) {
+                    sumEl.innerText = `Weighted Verdict: Downward force holds ${dnPct}% weight (${bearTools.length}/9 tools) vs Upward ${upPct}% (${bullTools.length}/9) — Downside edge is stronger, Upside breakout is weaker.`;
+                } else if (upPct > dnPct) {
+                    sumEl.innerText = `Weighted Verdict: Upward force holds ${upPct}% weight (${bullTools.length}/9 tools) vs Downward ${dnPct}% (${bearTools.length}/9) — Upside edge is stronger, Downside breakdown is weaker.`;
+                } else {
+                    sumEl.innerText = `Weighted Verdict: Exact 50% / 50% weight balance — wait for candle breakout confirmation.`;
+                }
+            }
+        }
+
         function evaluateUnifiedMarket(currentPrice, highPrice, lowPrice, currentOI, tfSummary, cvd4h) {
             const centerPoint = (highPrice + lowPrice) / 2;
             const rangeSpan = Math.max(1, highPrice - lowPrice);
@@ -1047,6 +1552,16 @@
             const activeSupWall = isBearish ? setup.supWallPrice : setup.wallPrice;
             const activeResWall = isBearish ? setup.wallPrice : setup.resWallPrice;
             evaluateWallStrength(currentPrice, currentOI, activeSupWall, activeResWall, bullScore, bearScore, tfSummary, cvd4h);
+            const whaleStats = evaluateWhaleLiquidityRadar(currentPrice, currentOI);
+            evaluateMaster9ToolConfluence({
+                currentPrice,
+                centerPoint,
+                bullScore,
+                bearScore,
+                cvd4h,
+                tfSummary,
+                whaleStats
+            });
             const latest5m = tfSummary['5m'] ? tfSummary['5m'].reaction : "Monitoring";
 
             const signalText = isBearish
@@ -1194,6 +1709,7 @@
 
                 if (Array.isArray(lsPositionData) && lsPositionData.length > 0) {
                     let posLong = parseFloat(lsPositionData[0].longAccount) * 100;
+                    window.lastPosLongPct = posLong;
                     let posShort = parseFloat(lsPositionData[0].shortAccount) * 100;
                     let el = document.getElementById('ls-position-ratio');
                     if (el) el.innerText = `Long: ${posLong.toFixed(1)}% | Short: ${posShort.toFixed(1)}%`;
@@ -1545,17 +2061,62 @@
             levels.push({ price: basePriceRounded, distance: 0, type: 'center' });
             for (let i = 1; i <= 20; i++) levels.push({ price: basePriceRounded - (i * 500), distance: -(i * 500), type: 'below' });
 
+            // Read live directional pressure if updated on screen (fallback to balanced 50/50)
+            let bullPctFromDom = 50;
+            let bullEl = document.getElementById('bullish-score-txt');
+            if (bullEl) {
+                let parsedBull = parseInt(bullEl.innerText, 10);
+                if (!isNaN(parsedBull) && parsedBull >= 10 && parsedBull <= 90) {
+                    bullPctFromDom = parsedBull;
+                }
+            }
+
             levels.forEach(item => {
                 if (item.type === 'center') {
-                    html += `<div class="bg-indigo-950/90 border-2 border-indigo-500 rounded-xl p-3.5 flex items-center justify-between shadow-lg my-2"><span class="text-xs font-mono font-black text-indigo-300">📍 Market Center: $${item.price.toLocaleString()}</span><span class="text-xs font-black bg-indigo-500 text-white px-3 py-1 rounded-lg font-mono">Live</span></div>`;
+                    // Live current price center node: evaluate immediate Long vs Short pressure at live price
+                    let centerTotalPct = 60;
+                    let centerLongPctOf100 = Math.max(25, Math.min(75, bullPctFromDom));
+                    let centerShortPctOf100 = 100 - centerLongPctOf100;
+
+                    let centerLongPartPct = Number(((centerTotalPct * centerLongPctOf100) / 100).toFixed(1));
+                    let centerShortPartPct = Number(Math.max(0, centerTotalPct - centerLongPartPct).toFixed(1));
+
+                    let centerTotalBtc = Math.round((currentOI * 0.08) * (centerTotalPct / 100));
+                    let centerLongBtc = Math.round(centerTotalBtc * (centerLongPctOf100 / 100));
+                    let centerShortBtc = Math.max(0, centerTotalBtc - centerLongBtc);
+
+                    let centerPoolUsd = Math.round(((centerLongBtc + centerShortBtc) * item.price) * (centerTotalPct / 100));
+
+                    html += `<div class="bg-indigo-950/95 border-2 border-indigo-400 rounded-2xl p-4 space-y-3 text-xs shadow-2xl my-2">
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-indigo-700/60 pb-2">
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs font-mono font-black text-indigo-200">📍 Market Center: $${item.price.toLocaleString()}</span>
+                                <span class="text-[10px] font-black bg-indigo-500 text-white px-2.5 py-0.5 rounded-lg font-mono">Live</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-[11px] font-mono font-black text-cyan-300 bg-cyan-950/70 px-2.5 py-0.5 rounded border border-cyan-600/40">Total: ${centerTotalPct}%</span>
+                                <span class="text-[11px] font-mono font-black text-amber-300 bg-amber-950/70 px-2.5 py-0.5 rounded border border-amber-600/40">Pool: $${centerPoolUsd.toLocaleString()}</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                            <div class="bg-emerald-950/50 border border-emerald-500/40 p-2.5 rounded-xl flex justify-between items-center">
+                                <span class="text-emerald-300 font-bold">🟢 Long (${centerLongPartPct}% | ${centerLongPctOf100}%):</span>
+                                <span class="font-mono font-black text-white">${centerLongBtc.toLocaleString()} BTC</span>
+                            </div>
+                            <div class="bg-rose-950/50 border border-rose-500/40 p-2.5 rounded-xl flex justify-between items-center">
+                                <span class="text-rose-300 font-bold">🔴 Short (${centerShortPartPct}% | ${centerShortPctOf100}%):</span>
+                                <span class="font-mono font-black text-white">${centerShortBtc.toLocaleString()} BTC</span>
+                            </div>
+                        </div>
+                    </div>`;
                 } else {
                     let isAbove = item.type === 'above';
                     let absDist = Math.abs(item.distance);
 
-                    // Level total intensity out of 100% (24% to 99%, just like previous 50%-98% intensity)
+                    // Level total intensity out of 100% (24% to 99%)
                     let levelTotalPct = Math.floor(Math.abs(Math.sin(item.price * 0.001) * 75) + 24);
 
-                    // Level-specific Long vs Short ratio out of that level's 100% (e.g., 31% Long / 69% Short)
+                    // Level-specific Long vs Short ratio out of that level's 100%
                     let distFactor = Math.min(0.14, (absDist / 10000) * 0.14);
                     let waveBias = Math.sin(item.price * 0.002) * 0.05;
                     let longRatioWithinLevel = isAbove
