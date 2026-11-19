@@ -131,14 +131,68 @@
                 <p id="dir-reason-txt" class="text-[11px] font-bold text-gray-300 pt-1 border-t border-gray-800/60">Scanning near-range walls, timeframe OI shifts, and flow...</p>
             </div>
 
-            <!-- MASTER WEIGHTED 9-TOOL CONFLUENCE & POWER DRIVER ENGINE (v11) -->
+            <!-- DYNAMIC PEAK CLUSTER (+-2,500 PTS) & NEW ORDER BUILDUP vs CLOSING ENGINE (v14) -->
+            <div class="glass-card rounded-2xl p-4 border-2 border-teal-400/85 shadow-2xl space-y-3 bg-gradient-to-r from-gray-950 via-teal-950/25 to-gray-950">
+                <div class="flex flex-wrap justify-between items-center gap-2 border-b border-gray-800 pb-2">
+                    <div class="flex items-center gap-2">
+                        <div class="bg-teal-500 p-1.5 rounded-lg text-black font-black text-xs">
+                            <i class="fa-solid fa-crosshairs"></i>
+                        </div>
+                        <h3 class="text-xs font-black text-teal-300 uppercase tracking-wider">Dynamic Liquidity Cluster & Real Order Flow (உண்மைப் பணக் குவியல் & ஆர்டர் நிலை)</h3>
+                    </div>
+                    <span id="rmf-status-badge" class="text-[10px] font-mono font-black bg-teal-500/20 text-teal-200 px-2.5 py-0.5 rounded border border-teal-500/40">Scanning Clusters...</span>
+                </div>
+
+                <!-- Live Executed Taker Buy $ vs Taker Sell $ Bar -->
+                <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-3 space-y-1.5">
+                    <div class="flex flex-wrap justify-between items-center gap-1 text-[11px] font-mono font-black">
+                        <span id="rmf-buy-txt" class="text-emerald-400">🟢 Real Buy $: $--</span>
+                        <span id="rmf-net-txt" class="text-cyan-300">Net Delta: $--</span>
+                        <span id="rmf-sell-txt" class="text-rose-400">🔴 Real Sell $: $--</span>
+                    </div>
+                    <div class="w-full bg-gray-800 h-2.5 rounded-full overflow-hidden flex">
+                        <div id="rmf-buy-bar" class="bg-emerald-500 h-full transition-all duration-500" style="width: 50%"></div>
+                        <div id="rmf-sell-bar" class="bg-rose-500 h-full transition-all duration-500" style="width: 50%"></div>
+                    </div>
+                </div>
+
+                <!-- 3-Column Dynamic Cluster & Order Action Breakdown -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
+                    <div class="bg-gray-900/90 border border-rose-500/30 rounded-xl p-3 space-y-1">
+                        <span class="text-[10px] font-bold uppercase text-rose-300">Peak Overhead Cluster (மேலே அதிக குவியல்)</span>
+                        <h4 id="rmf-plus500-val" class="font-mono font-black text-white text-xs">Scanning...</h4>
+                        <p id="rmf-plus500-sub" class="text-[10px] font-bold text-gray-400 leading-snug">Auto-detecting highest Ask/Short money zone above...</p>
+                    </div>
+                    <div class="bg-gray-900/90 border border-emerald-500/30 rounded-xl p-3 space-y-1">
+                        <span class="text-[10px] font-bold uppercase text-emerald-300">Peak Downside Cluster (கீழே அதிக குவியல்)</span>
+                        <h4 id="rmf-minus500-val" class="font-mono font-black text-white text-xs">Scanning...</h4>
+                        <p id="rmf-minus500-sub" class="text-[10px] font-bold text-gray-400 leading-snug">Auto-detecting highest Bid/Long money zone below...</p>
+                    </div>
+                    <div class="bg-gray-900/90 border border-cyan-500/30 rounded-xl p-3 space-y-1">
+                        <span class="text-[10px] font-bold uppercase text-cyan-300">Order Action (புதிய ஆர்டர் vs க்ளோசிங்)</span>
+                        <h4 id="rmf-pos-link-val" class="font-mono font-black text-cyan-300 text-xs">Evaluating...</h4>
+                        <p id="rmf-pos-link-sub" class="text-[10px] font-bold text-gray-400 leading-snug">Separating New Buildup vs Existing Position Closing...</p>
+                    </div>
+                </div>
+
+                <!-- Multi-Tier Depth Comparison (+-500 / +-1,000 / +-2,500 Pts) -->
+                <div class="bg-gray-900/75 border border-gray-800/90 rounded-xl px-3 py-2 flex flex-wrap justify-between items-center gap-2 text-[10px] font-mono font-bold text-gray-300">
+                    <span id="rmf-tier-500">±500 Pts: Bid $-- vs Ask $--</span>
+                    <span id="rmf-tier-1000">±1,000 Pts: Bid $-- vs Ask $--</span>
+                    <span id="rmf-tier-2500">±2,500 Pts: Bid $-- vs Ask $--</span>
+                </div>
+
+                <p id="rmf-summary-txt" class="text-[11px] font-bold text-teal-200 pt-1 border-t border-gray-800/80 leading-relaxed">Auto-tracking peak order book money clusters across ±2,500 pts and classifying New Order Buildup vs Existing Order Closing...</p>
+            </div>
+
+            <!-- MASTER WEIGHTED CONFLUENCE & POWER DRIVER ENGINE -->
             <div class="glass-card rounded-2xl p-4 border-2 border-violet-400/85 shadow-2xl space-y-3 bg-gradient-to-r from-gray-950 via-violet-950/25 to-gray-950">
                 <div class="flex flex-wrap justify-between items-center gap-2 border-b border-gray-800 pb-2">
                     <div class="flex items-center gap-2">
                         <div class="bg-violet-500 p-1.5 rounded-lg text-black font-black text-xs">
                             <i class="fa-solid fa-weight-scale"></i>
                         </div>
-                        <h3 class="text-xs font-black text-violet-300 uppercase tracking-wider">Weighted 9-Tool Confluence & Power Driver (எடை அடிப்படையிலான பலம்)</h3>
+                        <h3 class="text-xs font-black text-violet-300 uppercase tracking-wider">Weighted 10-Tool Confluence & Power Driver (எடை அடிப்படையிலான பலம்)</h3>
                     </div>
                     <span id="conf-verdict-badge" class="text-[10px] font-mono font-black bg-violet-500/20 text-violet-200 px-2.5 py-0.5 rounded border border-violet-500/40">Calculating Weighted Strength...</span>
                 </div>
@@ -146,8 +200,8 @@
                 <!-- Overall Weighted Upward vs Downward Strength Bar (100% Scale) -->
                 <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-3 space-y-1.5">
                     <div class="flex justify-between items-center text-[11px] font-mono font-black">
-                        <span id="conf-up-pct-txt" class="text-emerald-400">🟢 Upward Strength: 50% (0/9 Tools)</span>
-                        <span id="conf-dn-pct-txt" class="text-rose-400">🔴 Downward Strength: 50% (0/9 Tools)</span>
+                        <span id="conf-up-pct-txt" class="text-emerald-400">🟢 Upward Strength: 50% (0/10 Engines)</span>
+                        <span id="conf-dn-pct-txt" class="text-rose-400">🔴 Downward Strength: 50% (0/10 Engines)</span>
                     </div>
                     <div class="w-full bg-gray-800 h-3 rounded-full overflow-hidden flex p-0.5 border border-gray-700">
                         <div id="conf-up-bar" class="bg-emerald-500 h-full rounded-l-full transition-all duration-500" style="width: 50%"></div>
@@ -173,7 +227,7 @@
                     <div class="bg-emerald-950/25 border border-emerald-500/35 rounded-xl p-3 space-y-1.5">
                         <div class="flex justify-between items-center text-xs border-b border-emerald-500/20 pb-1">
                             <span class="font-black text-emerald-300">🟢 மேல்நோக்கி பலம் தருபவை (Bullish)</span>
-                            <span id="conf-bull-count" class="text-[10px] font-mono font-black bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded">0% (0/9)</span>
+                            <span id="conf-bull-count" class="text-[10px] font-mono font-black bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded">0% (0/10)</span>
                         </div>
                         <ul id="conf-bull-list" class="text-[10px] font-bold text-gray-200 space-y-1 leading-snug">
                             <li>• Scanning bullish weighted engines...</li>
@@ -183,7 +237,7 @@
                     <div class="bg-rose-950/25 border border-rose-500/35 rounded-xl p-3 space-y-1.5">
                         <div class="flex justify-between items-center text-xs border-b border-rose-500/20 pb-1">
                             <span class="font-black text-rose-300">🔴 கீழ்நோக்கி பலம் தருபவை (Bearish)</span>
-                            <span id="conf-bear-count" class="text-[10px] font-mono font-black bg-rose-500/20 text-rose-300 px-2 py-0.5 rounded">0% (0/9)</span>
+                            <span id="conf-bear-count" class="text-[10px] font-mono font-black bg-rose-500/20 text-rose-300 px-2 py-0.5 rounded">0% (0/10)</span>
                         </div>
                         <ul id="conf-bear-list" class="text-[10px] font-bold text-gray-200 space-y-1 leading-snug">
                             <li>• Scanning bearish weighted engines...</li>
@@ -191,7 +245,7 @@
                     </div>
                 </div>
 
-                <p id="conf-master-summary" class="text-[11px] font-bold text-violet-200 pt-1 border-t border-gray-800/80 leading-relaxed">Weighting Whale Radar (16%), Wall Defense (15%), 4h CVD (14%), Mid-Term OI (12%), Short-Term OI (12%), Strength Score (10%), 24h Center (8%), Market Center (7%), and Position Ratio (6%)...</p>
+                <p id="conf-master-summary" class="text-[11px] font-bold text-violet-200 pt-1 border-t border-gray-800/80 leading-relaxed">Weighting Real Money & ±2.5k Clusters (15%), Whale Radar (14%), Wall Defense (13%), 4h CVD (12%), Mid-Term OI (10%), Short-Term OI (10%), Strength Score (9%), 24h Center (6%), Market Center (6%), and Position Ratio (5%)...</p>
             </div>
 
             <!-- AI DECISION GUIDE (FIXED NEAR-RANGE WALL & 1,000 PTS TARGET) -->
@@ -224,7 +278,7 @@
                 <p id="ai-engine-advice" class="text-[11px] font-bold text-gray-200 pt-1 border-t border-gray-800/80">Locking near-range structural support/resistance walls until breached and aligning with live timeframe reactions...</p>
             </div>
 
-            <!-- SUPPORT & RESISTANCE WALL STRENGTH / WEAKNESS METER (v3 HOLD vs BREAK INTELLIGENCE) -->
+            <!-- SUPPORT & RESISTANCE WALL STRENGTH / WEAKNESS METER (HOLD vs BREAK INTELLIGENCE) -->
             <div class="glass-card rounded-2xl p-4 border-2 border-emerald-400/70 shadow-2xl space-y-3 bg-gradient-to-r from-gray-950 via-slate-900/90 to-gray-950">
                 <div class="flex justify-between items-center border-b border-gray-800 pb-2">
                     <div class="flex items-center gap-2">
@@ -273,7 +327,7 @@
                 <p id="wall-strength-summary" class="text-[11px] font-bold text-cyan-200 pt-1 border-t border-gray-800/80 leading-relaxed">Tracking price approach toward Support/Resistance using OI buildup/closing, CVD flow, pool intensity, and 100-pt smoothing...</p>
             </div>
 
-            <!-- WHALE / INSTITUTIONAL LIQUIDITY & ORDER RADAR (v9) -->
+            <!-- WHALE / INSTITUTIONAL LIQUIDITY & ORDER RADAR -->
             <div class="glass-card rounded-2xl p-4 border-2 border-fuchsia-400/75 shadow-2xl space-y-3 bg-gradient-to-r from-gray-950 via-fuchsia-950/20 to-gray-950">
                 <div class="flex justify-between items-center border-b border-gray-800 pb-2">
                     <div class="flex items-center gap-2">
@@ -973,7 +1027,7 @@
             return lockedSetup;
         }
 
-        // v3 Wall Strength & Break Risk Engine: evaluates Hold % vs Break % as live price approaches Support or Resistance,
+        // Wall Strength & Break Risk Engine: evaluates Hold % vs Break % as live price approaches Support or Resistance,
         // incorporating OI buildup/liquidation/squeeze across 5m/1h/4h, CVD flow, Pool intensity, and 100-pt smoothing.
         let smoothedWallState = { bucket: null, supHold: null, resHold: null };
 
@@ -999,28 +1053,22 @@
             const r1h = tf1h.reaction || "";
             const r4h = tf4h.reaction || "";
 
-            // Detect whether price is approaching Resistance (moving up) or Support (moving down)
             const movingUp = (tf5m.priceDelta > 10) || (distToRes < distToSup && tf5m.priceDelta >= -15);
             const movingDown = (tf5m.priceDelta < -10) || (distToSup <= distToRes && tf5m.priceDelta <= 15);
 
-            // Proximity pressure boost when price gets closer to a wall (within 1,500 pts)
             const supNearBoost = Math.max(0, Math.round((1 - Math.min(1, distToSup / 1500)) * 7));
             const resNearBoost = Math.max(0, Math.round((1 - Math.min(1, distToRes / 1500)) * 7));
 
-            // Pool / Order concentration adjustment
             const supPoolAdj = Math.round((supPoolInfo.intensity - 60) * 0.22);
             const resPoolAdj = Math.round((resPoolInfo.intensity - 60) * 0.22);
 
-            // --- SUPPORT HOLD % (chance Support holds without breaking down) ---
             let rawSupHold = 50 + Math.round((bullScore - 50) * 0.35) + supPoolAdj;
             if (movingDown) rawSupHold += Math.round(supNearBoost * 0.4);
             if (cvd4h > 0) rawSupHold += 7;
             else if (cvd4h < 0) rawSupHold -= 7;
 
-            // New buyers / short covering near support helps support hold
             if (r5.includes("Long Buildup")) rawSupHold += 7;
             if (r5.includes("Short Squeeze")) rawSupHold += 5;
-            // New sellers or long liquidation/closing near support weakens support (higher break risk)
             if (r5.includes("Long Liquidation")) rawSupHold -= 9;
             if (r5.includes("Short Buildup")) rawSupHold -= 7;
             if (r1h.includes("Long Buildup")) rawSupHold += 4;
@@ -1028,16 +1076,13 @@
             if (r4h.includes("Short Buildup")) rawSupHold -= 4;
             rawSupHold = Math.max(15, Math.min(88, rawSupHold));
 
-            // --- RESISTANCE HOLD % (chance Resistance holds without breaking up) ---
             let rawResHold = 50 + Math.round((bearScore - 50) * 0.35) + resPoolAdj;
             if (movingUp) rawResHold += Math.round(resNearBoost * 0.4);
             if (cvd4h < 0) rawResHold += 7;
             else if (cvd4h > 0) rawResHold -= 7;
 
-            // New sellers or long closing/liquidation near resistance helps resistance hold
             if (r5.includes("Short Buildup")) rawResHold += 7;
             if (r5.includes("Long Liquidation")) rawResHold += 5;
-            // Strong buying, short squeeze, or long buildup pushing into resistance weakens resistance (higher breakout risk)
             if (r5.includes("Short Squeeze")) rawResHold -= 8;
             if (r5.includes("Long Buildup")) rawResHold -= 7;
             if (r1h.includes("Short Buildup")) rawResHold += 4;
@@ -1045,7 +1090,6 @@
             if (r4h.includes("Long Buildup")) rawResHold -= 4;
             rawResHold = Math.max(15, Math.min(88, rawResHold));
 
-            // 100-point bucket smoothing + EMA damping so 50-100 pt moves stay calm
             const priceBucket = Math.round(currentPrice / 100) * 100;
             if (smoothedWallState.supHold === null || smoothedWallState.resHold === null) {
                 smoothedWallState.supHold = rawSupHold;
@@ -1060,14 +1104,12 @@
 
             const supHold = smoothedWallState.supHold;
             const supBreak = 100 - supHold;
-
             const resHold = smoothedWallState.resHold;
             const resBreak = 100 - resHold;
 
             const supHoldsStrong = supHold >= 55;
             const resHoldsStrong = resHold >= 55;
 
-            // Build specific driver explanation for Support
             let supDriver = "";
             if (r5.includes("Long Liquidation")) supDriver = "Long positions closing/liquidating on drop (உடைப்பு அபாயம்)";
             else if (r5.includes("Short Buildup")) supDriver = "New short sellers pressing down (கீழ் அழுத்தம்)";
@@ -1075,7 +1117,6 @@
             else if (r5.includes("Short Squeeze")) supDriver = "Shorts closing / covering (ஷார்ட் க்ளோசிங்)";
             else supDriver = cvd4h >= 0 ? "Net inflow supports floor (பண வரவு)" : "Net outflow / light buyer defense";
 
-            // Build specific driver explanation for Resistance
             let resDriver = "";
             if (r5.includes("Short Squeeze")) resDriver = "Shorts closing/covering pushing up (உடைப்பு அழுத்தம்)";
             else if (r5.includes("Long Buildup")) resDriver = "New long buyers pushing into wall (புதிய பை அழுத்தம்)";
@@ -1086,7 +1127,6 @@
             const supReason = `Pool ${supPoolInfo.intensity}% (${supPoolInfo.btcAtLevel.toLocaleString()} BTC) | ${supDriver}.`;
             const resReason = `Pool ${resPoolInfo.intensity}% (${resPoolInfo.btcAtLevel.toLocaleString()} BTC) | ${resDriver}.`;
 
-            // Update Support DOM
             let swt = document.getElementById('sup-wall-title');
             if (swt) swt.innerText = `Support Wall ($${supPrice.toLocaleString()})`;
             let stg = document.getElementById('sup-wall-tag');
@@ -1108,7 +1148,6 @@
             let ssr = document.getElementById('sup-strength-reason');
             if (ssr) ssr.innerText = supReason;
 
-            // Update Resistance DOM
             let rwt = document.getElementById('res-wall-title');
             if (rwt) rwt.innerText = `Resistance Wall ($${resPrice.toLocaleString()})`;
             let rtg = document.getElementById('res-wall-tag');
@@ -1130,7 +1169,6 @@
             let rsr = document.getElementById('res-strength-reason');
             if (rsr) rsr.innerText = resReason;
 
-            // Summary banner based on approach direction & closer wall
             let wfb = document.getElementById('wall-focus-badge');
             let wss = document.getElementById('wall-strength-summary');
             if (distToRes < distToSup || movingUp) {
@@ -1146,7 +1184,7 @@
             }
         }
 
-        // v9 Whale Order & Liquidity Radar: identifies heavy Short/Sell zones above price,
+        // Whale Order & Liquidity Radar: identifies heavy Short/Sell zones above price,
         // heavy Long/Buy zones below price, and compares total money, order size, and liquidity pool across +-10,000 pts.
         function evaluateWhaleLiquidityRadar(currentPrice, currentOI) {
             const baseRounded = Math.round(currentPrice / 500) * 500;
@@ -1280,8 +1318,289 @@
             return { aboveSharePct, belowSharePct, totalAboveShortUsd, totalBelowLongUsd };
         }
 
-        // v11 Weighted 9-Tool Confluence & High-Power Driver Engine:
-        // Assigns market-moving weights totaling 100% across all 9 tools and isolates the dominant high-power driver.
+        // v14 Stabilized Trend Engine + +-2,500 Pts Money Inflow/Outflow & Dynamic Liquidity Cluster Engine
+        let lastRealMoneyFetchMs = 0;
+        let cachedRealMoney = {
+            buyUsd: 0,
+            sellUsd: 0,
+            netUsd: 0,
+            buyPct: 50,
+            sellPct: 50,
+            bid500Usd: 0,
+            ask500Usd: 0,
+            bid1000Usd: 0,
+            ask1000Usd: 0,
+            bid2500Usd: 0,
+            ask2500Usd: 0,
+            net2500BookUsd: 0,
+            peakAskPrice: 0,
+            peakAskUsd: 0,
+            peakAskDist: 0,
+            peakBidPrice: 0,
+            peakBidUsd: 0,
+            peakBidDist: 0,
+            isBullishMoney: true,
+            conviction: 58,
+            actionCode: 'MIXED',
+            actionLabel: 'Balanced / Mixed',
+            wallBehavior: 'Monitoring'
+        };
+        let prevClusterSnapshot = { peakAskUsd: null, peakBidUsd: null };
+
+        // Anti-flip hysteresis state for Weighted Trend & Master Banner
+        let stabilizedTrendState = {
+            emaUpPct: null,
+            lockedWeightedSide: null, // 'UP' or 'DOWN'
+            lastWeightedFlipMs: 0,
+            lastWeightedBucket: null,
+            lockedBannerSide: null,   // 'BULL' or 'BEAR'
+            lastBannerFlipMs: 0,
+            lastBannerBucket: null
+        };
+
+        const fmtUsdCompact = (v) => {
+            const absV = Math.abs(v);
+            const sign = v < 0 ? '-' : '';
+            if (absV >= 1e9) return sign + '$' + (absV / 1e9).toFixed(2) + 'B';
+            if (absV >= 1e6) return sign + '$' + (absV / 1e6).toFixed(1) + 'M';
+            if (absV >= 1e3) return sign + '$' + Math.round(absV / 1e3).toLocaleString() + 'K';
+            return sign + '$' + Math.round(absV).toLocaleString();
+        };
+
+        async function updateRealMoneyFlowData(currentPrice, currentOI, tfSummary, posLongPct) {
+            const nowMs = Date.now();
+            if (nowMs - lastRealMoneyFetchMs >= 3500) {
+                lastRealMoneyFetchMs = nowMs;
+                try {
+                    const [tradesRes, depthRes] = await Promise.all([
+                        fetchBinanceData('https://fapi.binance.com/fapi/v1/aggTrades?symbol=BTCUSDT&limit=1000'),
+                        fetchBinanceData('https://fapi.binance.com/fapi/v1/depth?symbol=BTCUSDT&limit=1000')
+                    ]);
+
+                    let buyUsd = 0;
+                    let sellUsd = 0;
+                    if (Array.isArray(tradesRes) && tradesRes.length > 0) {
+                        tradesRes.forEach(tr => {
+                            const p = parseFloat(tr.p);
+                            const q = parseFloat(tr.q);
+                            const usd = p * q;
+                            if (!isNaN(usd) && usd > 0) {
+                                if (tr.m === true) sellUsd += usd;
+                                else buyUsd += usd;
+                            }
+                        });
+                    }
+
+                    const totalExecUsd = Math.max(1, buyUsd + sellUsd);
+                    const buyPct = Math.round((buyUsd / totalExecUsd) * 100);
+                    const sellPct = 100 - buyPct;
+                    const netUsd = buyUsd - sellUsd;
+
+                    // Group real Order Book Bids and Asks into $100 buckets across +-2,500 pts
+                    let bidBuckets = {};
+                    let askBuckets = {};
+                    let bid500Usd = 0, ask500Usd = 0;
+                    let bid1000Usd = 0, ask1000Usd = 0;
+                    let bid2500Usd = 0, ask2500Usd = 0;
+
+                    if (depthRes && Array.isArray(depthRes.bids) && Array.isArray(depthRes.asks)) {
+                        depthRes.bids.forEach(b => {
+                            const bp = parseFloat(b[0]);
+                            const bq = parseFloat(b[1]);
+                            if (!isNaN(bp) && !isNaN(bq) && bp <= currentPrice && bp >= currentPrice - 2500) {
+                                const usd = bp * bq;
+                                const dist = currentPrice - bp;
+                                if (dist <= 500) bid500Usd += usd;
+                                if (dist <= 1000) bid1000Usd += usd;
+                                bid2500Usd += usd;
+                                const bucket = Math.floor(bp / 100) * 100;
+                                bidBuckets[bucket] = (bidBuckets[bucket] || 0) + usd;
+                            }
+                        });
+                        depthRes.asks.forEach(a => {
+                            const ap = parseFloat(a[0]);
+                            const aq = parseFloat(a[1]);
+                            if (!isNaN(ap) && !isNaN(aq) && ap >= currentPrice && ap <= currentPrice + 2500) {
+                                const usd = ap * aq;
+                                const dist = ap - currentPrice;
+                                if (dist <= 500) ask500Usd += usd;
+                                if (dist <= 1000) ask1000Usd += usd;
+                                ask2500Usd += usd;
+                                const bucket = Math.ceil(ap / 100) * 100;
+                                askBuckets[bucket] = (askBuckets[bucket] || 0) + usd;
+                            }
+                        });
+                    }
+
+                    // Find exact peak Ask bucket above and peak Bid bucket below within +-2,500 pts
+                    let peakAskPrice = Math.round(currentPrice / 100) * 100 + 500;
+                    let peakAskUsd = 0;
+                    Object.keys(askBuckets).forEach(k => {
+                        const p = parseFloat(k);
+                        if (p > currentPrice + 50 && askBuckets[k] > peakAskUsd) {
+                            peakAskUsd = askBuckets[k];
+                            peakAskPrice = p;
+                        }
+                    });
+
+                    let peakBidPrice = Math.round(currentPrice / 100) * 100 - 500;
+                    let peakBidUsd = 0;
+                    Object.keys(bidBuckets).forEach(k => {
+                        const p = parseFloat(k);
+                        if (p < currentPrice - 50 && bidBuckets[k] > peakBidUsd) {
+                            peakBidUsd = bidBuckets[k];
+                            peakBidPrice = p;
+                        }
+                    });
+
+                    const peakAskDist = Math.max(0, Math.round(peakAskPrice - currentPrice));
+                    const peakBidDist = Math.max(0, Math.round(currentPrice - peakBidPrice));
+                    const net2500BookUsd = bid2500Usd - ask2500Usd;
+
+                    // Track whether peak clusters are growing (Adding Orders) or shrinking (Absorbed/Pulled)
+                    let wallBehavior = "Steady Order Book";
+                    if (prevClusterSnapshot.peakAskUsd !== null && prevClusterSnapshot.peakBidUsd !== null) {
+                        const askDelta = peakAskUsd - prevClusterSnapshot.peakAskUsd;
+                        const bidDelta = peakBidUsd - prevClusterSnapshot.peakBidUsd;
+                        if (bidDelta > Math.abs(askDelta) && bidDelta > 50000) wallBehavior = "Bids Adding (ஆதரவு கூடுகிறது)";
+                        else if (askDelta > Math.abs(bidDelta) && askDelta > 50000) wallBehavior = "Asks Adding (தடை கூடுகிறது)";
+                        else if (askDelta < -50000 && netUsd > 0) wallBehavior = "Ask Wall Absorbed (தடை கரைகிறது)";
+                        else if (bidDelta < -50000 && netUsd < 0) wallBehavior = "Bid Wall Absorbed (சப்போர்ட் கரைகிறது)";
+                    }
+                    prevClusterSnapshot = { peakAskUsd, peakBidUsd };
+
+                    // Weight +-2,500-pt broader book balance (55%) + executed taker money flow (45%) for higher stability
+                    const totalBook2500 = Math.max(1, bid2500Usd + ask2500Usd);
+                    const bookBidShare = (bid2500Usd / totalBook2500) * 100;
+                    const compositeBullPct = Math.round((bookBidShare * 0.55) + (buyPct * 0.45));
+                    const isBullishMoney = compositeBullPct >= 50;
+                    const rawConv = 52 + Math.min(40, Math.round(Math.abs(compositeBullPct - 50) * 1.8));
+
+                    cachedRealMoney = {
+                        buyUsd,
+                        sellUsd,
+                        netUsd,
+                        buyPct,
+                        sellPct,
+                        bid500Usd,
+                        ask500Usd,
+                        bid1000Usd,
+                        ask1000Usd,
+                        bid2500Usd,
+                        ask2500Usd,
+                        net2500BookUsd,
+                        peakAskPrice,
+                        peakAskUsd,
+                        peakAskDist,
+                        peakBidPrice,
+                        peakBidUsd,
+                        peakBidDist,
+                        isBullishMoney,
+                        conviction: Math.min(93, rawConv),
+                        wallBehavior
+                    };
+                } catch (e) {
+                    console.warn("Dynamic real money cluster fetch skipped:", e);
+                }
+            }
+
+            const rm = cachedRealMoney;
+            // Use 30m/1h OI shift alongside 5m so 1-minute noise does not whipsaw order classification
+            const oi5mDiff = (tfSummary && tfSummary['5m'] && typeof tfSummary['5m'].diff === 'number') ? tfSummary['5m'].diff : 0;
+            const oi30mDiff = (tfSummary && tfSummary['30m'] && typeof tfSummary['30m'].diff === 'number') ? tfSummary['30m'].diff : 0;
+            const activeOiShift = Math.abs(oi30mDiff) >= 15 ? oi30mDiff : oi5mDiff;
+
+            let actionCode = "EQUILIBRIUM";
+            let actionLabel = "⚖️ Equilibrium (சமநிலை)";
+            let actionDetail = `Book: ${rm.wallBehavior} | 2.5k Net: ${rm.net2500BookUsd >= 0 ? '+' : ''}${fmtUsdCompact(rm.net2500BookUsd)}`;
+            let isBullishAction = rm.isBullishMoney;
+
+            if (activeOiShift > 0 && (rm.netUsd >= 0 || rm.net2500BookUsd > 0)) {
+                actionCode = "NEW_LONG";
+                actionLabel = "🟢 New Long Buildup (புதிய Long ஆர்டர்)";
+                actionDetail = `OI +${activeOiShift.toFixed(1)} BTC + Inflow ${fmtUsdCompact(rm.netUsd)} (${rm.wallBehavior})`;
+                isBullishAction = true;
+            } else if (activeOiShift > 0 && rm.netUsd < 0 && rm.net2500BookUsd <= 0) {
+                actionCode = "NEW_SHORT";
+                actionLabel = "🔴 New Short Buildup (புதிய Short ஆர்டர்)";
+                actionDetail = `OI +${activeOiShift.toFixed(1)} BTC + Outflow ${fmtUsdCompact(rm.netUsd)} (${rm.wallBehavior})`;
+                isBullishAction = false;
+            } else if (activeOiShift < 0 && rm.netUsd >= 0) {
+                actionCode = "SHORT_CLOSING";
+                actionLabel = "⚡ Short Closing / Cover (பழைய Short க்ளோசிங்)";
+                actionDetail = `OI ${activeOiShift.toFixed(1)} BTC + Buy Cover ${fmtUsdCompact(rm.netUsd)} (Squeeze Lift)`;
+                isBullishAction = true;
+            } else if (activeOiShift < 0 && rm.netUsd < 0) {
+                actionCode = "LONG_CLOSING";
+                actionLabel = "⚠️ Long Closing / Unwind (பழைய Long க்ளோசிங்)";
+                actionDetail = `OI ${activeOiShift.toFixed(1)} BTC + Sell Unwind ${fmtUsdCompact(rm.netUsd)} (Drop Pressure)`;
+                isBullishAction = false;
+            }
+
+            let badgeEl = document.getElementById('rmf-status-badge');
+            if (badgeEl) {
+                badgeEl.innerText = `${actionCode.replace('_', ' ')} | 2.5k Net ${rm.net2500BookUsd >= 0 ? '+' : ''}${fmtUsdCompact(rm.net2500BookUsd)}`;
+                badgeEl.className = isBullishAction
+                    ? "text-[10px] font-mono font-black bg-emerald-500/20 text-emerald-300 px-2.5 py-0.5 rounded border border-emerald-500/40"
+                    : "text-[10px] font-mono font-black bg-rose-500/20 text-rose-300 px-2.5 py-0.5 rounded border border-rose-500/40";
+            }
+
+            let bTxt = document.getElementById('rmf-buy-txt');
+            if (bTxt) bTxt.innerText = `🟢 Inflow / Buy $: ${fmtUsdCompact(rm.buyUsd)} (${rm.buyPct}%)`;
+            let sTxt = document.getElementById('rmf-sell-txt');
+            if (sTxt) sTxt.innerText = `🔴 Outflow / Sell $: ${fmtUsdCompact(rm.sellUsd)} (${rm.sellPct}%)`;
+            let nTxt = document.getElementById('rmf-net-txt');
+            if (nTxt) {
+                nTxt.innerText = `Net: ${rm.netUsd >= 0 ? '+' : ''}${fmtUsdCompact(rm.netUsd)}`;
+                nTxt.className = rm.netUsd >= 0 ? "text-emerald-300" : "text-rose-300";
+            }
+
+            let bBar = document.getElementById('rmf-buy-bar');
+            if (bBar) bBar.style.width = `${rm.buyPct}%`;
+            let sBar = document.getElementById('rmf-sell-bar');
+            if (sBar) sBar.style.width = `${rm.sellPct}%`;
+
+            let p500 = document.getElementById('rmf-plus500-val');
+            if (p500) p500.innerText = `$${rm.peakAskPrice.toLocaleString()} (+${rm.peakAskDist} pts): ${fmtUsdCompact(rm.peakAskUsd)}`;
+            let p500Sub = document.getElementById('rmf-plus500-sub');
+            if (p500Sub) {
+                p500Sub.innerText = `Peak Ask/Outflow cluster above | 2.5k Ask: ${fmtUsdCompact(rm.ask2500Usd)}`;
+            }
+
+            let m500 = document.getElementById('rmf-minus500-val');
+            if (m500) m500.innerText = `$${rm.peakBidPrice.toLocaleString()} (-${rm.peakBidDist} pts): ${fmtUsdCompact(rm.peakBidUsd)}`;
+            let m500Sub = document.getElementById('rmf-minus500-sub');
+            if (m500Sub) {
+                m500Sub.innerText = `Peak Bid/Inflow cluster below | 2.5k Bid: ${fmtUsdCompact(rm.bid2500Usd)}`;
+            }
+
+            let plVal = document.getElementById('rmf-pos-link-val');
+            if (plVal) plVal.innerText = actionLabel;
+            let plSub = document.getElementById('rmf-pos-link-sub');
+            if (plSub) plSub.innerText = actionDetail;
+
+            let t500 = document.getElementById('rmf-tier-500');
+            if (t500) t500.innerText = `±500 Pts: Bid ${fmtUsdCompact(rm.bid500Usd)} vs Ask ${fmtUsdCompact(rm.ask500Usd)}`;
+            let t1000 = document.getElementById('rmf-tier-1000');
+            if (t1000) t1000.innerText = `±1,000 Pts: Bid ${fmtUsdCompact(rm.bid1000Usd)} vs Ask ${fmtUsdCompact(rm.ask1000Usd)}`;
+            let t2500 = document.getElementById('rmf-tier-2500');
+            if (t2500) t2500.innerText = `±2,500 Pts: Bid ${fmtUsdCompact(rm.bid2500Usd)} vs Ask ${fmtUsdCompact(rm.ask2500Usd)}`;
+
+            let sumEl = document.getElementById('rmf-summary-txt');
+            if (sumEl) {
+                sumEl.innerText = `±2,500 Pts Cluster & Flow: Peak Overhead Ask at $${rm.peakAskPrice.toLocaleString()} (+${rm.peakAskDist} pts | ${fmtUsdCompact(rm.peakAskUsd)}) vs Peak Downside Bid at $${rm.peakBidPrice.toLocaleString()} (-${rm.peakBidDist} pts | ${fmtUsdCompact(rm.peakBidUsd)}) | ${actionLabel}.`;
+            }
+
+            return {
+                ...rm,
+                isBullishMoney: isBullishAction,
+                actionCode,
+                actionLabel,
+                posRegime: actionLabel,
+                moneyConfirmsMove: (actionCode === 'NEW_LONG' || actionCode === 'NEW_SHORT')
+            };
+        }
+
         function evaluateMaster9ToolConfluence(ctx) {
             const supHold = smoothedWallState.supHold !== null ? smoothedWallState.supHold : 50;
             const resHold = smoothedWallState.resHold !== null ? smoothedWallState.resHold : 50;
@@ -1290,136 +1609,155 @@
             const r1h = (ctx.tfSummary['1h'] && ctx.tfSummary['1h'].reaction) ? ctx.tfSummary['1h'].reaction : "";
             const r4h = (ctx.tfSummary['4h'] && ctx.tfSummary['4h'].reaction) ? ctx.tfSummary['4h'].reaction : "";
             const posLong = typeof window.lastPosLongPct === 'number' ? window.lastPosLongPct : 50;
+            const rm = ctx.realMoney || cachedRealMoney;
 
-            // Define all 9 tools with specific weights summing to 100% and dynamic internal conviction (0..100)
+            // Define all 10 engines with calibrated market-moving weights summing to 100%
             let tools = [];
 
-            // 1. Whale Order & Liquidity Radar (Weight: 16%)
+            // 1. Dynamic Real Money Flow & +-2,500 Pts Peak Clusters (Weight: 15%)
+            const rmBull = rm.isBullishMoney;
+            const rmShortTitle = rm.actionCode === 'NEW_LONG' ? 'New Long Buildup'
+                : rm.actionCode === 'NEW_SHORT' ? 'New Short Buildup'
+                : rm.actionCode === 'SHORT_CLOSING' ? 'Short Closing'
+                : rm.actionCode === 'LONG_CLOSING' ? 'Long Closing'
+                : (rmBull ? '2.5k Inflow Edge' : '2.5k Outflow Edge');
+            tools.push({
+                id: 1,
+                name: 'Dynamic Real Money & ±2.5k Clusters',
+                weight: 15,
+                side: rmBull ? 'BULL' : 'BEAR',
+                conviction: rm.conviction || 62,
+                label: rmBull
+                    ? `[15%] Real Money (±2.5k): ${rmShortTitle} (Bid $${rm.peakBidPrice ? rm.peakBidPrice.toLocaleString() : '--'} | ${fmtUsdCompact(rm.netUsd)})`
+                    : `[15%] Real Money (±2.5k): ${rmShortTitle} (Ask $${rm.peakAskPrice ? rm.peakAskPrice.toLocaleString() : '--'} | ${fmtUsdCompact(rm.netUsd)})`
+            });
+
+            // 2. Whale Order & Liquidity Radar +-10k (Weight: 14%)
             const whaleBull = ctx.whaleStats.belowSharePct > ctx.whaleStats.aboveSharePct;
             const whaleConviction = Math.min(95, Math.max(52, Math.max(ctx.whaleStats.belowSharePct, ctx.whaleStats.aboveSharePct) + 15));
             tools.push({
-                id: 1,
+                id: 2,
                 name: 'Whale Radar (±10k)',
-                weight: 16,
+                weight: 14,
                 side: whaleBull ? 'BULL' : 'BEAR',
                 conviction: whaleConviction,
                 label: whaleBull
-                    ? `[16%] Whale Radar: Below Buy Money Heavy (${ctx.whaleStats.belowSharePct}%)`
-                    : `[16%] Whale Radar: Above Sell Money Heavy (${ctx.whaleStats.aboveSharePct}%)`
+                    ? `[14%] Whale Radar: Below Buy Money Heavy (${ctx.whaleStats.belowSharePct}%)`
+                    : `[14%] Whale Radar: Above Sell Money Heavy (${ctx.whaleStats.aboveSharePct}%)`
             });
 
-            // 2. Wall Hold % vs Break % (Weight: 15%)
+            // 3. Wall Hold % vs Break % (Weight: 13%)
             const wallBull = supHold >= resHold;
             const wallConviction = Math.min(95, Math.max(50, Math.max(supHold, resHold)));
             tools.push({
-                id: 2,
+                id: 3,
                 name: 'Wall Hold/Break Defense',
-                weight: 15,
+                weight: 13,
                 side: wallBull ? 'BULL' : 'BEAR',
                 conviction: wallConviction,
                 label: wallBull
-                    ? `[15%] Wall Defense: Sup Hold ${supHold}% vs Res Hold ${resHold}%`
-                    : `[15%] Wall Defense: Res Hold ${resHold}% vs Sup Hold ${supHold}%`
+                    ? `[13%] Wall Defense: Sup Hold ${supHold}% vs Res Hold ${resHold}%`
+                    : `[13%] Wall Defense: Res Hold ${resHold}% vs Sup Hold ${supHold}%`
             });
 
-            // 3. 4h CVD Money Flow (Weight: 14%)
+            // 4. 4h CVD Money Flow (Weight: 12%)
             const cvdBull = ctx.cvd4h >= 0;
             const cvdConviction = Math.min(92, 58 + Math.min(34, Math.round(Math.abs(ctx.cvd4h) / 60)));
             tools.push({
-                id: 3,
+                id: 4,
                 name: '4h CVD Money Flow',
-                weight: 14,
+                weight: 12,
                 side: cvdBull ? 'BULL' : 'BEAR',
                 conviction: cvdConviction,
                 label: cvdBull
-                    ? `[14%] 4h CVD Flow: Net Inflow (+$${Math.abs(ctx.cvd4h).toFixed(0)}M)`
-                    : `[14%] 4h CVD Flow: Net Outflow (-$${Math.abs(ctx.cvd4h).toFixed(0)}M)`
+                    ? `[12%] 4h CVD Flow: Net Inflow (+$${Math.abs(ctx.cvd4h).toFixed(0)}M)`
+                    : `[12%] 4h CVD Flow: Net Outflow (-$${Math.abs(ctx.cvd4h).toFixed(0)}M)`
             });
 
-            // 4. Mid-Term OI + Price Reaction 1h/4h (Weight: 12%)
+            // 5. Mid-Term OI + Price Reaction 1h/4h (Weight: 10%)
             const mtText = r1h + " " + r4h;
             const mtBull = mtText.includes("Long Buildup") || mtText.includes("Short Squeeze");
             const mtConviction = (r1h.includes("Short Squeeze") || r4h.includes("Short Squeeze") || r1h.includes("Long Buildup")) ? 74 : 68;
             tools.push({
-                id: 4,
+                id: 5,
                 name: 'Mid-Term OI (1h/4h)',
-                weight: 12,
+                weight: 10,
                 side: mtBull ? 'BULL' : 'BEAR',
                 conviction: mtConviction,
                 label: mtBull
-                    ? `[12%] Mid-Term OI (1h/4h): ${r1h ? r1h.split('(')[0].trim() : 'Bullish Shift'}`
-                    : `[12%] Mid-Term OI (1h/4h): ${r1h ? r1h.split('(')[0].trim() : 'Bearish Shift'}`
+                    ? `[10%] Mid-Term OI (1h/4h): ${r1h ? r1h.split('(')[0].trim() : 'Bullish Shift'}`
+                    : `[10%] Mid-Term OI (1h/4h): ${r1h ? r1h.split('(')[0].trim() : 'Bearish Shift'}`
             });
 
-            // 5. Short-Term OI + Price Reaction 5m/30m (Weight: 12%)
+            // 6. Short-Term OI + Price Reaction 5m/30m (Weight: 10%)
             const stText = r5 + " " + r30;
             const stBull = stText.includes("Long Buildup") || stText.includes("Short Squeeze");
             const stConviction = r5.includes("Short Buildup") || r5.includes("Long Liquidation") ? 72 : 66;
             tools.push({
-                id: 5,
+                id: 6,
                 name: 'Short-Term OI (5m/30m)',
-                weight: 12,
+                weight: 10,
                 side: stBull ? 'BULL' : 'BEAR',
                 conviction: stConviction,
                 label: stBull
-                    ? `[12%] Short-Term OI (5m/30m): ${r5 ? r5.split('(')[0].trim() : 'Bullish Reaction'}`
-                    : `[12%] Short-Term OI (5m/30m): ${r5 ? r5.split('(')[0].trim() : 'Sell/Close Pressure'}`
+                    ? `[10%] Short-Term OI (5m/30m): ${r5 ? r5.split('(')[0].trim() : 'Bullish Reaction'}`
+                    : `[10%] Short-Term OI (5m/30m): ${r5 ? r5.split('(')[0].trim() : 'Sell/Close Pressure'}`
             });
 
-            // 6. Buyers vs Sellers Strength Score (Weight: 10%)
+            // 7. Buyers vs Sellers Strength Score (Weight: 9%)
             const strBull = ctx.bullScore >= ctx.bearScore;
             const strConviction = Math.max(ctx.bullScore, ctx.bearScore);
             tools.push({
-                id: 6,
+                id: 7,
                 name: 'Buyers vs Sellers Strength',
-                weight: 10,
+                weight: 9,
                 side: strBull ? 'BULL' : 'BEAR',
                 conviction: strConviction,
                 label: strBull
-                    ? `[10%] Strength Score: Bullish (${ctx.bullScore} vs ${ctx.bearScore})`
-                    : `[10%] Strength Score: Bearish (${ctx.bearScore} vs ${ctx.bullScore})`
+                    ? `[9%] Strength Score: Bullish (${ctx.bullScore} vs ${ctx.bearScore})`
+                    : `[9%] Strength Score: Bearish (${ctx.bearScore} vs ${ctx.bullScore})`
             });
 
-            // 7. 24h Center Point Position (Weight: 8%)
+            // 8. 24h Center Point Position (Weight: 6%)
             const cenBull = ctx.currentPrice >= ctx.centerPoint;
             const cenConviction = Math.min(85, 55 + Math.min(30, Math.round(Math.abs(ctx.currentPrice - ctx.centerPoint) / 40)));
             tools.push({
-                id: 7,
+                id: 8,
                 name: '24h Center Point',
-                weight: 8,
+                weight: 6,
                 side: cenBull ? 'BULL' : 'BEAR',
                 conviction: cenConviction,
                 label: cenBull
-                    ? `[8%] 24h Center: Above ($${Math.round(ctx.centerPoint).toLocaleString()})`
-                    : `[8%] 24h Center: Below ($${Math.round(ctx.centerPoint).toLocaleString()})`
+                    ? `[6%] 24h Center: Above ($${Math.round(ctx.centerPoint).toLocaleString()})`
+                    : `[6%] 24h Center: Below ($${Math.round(ctx.centerPoint).toLocaleString()})`
             });
 
-            // 8. Market Center Immediate Bias MM Intel (Weight: 7%)
+            // 9. Market Center Immediate Bias MM Intel (Weight: 6%)
             const mmBull = ctx.bullScore >= 50;
             const mmConviction = Math.max(ctx.bullScore, ctx.bearScore);
             tools.push({
-                id: 8,
+                id: 9,
                 name: 'Market Center (MM Intel)',
-                weight: 7,
+                weight: 6,
                 side: mmBull ? 'BULL' : 'BEAR',
                 conviction: mmConviction,
                 label: mmBull
-                    ? `[7%] Market Center (MM): Active Long Bias (${ctx.bullScore}%)`
-                    : `[7%] Market Center (MM): Active Short Bias (${ctx.bearScore}%)`
+                    ? `[6%] Market Center (MM): Active Long Bias (${ctx.bullScore}%)`
+                    : `[6%] Market Center (MM): Active Short Bias (${ctx.bearScore}%)`
             });
 
-            // 9. Top Traders Position Ratio (Weight: 6%)
+            // 10. Top Traders Position Ratio (Weight: 5%)
             const posBull = posLong <= 55;
             const posConviction = posBull ? Math.round(100 - posLong) : Math.min(88, Math.round(posLong));
             tools.push({
-                id: 9,
+                id: 10,
                 name: 'Top Position Ratio',
-                weight: 6,
+                weight: 5,
                 side: posBull ? 'BULL' : 'BEAR',
                 conviction: posConviction,
                 label: posBull
-                    ? `[6%] Top Position Ratio: Healthy Long Room (${posLong.toFixed(1)}% L)`
-                    : `[6%] Top Position Ratio: Crowded Long Sweep Risk (${posLong.toFixed(1)}% L)`
+                    ? `[5%] Top Position Ratio: Healthy Long Room (${posLong.toFixed(1)}% L)`
+                    : `[5%] Top Position Ratio: Crowded Long Sweep Risk (${posLong.toFixed(1)}% L)`
             });
 
             let bullWeightSum = 0;
@@ -1437,14 +1775,45 @@
                 }
             });
 
-            // Sort lists by highest weight first
             bullTools.sort((a, b) => b.weight - a.weight);
             bearTools.sort((a, b) => b.weight - a.weight);
 
-            const upPct = Math.round(bullWeightSum);
-            const dnPct = 100 - upPct;
+            const rawUpPct = Math.round(bullWeightSum);
+            const priceBucket100 = Math.round(ctx.currentPrice / 100) * 100;
+            const nowMs = Date.now();
 
-            // Identify Dominant High-Power Driver (highest effective power = weight * conviction)
+            // Stabilize Weighted Trend % with EMA + 100-pt bucket + hysteresis deadband (46%..54%)
+            if (stabilizedTrendState.emaUpPct === null) {
+                stabilizedTrendState.emaUpPct = rawUpPct;
+                stabilizedTrendState.lockedWeightedSide = rawUpPct >= 50 ? 'UP' : 'DOWN';
+                stabilizedTrendState.lastWeightedFlipMs = nowMs;
+                stabilizedTrendState.lastWeightedBucket = priceBucket100;
+            } else {
+                const alpha = (priceBucket100 !== stabilizedTrendState.lastWeightedBucket) ? 0.35 : 0.15;
+                stabilizedTrendState.emaUpPct = (stabilizedTrendState.emaUpPct * (1 - alpha)) + (rawUpPct * alpha);
+                stabilizedTrendState.lastWeightedBucket = priceBucket100;
+
+                const elapsed = nowMs - stabilizedTrendState.lastWeightedFlipMs;
+                if (stabilizedTrendState.lockedWeightedSide === 'UP') {
+                    // Only flip to DOWN if smoothed upward weight drops clearly below 46% and held >= 45s
+                    if (stabilizedTrendState.emaUpPct <= 46 && elapsed >= 45000) {
+                        stabilizedTrendState.lockedWeightedSide = 'DOWN';
+                        stabilizedTrendState.lastWeightedFlipMs = nowMs;
+                    }
+                } else {
+                    // Only flip to UP if smoothed upward weight rises clearly above 54% and held >= 45s
+                    if (stabilizedTrendState.emaUpPct >= 54 && elapsed >= 45000) {
+                        stabilizedTrendState.lockedWeightedSide = 'UP';
+                        stabilizedTrendState.lastWeightedFlipMs = nowMs;
+                    }
+                }
+            }
+
+            const upPct = Math.round(stabilizedTrendState.emaUpPct);
+            const dnPct = 100 - upPct;
+            const isWeightedUp = stabilizedTrendState.lockedWeightedSide === 'UP';
+            const totalCount = tools.length;
+
             let topDriver = tools[0];
             let maxPower = -1;
             tools.forEach(t => {
@@ -1458,25 +1827,23 @@
             const driverStrength = topDriver.conviction;
             const driverWeakness = 100 - driverStrength;
             const driverSideLabel = topDriver.side === 'BULL' ? 'UPWARD (மேல்நோக்கி)' : 'DOWNWARD (கீழ்நோக்கி)';
-            const isCounterMajority = (topDriver.side === 'BEAR' && upPct > dnPct) || (topDriver.side === 'BULL' && dnPct > upPct);
+            const isCounterMajority = (topDriver.side === 'BEAR' && isWeightedUp) || (topDriver.side === 'BULL' && !isWeightedUp);
 
             let badgeEl = document.getElementById('conf-verdict-badge');
             if (badgeEl) {
-                if (upPct > dnPct) {
-                    badgeEl.innerText = `Weighted Upward: ${upPct}% (${bullTools.length}/9) 🚀`;
+                if (isWeightedUp) {
+                    badgeEl.innerText = `Stabilized Upward: ${upPct}% (${bullTools.length}/${totalCount}) 🚀`;
                     badgeEl.className = "text-[10px] font-mono font-black bg-emerald-500/20 text-emerald-300 px-2.5 py-0.5 rounded border border-emerald-500/40";
-                } else if (dnPct > upPct) {
-                    badgeEl.innerText = `Weighted Downward: ${dnPct}% (${bearTools.length}/9) 📉`;
-                    badgeEl.className = "text-[10px] font-mono font-black bg-rose-500/20 text-rose-300 px-2.5 py-0.5 rounded border border-rose-500/40";
                 } else {
-                    badgeEl.innerText = `Weighted Split: 50% / 50% ⚖️`;
+                    badgeEl.innerText = `Stabilized Downward: ${dnPct}% (${bearTools.length}/${totalCount}) 📉`;
+                    badgeEl.className = "text-[10px] font-mono font-black bg-rose-500/20 text-rose-300 px-2.5 py-0.5 rounded border border-rose-500/40";
                 }
             }
 
             let upTxt = document.getElementById('conf-up-pct-txt');
-            if (upTxt) upTxt.innerText = `🟢 Upward Strength: ${upPct}% (${bullTools.length}/9 Tools)`;
+            if (upTxt) upTxt.innerText = `🟢 Upward Strength: ${upPct}% (${bullTools.length}/${totalCount} Engines)`;
             let dnTxt = document.getElementById('conf-dn-pct-txt');
-            if (dnTxt) dnTxt.innerText = `🔴 Downward Strength: ${dnPct}% (${bearTools.length}/9 Tools)`;
+            if (dnTxt) dnTxt.innerText = `🔴 Downward Strength: ${dnPct}% (${bearTools.length}/${totalCount} Engines)`;
 
             let upBar = document.getElementById('conf-up-bar');
             if (upBar) upBar.style.width = `${upPct}%`;
@@ -1502,51 +1869,76 @@
             let pdNote = document.getElementById('power-driver-note');
             if (pdNote) {
                 if (isCounterMajority) {
-                    pdNote.innerText = `Caution: Even though ${upPct > dnPct ? bullTools.length : bearTools.length}/9 tools lean ${upPct > dnPct ? 'Upward' : 'Downward'}, high-weight ${topDriver.name} (${topDriver.weight}% weight, ${driverStrength}% strength) pulls ${driverSideLabel} — watch for sudden sweep/reversal!`;
+                    pdNote.innerText = `Caution: Even though stabilized trend leans ${isWeightedUp ? 'Upward' : 'Downward'}, high-weight ${topDriver.name} (${topDriver.weight}% weight, ${driverStrength}% strength) pulls ${driverSideLabel} — watch for sudden sweep/reversal!`;
                 } else {
-                    pdNote.innerText = `Confirmed: Highest-weight driver ${topDriver.name} (${topDriver.weight}% weight, ${driverStrength}% strength) aligns with the dominant ${driverSideLabel} direction.`;
+                    pdNote.innerText = `Confirmed: Highest-weight driver ${topDriver.name} (${topDriver.weight}% weight, ${driverStrength}% strength) aligns with the stabilized ${driverSideLabel} direction.`;
                 }
             }
 
             let bCntEl = document.getElementById('conf-bull-count');
-            if (bCntEl) bCntEl.innerText = `${upPct}% (${bullTools.length}/9)`;
+            if (bCntEl) bCntEl.innerText = `${upPct}% (${bullTools.length}/${totalCount})`;
             let sCntEl = document.getElementById('conf-bear-count');
-            if (sCntEl) sCntEl.innerText = `${dnPct}% (${bearTools.length}/9)`;
+            if (sCntEl) sCntEl.innerText = `${dnPct}% (${bearTools.length}/${totalCount})`;
 
             let bListEl = document.getElementById('conf-bull-list');
             if (bListEl) {
                 bListEl.innerHTML = bullTools.length > 0
                     ? bullTools.map(t => `<li>• ${t.label}</li>`).join('')
-                    : `<li class="text-gray-400">• No weighted tools currently favoring upside</li>`;
+                    : `<li class="text-gray-400">• No weighted engines currently favoring upside</li>`;
             }
 
             let sListEl = document.getElementById('conf-bear-list');
             if (sListEl) {
                 sListEl.innerHTML = bearTools.length > 0
                     ? bearTools.map(t => `<li>• ${t.label}</li>`).join('')
-                    : `<li class="text-gray-400">• No weighted tools currently favoring downside</li>`;
+                    : `<li class="text-gray-400">• No weighted engines currently favoring downside</li>`;
             }
 
             let sumEl = document.getElementById('conf-master-summary');
             if (sumEl) {
-                if (dnPct > upPct) {
-                    sumEl.innerText = `Weighted Verdict: Downward force holds ${dnPct}% weight (${bearTools.length}/9 tools) vs Upward ${upPct}% (${bullTools.length}/9) — Downside edge is stronger, Upside breakout is weaker.`;
-                } else if (upPct > dnPct) {
-                    sumEl.innerText = `Weighted Verdict: Upward force holds ${upPct}% weight (${bullTools.length}/9 tools) vs Downward ${dnPct}% (${bearTools.length}/9) — Upside edge is stronger, Downside breakdown is weaker.`;
+                const rmTag = rm.moneyConfirmsMove ? "New Order Buildup Confirmed" : "Closing / Mixed Flow";
+                if (!isWeightedUp) {
+                    sumEl.innerText = `Stabilized Verdict: Downward force holds ${dnPct}% smoothed weight (${bearTools.length}/${totalCount}) vs Upward ${upPct}% (${bullTools.length}/${totalCount}) [${rmTag}] — Downside edge is stronger, Upside breakout is weaker.`;
                 } else {
-                    sumEl.innerText = `Weighted Verdict: Exact 50% / 50% weight balance — wait for candle breakout confirmation.`;
+                    sumEl.innerText = `Stabilized Verdict: Upward force holds ${upPct}% smoothed weight (${bullTools.length}/${totalCount}) vs Downward ${dnPct}% (${bearTools.length}/${totalCount}) [${rmTag}] — Upside edge is stronger, Downside breakdown is weaker.`;
                 }
             }
+
+            return { isWeightedUp, upPct, dnPct };
         }
 
-        function evaluateUnifiedMarket(currentPrice, highPrice, lowPrice, currentOI, tfSummary, cvd4h) {
+        function evaluateUnifiedMarket(currentPrice, highPrice, lowPrice, currentOI, tfSummary, cvd4h, realMoney) {
             const centerPoint = (highPrice + lowPrice) / 2;
             const rangeSpan = Math.max(1, highPrice - lowPrice);
             const offsetRatio = (currentPrice - centerPoint) / rangeSpan;
 
-            let bullScore = Math.max(15, Math.min(88, Math.round(50 + (offsetRatio * 75) + (cvd4h > 0 ? 6 : -6))));
+            const rmSafe = realMoney || cachedRealMoney;
+            const bookBiasAdj = rmSafe.net2500BookUsd >= 0 ? 5 : -5;
+            let bullScore = Math.max(15, Math.min(88, Math.round(50 + (offsetRatio * 68) + (cvd4h > 0 ? 5 : -5) + bookBiasAdj)));
             let bearScore = 100 - bullScore;
-            const isBearish = currentPrice < centerPoint;
+
+            // Stabilize Master Banner trend with +-75 pt center buffer & 45s hold hysteresis
+            const nowMs = Date.now();
+            const bucket100 = Math.round(currentPrice / 100) * 100;
+            if (stabilizedTrendState.lockedBannerSide === null) {
+                stabilizedTrendState.lockedBannerSide = currentPrice < centerPoint ? 'BEAR' : 'BULL';
+                stabilizedTrendState.lastBannerFlipMs = nowMs;
+                stabilizedTrendState.lastBannerBucket = bucket100;
+            } else {
+                const elapsedBanner = nowMs - stabilizedTrendState.lastBannerFlipMs;
+                if (stabilizedTrendState.lockedBannerSide === 'BULL') {
+                    if (currentPrice < centerPoint - 75 && bullScore <= 46 && elapsedBanner >= 45000) {
+                        stabilizedTrendState.lockedBannerSide = 'BEAR';
+                        stabilizedTrendState.lastBannerFlipMs = nowMs;
+                    }
+                } else {
+                    if (currentPrice > centerPoint + 75 && bullScore >= 54 && elapsedBanner >= 45000) {
+                        stabilizedTrendState.lockedBannerSide = 'BULL';
+                        stabilizedTrendState.lastBannerFlipMs = nowMs;
+                    }
+                }
+            }
+            const isBearish = stabilizedTrendState.lockedBannerSide === 'BEAR';
 
             const setup = getLockedOrUpdatedSetup(currentPrice, currentOI, isBearish);
             const activeSupWall = isBearish ? setup.supWallPrice : setup.wallPrice;
@@ -1560,7 +1952,8 @@
                 bearScore,
                 cvd4h,
                 tfSummary,
-                whaleStats
+                whaleStats,
+                realMoney
             });
             const latest5m = tfSummary['5m'] ? tfSummary['5m'].reaction : "Monitoring";
 
@@ -1795,7 +2188,8 @@
                     });
                 }
 
-                evaluateUnifiedMarket(currentPrice, highPrice, lowPrice, currentOI, tfSummary, cvd4h);
+                const realMoney = await updateRealMoneyFlowData(currentPrice, currentOI, tfSummary, typeof window.lastPosLongPct === 'number' ? window.lastPosLongPct : 50);
+                evaluateUnifiedMarket(currentPrice, highPrice, lowPrice, currentOI, tfSummary, cvd4h, realMoney);
 
                 let gLiveP = document.getElementById('giant-live-price');
                 if (gLiveP) gLiveP.innerText = '$' + currentPrice.toLocaleString('en-US', { minimumFractionDigits: 2 });
@@ -2061,7 +2455,6 @@
             levels.push({ price: basePriceRounded, distance: 0, type: 'center' });
             for (let i = 1; i <= 20; i++) levels.push({ price: basePriceRounded - (i * 500), distance: -(i * 500), type: 'below' });
 
-            // Read live directional pressure if updated on screen (fallback to balanced 50/50)
             let bullPctFromDom = 50;
             let bullEl = document.getElementById('bullish-score-txt');
             if (bullEl) {
@@ -2073,7 +2466,6 @@
 
             levels.forEach(item => {
                 if (item.type === 'center') {
-                    // Live current price center node: evaluate immediate Long vs Short pressure at live price
                     let centerTotalPct = 60;
                     let centerLongPctOf100 = Math.max(25, Math.min(75, bullPctFromDom));
                     let centerShortPctOf100 = 100 - centerLongPctOf100;
@@ -2113,10 +2505,8 @@
                     let isAbove = item.type === 'above';
                     let absDist = Math.abs(item.distance);
 
-                    // Level total intensity out of 100% (24% to 99%)
                     let levelTotalPct = Math.floor(Math.abs(Math.sin(item.price * 0.001) * 75) + 24);
 
-                    // Level-specific Long vs Short ratio out of that level's 100%
                     let distFactor = Math.min(0.14, (absDist / 10000) * 0.14);
                     let waveBias = Math.sin(item.price * 0.002) * 0.05;
                     let longRatioWithinLevel = isAbove
@@ -2127,7 +2517,6 @@
                     let longPctOf100 = Math.round(longRatioWithinLevel * 100);
                     let shortPctOf100 = 100 - longPctOf100;
 
-                    // Portion of levelTotalPct contributed by Long and Short so Long% + Short% = levelTotalPct
                     let longPartPct = Number(((levelTotalPct * longPctOf100) / 100).toFixed(1));
                     let shortPartPct = Number(Math.max(0, levelTotalPct - longPartPct).toFixed(1));
 
