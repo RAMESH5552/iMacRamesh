@@ -741,94 +741,90 @@
                 </div>
             </div>
 
-            <!-- MASTER COMBINED TREND CONFIRMATION ENGINE (70% OI DELTA + 30% 24H/7D STRUCTURE) -->
-            <div id="combined-oi-master-card" class="glass-card rounded-2xl p-4 sm:p-5 border-2 border-cyan-400/90 shadow-2xl space-y-3 bg-gradient-to-r from-gray-950 via-cyan-950/30 to-gray-950">
-                <div class="flex flex-wrap justify-between items-center gap-2 border-b border-gray-800 pb-2">
-                    <div class="flex items-center gap-2.5">
-                        <div class="bg-cyan-500 p-2 rounded-xl text-black font-black text-xs shadow-lg">
-                            <i class="fa-solid fa-bolt"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xs sm:text-sm font-black text-cyan-300 uppercase tracking-wider">Master Combined Trend Confirmation (70% OI Delta + 30% 24h/7D)</h3>
-                            <p class="text-[10px] font-bold text-gray-400">Synthesizing Immediate OI Delta Momentum (70%) & 24h/7D Price-OI Structure (30%)</p>
-                        </div>
-                    </div>
-                    <span id="comb-status-pill" class="text-[10px] sm:text-xs font-mono font-black bg-amber-500/20 text-amber-300 px-3 py-1 rounded-lg border border-amber-500/40">Evaluating Confluence...</span>
-                </div>
-
-                <div class="flex flex-wrap justify-between items-center gap-2">
-                    <h2 id="comb-main-verdict" class="text-base sm:text-lg font-black text-amber-300 tracking-wide">Combined Trend: Scanning...</h2>
-                    <span id="comb-net-score-pill" class="text-xs sm:text-sm font-mono font-black bg-gray-900 px-3 py-1 rounded-lg border border-gray-700 text-white">Bull 50% / Bear 50%</span>
-                </div>
-
-                <!-- Unified 100% Strength vs Weakness Progress Bar -->
-                <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-3 space-y-1.5">
-                    <div class="flex flex-wrap justify-between items-center gap-1 text-[11px] font-mono font-black">
-                        <span id="comb-bull-txt" class="text-emerald-400">🟢 Combined Bullish: 50%</span>
-                        <span id="comb-formula-txt" class="text-cyan-300">OI Delta (70%) + 24h/7D (30%)</span>
-                        <span id="comb-bear-txt" class="text-rose-400">🔴 Combined Bearish: 50%</span>
-                    </div>
-                    <div class="w-full bg-gray-800 h-3.5 rounded-full overflow-hidden flex p-0.5 border border-gray-700">
-                        <div id="comb-bull-bar" class="bg-emerald-500 h-full rounded-l-full transition-all duration-500" style="width: 50%"></div>
-                        <div id="comb-bear-bar" class="bg-rose-500 h-full rounded-r-full transition-all duration-500" style="width: 50%"></div>
-                    </div>
-                </div>
-
-                <p id="comb-advice-summary" class="text-[11px] font-bold text-gray-200 pt-1 border-t border-gray-800/80 leading-relaxed">Combining primary OI Delta trigger (70% weight) with 24h/7D macro price-OI structure (30% weight) for final trend confirmation.</p>
-            </div>
-
-            <!-- OI DELTA WEIGHTED TREND & STRENGTH ENGINE (6 TIMEFRAMES: 5m - 24h) -->
-            <div class="glass-card rounded-2xl p-4 sm:p-5 border-2 border-indigo-400/85 shadow-2xl space-y-3.5 bg-gradient-to-r from-gray-950 via-indigo-950/30 to-gray-950">
+            <!-- 2-GROUP DYNAMIC CAPITAL FLOW, SPEED & DOMINANCE ENGINE (NEW) -->
+            <div id="two-group-engine-card" class="glass-card rounded-2xl p-4 sm:p-5 border-2 border-fuchsia-400/90 shadow-2xl space-y-3.5 bg-gradient-to-r from-gray-950 via-fuchsia-950/20 to-gray-950">
                 <div class="flex flex-wrap justify-between items-center gap-2 border-b border-gray-800 pb-2.5">
                     <div class="flex items-center gap-2.5">
-                        <div class="bg-indigo-500 p-2 rounded-xl text-white font-black text-xs shadow-lg">
-                            <i class="fa-solid fa-wave-square"></i>
+                        <div class="bg-fuchsia-500 p-2 rounded-xl text-black font-black text-xs shadow-lg">
+                            <i class="fa-solid fa-gauge-high"></i>
                         </div>
                         <div>
-                            <h3 class="text-xs sm:text-sm font-black text-indigo-300 uppercase tracking-wider">OI Delta Trend & Strength Engine (5m – 24h Weighted)</h3>
-                            <p class="text-[10px] font-bold text-gray-400">Weighted BTC shift & market reaction across all 6 timeframes (100% scale)</p>
+                            <h3 class="text-xs sm:text-sm font-black text-fuchsia-300 uppercase tracking-wider">2-Group Dynamic Flow, Speed & Dominance Engine (இரண்டு குழு & வேக ட்ரெண்ட் இன்ஜின்)</h3>
+                            <p class="text-[10px] font-bold text-gray-400">Group A (New Buyers + Short Cover) vs Group B (New Sellers + Long Unwind) weighted by BTC Size, Speed & 24H/7D Structure</p>
                         </div>
                     </div>
-                    <span id="oid-engine-badge" class="text-[10px] font-mono font-black bg-indigo-500/20 text-indigo-200 px-3 py-1 rounded-lg border border-indigo-500/40">Calculating OI Trend...</span>
+                    <span id="tg-status-badge" class="text-[10px] sm:text-xs font-mono font-black bg-amber-500/20 text-amber-300 px-3 py-1 rounded-lg border border-amber-500/40">Scanning 4 Reactions...</span>
                 </div>
 
-                <!-- 100% Bullish Strength vs Bearish Pressure Bar -->
+                <!-- Main Verdict + Speed & Regime Pill -->
+                <div class="flex flex-wrap justify-between items-center gap-2">
+                    <h2 id="tg-main-verdict" class="text-base sm:text-lg font-black text-amber-300 tracking-wide">Dominant Force: Evaluating...</h2>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span id="tg-speed-pill" class="text-[10px] sm:text-xs font-mono font-black bg-cyan-950/80 text-cyan-300 px-2.5 py-1 rounded-lg border border-cyan-500/40">Speed: -- BTC/min</span>
+                        <span id="tg-regime-pill" class="text-[10px] sm:text-xs font-mono font-black bg-gray-900 text-amber-300 px-2.5 py-1 rounded-lg border border-gray-700">Regime: Analyzing</span>
+                    </div>
+                </div>
+
+                <!-- 100% Group A vs Group B Dominance Bar -->
                 <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-3 space-y-1.5">
                     <div class="flex flex-wrap justify-between items-center gap-1 text-[11px] font-mono font-black">
-                        <span id="oid-bull-pct-txt" class="text-emerald-400">🟢 Bullish Strength: 50%</span>
-                        <span id="oid-dom-center-txt" class="text-cyan-300">Net Weighted Shift: -- BTC</span>
-                        <span id="oid-bear-pct-txt" class="text-rose-400">🔴 Bearish Pressure: 50%</span>
+                        <span id="tg-bull-pct-txt" class="text-emerald-400">🟢 Group A (Bullish Pressure): 50%</span>
+                        <span id="tg-net-flow-txt" class="text-cyan-300">Net Weighted Power: 0.0</span>
+                        <span id="tg-bear-pct-txt" class="text-rose-400">🔴 Group B (Bearish Pressure): 50%</span>
                     </div>
-                    <div class="w-full bg-gray-800 h-3 rounded-full overflow-hidden flex p-0.5 border border-gray-700">
-                        <div id="oid-bull-bar" class="bg-emerald-500 h-full rounded-l-full transition-all duration-500" style="width: 50%"></div>
-                        <div id="oid-bear-bar" class="bg-rose-500 h-full rounded-r-full transition-all duration-500" style="width: 50%"></div>
+                    <div class="w-full bg-gray-800 h-3.5 rounded-full overflow-hidden flex p-0.5 border border-gray-700">
+                        <div id="tg-bull-bar" class="bg-emerald-500 h-full rounded-l-full transition-all duration-500" style="width: 50%"></div>
+                        <div id="tg-bear-bar" class="bg-rose-500 h-full rounded-r-full transition-all duration-500" style="width: 50%"></div>
                     </div>
                 </div>
 
-                <!-- Two-Column Breakdown of 6 Timeframes with Exact BTC & Reason -->
+                <!-- Two Groups Breakdown Grid -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div class="bg-emerald-950/25 border border-emerald-500/35 rounded-xl p-3 space-y-1.5">
-                        <div class="flex justify-between items-center text-xs border-b border-emerald-500/20 pb-1">
-                            <span class="font-black text-emerald-300">🟢 மேல்நோக்கி பலம் (Bullish TFs)</span>
-                            <span id="oid-bull-weight-tag" class="text-[10px] font-mono font-black bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded">50%</span>
+                    <!-- Group A: Bullish Pressure -->
+                    <div class="bg-emerald-950/25 border border-emerald-500/40 rounded-xl p-3.5 space-y-2">
+                        <div class="flex justify-between items-center text-xs border-b border-emerald-500/20 pb-1.5">
+                            <span class="font-black text-emerald-300">🟢 Group A: மேல்நோக்கிய அழுத்தம் (Bullish Group)</span>
+                            <span id="tg-grp-a-badge" class="text-[10px] font-mono font-black bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded">50%</span>
                         </div>
-                        <ul id="oid-bull-tf-list" class="text-[10px] font-bold text-gray-200 space-y-1 leading-snug">
-                            <li>• Evaluating timeframe OI shifts...</li>
+                        <div class="grid grid-cols-2 gap-2 text-[10px]">
+                            <div class="bg-gray-950/70 border border-emerald-500/25 rounded-lg p-2">
+                                <span class="text-gray-400 block font-bold">1. +OI & Price ↑ (புதிய Buyers)</span>
+                                <span id="tg-new-buyers-val" class="font-mono font-black text-emerald-300 text-xs">0% | 0 TFs</span>
+                            </div>
+                            <div class="bg-gray-950/70 border border-cyan-500/25 rounded-lg p-2">
+                                <span class="text-gray-400 block font-bold">2. -OI & Price ↑ (Short க்ளோஸ்)</span>
+                                <span id="tg-short-cover-val" class="font-mono font-black text-cyan-300 text-xs">0% | 0 TFs</span>
+                            </div>
+                        </div>
+                        <ul id="tg-grp-a-list" class="text-[10px] font-bold text-gray-200 space-y-1 leading-snug pt-1">
+                            <li>• Scanning Group A timeframes...</li>
                         </ul>
                     </div>
 
-                    <div class="bg-rose-950/25 border border-rose-500/35 rounded-xl p-3 space-y-1.5">
-                        <div class="flex justify-between items-center text-xs border-b border-rose-500/20 pb-1">
-                            <span class="font-black text-rose-300">🔴 கீழ்நோக்கி அழுத்தம் (Bearish TFs)</span>
-                            <span id="oid-bear-weight-tag" class="text-[10px] font-mono font-black bg-rose-500/20 text-rose-300 px-2 py-0.5 rounded">50%</span>
+                    <!-- Group B: Bearish Pressure -->
+                    <div class="bg-rose-950/25 border border-rose-500/40 rounded-xl p-3.5 space-y-2">
+                        <div class="flex justify-between items-center text-xs border-b border-rose-500/20 pb-1.5">
+                            <span class="font-black text-rose-300">🔴 Group B: கீழ்நோக்கிய அழுத்தம் (Bearish Group)</span>
+                            <span id="tg-grp-b-badge" class="text-[10px] font-mono font-black bg-rose-500/20 text-rose-300 px-2 py-0.5 rounded">50%</span>
                         </div>
-                        <ul id="oid-bear-tf-list" class="text-[10px] font-bold text-gray-200 space-y-1 leading-snug">
-                            <li>• Evaluating timeframe OI shifts...</li>
+                        <div class="grid grid-cols-2 gap-2 text-[10px]">
+                            <div class="bg-gray-950/70 border border-rose-500/25 rounded-lg p-2">
+                                <span class="text-gray-400 block font-bold">3. +OI & Price ↓ (புதிய Sellers)</span>
+                                <span id="tg-new-sellers-val" class="font-mono font-black text-rose-300 text-xs">0% | 0 TFs</span>
+                            </div>
+                            <div class="bg-gray-950/70 border border-amber-500/25 rounded-lg p-2">
+                                <span class="text-gray-400 block font-bold">4. -OI & Price ↓ (Long க்ளோஸ்)</span>
+                                <span id="tg-long-unwind-val" class="font-mono font-black text-amber-300 text-xs">0% | 0 TFs</span>
+                            </div>
+                        </div>
+                        <ul id="tg-grp-b-list" class="text-[10px] font-bold text-gray-200 space-y-1 leading-snug pt-1">
+                            <li>• Scanning Group B timeframes...</li>
                         </ul>
                     </div>
                 </div>
 
-                <p id="oid-engine-summary" class="text-[11px] font-bold text-indigo-200 pt-1 border-t border-gray-800/80 leading-relaxed">Weights: 5m (24%), 10m (20%), 30m (18%), 1h (16%), 4h (12%), 24h (10%) — combining BTC delta and reaction cause into 100% strength/weakness.</p>
+                <!-- Bottom Actionable Summary -->
+                <p id="tg-summary-txt" class="text-[11px] font-bold text-fuchsia-200 pt-1 border-t border-gray-800/80 leading-relaxed">Evaluating BTC size intensity (1–10 BTC micro filter vs 20+ BTC flow), speed (BTC/min), % shift, and 24H/7D structural alignment...</p>
             </div>
 
             <!-- 24H & 7D PRICE–OI STRUCTURAL TREND ENGINE (60% 24H + 40% 7D WEIGHTED) -->
@@ -2546,6 +2542,236 @@
             if (sEl) sEl.innerText = summaryTxt;
         }
 
+        function evaluateTwoGroupDynamicEngine(
+            tfSummary,
+            currentPrice, highPrice, lowPrice, currentOI,
+            peak24OiVal, trough24OiVal,
+            max7dPriceVal, min7dPriceVal,
+            peak7dOiVal, trough7dOiVal
+        ) {
+            const tfSpecs = [
+                { key: '5m', label: '5m', mins: 5, baseWeight: 12 },
+                { key: '10m', label: '10m', mins: 10, baseWeight: 13 },
+                { key: '30m', label: '30m', mins: 30, baseWeight: 15 },
+                { key: '1h', label: '1h', mins: 60, baseWeight: 18 },
+                { key: '4h', label: '4h', mins: 240, baseWeight: 20 },
+                { key: '24h', label: '24h', mins: 1440, baseWeight: 22 }
+            ];
+
+            let newBuyersPower = 0, newBuyersCount = 0;
+            let shortCoverPower = 0, shortCoverCount = 0;
+            let newSellersPower = 0, newSellersCount = 0;
+            let longUnwindPower = 0, longUnwindCount = 0;
+
+            let groupALines = [];
+            let groupBLines = [];
+            let shortTermSpeedBtcMin = 0;
+
+            tfSpecs.forEach(spec => {
+                const info = (tfSummary && tfSummary[spec.key]) ? tfSummary[spec.key] : { diff: 0, pct: 0, priceDelta: 0, reaction: "" };
+                const diff = typeof info.diff === 'number' ? info.diff : 0;
+                const pct = typeof info.pct === 'number' ? info.pct : 0;
+                const priceDelta = typeof info.priceDelta === 'number' ? info.priceDelta : 0;
+                const absDiff = Math.abs(diff);
+                const absPct = Math.abs(pct);
+
+                // Size & % Intensity Multiplier (1-10 BTC micro vs 10-20 BTC vs 100+ BTC)
+                let sizeMult = 0.20;
+                let sizeTag = "Micro (1-10 BTC)";
+                if (absDiff <= 10) {
+                    sizeMult = 0.20 + (absDiff / 10) * 0.10; // 0.20 to 0.30
+                    sizeTag = "Micro ≤10 BTC";
+                } else if (absDiff <= 20) {
+                    sizeMult = 0.32 + ((absDiff - 10) / 10) * 0.13; // 0.32 to 0.45
+                    sizeTag = "Light 10-20 BTC";
+                } else if (absDiff <= 100) {
+                    sizeMult = 0.48 + ((absDiff - 20) / 80) * 0.27; // 0.48 to 0.75
+                    sizeTag = "Moderate";
+                } else if (absDiff <= 500) {
+                    sizeMult = 0.76 + ((absDiff - 100) / 400) * 0.24; // 0.76 to 1.00
+                    sizeTag = "Strong";
+                } else {
+                    sizeMult = 1.15;
+                    sizeTag = "Heavy 500+ BTC";
+                }
+
+                // Percentage intensity boost
+                const pctBoost = Math.min(0.25, absPct * 0.12);
+
+                // Speed (BTC per minute & Price pts per minute)
+                const btcPerMin = absDiff / spec.mins;
+                const pricePtsPerMin = Math.abs(priceDelta) / spec.mins;
+                if (spec.key === '5m' || spec.key === '10m') {
+                    shortTermSpeedBtcMin = Math.max(shortTermSpeedBtcMin, btcPerMin);
+                }
+                const speedMult = btcPerMin >= 15 ? 1.25 : (btcPerMin >= 4 ? 1.10 : (btcPerMin >= 1 ? 1.00 : 0.90));
+                const speedLabel = btcPerMin >= 15 ? "Fast ⚡" : (btcPerMin >= 4 ? "Moderate" : "Slow");
+
+                const effectivePower = spec.baseWeight * (sizeMult + pctBoost) * speedMult;
+                const btcStr = `${diff >= 0 ? '+' : ''}${diff.toFixed(1)} BTC (${pct >= 0 ? '+' : ''}${pct.toFixed(2)}%)`;
+                const spdStr = `${btcPerMin.toFixed(1)} BTC/m • ${speedLabel}`;
+
+                // 4 Market Reactions classified into 2 Groups
+                if (diff > 0 && priceDelta >= 0) {
+                    // 1. New Buyers (+OI & Price Up) -> Group A
+                    newBuyersPower += effectivePower;
+                    newBuyersCount += 1;
+                    groupALines.push(`[${spec.baseWeight}%] ${spec.label}: ${btcStr} | New Buyers (+OI, Price ↑) | ${spdStr} [${sizeTag}]`);
+                } else if (diff <= 0 && priceDelta >= 0) {
+                    // 2. Short Covering / Squeeze (-OI & Price Up) -> Group A
+                    shortCoverPower += effectivePower * 0.88; // Slightly lower weight than fresh buyer inflow
+                    shortCoverCount += 1;
+                    groupALines.push(`[${spec.baseWeight}%] ${spec.label}: ${btcStr} | Short Cover (-OI, Price ↑) | ${spdStr} [${sizeTag}]`);
+                } else if (diff > 0 && priceDelta < 0) {
+                    // 3. New Sellers (+OI & Price Down) -> Group B
+                    newSellersPower += effectivePower;
+                    newSellersCount += 1;
+                    groupBLines.push(`[${spec.baseWeight}%] ${spec.label}: ${btcStr} | New Sellers (+OI, Price ↓) | ${spdStr} [${sizeTag}]`);
+                } else {
+                    // 4. Long Unwinding / Liquidation (-OI & Price Down) -> Group B
+                    longUnwindPower += effectivePower * 0.92;
+                    longUnwindCount += 1;
+                    groupBLines.push(`[${spec.baseWeight}%] ${spec.label}: ${btcStr} | Long Close (-OI, Price ↓) | ${spdStr} [${sizeTag}]`);
+                }
+            });
+
+            // Integrate 24H & 7D Price-OI Structural Anchor (from Image 2 metrics)
+            const span24h = Math.max(1, highPrice - lowPrice);
+            const pos24h = Math.max(0, Math.min(1, (currentPrice - lowPrice) / span24h));
+            const has7d = (typeof max7dPriceVal === 'number' && typeof min7dPriceVal === 'number' && max7dPriceVal > min7dPriceVal);
+            const pos7d = has7d ? Math.max(0, Math.min(1, (currentPrice - min7dPriceVal) / (max7dPriceVal - min7dPriceVal))) : pos24h;
+
+            const structuralBullRatio = (pos24h * 0.60) + (pos7d * 0.40); // 0 to 1
+            const structuralAnchorPool = 28; // Structural anchor weight from 24H & 7D High/Low & OI Peak/Trough
+            const structBullPower = structuralAnchorPool * structuralBullRatio;
+            const structBearPower = structuralAnchorPool * (1 - structuralBullRatio);
+
+            const groupATotal = newBuyersPower + shortCoverPower + structBullPower;
+            const groupBTotal = newSellersPower + longUnwindPower + structBearPower;
+            const grandTotal = Math.max(0.01, groupATotal + groupBTotal);
+
+            const bullDomPct = Math.max(4, Math.min(96, Math.round((groupATotal / grandTotal) * 100)));
+            const bearDomPct = 100 - bullDomPct;
+            const isBullDom = bullDomPct >= bearDomPct;
+
+            // Sub-category % within total power
+            const newBuyersPct = Math.round((newBuyersPower / grandTotal) * 100);
+            const shortCoverPct = Math.round((shortCoverPower / grandTotal) * 100);
+            const newSellersPct = Math.round((newSellersPower / grandTotal) * 100);
+            const longUnwindPct = Math.round((longUnwindPower / grandTotal) * 100);
+
+            // Identify Primary Cause (Which of the 4 forces is strongest right now?)
+            const causes = [
+                { name: "New Buyers (+OI & Price ↑)", power: newBuyersPower, side: "BULL" },
+                { name: "Short Covering (-OI & Price ↑)", power: shortCoverPower, side: "BULL" },
+                { name: "New Sellers (+OI & Price ↓)", power: newSellersPower, side: "BEAR" },
+                { name: "Long Unwinding (-OI & Price ↓)", power: longUnwindPower, side: "BEAR" }
+            ];
+            causes.sort((a, b) => b.power - a.power);
+            const topCause = causes[0];
+
+            // Determine Market Regime (True Trend vs Counter-Trend Trap vs Low-Volume Noise)
+            const shortBull = (tfSummary['5m'] && tfSummary['5m'].priceDelta >= 0) && (tfSummary['10m'] && tfSummary['10m'].priceDelta >= 0);
+            const shortBear = (tfSummary['5m'] && tfSummary['5m'].priceDelta < 0) && (tfSummary['10m'] && tfSummary['10m'].priceDelta < 0);
+            const macroStructBear = structuralBullRatio < 0.38;
+            const macroStructBull = structuralBullRatio > 0.62;
+
+            let regimeText = "Balanced Flow";
+            if (shortTermSpeedBtcMin < 2.0 && Math.abs(bullDomPct - 50) <= 8) {
+                regimeText = "💤 Low-Volume Micro Noise (1–10 BTC)";
+            } else if (macroStructBear && shortBull && !isBullDom) {
+                regimeText = "⚠️ Counter-Trend Bounce inside 24H/7D Downtrend";
+            } else if (macroStructBull && shortBear && isBullDom) {
+                regimeText = "⚠️ Pullback inside 24H/7D Uptrend";
+            } else if (isBullDom && macroStructBull) {
+                regimeText = "🔥 True Bullish Trend Continuation";
+            } else if (!isBullDom && macroStructBear) {
+                regimeText = "🔥 True Bearish Trend Continuation";
+            } else {
+                regimeText = isBullDom ? "⚡ Early Bullish Shift" : "⚡ Early Bearish Shift";
+            }
+
+            // Update DOM Elements
+            const speedBadgeText = shortTermSpeedBtcMin >= 15
+                ? `Speed: Fast (${shortTermSpeedBtcMin.toFixed(1)} BTC/m) ⚡`
+                : (shortTermSpeedBtcMin >= 4
+                    ? `Speed: Moderate (${shortTermSpeedBtcMin.toFixed(1)} BTC/m)`
+                    : `Speed: Slow (${shortTermSpeedBtcMin.toFixed(1)} BTC/m)`);
+
+            let statusBadge = document.getElementById('tg-status-badge');
+            if (statusBadge) {
+                statusBadge.innerText = isBullDom
+                    ? `Group A Leads: ${bullDomPct}% Bullish 🚀`
+                    : `Group B Leads: ${bearDomPct}% Bearish 📉`;
+                statusBadge.className = isBullDom
+                    ? "text-[10px] sm:text-xs font-mono font-black bg-emerald-500/25 text-emerald-300 px-3 py-1 rounded-lg border border-emerald-400/60"
+                    : "text-[10px] sm:text-xs font-mono font-black bg-rose-500/25 text-rose-300 px-3 py-1 rounded-lg border border-rose-400/60";
+            }
+
+            let verdictEl = document.getElementById('tg-main-verdict');
+            if (verdictEl) {
+                verdictEl.innerText = `Dominant Driver: ${topCause.name} (${isBullDom ? 'Group A ' + bullDomPct + '%' : 'Group B ' + bearDomPct + '%'})`;
+                verdictEl.className = isBullDom
+                    ? "text-base sm:text-lg font-black text-emerald-400 tracking-wide"
+                    : "text-base sm:text-lg font-black text-rose-400 tracking-wide";
+            }
+
+            let spdEl = document.getElementById('tg-speed-pill');
+            if (spdEl) spdEl.innerText = speedBadgeText;
+            let regEl = document.getElementById('tg-regime-pill');
+            if (regEl) regEl.innerText = regimeText;
+
+            let bTxt = document.getElementById('tg-bull-pct-txt');
+            if (bTxt) bTxt.innerText = `🟢 Group A (Bullish Pressure): ${bullDomPct}%`;
+            let rTxt = document.getElementById('tg-bear-pct-txt');
+            if (rTxt) rTxt.innerText = `🔴 Group B (Bearish Pressure): ${bearDomPct}%`;
+
+            let netEl = document.getElementById('tg-net-flow-txt');
+            if (netEl) {
+                const netDiff = groupATotal - groupBTotal;
+                netEl.innerText = `Net Force: ${netDiff >= 0 ? '+' : ''}${netDiff.toFixed(1)} pts (24H/7D Bull ${Math.round(structuralBullRatio * 100)}%)`;
+                netEl.className = netDiff >= 0 ? "text-emerald-300" : "text-rose-300";
+            }
+
+            let bBar = document.getElementById('tg-bull-bar');
+            if (bBar) bBar.style.width = `${bullDomPct}%`;
+            let rBar = document.getElementById('tg-bear-bar');
+            if (rBar) rBar.style.width = `${bearDomPct}%`;
+
+            let grpABadge = document.getElementById('tg-grp-a-badge');
+            if (grpABadge) grpABadge.innerText = `${bullDomPct}% Power`;
+            let grpBBadge = document.getElementById('tg-grp-b-badge');
+            if (grpBBadge) grpBBadge.innerText = `${bearDomPct}% Power`;
+
+            let nbEl = document.getElementById('tg-new-buyers-val');
+            if (nbEl) nbEl.innerText = `${newBuyersPct}% | ${newBuyersCount} TFs`;
+            let scEl = document.getElementById('tg-short-cover-val');
+            if (scEl) scEl.innerText = `${shortCoverPct}% | ${shortCoverCount} TFs`;
+            let nsEl = document.getElementById('tg-new-sellers-val');
+            if (nsEl) nsEl.innerText = `${newSellersPct}% | ${newSellersCount} TFs`;
+            let luEl = document.getElementById('tg-long-unwind-val');
+            if (luEl) luEl.innerText = `${longUnwindPct}% | ${longUnwindCount} TFs`;
+
+            let listA = document.getElementById('tg-grp-a-list');
+            if (listA) {
+                listA.innerHTML = groupALines.length > 0
+                    ? groupALines.map(l => `<li>• ${l}</li>`).join('')
+                    : `<li class="text-gray-400">• No timeframe currently in Group A (Bullish)</li>`;
+            }
+
+            let listB = document.getElementById('tg-grp-b-list');
+            if (listB) {
+                listB.innerHTML = groupBLines.length > 0
+                    ? groupBLines.map(l => `<li>• ${l}</li>`).join('')
+                    : `<li class="text-gray-400">• No timeframe currently in Group B (Bearish)</li>`;
+            }
+
+            let sumEl = document.getElementById('tg-summary-txt');
+            if (sumEl) {
+                sumEl.innerText = `${regimeText} — Group A (${bullDomPct}%: New Buyers ${newBuyersPct}% + Short Cover ${shortCoverPct}%) vs Group B (${bearDomPct}%: New Sellers ${newSellersPct}% + Long Unwind ${longUnwindPct}%), anchored with 24H/7D Price-OI structure (${Math.round(structuralBullRatio * 100)}% Bull / ${100 - Math.round(structuralBullRatio * 100)}% Bear).`;
+            }
+        }
+
         async function fetchAllData() {
             try {
                 let tickerData = await fetchBinanceData('https://fapi.binance.com/fapi/v1/ticker/24hr?symbol=BTCUSDT');
@@ -2679,7 +2905,6 @@
                     });
                 }
 
-                evaluateOiDeltaTrendEngine(tfSummary);
                 const realMoney = await updateRealMoneyFlowData(currentPrice, currentOI, tfSummary, typeof window.lastPosLongPct === 'number' ? window.lastPosLongPct : 50, activeKlines1h);
                 evaluateUnifiedMarket(currentPrice, highPrice, lowPrice, currentOI, tfSummary, cvd4h, realMoney);
 
@@ -2867,7 +3092,13 @@
                     window._m7dMaxPrice, window._m7dMinPrice,
                     window._m7dPeakOi, window._m7dTroughOi
                 );
-                updateMasterCombinedTrendBanner();
+                evaluateTwoGroupDynamicEngine(
+                    tfSummary,
+                    currentPrice, highPrice, lowPrice, currentOI,
+                    window._m24PeakOi, window._m24TroughOi,
+                    window._m7dMaxPrice, window._m7dMinPrice,
+                    window._m7dPeakOi, window._m7dTroughOi
+                );
 
                 renderLiquidityMap(currentPrice, currentOI);
                 renderUnifiedMatrix(currentPrice, currentOI);
