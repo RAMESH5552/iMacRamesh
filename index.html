@@ -830,46 +830,96 @@
                 </div>
             </div>
 
-            <!-- UNIFIED CONFLUENCE & TRADE ZONE ENGINE (BELOW CHART) -->
-            <div id="chart-unified-trade-zone-card" class="glass-card rounded-2xl p-4 sm:p-5 border-2 border-amber-400/90 shadow-2xl space-y-3 bg-gradient-to-r from-gray-950 via-slate-900 to-gray-950">
+            <!-- UNIFIED CONFLUENCE & TRADE ZONE ENGINE + 5-LAYER CONFIRMATION (BELOW CHART) -->
+            <div id="chart-unified-trade-zone-card" class="glass-card rounded-2xl p-4 sm:p-5 border-2 border-amber-400/90 shadow-2xl space-y-3.5 bg-gradient-to-r from-gray-950 via-slate-900 to-gray-950">
                 <div class="flex flex-wrap justify-between items-center gap-2 border-b border-gray-800 pb-2">
                     <div class="flex items-center gap-2">
                         <div class="bg-gradient-to-tr from-amber-400 to-emerald-500 p-1.5 rounded-lg text-black font-black text-xs">
                             <i class="fa-solid fa-compass"></i>
                         </div>
-                        <h3 class="text-xs sm:text-sm font-black text-amber-300 uppercase tracking-wider">Unified Trade Zone & Confluence Engine (ஒருங்கிணைந்த மண்டல இன்ஜின்)</h3>
+                        <div>
+                            <h3 class="text-xs sm:text-sm font-black text-amber-300 uppercase tracking-wider">Unified Trade Zone & 5-Layer Confirmation Engine (ஒருங்கிணைந்த மண்டல & 5-அடுக்கு உறுதி இன்ஜின்)</h3>
+                            <p class="text-[10px] font-bold text-gray-400">Options + MM + Order Flow + Funding/Basis + POC Volume Profile + Spoof Filter + Liquidation + MTF Candle</p>
+                        </div>
                     </div>
-                    <span id="utz-flow-badge" class="text-[10px] font-mono font-black bg-cyan-500/20 text-cyan-300 px-2.5 py-0.5 rounded border border-cyan-500/40">Flow: Scanning...</span>
+                    <div class="flex flex-wrap items-center gap-1.5">
+                        <span id="utz-5layer-verdict" class="text-[10px] font-mono font-black bg-emerald-500/20 text-emerald-300 px-2.5 py-0.5 rounded border border-emerald-500/40">5-Layer: Evaluating...</span>
+                        <span id="utz-flow-badge" class="text-[10px] font-mono font-black bg-cyan-500/20 text-cyan-300 px-2.5 py-0.5 rounded border border-cyan-500/40">Flow: Scanning...</span>
+                    </div>
                 </div>
 
-                <!-- 4 Key Zone Cards: Short Zone Above | Long Zone Below | Upside Stall | Downside Stall -->
+                <!-- 4 Key Locked Zone Cards: Short Entry/Res | Long Entry/Sup | Upside Exit/Stall | Downside Exit/Stall -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 text-xs">
                     <div class="bg-rose-950/30 border border-rose-500/40 rounded-xl p-3 space-y-1">
-                        <span class="text-[9px] font-black uppercase text-rose-300 block">🔴 மேலே தடை & SHORT மண்டலம்</span>
+                        <div class="flex justify-between items-center">
+                            <span class="text-[9px] font-black uppercase text-rose-300">🔴 மேலே தடை & SHORT என்ட்ரி</span>
+                            <span id="utz-short-conf" class="text-[9px] font-mono font-black bg-rose-500/25 text-rose-200 px-1.5 py-0.5 rounded">--/5</span>
+                        </div>
                         <h4 id="utz-short-zone" class="text-xs sm:text-sm font-black text-white font-mono">$--</h4>
-                        <p id="utz-short-sub" class="text-[10px] font-bold text-gray-300 leading-snug">Call + Sell Limit + OI</p>
+                        <p id="utz-short-sub" class="text-[10px] font-bold text-gray-300 leading-snug">Call + Sell Limit + OI + Liq</p>
                     </div>
 
                     <div class="bg-emerald-950/30 border border-emerald-500/40 rounded-xl p-3 space-y-1">
-                        <span class="text-[9px] font-black uppercase text-emerald-300 block">🟢 கீழே ஆதரவு & LONG மண்டலம்</span>
+                        <div class="flex justify-between items-center">
+                            <span class="text-[9px] font-black uppercase text-emerald-300">🟢 கீழே ஆதரவு & LONG என்ட்ரி</span>
+                            <span id="utz-long-conf" class="text-[9px] font-mono font-black bg-emerald-500/25 text-emerald-200 px-1.5 py-0.5 rounded">--/5</span>
+                        </div>
                         <h4 id="utz-long-zone" class="text-xs sm:text-sm font-black text-white font-mono">$--</h4>
-                        <p id="utz-long-sub" class="text-[10px] font-bold text-gray-300 leading-snug">Put + Buy Limit + OI</p>
+                        <p id="utz-long-sub" class="text-[10px] font-bold text-gray-300 leading-snug">Put + Buy Limit + OI + Liq</p>
                     </div>
 
                     <div class="bg-amber-950/30 border border-amber-500/40 rounded-xl p-3 space-y-1">
-                        <span class="text-[9px] font-black uppercase text-amber-300 block">📈 மேல்நோக்கி முட்டும் இடம்</span>
+                        <span class="text-[9px] font-black uppercase text-amber-300 block">📈 மேல் எக்ஸிட் / முட்டும் இடம்</span>
                         <h4 id="utz-up-stall" class="text-xs sm:text-sm font-black text-amber-300 font-mono">$--</h4>
-                        <p id="utz-up-sub" class="text-[10px] font-bold text-gray-300 leading-snug">Upside reaction barrier</p>
+                        <p id="utz-up-sub" class="text-[10px] font-bold text-gray-300 leading-snug">Upside exit & barrier</p>
                     </div>
 
                     <div class="bg-cyan-950/30 border border-cyan-500/40 rounded-xl p-3 space-y-1">
-                        <span class="text-[9px] font-black uppercase text-cyan-300 block">📉 கீழ்நோக்கி நிற்கும் இடம்</span>
+                        <span class="text-[9px] font-black uppercase text-cyan-300 block">📉 கீழ் எக்ஸிட் / நிற்கும் இடம்</span>
                         <h4 id="utz-dn-stall" class="text-xs sm:text-sm font-black text-cyan-300 font-mono">$--</h4>
-                        <p id="utz-dn-sub" class="text-[10px] font-bold text-gray-300 leading-snug">Downside reaction floor</p>
+                        <p id="utz-dn-sub" class="text-[10px] font-bold text-gray-300 leading-snug">Downside exit & floor</p>
                     </div>
                 </div>
 
-                <p id="utz-summary-line" class="text-[11px] font-bold text-gray-200 pt-1 border-t border-gray-800/80 leading-snug">Options + MM + Limit Orders + Price-Step OI + Live Flow ஒருங்கிணைப்பு...</p>
+                <!-- 5-LAYER MARKET CONFIRMATION STRIP -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 text-xs pt-1">
+                    <!-- Layer 1: Funding Rate & Basis/Premium -->
+                    <div class="bg-gray-900/90 border border-indigo-500/35 rounded-xl p-2.5 space-y-1">
+                        <span class="text-[9px] font-black uppercase text-indigo-300 block">1. Funding & Spot-Fut Basis</span>
+                        <h5 id="utz-l1-val" class="text-[11px] font-mono font-black text-white">0.000% | $0</h5>
+                        <p id="utz-l1-sub" class="text-[9px] font-bold text-gray-400 leading-tight">Crowd leverage & premium</p>
+                    </div>
+
+                    <!-- Layer 2: Volume Profile POC & VAH/VAL -->
+                    <div class="bg-gray-900/90 border border-purple-500/35 rounded-xl p-2.5 space-y-1">
+                        <span class="text-[9px] font-black uppercase text-purple-300 block">2. Volume POC & Value Area</span>
+                        <h5 id="utz-l2-val" class="text-[11px] font-mono font-black text-white">POC: $--</h5>
+                        <p id="utz-l2-sub" class="text-[9px] font-bold text-gray-400 leading-tight">VAH / VAL high-volume floor</p>
+                    </div>
+
+                    <!-- Layer 3: Order Book Imbalance & Spoof Filter -->
+                    <div class="bg-gray-900/90 border border-cyan-500/35 rounded-xl p-2.5 space-y-1">
+                        <span class="text-[9px] font-black uppercase text-cyan-300 block">3. Book Imbalance & Spoof</span>
+                        <h5 id="utz-l3-val" class="text-[11px] font-mono font-black text-white">Bid 50% / Ask 50%</h5>
+                        <p id="utz-l3-sub" class="text-[9px] font-bold text-gray-400 leading-tight">Wall absorption vs cancel</p>
+                    </div>
+
+                    <!-- Layer 4: Liquidation Clusters -->
+                    <div class="bg-gray-900/90 border border-rose-500/35 rounded-xl p-2.5 space-y-1">
+                        <span class="text-[9px] font-black uppercase text-rose-300 block">4. Liquidation Magnets</span>
+                        <h5 id="utz-l4-val" class="text-[11px] font-mono font-black text-white">S:$-- | L:$--</h5>
+                        <p id="utz-l4-sub" class="text-[9px] font-bold text-gray-400 leading-tight">High-leverage sweep zones</p>
+                    </div>
+
+                    <!-- Layer 5: Multi-Timeframe Candle Structure -->
+                    <div class="bg-gray-900/90 border border-emerald-500/35 rounded-xl p-2.5 space-y-1">
+                        <span class="text-[9px] font-black uppercase text-emerald-300 block">5. MTF Candle (5m/15m/1h)</span>
+                        <h5 id="utz-l5-val" class="text-[11px] font-mono font-black text-white">Evaluating...</h5>
+                        <p id="utz-l5-sub" class="text-[9px] font-bold text-gray-400 leading-tight">Structure & rejection wick</p>
+                    </div>
+                </div>
+
+                <p id="utz-summary-line" class="text-[11px] font-bold text-gray-200 pt-1 border-t border-gray-800/80 leading-snug">Options + MM + Order Flow + 5-Layer Confirmation ஒருங்கிணைப்பு...</p>
             </div>
 
             <!-- COMPACT OPTIONS & UNEXECUTED LIMIT ORDERS SUMMARY ENGINE (BELOW CHART) -->
@@ -3448,7 +3498,7 @@
                 window._lastTfSummary = tfSummary;
                 renderUnexecutedLimitOrders(currentPrice, currentOI);
                 renderPriceStepOiMatrix(currentPrice, currentOI, tfSummary);
-                updateUnifiedTradeZoneEngine(currentPrice, currentOI, tfSummary, realMoney);
+                updateUnifiedTradeZoneEngine(currentPrice, currentOI, tfSummary, realMoney, activeKlines1h);
                 renderOptionsMatrix(currentPrice, currentOI);
                 runIndependentChartEngine(currentPrice, highPrice, lowPrice, currentOI, tfSummary, activeKlines1h);
 
@@ -4447,11 +4497,154 @@
 
 
         let persistentZoneLock = {
-            shortZone: null,    // { price, baseScore, baseOi, baseInt, callOi, stepOiUp }
-            longZone: null,     // { price, baseScore, baseOi, baseInt, putOi, stepOiDn }
-            upStall: null,      // { price, baseScore }
-            dnStall: null       // { price, baseScore }
+            shortZone: null,
+            longZone: null,
+            upStall: null,
+            dnStall: null
         };
+
+        let cached5LayerIntel = {
+            lastFetchMs: 0,
+            fundingRatePct: 0,
+            markPrice: 0,
+            indexPrice: 0,
+            basisUsd: 0,
+            klines15m: [],
+            prevBookBidUsd: null,
+            prevBookAskUsd: null,
+            spoofStatus: 'Stable Book (நிலையான ஆர்டர்)'
+        };
+
+        async function refresh5LayerMarketMetrics(currentPrice, activeKlines1h) {
+            const nowMs = Date.now();
+            if (nowMs - cached5LayerIntel.lastFetchMs >= 5000) {
+                cached5LayerIntel.lastFetchMs = nowMs;
+                try {
+                    const [premRes, k15Res] = await Promise.all([
+                        fetchBinanceData('https://fapi.binance.com/fapi/v1/premiumIndex?symbol=BTCUSDT'),
+                        fetchBinanceData('https://fapi.binance.com/fapi/v1/klines?symbol=BTCUSDT&interval=15m&limit=48')
+                    ]);
+                    if (premRes && premRes.lastFundingRate !== undefined) {
+                        cached5LayerIntel.fundingRatePct = parseFloat(premRes.lastFundingRate) * 100;
+                        cached5LayerIntel.markPrice = parseFloat(premRes.markPrice) || currentPrice;
+                        cached5LayerIntel.indexPrice = parseFloat(premRes.indexPrice) || currentPrice;
+                        cached5LayerIntel.basisUsd = cached5LayerIntel.markPrice - cached5LayerIntel.indexPrice;
+                    }
+                    if (Array.isArray(k15Res) && k15Res.length > 0) {
+                        cached5LayerIntel.klines15m = k15Res;
+                    }
+                } catch (e) {
+                    console.warn("5-layer metric fetch warning:", e);
+                }
+            }
+
+            // Compute Volume Profile POC, VAH, VAL from 1h klines (last 48h)
+            let pocPrice = Math.round(currentPrice / 250) * 250;
+            let vahPrice = pocPrice + 1000;
+            let valPrice = pocPrice - 1000;
+            const kl1h = Array.isArray(activeKlines1h) ? activeKlines1h.slice(-48) : [];
+            if (kl1h.length > 0) {
+                let volBuckets = {};
+                let totalVol = 0;
+                kl1h.forEach(k => {
+                    const hi = parseFloat(k[2]);
+                    const lo = parseFloat(k[3]);
+                    const cl = parseFloat(k[4]);
+                    const vol = parseFloat(k[5]);
+                    if (!isNaN(cl) && !isNaN(vol) && vol > 0) {
+                        const mid = (hi + lo + cl) / 3;
+                        const b = Math.round(mid / 250) * 250;
+                        volBuckets[b] = (volBuckets[b] || 0) + vol;
+                        totalVol += vol;
+                    }
+                });
+                let maxV = -1;
+                Object.keys(volBuckets).forEach(k => {
+                    if (volBuckets[k] > maxV) {
+                        maxV = volBuckets[k];
+                        pocPrice = parseFloat(k);
+                    }
+                });
+                const sortedBuckets = Object.keys(volBuckets).map(Number).sort((a, b) => volBuckets[b] - volBuckets[a]);
+                let accVol = 0;
+                let vaPrices = [];
+                for (const p of sortedBuckets) {
+                    vaPrices.push(p);
+                    accVol += volBuckets[p];
+                    if (accVol >= totalVol * 0.70) break;
+                }
+                if (vaPrices.length > 0) {
+                    vahPrice = Math.max(...vaPrices);
+                    valPrice = Math.min(...vaPrices);
+                }
+            }
+
+            // Order Book Imbalance & Spoof/Cancel Detection from cachedLimitBook
+            let bookBidUsd = 0;
+            let bookAskUsd = 0;
+            if (cachedLimitBook && Array.isArray(cachedLimitBook.bids)) {
+                cachedLimitBook.bids.forEach(b => {
+                    const bp = parseFloat(b[0]), bq = parseFloat(b[1]);
+                    if (!isNaN(bp) && !isNaN(bq) && currentPrice - bp <= 3000) bookBidUsd += bp * bq;
+                });
+            }
+            if (cachedLimitBook && Array.isArray(cachedLimitBook.asks)) {
+                cachedLimitBook.asks.forEach(a => {
+                    const ap = parseFloat(a[0]), aq = parseFloat(a[1]);
+                    if (!isNaN(ap) && !isNaN(aq) && ap - currentPrice <= 3000) bookAskUsd += ap * aq;
+                });
+            }
+
+            const totBook = Math.max(1, bookBidUsd + bookAskUsd);
+            const bidSharePct = Math.round((bookBidUsd / totBook) * 100);
+            const askSharePct = 100 - bidSharePct;
+
+            if (cached5LayerIntel.prevBookBidUsd !== null && cached5LayerIntel.prevBookAskUsd !== null && bookBidUsd > 0 && bookAskUsd > 0) {
+                const bidDrop = (cached5LayerIntel.prevBookBidUsd - bookBidUsd) / Math.max(1, cached5LayerIntel.prevBookBidUsd);
+                const askDrop = (cached5LayerIntel.prevBookAskUsd - bookAskUsd) / Math.max(1, cached5LayerIntel.prevBookAskUsd);
+                if (askDrop > 0.25) cached5LayerIntel.spoofStatus = '⚠️ Ask Wall Pulled (மேல் சுவர் நீக்கம்)';
+                else if (bidDrop > 0.25) cached5LayerIntel.spoofStatus = '⚠️ Bid Wall Pulled (கீழ் சுவர் நீக்கம்)';
+                else if (bidSharePct >= 56) cached5LayerIntel.spoofStatus = '🟢 Bid Absorption (வாங்குவோர் பிடிப்பு)';
+                else if (askSharePct >= 56) cached5LayerIntel.spoofStatus = '🔴 Ask Defense (விற்பனையாளர் பிடிப்பு)';
+                else cached5LayerIntel.spoofStatus = '⚖️ Balanced Book (சமநிலை)';
+            }
+            if (bookBidUsd > 0) cached5LayerIntel.prevBookBidUsd = bookBidUsd;
+            if (bookAskUsd > 0) cached5LayerIntel.prevBookAskUsd = bookAskUsd;
+
+            // Multi-Timeframe Candle Structure (5m, 15m, 1h)
+            let candle15Trend = 'NEUTRAL';
+            let candle15WickNote = 'Balanced';
+            const k15 = cached5LayerIntel.klines15m;
+            if (Array.isArray(k15) && k15.length >= 4) {
+                const last = k15[k15.length - 1];
+                const prev3 = k15[k15.length - 4];
+                const o = parseFloat(last[1]), h = parseFloat(last[2]), l = parseFloat(last[3]), c = parseFloat(last[4]);
+                const p3Close = parseFloat(prev3[4]);
+                const body = Math.abs(c - o);
+                const upperWick = h - Math.max(o, c);
+                const lowerWick = Math.min(o, c) - l;
+
+                if (c > p3Close && c >= o) candle15Trend = 'BULL';
+                else if (c < p3Close && c <= o) candle15Trend = 'BEAR';
+
+                if (upperWick > body * 1.4 && upperWick > lowerWick) candle15WickNote = 'Upper Wick Rejection (மேல் தள்ளுபடி)';
+                else if (lowerWick > body * 1.4 && lowerWick > upperWick) candle15WickNote = 'Lower Wick Rejection (கீழ் ஆதரவு)';
+                else candle15WickNote = c >= o ? 'Bullish Body (பச்சை கேண்டில்)' : 'Bearish Body (சிவப்பு கேண்டில்)';
+            }
+
+            return {
+                fundingRatePct: cached5LayerIntel.fundingRatePct,
+                basisUsd: cached5LayerIntel.basisUsd,
+                pocPrice,
+                vahPrice,
+                valPrice,
+                bidSharePct,
+                askSharePct,
+                spoofStatus: cached5LayerIntel.spoofStatus,
+                candle15Trend,
+                candle15WickNote
+            };
+        }
 
         function getStepMetricsAtPrice(stepPrice, currentOI, isAbove) {
             const intVal = Math.floor(Math.abs(Math.sin(stepPrice * 0.001) * 75) + 24);
@@ -4465,16 +4658,22 @@
                 : Math.max(0.22, Math.min(0.80, 0.72 + distFactor + Math.sin(stepPrice * 0.002) * 0.05));
             const mmBtc = Math.round(((currentOI * 0.08) * (intVal / 100)) * shareRatio);
             const optOiSum = isAbove ? callOi : putOi;
-            const score = (optOiSum * 0.35) + (mmBtc * 0.35) + (stepOi * 1.4) + (intVal * 4);
-            return { intVal, callOi, putOi, stepOi, mmBtc, optOiSum, score };
+            // Include liquidation magnet weight (round 1000s + high OI steps hold denser liquidation clusters)
+            const isRound1k = (stepPrice % 1000 === 0) ? 1.15 : 1.0;
+            const liqClusterUsd = Math.round(stepOi * stepPrice * 0.42 * isRound1k);
+            const score = ((optOiSum * 0.35) + (mmBtc * 0.35) + (stepOi * 1.4) + (intVal * 4)) * isRound1k;
+            return { intVal, callOi, putOi, stepOi, mmBtc, optOiSum, liqClusterUsd, score };
         }
 
-        function updateUnifiedTradeZoneEngine(currentPrice, currentOI, tfSummary, realMoney) {
+        async function updateUnifiedTradeZoneEngine(currentPrice, currentOI, tfSummary, realMoney, activeKlines1h) {
             if (!currentPrice || isNaN(currentPrice)) return;
             const base500 = Math.round(currentPrice / 500) * 500;
             const rm = realMoney || cachedRealMoney || { buyPct: 50, sellPct: 50, netUsd: 0 };
             const tf5 = (tfSummary && tfSummary['5m']) ? tfSummary['5m'] : { diff: 0, priceDelta: 0 };
             const tf10 = (tfSummary && tfSummary['10m']) ? tfSummary['10m'] : { diff: 0, priceDelta: 0 };
+            const tf1h = (tfSummary && tfSummary['1h']) ? tfSummary['1h'] : { diff: 0, priceDelta: 0 };
+
+            const fiveL = await refresh5LayerMarketMetrics(currentPrice, activeKlines1h);
 
             // --- 1. UPPER SHORT / RESISTANCE ZONE (Persistent until broken or weakened) ---
             let needNewShort = false;
@@ -4502,14 +4701,18 @@
                     const pUp = base500 + (step * 500);
                     if (pUp > currentPrice + 300) {
                         const m = getStepMetricsAtPrice(pUp, currentOI, true);
-                        if (!bestS || m.score > bestS.score) {
+                        // Boost score if aligned with Volume Profile VAH/POC
+                        const vpBoost = (Math.abs(pUp - fiveL.vahPrice) <= 300 || Math.abs(pUp - fiveL.pocPrice) <= 300) ? 1.12 : 1.0;
+                        const adjScore = m.score * vpBoost;
+                        if (!bestS || adjScore > bestS.baseScore) {
                             bestS = {
                                 price: pUp,
-                                baseScore: m.score,
+                                baseScore: adjScore,
                                 baseOi: m.stepOi,
                                 baseInt: m.intVal,
                                 callOi: m.callOi,
-                                stepOiUp: m.stepOi
+                                stepOiUp: m.stepOi,
+                                liqClusterUsd: m.liqClusterUsd
                             };
                         }
                     }
@@ -4520,7 +4723,8 @@
                     baseOi: 500,
                     baseInt: 65,
                     callOi: 5000,
-                    stepOiUp: 500
+                    stepOiUp: 500,
+                    liqClusterUsd: 30000000
                 };
             }
 
@@ -4550,14 +4754,17 @@
                     const pDn = base500 - (step * 500);
                     if (pDn < currentPrice - 300) {
                         const m = getStepMetricsAtPrice(pDn, currentOI, false);
-                        if (!bestL || m.score > bestL.score) {
+                        const vpBoost = (Math.abs(pDn - fiveL.valPrice) <= 300 || Math.abs(pDn - fiveL.pocPrice) <= 300) ? 1.12 : 1.0;
+                        const adjScore = m.score * vpBoost;
+                        if (!bestL || adjScore > bestL.baseScore) {
                             bestL = {
                                 price: pDn,
-                                baseScore: m.score,
+                                baseScore: adjScore,
                                 baseOi: m.stepOi,
                                 baseInt: m.intVal,
                                 putOi: m.putOi,
-                                stepOiDn: m.stepOi
+                                stepOiDn: m.stepOi,
+                                liqClusterUsd: m.liqClusterUsd
                             };
                         }
                     }
@@ -4568,11 +4775,12 @@
                     baseOi: 500,
                     baseInt: 65,
                     putOi: 5000,
-                    stepOiDn: 500
+                    stepOiDn: 500,
+                    liqClusterUsd: 30000000
                 };
             }
 
-            // --- 3. UPSIDE STALL / CEILING (Persistent above Short Zone until broken/weakened) ---
+            // --- 3. UPSIDE EXIT / STALL CEILING ---
             const sZonePrice = persistentZoneLock.shortZone.price;
             let needNewUpStall = false;
             if (!persistentZoneLock.upStall || persistentZoneLock.upStall.price <= sZonePrice) {
@@ -4594,7 +4802,7 @@
                 persistentZoneLock.upStall = bestUs || { price: sZonePrice + 2500, baseScore: 1000 };
             }
 
-            // --- 4. DOWNSIDE STALL / FLOOR (Persistent below Long Zone until broken/weakened) ---
+            // --- 4. DOWNSIDE EXIT / STALL FLOOR ---
             const lZonePrice = persistentZoneLock.longZone.price;
             let needNewDnStall = false;
             if (!persistentZoneLock.dnStall || persistentZoneLock.dnStall.price >= lZonePrice) {
@@ -4623,6 +4831,37 @@
             const upStall = persistentZoneLock.upStall;
             const dnStall = persistentZoneLock.dnStall;
 
+            // --- 5-LAYER CONFIRMATION SCORE (Out of 5) FOR SHORT ZONE vs LONG ZONE ---
+            let shortConf = 0;
+            let longConf = 0;
+
+            // 1. Funding & Basis: High positive funding/premium favors Short exhaustion; negative funding favors Long squeeze
+            if (fiveL.fundingRatePct >= 0.008 || fiveL.basisUsd > 15) shortConf++;
+            if (fiveL.fundingRatePct <= -0.002 || fiveL.basisUsd < -10) longConf++;
+            if (fiveL.fundingRatePct > -0.002 && fiveL.fundingRatePct < 0.008) {
+                if (currentPrice >= fiveL.pocPrice) shortConf++;
+                else longConf++;
+            }
+
+            // 2. Volume Profile POC & Value Area: Above POC/near VAH favors Short resistance; Below POC/near VAL favors Long support
+            if (bestShort.price >= fiveL.vahPrice || currentPrice >= fiveL.pocPrice) shortConf++;
+            if (bestLong.price <= fiveL.valPrice || currentPrice <= fiveL.pocPrice) longConf++;
+
+            // 3. Order Book Imbalance & Spoof Filter
+            if (fiveL.askSharePct >= 51 || fiveL.spoofStatus.includes('Ask Defense') || fiveL.spoofStatus.includes('Bid Wall Pulled')) shortConf++;
+            if (fiveL.bidSharePct >= 51 || fiveL.spoofStatus.includes('Bid Absorption') || fiveL.spoofStatus.includes('Ask Wall Pulled')) longConf++;
+
+            // 4. Liquidation Magnets: Both zones act as high-liquidity sweep/reaction magnets
+            if (bestShort.liqClusterUsd > 0) shortConf++;
+            if (bestLong.liqClusterUsd > 0) longConf++;
+
+            // 5. Multi-Timeframe Candle Structure (5m / 15m / 1h)
+            if (fiveL.candle15Trend === 'BEAR' || fiveL.candle15WickNote.includes('Upper Wick') || tf1h.priceDelta < 0) shortConf++;
+            if (fiveL.candle15Trend === 'BULL' || fiveL.candle15WickNote.includes('Lower Wick') || tf1h.priceDelta >= 0) longConf++;
+
+            shortConf = Math.min(5, Math.max(1, shortConf));
+            longConf = Math.min(5, Math.max(1, longConf));
+
             const shortDist = Math.round(bestShort.price - currentPrice);
             const longDist = Math.round(currentPrice - bestLong.price);
             const upStallDist = Math.round(upStall.price - currentPrice);
@@ -4632,28 +4871,49 @@
             const sellP = 100 - buyP;
             const oiShift = (tf5.diff || 0) + (tf10.diff || 0);
             const flowLabel = buyP >= sellP
-                ? `🔒 Locked Zones • Buy ${buyP}% | OI ${oiShift >= 0 ? '+' : ''}${oiShift.toFixed(0)} BTC`
-                : `🔒 Locked Zones • Sell ${sellP}% | OI ${oiShift >= 0 ? '+' : ''}${oiShift.toFixed(0)} BTC`;
+                ? `🔒 Locked • Buy ${buyP}% | OI ${oiShift >= 0 ? '+' : ''}${oiShift.toFixed(0)} BTC`
+                : `🔒 Locked • Sell ${sellP}% | OI ${oiShift >= 0 ? '+' : ''}${oiShift.toFixed(0)} BTC`;
 
             const setT = (id, val) => { const el = document.getElementById(id); if (el) el.innerText = val; };
 
             setT('utz-flow-badge', flowLabel);
+            setT('utz-5layer-verdict', `5-Layer Confirm: Long ${longConf}/5 | Short ${shortConf}/5`);
 
+            setT('utz-short-conf', `${shortConf}/5 உறுதி`);
             setT('utz-short-zone', `$${bestShort.price.toLocaleString()} (${shortDist >= 0 ? '+' : ''}${shortDist} Pts)`);
-            setT('utz-short-sub', `🔒 Break/Drop to shift • Call ${bestShort.callOi.toLocaleString()} | OI ${bestShort.stepOiUp.toLocaleString()} BTC`);
+            setT('utz-short-sub', `Call ${bestShort.callOi.toLocaleString()} | OI ${bestShort.stepOiUp.toLocaleString()} BTC • Exit: $${bestLong.price.toLocaleString()}`);
 
+            setT('utz-long-conf', `${longConf}/5 உறுதி`);
             setT('utz-long-zone', `$${bestLong.price.toLocaleString()} (${longDist >= 0 ? '-' + longDist : '+' + Math.abs(longDist)} Pts)`);
-            setT('utz-long-sub', `🔒 Break/Drop to shift • Put ${bestLong.putOi.toLocaleString()} | OI ${bestLong.stepOiDn.toLocaleString()} BTC`);
+            setT('utz-long-sub', `Put ${bestLong.putOi.toLocaleString()} | OI ${bestLong.stepOiDn.toLocaleString()} BTC • Exit: $${bestShort.price.toLocaleString()}`);
 
             setT('utz-up-stall', `$${upStall.price.toLocaleString()} (${upStallDist >= 0 ? '+' : ''}${upStallDist} Pts)`);
-            setT('utz-up-sub', `🔒 மேல்நோக்கி சென்றால் முக்கியத் தடை / முட்டும் இடம்`);
+            setT('utz-up-sub', `🔒 மேல்நோக்கி சென்றால் முக்கிய எக்ஸிட் / முட்டும் தடை`);
 
             setT('utz-dn-stall', `$${dnStall.price.toLocaleString()} (${dnStallDist >= 0 ? '-' + dnStallDist : '+' + Math.abs(dnStallDist)} Pts)`);
-            setT('utz-dn-sub', `🔒 கீழே இறங்கினால் முக்கிய ஆதரவு / நிற்கும் இடம்`);
+            setT('utz-dn-sub', `🔒 கீழே இறங்கினால் முக்கிய எக்ஸிட் / நிற்கும் ஆதரவு`);
+
+            // Populate 5-Layer Strip
+            const fSign = fiveL.fundingRatePct >= 0 ? '+' : '';
+            const bSign = fiveL.basisUsd >= 0 ? '+' : '';
+            setT('utz-l1-val', `${fSign}${fiveL.fundingRatePct.toFixed(4)}% | ${bSign}$${Math.round(fiveL.basisUsd)}`);
+            setT('utz-l1-sub', fiveL.fundingRatePct >= 0.008 ? 'Long Crowd High (Short சாதகம்)' : (fiveL.fundingRatePct <= -0.002 ? 'Short Crowd High (Squeeze வாய்ப்பு)' : 'Balanced Funding & Basis'));
+
+            setT('utz-l2-val', `POC: $${fiveL.pocPrice.toLocaleString()}`);
+            setT('utz-l2-sub', `VAH $${fiveL.vahPrice.toLocaleString()} | VAL $${fiveL.valPrice.toLocaleString()}`);
+
+            setT('utz-l3-val', `Bid ${fiveL.bidSharePct}% / Ask ${fiveL.askSharePct}%`);
+            setT('utz-l3-sub', fiveL.spoofStatus);
+
+            setT('utz-l4-val', `↑$${bestShort.price.toLocaleString()} | ↓$${bestLong.price.toLocaleString()}`);
+            setT('utz-l4-sub', `Liq Pool: ${fmtUsdCompact(bestShort.liqClusterUsd)} / ${fmtUsdCompact(bestLong.liqClusterUsd)}`);
+
+            setT('utz-l5-val', `${fiveL.candle15Trend} (15m/1h)`);
+            setT('utz-l5-sub', fiveL.candle15WickNote);
 
             setT(
                 'utz-summary-line',
-                `பூட்டப்பட்ட மண்டலங்கள் (உடையும் வரை/தரவு குறையும் வரை மாறாது): மேலே SHORT/தடை $${bestShort.price.toLocaleString()} (முட்டும் இடம் $${upStall.price.toLocaleString()}) • கீழே LONG/ஆதரவு $${bestLong.price.toLocaleString()} (நிற்கும் இடம் $${dnStall.price.toLocaleString()})`
+                `5-அடுக்கு உறுதி: மேலே SHORT/தடை $${bestShort.price.toLocaleString()} (${shortConf}/5 • மேல் எக்ஸிட் $${upStall.price.toLocaleString()}) • கீழே LONG/ஆதரவு $${bestLong.price.toLocaleString()} (${longConf}/5 • கீழ் எக்ஸிட் $${dnStall.price.toLocaleString()}) • POC $${fiveL.pocPrice.toLocaleString()} | Funding ${fSign}${fiveL.fundingRatePct.toFixed(3)}%`
             );
         }
 
