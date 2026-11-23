@@ -3325,9 +3325,38 @@
         function renderOptionsMatrix(currentPrice, currentOI) {
             const container = document.getElementById('options-matrix-container');
             if (!container) return;
-            let pcr = (0.92).toFixed(2);
+            let sumCallOi = 0;
+            let sumPutOi = 0;
+            let basePriceRoundedForPcr = Math.round(currentPrice);
+            for (let i = 20; i >= 1; i--) {
+                const pUp = basePriceRoundedForPcr + (i * 500);
+                const intUp = Math.floor(Math.abs(Math.sin(pUp * 0.001) * 75) + 24);
+                sumCallOi += Math.round((currentOI * 0.25) * (intUp / 100));
+                sumPutOi += Math.round((currentOI * 0.22) * (intUp / 100));
+            }
+            for (let i = 1; i <= 20; i++) {
+                const pDn = basePriceRoundedForPcr - (i * 500);
+                const intDn = Math.floor(Math.abs(Math.sin(pDn * 0.001) * 75) + 24);
+                sumCallOi += Math.round((currentOI * 0.25) * (intDn / 100));
+                sumPutOi += Math.round((currentOI * 0.22) * (intDn / 100));
+            }
+
+            let bullScoreRef = 50;
+            const bullElRef = document.getElementById('bullish-score-txt');
+            if (bullElRef) {
+                const parsedB = parseInt(bullElRef.innerText, 10);
+                if (!isNaN(parsedB) && parsedB >= 10 && parsedB <= 90) bullScoreRef = parsedB;
+            }
+            const strengthTilt = 1 + ((bullScoreRef - 50) / 100) * 0.35;
+            const rawPcr = sumCallOi > 0 ? ((sumPutOi / sumCallOi) * strengthTilt) : 0.92;
+            const pcrVal = Math.max(0.45, Math.min(1.65, rawPcr));
+            let pcr = pcrVal.toFixed(2);
+            let pcrLabel = 'Neutral (சமநிலை)';
+            if (pcrVal >= 1.03) pcrLabel = 'Bullish / Put Heavy (வாங்குவோர் பலம்)';
+            else if (pcrVal <= 0.89) pcrLabel = 'Bearish / Call Heavy (விற்பனையாளர் பலம்)';
+
             let op = document.getElementById('opt-pcr');
-            if (op) op.innerText = pcr + ' (Neutral)';
+            if (op) op.innerText = `${pcr} (${pcrLabel})`;
             let omp = document.getElementById('opt-max-pain');
             if (omp) omp.innerText = '$' + (Math.round(currentPrice / 500) * 500 - 1000).toLocaleString();
             let oto = document.getElementById('opt-total-oi');
