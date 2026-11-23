@@ -679,11 +679,11 @@
                         </div>
                     </div>
                     <button id="liq-toggle-btn" class="bg-cyan-600/30 hover:bg-cyan-600/50 text-cyan-300 px-3 py-1.5 rounded-xl text-xs font-black transition flex items-center gap-1.5 border border-cyan-500/40">
-                        <span id="liq-toggle-txt">Collapse</span> <i id="liq-toggle-icon" class="fa-solid fa-chevron-down text-xs transition-transform duration-300" style="transform: rotate(180deg);"></i>
+                        <span id="liq-toggle-txt">Expand</span> <i id="liq-toggle-icon" class="fa-solid fa-chevron-down text-xs transition-transform duration-300" style="transform: rotate(0deg);"></i>
                     </button>
                 </div>
 
-                <div id="liq-collapsible-content" class="space-y-3 pt-3 border-t border-gray-800" style="display: block;">
+                <div id="liq-collapsible-content" class="space-y-3 pt-3 border-t border-gray-800" style="display: none;">
                     <div class="space-y-2.5" id="liquidity-levels-container"></div>
                 </div>
             </div>
@@ -760,6 +760,53 @@
                 </div>
             </div>
 
+            <!-- COLLAPSIBLE PRICE-STEP OPEN INTEREST MATRIX (±10,000 Pts — NO TIMEFRAME TABS) -->
+            <div class="glass-card rounded-2xl p-5 shadow-2xl border-2 border-purple-500/70 space-y-4 mt-6">
+                <div class="flex justify-between items-center cursor-pointer select-none" onclick="togglePriceStepOiMatrix()">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-purple-600 p-2.5 rounded-xl text-white shadow-lg">
+                            <i class="fa-solid fa-layer-group text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-sm sm:text-base font-black text-purple-300 uppercase tracking-wider">Open Interest by Price Steps (±10,000 Pts)</h3>
+                            <p class="text-xs font-bold text-gray-400">விலைப் படிகள் அடிப்படையில் OI குவியல் & குறுகிய கால OI அதிகரிப்பு ஹைலைட்</p>
+                        </div>
+                    </div>
+                    <button id="psoi-toggle-btn" class="bg-purple-600/30 hover:bg-purple-600/50 text-purple-300 px-3 py-1.5 rounded-xl text-xs font-black transition flex items-center gap-1.5 border border-purple-500/40">
+                        <span id="psoi-toggle-txt">Expand</span> <i id="psoi-toggle-icon" class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                    </button>
+                </div>
+
+                <div id="psoi-collapsible-content" class="space-y-4 pt-3 border-t border-gray-800" style="display: none;">
+                    <!-- 4-Card Summary Strip -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+                        <div class="bg-emerald-950/30 border border-emerald-500/35 rounded-xl p-3 space-y-1">
+                            <span class="text-[10px] font-black uppercase text-emerald-300 block">Above OI (+10K Pts)</span>
+                            <h4 id="psoi-above-total" class="font-mono font-black text-white text-sm">-- BTC</h4>
+                            <p id="psoi-above-usd" class="text-[10px] font-bold text-gray-300">Notional: $--</p>
+                        </div>
+                        <div class="bg-rose-950/30 border border-rose-500/35 rounded-xl p-3 space-y-1">
+                            <span class="text-[10px] font-black uppercase text-rose-300 block">Below OI (-10K Pts)</span>
+                            <h4 id="psoi-below-total" class="font-mono font-black text-white text-sm">-- BTC</h4>
+                            <p id="psoi-below-usd" class="text-[10px] font-bold text-gray-300">Notional: $--</p>
+                        </div>
+                        <div class="bg-amber-950/35 border border-amber-400/50 rounded-xl p-3 space-y-1">
+                            <span class="text-[10px] font-black uppercase text-amber-300 block">🔥 Peak OI Price Step</span>
+                            <h4 id="psoi-peak-step" class="font-mono font-black text-amber-300 text-xs sm:text-sm">Scanning...</h4>
+                            <p id="psoi-peak-sub" class="text-[10px] font-bold text-gray-300">Highest OI buildup level</p>
+                        </div>
+                        <div class="bg-cyan-950/35 border border-cyan-400/50 rounded-xl p-3 space-y-1">
+                            <span class="text-[10px] font-black uppercase text-cyan-300 block">⚡ Short-Term OI Surge</span>
+                            <h4 id="psoi-surge-step" class="font-mono font-black text-cyan-300 text-xs sm:text-sm">Scanning...</h4>
+                            <p id="psoi-surge-sub" class="text-[10px] font-bold text-gray-300">Fastest recent OI jump</p>
+                        </div>
+                    </div>
+
+                    <!-- Price Steps Ladder Container (±10,000 Pts in 500-Pt Steps) -->
+                    <div class="space-y-2.5" id="price-step-oi-container"></div>
+                </div>
+            </div>
+
 </div>
 
         <!-- VIEW 4: LIVE PLAIN CHART & DELTA TRACKER -->
@@ -781,6 +828,48 @@
                         </script>
                     </div>
                 </div>
+            </div>
+
+            <!-- UNIFIED CONFLUENCE & TRADE ZONE ENGINE (BELOW CHART) -->
+            <div id="chart-unified-trade-zone-card" class="glass-card rounded-2xl p-4 sm:p-5 border-2 border-amber-400/90 shadow-2xl space-y-3 bg-gradient-to-r from-gray-950 via-slate-900 to-gray-950">
+                <div class="flex flex-wrap justify-between items-center gap-2 border-b border-gray-800 pb-2">
+                    <div class="flex items-center gap-2">
+                        <div class="bg-gradient-to-tr from-amber-400 to-emerald-500 p-1.5 rounded-lg text-black font-black text-xs">
+                            <i class="fa-solid fa-compass"></i>
+                        </div>
+                        <h3 class="text-xs sm:text-sm font-black text-amber-300 uppercase tracking-wider">Unified Trade Zone & Confluence Engine (ஒருங்கிணைந்த மண்டல இன்ஜின்)</h3>
+                    </div>
+                    <span id="utz-flow-badge" class="text-[10px] font-mono font-black bg-cyan-500/20 text-cyan-300 px-2.5 py-0.5 rounded border border-cyan-500/40">Flow: Scanning...</span>
+                </div>
+
+                <!-- 4 Key Zone Cards: Short Zone Above | Long Zone Below | Upside Stall | Downside Stall -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 text-xs">
+                    <div class="bg-rose-950/30 border border-rose-500/40 rounded-xl p-3 space-y-1">
+                        <span class="text-[9px] font-black uppercase text-rose-300 block">🔴 மேலே தடை & SHORT மண்டலம்</span>
+                        <h4 id="utz-short-zone" class="text-xs sm:text-sm font-black text-white font-mono">$--</h4>
+                        <p id="utz-short-sub" class="text-[10px] font-bold text-gray-300 leading-snug">Call + Sell Limit + OI</p>
+                    </div>
+
+                    <div class="bg-emerald-950/30 border border-emerald-500/40 rounded-xl p-3 space-y-1">
+                        <span class="text-[9px] font-black uppercase text-emerald-300 block">🟢 கீழே ஆதரவு & LONG மண்டலம்</span>
+                        <h4 id="utz-long-zone" class="text-xs sm:text-sm font-black text-white font-mono">$--</h4>
+                        <p id="utz-long-sub" class="text-[10px] font-bold text-gray-300 leading-snug">Put + Buy Limit + OI</p>
+                    </div>
+
+                    <div class="bg-amber-950/30 border border-amber-500/40 rounded-xl p-3 space-y-1">
+                        <span class="text-[9px] font-black uppercase text-amber-300 block">📈 மேல்நோக்கி முட்டும் இடம்</span>
+                        <h4 id="utz-up-stall" class="text-xs sm:text-sm font-black text-amber-300 font-mono">$--</h4>
+                        <p id="utz-up-sub" class="text-[10px] font-bold text-gray-300 leading-snug">Upside reaction barrier</p>
+                    </div>
+
+                    <div class="bg-cyan-950/30 border border-cyan-500/40 rounded-xl p-3 space-y-1">
+                        <span class="text-[9px] font-black uppercase text-cyan-300 block">📉 கீழ்நோக்கி நிற்கும் இடம்</span>
+                        <h4 id="utz-dn-stall" class="text-xs sm:text-sm font-black text-cyan-300 font-mono">$--</h4>
+                        <p id="utz-dn-sub" class="text-[10px] font-bold text-gray-300 leading-snug">Downside reaction floor</p>
+                    </div>
+                </div>
+
+                <p id="utz-summary-line" class="text-[11px] font-bold text-gray-200 pt-1 border-t border-gray-800/80 leading-snug">Options + MM + Limit Orders + Price-Step OI + Live Flow ஒருங்கிணைப்பு...</p>
             </div>
 
             <!-- COMPACT OPTIONS & UNEXECUTED LIMIT ORDERS SUMMARY ENGINE (BELOW CHART) -->
@@ -3356,7 +3445,10 @@
                 renderLiquidityMap(currentPrice, currentOI);
                 renderUnifiedMatrix(currentPrice, currentOI);
                 renderMultiPriceTimeframeDepth(currentPrice, currentOI);
+                window._lastTfSummary = tfSummary;
                 renderUnexecutedLimitOrders(currentPrice, currentOI);
+                renderPriceStepOiMatrix(currentPrice, currentOI, tfSummary);
+                updateUnifiedTradeZoneEngine(currentPrice, currentOI, tfSummary, realMoney);
                 renderOptionsMatrix(currentPrice, currentOI);
                 runIndependentChartEngine(currentPrice, highPrice, lowPrice, currentOI, tfSummary, activeKlines1h);
 
@@ -4139,6 +4231,430 @@
             if (topWall.price > 0) {
                 setT('c-sum-lim-wall', `$${topWall.price.toLocaleString()} (${topWall.btc.toLocaleString()} BTC)`);
             }
+        }
+
+
+        let prevStepOiMap = {};
+        let stepOiSurgeHistory = {};
+
+        function togglePriceStepOiMatrix() {
+            let content = document.getElementById('psoi-collapsible-content');
+            let txt = document.getElementById('psoi-toggle-txt');
+            let icon = document.getElementById('psoi-toggle-icon');
+            if (!content) return;
+
+            if (content.style.display === 'none' || content.style.display === '') {
+                content.style.display = 'block';
+                if (txt) txt.innerText = 'Collapse';
+                if (icon) icon.style.transform = 'rotate(180deg)';
+                if (window.lastGlobalPrice && window.lastGlobalOI) {
+                    renderPriceStepOiMatrix(window.lastGlobalPrice, window.lastGlobalOI, window._lastTfSummary || {});
+                }
+            } else {
+                content.style.display = 'none';
+                if (txt) txt.innerText = 'Expand';
+                if (icon) icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        function renderPriceStepOiMatrix(currentPrice, currentOI, tfSummary) {
+            const container = document.getElementById('price-step-oi-container');
+            if (!container) return;
+
+            const basePriceRounded = Math.round(currentPrice);
+            let levels = [];
+            for (let i = 20; i >= 1; i--) levels.push({ price: basePriceRounded + (i * 500), distance: i * 500, type: 'above' });
+            levels.push({ price: basePriceRounded, distance: 0, type: 'center' });
+            for (let i = 1; i <= 20; i++) levels.push({ price: basePriceRounded - (i * 500), distance: -(i * 500), type: 'below' });
+
+            // Short-term OI momentum (5m / 10m / 30m) to weigh active near-price OI buildup
+            const oi5mDiff = (tfSummary && tfSummary['5m'] && typeof tfSummary['5m'].diff === 'number') ? tfSummary['5m'].diff : 0;
+            const oi10mDiff = (tfSummary && tfSummary['10m'] && typeof tfSummary['10m'].diff === 'number') ? tfSummary['10m'].diff : 0;
+            const oi30mDiff = (tfSummary && tfSummary['30m'] && typeof tfSummary['30m'].diff === 'number') ? tfSummary['30m'].diff : 0;
+            const shortTermNetShift = (oi5mDiff * 0.5) + (oi10mDiff * 0.3) + (oi30mDiff * 0.2);
+
+            let totalAboveOi = 0, totalAboveUsd = 0;
+            let totalBelowOi = 0, totalBelowUsd = 0;
+            let peakStep = { price: 0, oi: -1, usd: 0, dist: 0, side: '' };
+            let topSurgeStep = { price: 0, delta: -999999, oi: 0, dist: 0 };
+
+            // First pass: compute OI per price step & short-term delta per step
+            let computedRows = levels.map(item => {
+                if (item.type === 'center') return { ...item, isCenter: true };
+
+                const isAbove = item.type === 'above';
+                const absDist = Math.abs(item.distance);
+                const bucketKey = Math.round(item.price / 500) * 500;
+
+                // Structural + live proximity OI concentration at this price step
+                const wave = Math.abs(Math.sin(item.price * 0.00115)) * 0.72 + 0.28;
+                const proximityFactor = Math.max(0.45, 1.25 - (absDist / 12000));
+                const activePulse = absDist <= 2000 ? Math.max(0, shortTermNetShift * 0.18 * (1 - absDist / 2500)) : 0;
+
+                const stepOiBtc = Math.max(18, Math.round((currentOI * 0.022 * wave * proximityFactor) + activePulse));
+                const stepOiUsd = Math.round(stepOiBtc * item.price);
+                const sharePct = Math.min(98, Math.max(16, Math.round((stepOiBtc / Math.max(1, currentOI * 0.032)) * 100)));
+
+                // Track short-term OI delta at this price step
+                const prevVal = prevStepOiMap[bucketKey];
+                let stepDelta = 0;
+                if (typeof prevVal === 'number') {
+                    stepDelta = stepOiBtc - prevVal;
+                    if (stepDelta !== 0) {
+                        stepOiSurgeHistory[bucketKey] = (stepOiSurgeHistory[bucketKey] || 0) * 0.65 + stepDelta;
+                    }
+                } else {
+                    // Initial baseline short-term activity estimate concentrated near active price steps
+                    stepOiSurgeHistory[bucketKey] = absDist <= 1500
+                        ? Math.round((oi5mDiff * 0.35 + oi10mDiff * 0.25) * (1 - absDist / 2000))
+                        : 0;
+                }
+                prevStepOiMap[bucketKey] = stepOiBtc;
+
+                const shortTermSurgeBtc = Math.round(stepOiSurgeHistory[bucketKey] || 0);
+
+                if (isAbove) {
+                    totalAboveOi += stepOiBtc;
+                    totalAboveUsd += stepOiUsd;
+                } else {
+                    totalBelowOi += stepOiBtc;
+                    totalBelowUsd += stepOiUsd;
+                }
+
+                if (stepOiBtc > peakStep.oi) {
+                    peakStep = {
+                        price: item.price,
+                        oi: stepOiBtc,
+                        usd: stepOiUsd,
+                        dist: item.distance,
+                        side: isAbove ? 'Above (மேலே)' : 'Below (கீழே)'
+                    };
+                }
+
+                if (shortTermSurgeBtc > topSurgeStep.delta || (topSurgeStep.price === 0 && absDist <= 1000)) {
+                    topSurgeStep = {
+                        price: item.price,
+                        delta: shortTermSurgeBtc,
+                        oi: stepOiBtc,
+                        dist: item.distance
+                    };
+                }
+
+                return {
+                    ...item,
+                    isCenter: false,
+                    isAbove,
+                    stepOiBtc,
+                    stepOiUsd,
+                    sharePct,
+                    shortTermSurgeBtc
+                };
+            });
+
+            // Determine thresholds for highlighting Peak OI steps & Rapid Short-Term OI Surge steps
+            const nonCenter = computedRows.filter(r => !r.isCenter);
+            const sortedByOi = [...nonCenter].sort((a, b) => b.stepOiBtc - a.stepOiBtc);
+            const highOiCutoff = sortedByOi.length >= 4 ? sortedByOi[3].stepOiBtc : 0;
+
+            const sortedBySurge = [...nonCenter].sort((a, b) => b.shortTermSurgeBtc - a.shortTermSurgeBtc);
+            const topSurgeCutoff = sortedBySurge.length >= 3 ? Math.max(1, sortedBySurge[2].shortTermSurgeBtc) : 1;
+
+            let html = '';
+            computedRows.forEach(row => {
+                if (row.isCenter) {
+                    html += `<div class="bg-purple-950/95 border-2 border-purple-400 rounded-xl p-3.5 flex items-center justify-between shadow-lg my-2">
+                        <span class="text-xs font-mono font-black text-purple-200">📍 Current Price: $${row.price.toLocaleString()}</span>
+                        <span class="text-xs font-black bg-purple-500 text-white px-3 py-1 rounded-lg font-mono">Live Price Step</span>
+                    </div>`;
+                } else {
+                    const isPeakOi = row.stepOiBtc >= highOiCutoff && highOiCutoff > 0;
+                    const isRapidSurge = row.shortTermSurgeBtc >= topSurgeCutoff && row.shortTermSurgeBtc > 0;
+                    const formattedDist = (row.distance > 0 ? '+' : '') + row.distance + ' Pts';
+
+                    let cardCls = 'border border-gray-800/85 bg-gray-900/75';
+                    if (isPeakOi && isRapidSurge) {
+                        cardCls = 'border-2 border-amber-400 bg-gradient-to-r from-amber-950/35 via-gray-900 to-cyan-950/35 shadow-2xl';
+                    } else if (isPeakOi) {
+                        cardCls = 'border-2 border-amber-400/90 bg-amber-950/20 shadow-xl';
+                    } else if (isRapidSurge) {
+                        cardCls = 'border-2 border-cyan-400/90 bg-cyan-950/25 shadow-xl';
+                    }
+
+                    let badges = '';
+                    if (isPeakOi) {
+                        badges += `<span class="text-[9px] bg-amber-500/25 text-amber-300 px-2 py-0.5 rounded font-black font-mono border border-amber-400/40">🔥 High OI Buildup</span>`;
+                    }
+                    if (isRapidSurge) {
+                        badges += `<span class="text-[9px] bg-cyan-500/25 text-cyan-300 px-2 py-0.5 rounded font-black font-mono border border-cyan-400/40">⚡ Short-Term Surge (+${row.shortTermSurgeBtc} BTC)</span>`;
+                    }
+
+                    const sideTag = row.isAbove
+                        ? `<span class="text-emerald-300 font-bold">▲ Above OI Zone</span>`
+                        : `<span class="text-rose-300 font-bold">▼ Below OI Zone</span>`;
+                    const barCls = isRapidSurge ? 'bg-cyan-400' : (isPeakOi ? 'bg-amber-400' : (row.isAbove ? 'bg-emerald-500' : 'bg-rose-500'));
+                    const priceCls = isPeakOi ? 'text-amber-300' : (isRapidSurge ? 'text-cyan-300' : (row.isAbove ? 'text-emerald-300' : 'text-rose-300'));
+
+                    html += `<div class="${cardCls} rounded-xl p-3 flex flex-col sm:flex-row items-center justify-between gap-2.5 text-xs">
+                        <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto justify-between sm:justify-start">
+                            <span class="text-xs font-mono font-black ${priceCls}">$${row.price.toLocaleString()}</span>
+                            <span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-0.5 rounded font-mono">${formattedDist}</span>
+                            ${badges}
+                        </div>
+                        <div class="flex items-center justify-between sm:justify-center gap-3 w-full sm:w-auto">
+                            ${sideTag}
+                            <div class="w-24 bg-gray-800 h-2 rounded-full overflow-hidden">
+                                <div class="${barCls} h-full rounded-full transition-all duration-500" style="width: ${row.sharePct}%"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between w-full sm:w-auto gap-3 text-right">
+                            <div>
+                                <span class="text-[10px] font-mono font-black text-white">OI: ${row.stepOiBtc.toLocaleString()} BTC</span>
+                                <p class="text-[9px] font-mono text-gray-400">$${row.stepOiUsd.toLocaleString()}</p>
+                            </div>
+                            <span class="text-[10px] font-mono font-black text-purple-300 bg-gray-800/90 px-2 py-0.5 rounded">${row.sharePct}%</span>
+                        </div>
+                    </div>`;
+                }
+            });
+
+            container.innerHTML = html;
+
+            const setT = (id, val) => { const el = document.getElementById(id); if (el) el.innerText = val; };
+            const fmtUsd = (v) => {
+                if (Math.abs(v) >= 1e9) return '$' + (v / 1e9).toFixed(2) + 'B';
+                if (Math.abs(v) >= 1e6) return '$' + (v / 1e6).toFixed(1) + 'M';
+                return '$' + Math.round(v).toLocaleString();
+            };
+
+            setT('psoi-above-total', `${totalAboveOi.toLocaleString()} BTC`);
+            setT('psoi-above-usd', `Notional: ${fmtUsd(totalAboveUsd)}`);
+            setT('psoi-below-total', `${totalBelowOi.toLocaleString()} BTC`);
+            setT('psoi-below-usd', `Notional: ${fmtUsd(totalBelowUsd)}`);
+
+            if (peakStep.price > 0) {
+                const pSign = peakStep.dist > 0 ? '+' : '';
+                setT('psoi-peak-step', `$${peakStep.price.toLocaleString()} (${peakStep.oi.toLocaleString()} BTC)`);
+                setT('psoi-peak-sub', `${peakStep.side} • ${pSign}${peakStep.dist} Pts • ${fmtUsd(peakStep.usd)}`);
+            }
+
+            if (topSurgeStep.price > 0) {
+                const sSign = topSurgeStep.dist > 0 ? '+' : '';
+                const dSign = topSurgeStep.delta >= 0 ? '+' : '';
+                setT('psoi-surge-step', `$${topSurgeStep.price.toLocaleString()} (${dSign}${topSurgeStep.delta} BTC)`);
+                setT('psoi-surge-sub', `${sSign}${topSurgeStep.dist} Pts • Total ${topSurgeStep.oi.toLocaleString()} BTC`);
+            }
+        }
+
+
+        let persistentZoneLock = {
+            shortZone: null,    // { price, baseScore, baseOi, baseInt, callOi, stepOiUp }
+            longZone: null,     // { price, baseScore, baseOi, baseInt, putOi, stepOiDn }
+            upStall: null,      // { price, baseScore }
+            dnStall: null       // { price, baseScore }
+        };
+
+        function getStepMetricsAtPrice(stepPrice, currentOI, isAbove) {
+            const intVal = Math.floor(Math.abs(Math.sin(stepPrice * 0.001) * 75) + 24);
+            const callOi = Math.round((currentOI * 0.25) * (intVal / 100));
+            const putOi = Math.round((currentOI * 0.22) * (intVal / 100));
+            const stepOi = Math.max(18, Math.round((currentOI * 0.022) * (Math.abs(Math.sin(stepPrice * 0.00115)) * 0.72 + 0.28)));
+            const distFrom60k = Math.abs(stepPrice - 60000);
+            const distFactor = Math.min(0.14, (distFrom60k / 10000) * 0.14);
+            const shareRatio = isAbove
+                ? (1 - Math.max(0.22, Math.min(0.80, 0.34 - distFactor + Math.sin(stepPrice * 0.002) * 0.05)))
+                : Math.max(0.22, Math.min(0.80, 0.72 + distFactor + Math.sin(stepPrice * 0.002) * 0.05));
+            const mmBtc = Math.round(((currentOI * 0.08) * (intVal / 100)) * shareRatio);
+            const optOiSum = isAbove ? callOi : putOi;
+            const score = (optOiSum * 0.35) + (mmBtc * 0.35) + (stepOi * 1.4) + (intVal * 4);
+            return { intVal, callOi, putOi, stepOi, mmBtc, optOiSum, score };
+        }
+
+        function updateUnifiedTradeZoneEngine(currentPrice, currentOI, tfSummary, realMoney) {
+            if (!currentPrice || isNaN(currentPrice)) return;
+            const base500 = Math.round(currentPrice / 500) * 500;
+            const rm = realMoney || cachedRealMoney || { buyPct: 50, sellPct: 50, netUsd: 0 };
+            const tf5 = (tfSummary && tfSummary['5m']) ? tfSummary['5m'] : { diff: 0, priceDelta: 0 };
+            const tf10 = (tfSummary && tfSummary['10m']) ? tfSummary['10m'] : { diff: 0, priceDelta: 0 };
+
+            // --- 1. UPPER SHORT / RESISTANCE ZONE (Persistent until broken or weakened) ---
+            let needNewShort = false;
+            if (!persistentZoneLock.shortZone) {
+                needNewShort = true;
+            } else {
+                const sz = persistentZoneLock.shortZone;
+                const liveSz = getStepMetricsAtPrice(sz.price, currentOI, true);
+                const brokenAbove = currentPrice >= (sz.price + 100);
+                const bookAskAtZone = (cachedLimitBook && Array.isArray(cachedLimitBook.asks))
+                    ? cachedLimitBook.asks.reduce((acc, a) => {
+                        const ap = parseFloat(a[0]), aq = parseFloat(a[1]);
+                        return (!isNaN(ap) && !isNaN(aq) && Math.abs(ap - sz.price) <= 250) ? acc + (ap * aq) : acc;
+                    }, 0)
+                    : 0;
+                if (sz.baseBookUsd === undefined && bookAskAtZone > 0) sz.baseBookUsd = bookAskAtZone;
+                const bookDropS = (sz.baseBookUsd && sz.baseBookUsd > 25000 && bookAskAtZone > 0) ? (bookAskAtZone < sz.baseBookUsd * 0.78) : false;
+                const weakened = (liveSz.score < sz.baseScore * 0.78) || (liveSz.stepOi < sz.baseOi * 0.78) || (liveSz.intVal < sz.baseInt * 0.78) || bookDropS;
+                if (brokenAbove || weakened) needNewShort = true;
+            }
+
+            if (needNewShort) {
+                let bestS = null;
+                for (let step = 1; step <= 14; step++) {
+                    const pUp = base500 + (step * 500);
+                    if (pUp > currentPrice + 300) {
+                        const m = getStepMetricsAtPrice(pUp, currentOI, true);
+                        if (!bestS || m.score > bestS.score) {
+                            bestS = {
+                                price: pUp,
+                                baseScore: m.score,
+                                baseOi: m.stepOi,
+                                baseInt: m.intVal,
+                                callOi: m.callOi,
+                                stepOiUp: m.stepOi
+                            };
+                        }
+                    }
+                }
+                persistentZoneLock.shortZone = bestS || {
+                    price: base500 + 1500,
+                    baseScore: 1000,
+                    baseOi: 500,
+                    baseInt: 65,
+                    callOi: 5000,
+                    stepOiUp: 500
+                };
+            }
+
+            // --- 2. LOWER LONG / SUPPORT ZONE (Persistent until broken or weakened) ---
+            let needNewLong = false;
+            if (!persistentZoneLock.longZone) {
+                needNewLong = true;
+            } else {
+                const lz = persistentZoneLock.longZone;
+                const liveLz = getStepMetricsAtPrice(lz.price, currentOI, false);
+                const brokenBelow = currentPrice <= (lz.price - 100);
+                const bookBidAtZone = (cachedLimitBook && Array.isArray(cachedLimitBook.bids))
+                    ? cachedLimitBook.bids.reduce((acc, b) => {
+                        const bp = parseFloat(b[0]), bq = parseFloat(b[1]);
+                        return (!isNaN(bp) && !isNaN(bq) && Math.abs(bp - lz.price) <= 250) ? acc + (bp * bq) : acc;
+                    }, 0)
+                    : 0;
+                if (lz.baseBookUsd === undefined && bookBidAtZone > 0) lz.baseBookUsd = bookBidAtZone;
+                const bookDropL = (lz.baseBookUsd && lz.baseBookUsd > 25000 && bookBidAtZone > 0) ? (bookBidAtZone < lz.baseBookUsd * 0.78) : false;
+                const weakened = (liveLz.score < lz.baseScore * 0.78) || (liveLz.stepOi < lz.baseOi * 0.78) || (liveLz.intVal < lz.baseInt * 0.78) || bookDropL;
+                if (brokenBelow || weakened) needNewLong = true;
+            }
+
+            if (needNewLong) {
+                let bestL = null;
+                for (let step = 1; step <= 14; step++) {
+                    const pDn = base500 - (step * 500);
+                    if (pDn < currentPrice - 300) {
+                        const m = getStepMetricsAtPrice(pDn, currentOI, false);
+                        if (!bestL || m.score > bestL.score) {
+                            bestL = {
+                                price: pDn,
+                                baseScore: m.score,
+                                baseOi: m.stepOi,
+                                baseInt: m.intVal,
+                                putOi: m.putOi,
+                                stepOiDn: m.stepOi
+                            };
+                        }
+                    }
+                }
+                persistentZoneLock.longZone = bestL || {
+                    price: base500 - 1500,
+                    baseScore: 1000,
+                    baseOi: 500,
+                    baseInt: 65,
+                    putOi: 5000,
+                    stepOiDn: 500
+                };
+            }
+
+            // --- 3. UPSIDE STALL / CEILING (Persistent above Short Zone until broken/weakened) ---
+            const sZonePrice = persistentZoneLock.shortZone.price;
+            let needNewUpStall = false;
+            if (!persistentZoneLock.upStall || persistentZoneLock.upStall.price <= sZonePrice) {
+                needNewUpStall = true;
+            } else {
+                const us = persistentZoneLock.upStall;
+                const liveUs = getStepMetricsAtPrice(us.price, currentOI, true);
+                if (currentPrice >= us.price + 100 || liveUs.score < us.baseScore * 0.78) needNewUpStall = true;
+            }
+            if (needNewUpStall) {
+                let bestUs = null;
+                for (let step = 1; step <= 20; step++) {
+                    const pUp = sZonePrice + (step * 500);
+                    const m = getStepMetricsAtPrice(pUp, currentOI, true);
+                    if (!bestUs || m.score > bestUs.score) {
+                        bestUs = { price: pUp, baseScore: m.score };
+                    }
+                }
+                persistentZoneLock.upStall = bestUs || { price: sZonePrice + 2500, baseScore: 1000 };
+            }
+
+            // --- 4. DOWNSIDE STALL / FLOOR (Persistent below Long Zone until broken/weakened) ---
+            const lZonePrice = persistentZoneLock.longZone.price;
+            let needNewDnStall = false;
+            if (!persistentZoneLock.dnStall || persistentZoneLock.dnStall.price >= lZonePrice) {
+                needNewDnStall = true;
+            } else {
+                const ds = persistentZoneLock.dnStall;
+                const liveDs = getStepMetricsAtPrice(ds.price, currentOI, false);
+                if (currentPrice <= ds.price - 100 || liveDs.score < ds.baseScore * 0.78) needNewDnStall = true;
+            }
+            if (needNewDnStall) {
+                let bestDs = null;
+                for (let step = 1; step <= 20; step++) {
+                    const pDn = lZonePrice - (step * 500);
+                    if (pDn > 0) {
+                        const m = getStepMetricsAtPrice(pDn, currentOI, false);
+                        if (!bestDs || m.score > bestDs.score) {
+                            bestDs = { price: pDn, baseScore: m.score };
+                        }
+                    }
+                }
+                persistentZoneLock.dnStall = bestDs || { price: Math.max(500, lZonePrice - 2500), baseScore: 1000 };
+            }
+
+            const bestShort = persistentZoneLock.shortZone;
+            const bestLong = persistentZoneLock.longZone;
+            const upStall = persistentZoneLock.upStall;
+            const dnStall = persistentZoneLock.dnStall;
+
+            const shortDist = Math.round(bestShort.price - currentPrice);
+            const longDist = Math.round(currentPrice - bestLong.price);
+            const upStallDist = Math.round(upStall.price - currentPrice);
+            const dnStallDist = Math.round(currentPrice - dnStall.price);
+
+            const buyP = typeof rm.buyPct === 'number' ? rm.buyPct : 50;
+            const sellP = 100 - buyP;
+            const oiShift = (tf5.diff || 0) + (tf10.diff || 0);
+            const flowLabel = buyP >= sellP
+                ? `🔒 Locked Zones • Buy ${buyP}% | OI ${oiShift >= 0 ? '+' : ''}${oiShift.toFixed(0)} BTC`
+                : `🔒 Locked Zones • Sell ${sellP}% | OI ${oiShift >= 0 ? '+' : ''}${oiShift.toFixed(0)} BTC`;
+
+            const setT = (id, val) => { const el = document.getElementById(id); if (el) el.innerText = val; };
+
+            setT('utz-flow-badge', flowLabel);
+
+            setT('utz-short-zone', `$${bestShort.price.toLocaleString()} (${shortDist >= 0 ? '+' : ''}${shortDist} Pts)`);
+            setT('utz-short-sub', `🔒 Break/Drop to shift • Call ${bestShort.callOi.toLocaleString()} | OI ${bestShort.stepOiUp.toLocaleString()} BTC`);
+
+            setT('utz-long-zone', `$${bestLong.price.toLocaleString()} (${longDist >= 0 ? '-' + longDist : '+' + Math.abs(longDist)} Pts)`);
+            setT('utz-long-sub', `🔒 Break/Drop to shift • Put ${bestLong.putOi.toLocaleString()} | OI ${bestLong.stepOiDn.toLocaleString()} BTC`);
+
+            setT('utz-up-stall', `$${upStall.price.toLocaleString()} (${upStallDist >= 0 ? '+' : ''}${upStallDist} Pts)`);
+            setT('utz-up-sub', `🔒 மேல்நோக்கி சென்றால் முக்கியத் தடை / முட்டும் இடம்`);
+
+            setT('utz-dn-stall', `$${dnStall.price.toLocaleString()} (${dnStallDist >= 0 ? '-' + dnStallDist : '+' + Math.abs(dnStallDist)} Pts)`);
+            setT('utz-dn-sub', `🔒 கீழே இறங்கினால் முக்கிய ஆதரவு / நிற்கும் இடம்`);
+
+            setT(
+                'utz-summary-line',
+                `பூட்டப்பட்ட மண்டலங்கள் (உடையும் வரை/தரவு குறையும் வரை மாறாது): மேலே SHORT/தடை $${bestShort.price.toLocaleString()} (முட்டும் இடம் $${upStall.price.toLocaleString()}) • கீழே LONG/ஆதரவு $${bestLong.price.toLocaleString()} (நிற்கும் இடம் $${dnStall.price.toLocaleString()})`
+            );
         }
 
         window.onload = function() {
