@@ -36,7 +36,8 @@
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
                 </span>
-                <span id="live-indicator" class="text-[10px] font-bold text-emerald-400 hidden sm:inline">Live Connected</span>
+                <span id="header-ist-datetime" class="text-[10px] font-mono font-black text-cyan-300 bg-gray-900/90 px-2 py-0.5 rounded border border-cyan-500/30">IST --/--/---- --:--:-- AM/PM</span>
+                <span id="live-indicator" class="text-[10px] font-bold text-emerald-400 hidden sm:inline">Live</span>
                 <button onclick="fetchAllData()" class="bg-indigo-600 hover:bg-indigo-500 text-white px-2.5 py-1 rounded-lg text-[10px] font-bold transition shadow-md flex items-center gap-1">
                     <i class="fa-solid fa-rotate"><span>Refresh</span></i>
                 </button>
@@ -815,15 +816,59 @@
                 <div class="flex justify-between items-center border-b border-gray-800 pb-3">
                     <div class="flex items-center gap-2">
                         <i class="fa-solid fa-chart-candlestick text-cyan-400 text-lg"></i>
-                        <h3 class="text-sm sm:text-base font-black text-white">Live Price Chart (Binance BTCUSDT)</h3>
+                        <h3 class="text-sm sm:text-base font-black text-white">Live Price Chart (Plain • No Volume)</h3>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-1.5">
+                        <span id="chart-candle-countdown" class="text-[11px] font-mono font-black bg-amber-500/20 text-amber-300 px-2.5 py-1 rounded-lg border border-amber-400/50">Candle Close: --:--</span>
+                        <span id="chart-ist-clock" class="text-[11px] font-mono font-black bg-indigo-950/90 text-cyan-300 px-2.5 py-1 rounded-lg border border-cyan-500/40">IST --:--:-- AM/PM</span>
                     </div>
                 </div>
                 <div id="chart-wrapper" class="w-full h-[500px] sm:h-[650px] rounded-2xl overflow-hidden border border-gray-800 bg-gray-950 relative">
                     <div class="tradingview-widget-container" style="height:100%;width:100%">
                         <div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div>
+                        <script type="text/javascript">
+                        (function enforceTradingViewDefaults() {
+                            try {
+                                // Clear stale TradingView localStorage flags that disable countdown or show volume/indicators
+                                Object.keys(localStorage).forEach(function(k) {
+                                    if (k && (k.toLowerCase().indexOf('tradingview') !== -1 || k.toLowerCase().indexOf('tvwidget') !== -1)) {
+                                        var v = localStorage.getItem(k);
+                                        if (v && (v.indexOf('"showCountdown":false') !== -1 || v.indexOf('"hideVolume":false') !== -1)) {
+                                            localStorage.removeItem(k);
+                                        }
+                                    }
+                                });
+                            } catch (e) {}
+                        })();
+                        </script>
                         <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
                         {
-                            "width": "100%", "height": "100%", "symbol": "BINANCE:BTCUSDT.P", "interval": "15", "timezone": "Etc/UTC", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "hide_top_toolbar": false, "hide_legend": false, "save_image": true, "details": false, "withdateranges": true, "hide_side_toolbar": false, "allow_symbol_change": true, "calendar": false, "studies": [], "support_host": "https://www.tradingview.com"
+                            "width": "100%",
+                            "height": "100%",
+                            "symbol": "BINANCE:BTCUSDT.P",
+                            "interval": "15",
+                            "timezone": "Asia/Kolkata",
+                            "theme": "dark",
+                            "style": "1",
+                            "locale": "en",
+                            "enable_publishing": false,
+                            "hide_top_toolbar": false,
+                            "hide_legend": false,
+                            "hide_volume": true,
+                            "save_image": false,
+                            "details": false,
+                            "withdateranges": true,
+                            "hide_side_toolbar": false,
+                            "allow_symbol_change": true,
+                            "calendar": false,
+                            "studies": [],
+                            "overrides": {
+                                "scalesProperties.showCountdown": true,
+                                "scalesProperties.showSeriesLastValue": true,
+                                "mainSeriesProperties.showCountdown": true,
+                                "volumePaneSize": "tiny"
+                            },
+                            "support_host": "https://www.tradingview.com"
                         }
                         </script>
                     </div>
@@ -3175,9 +3220,14 @@
                 let lowPrice = parseFloat(tickerData.lowPrice);
 
                 window.lastGlobalPrice = currentPrice;
-                let now = new Date();
-                let dateStr = now.toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' });
-                let timeStr = now.toLocaleTimeString('en-IN', { hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                // Sync clock offset from Binance server time if available so IST matches exact market/server time even if device clock drifts
+                let serverTimeData = await fetchBinanceData('https://fapi.binance.com/fapi/v1/time');
+                if (serverTimeData && typeof serverTimeData.serverTime === 'number' && !isNaN(serverTimeData.serverTime)) {
+                    window._istServerOffsetMs = serverTimeData.serverTime - Date.now();
+                }
+                let now = getAccurateIstDate();
+                let dateStr = now.toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata', day: '2-digit', month: '2-digit', year: 'numeric' });
+                let timeStr = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' });
                 let currentFullDateTimeStr = `${dateStr}, ${timeStr}`;
 
                 let oiData = await fetchBinanceData('https://fapi.binance.com/fapi/v1/openInterest?symbol=BTCUSDT');
@@ -3366,8 +3416,8 @@
                     let tVal24 = parseFloat(trough24.sumOpenInterest);
                     window._m24PeakOi = pVal24;
                     window._m24TroughOi = tVal24;
-                    let pTime24 = new Date(peak24.timestamp).toLocaleTimeString('en-IN', { hour12: true, hour: '2-digit', minute: '2-digit' });
-                    let tTime24 = new Date(trough24.timestamp).toLocaleTimeString('en-IN', { hour12: true, hour: '2-digit', minute: '2-digit' });
+                    let pTime24 = new Date(peak24.timestamp).toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour12: true, hour: '2-digit', minute: '2-digit' });
+                    let tTime24 = new Date(trough24.timestamp).toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour12: true, hour: '2-digit', minute: '2-digit' });
 
                     let oihV = document.getElementById('oi-high-val');
                     if (oihV) oihV.innerText = pVal24.toLocaleString('en-US', { minimumFractionDigits: 3 }) + ' BTC';
@@ -4917,7 +4967,56 @@
             );
         }
 
+
+        function getAccurateIstDate() {
+            const offset = (typeof window._istServerOffsetMs === 'number' && !isNaN(window._istServerOffsetMs))
+                ? window._istServerOffsetMs
+                : 0;
+            return new Date(Date.now() + offset);
+        }
+
+        function updateIstClockAndCandleCountdown() {
+            const now = getAccurateIstDate();
+            const istDateStr = now.toLocaleDateString('en-IN', {
+                timeZone: 'Asia/Kolkata',
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+            const istTime12 = now.toLocaleTimeString('en-US', {
+                timeZone: 'Asia/Kolkata',
+                hour12: true,
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            const fullIst12 = `${istDateStr}, ${istTime12}`;
+
+            const hdrIst = document.getElementById('header-ist-datetime');
+            if (hdrIst) hdrIst.innerText = 'IST ' + fullIst12;
+
+            const clkEl = document.getElementById('chart-ist-clock');
+            if (clkEl) clkEl.innerText = 'IST ' + fullIst12;
+
+            const sigEl = document.getElementById('signal-time');
+            if (sigEl) sigEl.innerText = fullIst12;
+
+            const updEl = document.getElementById('update-time');
+            if (updEl) updEl.innerText = fullIst12;
+
+            const periodSec = 900;
+            const elapsedSec = (now.getTime() / 1000) % periodSec;
+            const remSec = Math.max(0, Math.ceil(periodSec - elapsedSec));
+            const mins = String(Math.floor(remSec / 60)).padStart(2, '0');
+            const secs = String(remSec % 60).padStart(2, '0');
+
+            const cdEl = document.getElementById('chart-candle-countdown');
+            if (cdEl) cdEl.innerText = `Candle Close: ${mins}:${secs}`;
+        }
+        setInterval(updateIstClockAndCandleCountdown, 1000);
+
         window.onload = function() {
+            updateIstClockAndCandleCountdown();
             try {
                 fetchAllData();
                 switchDashboardView('terminal');
