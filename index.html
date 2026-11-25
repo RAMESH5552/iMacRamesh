@@ -19,6 +19,185 @@
 </head>
 <body class="min-h-screen pb-28">
 
+    <!-- ========================================================================= -->
+    <!-- PUBLIC AUTH GATE (LOGIN & REGISTRATION) + WAITING / BANNED SCREEN         -->
+    <!-- ========================================================================= -->
+    <div id="auth-gate-screen" class="min-h-screen flex items-center justify-center px-3 py-8 bg-gradient-to-br from-gray-950 via-indigo-950/35 to-gray-950">
+        <div class="w-full max-w-lg glass-card rounded-3xl p-5 sm:p-7 border-2 border-indigo-500/50 shadow-2xl space-y-5">
+            <!-- Brand Header -->
+            <div class="flex flex-col items-center text-center space-y-2 border-b border-gray-800 pb-4">
+                <div class="bg-gradient-to-tr from-amber-500 to-indigo-600 p-3.5 rounded-2xl shadow-xl text-white">
+                    <i class="fa-solid fa-brain text-2xl"></i>
+                </div>
+                <h1 class="text-base sm:text-lg font-black text-white tracking-tight">iMac Ramesh Trading Trend Intelligence</h1>
+                <p class="text-[11px] font-bold text-cyan-300">Trader & Mentor: K. Ramesh (Saran Ramesh)</p>
+                <span id="auth-ist-clock" class="text-[10px] font-mono font-black text-amber-300 bg-gray-900/90 px-3 py-1 rounded-full border border-amber-500/30">IST --/--/---- --:--:-- AM/PM</span>
+            </div>
+
+            <!-- Login / Register Tab Switcher -->
+            <div id="auth-tabs-bar" class="grid grid-cols-2 gap-2 bg-gray-950 p-1.5 rounded-2xl border border-gray-800">
+                <button type="button" onclick="switchAuthTab('login')" id="tab-btn-login" class="py-2.5 px-3 rounded-xl text-xs font-black bg-indigo-600 text-white shadow-lg transition">
+                    <i class="fa-solid fa-right-to-bracket mr-1"></i> Member / Owner Login
+                </button>
+                <button type="button" onclick="switchAuthTab('register')" id="tab-btn-register" class="py-2.5 px-3 rounded-xl text-xs font-black bg-transparent text-gray-300 hover:text-white transition">
+                    <i class="fa-solid fa-user-plus mr-1"></i> New Registration
+                </button>
+            </div>
+
+            <!-- TAB 1: LOGIN FORM -->
+            <form id="auth-login-form" onsubmit="handleMemberLogin(event)" autocomplete="off" class="space-y-4">
+                <div class="space-y-1.5">
+                    <label class="text-[11px] font-black text-gray-300 uppercase tracking-wider block">User ID (உங்கள் யூசர் ஐடி)</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-3 flex items-center text-indigo-400 text-xs"><i class="fa-solid fa-id-badge"></i></span>
+                        <input type="text" id="login-user-id" name="imr_uid_plain" autocomplete="off" required placeholder="" class="w-full bg-gray-950/90 border border-gray-700 focus:border-indigo-400 rounded-xl pl-9 pr-9 py-3 text-sm font-mono font-black text-white outline-none transition">
+                        <button type="button" onclick="clearSingleLoginInput('login-user-id')" title="Clear User ID" class="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-rose-400 text-xs">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="space-y-1.5">
+                    <label class="text-[11px] font-black text-gray-300 uppercase tracking-wider block">Password (பாஸ்வேர்ட்)</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-3 flex items-center text-indigo-400 text-xs"><i class="fa-solid fa-lock"></i></span>
+                        <input type="password" id="login-password" name="imr_pwd_plain" autocomplete="new-password" required placeholder="" class="w-full bg-gray-950/90 border border-gray-700 focus:border-indigo-400 rounded-xl pl-9 pr-16 py-3 text-sm font-bold text-white outline-none transition">
+                        <button type="button" onclick="clearSingleLoginInput('login-password')" title="Clear Password" class="absolute inset-y-0 right-9 flex items-center text-gray-400 hover:text-rose-400 text-xs">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                        </button>
+                        <button type="button" onclick="toggleInputVisibility('login-password')" title="Show/Hide Password" class="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-white text-xs">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="login-feedback-box" class="hidden rounded-xl p-3 text-xs font-bold"></div>
+
+                <div class="flex gap-2">
+                    <button type="submit" class="flex-1 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-black text-sm shadow-xl transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-unlock-keyhole"></i> <span>உள்நுழையவும் (Login)</span>
+                    </button>
+                    <button type="button" onclick="clearAllLoginFields()" title="Clear User ID & Password" class="px-4 py-3.5 rounded-2xl bg-gray-800 hover:bg-rose-600 border border-gray-700 hover:border-rose-500 text-gray-200 hover:text-white font-black text-xs shadow-lg transition flex items-center justify-center gap-1.5 shrink-0">
+                        <i class="fa-solid fa-eraser"></i> <span>Clear</span>
+                    </button>
+                </div>
+            </form>
+
+            <!-- TAB 2: NEW USER REGISTRATION FORM -->
+            <form id="auth-register-form" onsubmit="handleNewRegistration(event)" class="hidden space-y-3">
+                <div class="bg-cyan-950/40 border border-cyan-500/30 rounded-xl p-2.5 text-[11px] font-bold text-cyan-200 flex items-center justify-between">
+                    <span><i class="fa-solid fa-sparkles text-amber-400 mr-1"></i> அடுத்த புதிய User ID:</span>
+                    <span id="next-preview-uid" class="font-mono font-black text-amber-300 bg-gray-900 px-2.5 py-0.5 rounded border border-amber-400/40">iMR-591986</span>
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-[10px] font-black text-gray-300 uppercase">1. முழு பெயர் (Full Name) *</label>
+                    <input type="text" id="reg-fullname" required placeholder="உங்கள் முழு பெயரை உள்ளிடவும்" class="w-full bg-gray-950/90 border border-gray-700 focus:border-cyan-400 rounded-xl px-3.5 py-2.5 text-xs font-bold text-white outline-none">
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-[10px] font-black text-gray-300 uppercase">2. முழு முகவரி (Full Address) *</label>
+                    <textarea id="reg-address" rows="2" required placeholder="கதவு எண், தெரு, ஊர், மாவட்டம், பின்கோடு" class="w-full bg-gray-950/90 border border-gray-700 focus:border-cyan-400 rounded-xl px-3.5 py-2 text-xs font-bold text-white outline-none"></textarea>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-black text-gray-300 uppercase">3. மொபைல் நம்பர் (Mobile) *</label>
+                        <input type="tel" id="reg-mobile" required placeholder="9876543210" class="w-full bg-gray-950/90 border border-gray-700 focus:border-cyan-400 rounded-xl px-3.5 py-2.5 text-xs font-mono font-bold text-white outline-none">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-black text-gray-300 uppercase">4. பிறந்த தேதி (Date of Birth) *</label>
+                        <input type="date" id="reg-dob" required class="w-full bg-gray-950/90 border border-gray-700 focus:border-cyan-400 rounded-xl px-3.5 py-2.5 text-xs font-mono font-bold text-white outline-none">
+                    </div>
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-[10px] font-black text-gray-300 uppercase">5. புதிய பாஸ்வேர்ட் (Create Password) *</label>
+                    <div class="relative">
+                        <input type="password" id="reg-password" required minlength="4" placeholder="உங்கள் விருப்பமான பாஸ்வேர்ட்" class="w-full bg-gray-950/90 border border-gray-700 focus:border-cyan-400 rounded-xl px-3.5 pr-10 py-2.5 text-xs font-bold text-white outline-none">
+                        <button type="button" onclick="toggleInputVisibility('reg-password')" class="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-white text-xs">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full py-3 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-sm shadow-xl transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-check-circle"></i> <span>Submit & Generate My User ID</span>
+                </button>
+            </form>
+
+            <!-- GENERATED USER ID RECEIPT CARD (SHOWN IMMEDIATELY ON SUBMIT) -->
+            <div id="reg-success-receipt" class="hidden bg-emerald-950/50 border-2 border-emerald-400 rounded-2xl p-4 space-y-3 text-center">
+                <div class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/50 text-lg">
+                    <i class="fa-solid fa-id-card"></i>
+                </div>
+                <h3 class="text-sm font-black text-emerald-300">உங்கள் கணக்கு வெற்றிகரமாக உருவாக்கப்பட்டது!</h3>
+                <p class="text-[11px] font-bold text-gray-200">கீழே உள்ள உங்கள் User ID-ஐ குறித்து வைத்துக் கொள்ளுங்கள்:</p>
+                <div class="bg-gray-950 border border-amber-400/70 rounded-xl p-3 flex items-center justify-between gap-2">
+                    <span id="generated-uid-display" class="text-lg font-mono font-black text-amber-300 tracking-wider">iMR-591986</span>
+                    <button type="button" onclick="copyGeneratedUserId()" class="bg-amber-500 hover:bg-amber-400 text-black px-3 py-1.5 rounded-lg text-xs font-black transition">
+                        <i class="fa-solid fa-copy mr-1"></i> Copy ID
+                    </button>
+                </div>
+                <p class="text-[11px] font-bold text-amber-200 bg-amber-950/50 border border-amber-500/30 rounded-xl p-2.5 leading-relaxed">
+                    ⏳ <strong>முக்கிய அறிவிப்பு:</strong> உங்கள் கணக்கு தற்போது <strong>Waiting List</strong>-இல் உள்ளது. <strong>ஓனர் அப்ரூவல் (Owner Approval)</strong> வழங்கியவுடன் உங்கள் User ID & Password மூலம் உள்ளே நுழையலாம்.
+                </p>
+                <button type="button" onclick="proceedToLoginWithGeneratedId()" class="w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-black transition">
+                    Login பக்கத்திற்குச் செல்லவும் <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+
+            <!-- WAITING / BANNED / EXPIRED STATUS LOCK SCREEN -->
+            <div id="account-status-hold-box" class="hidden bg-amber-950/40 border-2 border-amber-400/80 rounded-2xl p-4 space-y-3 text-center">
+                <div id="hold-icon-wrap" class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/50 text-xl">
+                    <i class="fa-solid fa-hourglass-half"></i>
+                </div>
+                <h3 id="hold-title" class="text-sm sm:text-base font-black text-amber-300">Waiting for Owner Approval</h3>
+                <p id="hold-user-meta" class="text-xs font-mono font-black text-cyan-300">User ID: -- | Name: --</p>
+                <p id="hold-message" class="text-xs font-bold text-gray-200 leading-relaxed">
+                    உங்கள் கணக்கு ஓனர் ஒப்புதலுக்காகக் காத்திருக்கிறது. ஓனர் டேஷ்போர்டிலிருந்து அப்ரூவல் வழங்கிய பிறகு நமது டிரேடிங் டெர்மினல் உங்களுக்குத் திறக்கும்.
+                </p>
+                <div class="flex gap-2 pt-1">
+                    <button type="button" onclick="recheckCurrentHoldAccount()" class="flex-1 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-black transition">
+                        <i class="fa-solid fa-rotate mr-1"></i> Approval நிலையைச் சரிபார்
+                    </button>
+                    <button type="button" onclick="logoutToAuthScreen()" class="py-2.5 px-4 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 text-xs font-black transition">
+                        Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- APP SHELL (HIDDEN UNTIL APPROVED MEMBER OR OWNER LOGS IN)                 -->
+    <!-- ========================================================================= -->
+    <div id="authenticated-app-shell" class="hidden">
+
+    <!-- NOTIFICATION DRAWER / POPUP MODAL (FOR ALL USERS & OWNER) -->
+    <div id="user-notification-modal" class="fixed inset-0 z-[70] hidden items-center justify-center bg-black/80 backdrop-blur-sm p-3">
+        <div class="w-full max-w-xl glass-card rounded-3xl border-2 border-amber-400/80 shadow-2xl overflow-hidden flex flex-col max-h-[88vh]">
+            <div class="bg-gradient-to-r from-indigo-950 via-gray-900 to-amber-950/60 px-4 py-3.5 border-b border-gray-800 flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <div class="bg-amber-500 text-black p-2 rounded-xl font-black text-sm">
+                        <i class="fa-solid fa-bell"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xs sm:text-sm font-black text-amber-300 uppercase tracking-wider">Owner Announcements & Alerts</h3>
+                        <p class="text-[10px] font-bold text-gray-300">K. Ramesh Official Broadcasts</p>
+                    </div>
+                </div>
+                <button type="button" onclick="closeNotificationModal()" class="bg-gray-800 hover:bg-rose-600 text-white w-8 h-8 rounded-xl flex items-center justify-center text-xs font-black transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div id="user-notifications-list" class="p-4 space-y-3 overflow-y-auto flex-1">
+                <p class="text-xs font-bold text-gray-400 text-center py-6">தற்போது புதிய அறிவிப்புகள் எதுவும் இல்லை.</p>
+            </div>
+        </div>
+    </div>
+
+
     <!-- Header -->
     <header class="sticky top-0 z-50 glass-card border-b border-gray-800 px-3 py-2.5 shadow-2xl">
         <div class="max-w-7xl mx-auto flex items-center justify-between gap-2">
@@ -38,12 +217,252 @@
                 </span>
                 <span id="header-ist-datetime" class="text-[10px] font-mono font-black text-cyan-300 bg-gray-900/90 px-2 py-0.5 rounded border border-cyan-500/30">IST --/--/---- --:--:-- AM/PM</span>
                 <span id="live-indicator" class="text-[10px] font-bold text-emerald-400 hidden sm:inline">Live</span>
-                <button onclick="fetchAllData()" class="bg-indigo-600 hover:bg-indigo-500 text-white px-2.5 py-1 rounded-lg text-[10px] font-bold transition shadow-md flex items-center gap-1">
-                    <i class="fa-solid fa-rotate"><span>Refresh</span></i>
+                <!-- Bell Notification Icon with Unread Pulse Badge -->
+                <button type="button" onclick="openNotificationModal()" id="header-bell-btn" title="Owner Announcements" class="relative bg-gray-900 hover:bg-gray-800 border border-amber-400/50 text-amber-300 px-2.5 py-1.5 rounded-lg text-xs font-black transition shadow-md flex items-center gap-1">
+                    <i id="header-bell-icon" class="fa-solid fa-bell"></i>
+                    <span id="header-bell-badge" class="hidden absolute -top-1.5 -right-1.5 bg-rose-600 text-white text-[9px] font-mono font-black px-1.5 py-0.2 rounded-full border border-white animate-bounce">0</span>
+                </button>
+                <!-- Owner Control Toggle Button (ONLY VISIBLE WHEN OWNER LOGS IN) -->
+                <button type="button" onclick="toggleOwnerControlPanel()" id="header-owner-panel-btn" class="hidden bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-black px-2.5 py-1 rounded-lg text-[10px] font-black transition shadow-lg items-center gap-1">
+                    <i class="fa-solid fa-crown"></i> <span id="header-owner-btn-label">Owner Panel</span>
+                </button>
+                <button onclick="fetchAllData()" class="bg-indigo-600 hover:bg-indigo-500 text-white px-2 py-1 rounded-lg text-[10px] font-bold transition shadow-md flex items-center gap-1">
+                    <i class="fa-solid fa-rotate"><span class="hidden sm:inline ml-1">Refresh</span></i>
+                </button>
+                <button type="button" onclick="logoutToAuthScreen()" title="Logout" class="bg-rose-950/90 hover:bg-rose-600 border border-rose-500/40 text-rose-200 hover:text-white px-2 py-1 rounded-lg text-[10px] font-black transition flex items-center gap-1">
+                    <i class="fa-solid fa-right-from-bracket"></i> <span class="hidden md:inline">Logout</span>
                 </button>
             </div>
         </div>
+        <!-- Active Session & Live Announcement Ticker Strip -->
+        <div class="max-w-7xl mx-auto mt-1.5 pt-1.5 border-t border-gray-800/80 flex flex-wrap items-center justify-between gap-2 text-[10px]">
+            <div class="flex items-center gap-2">
+                <span id="session-user-pill" class="font-mono font-black bg-indigo-950/90 text-indigo-200 px-2 py-0.5 rounded border border-indigo-500/30">ID: --</span>
+                <span id="session-validity-pill" class="font-mono font-bold text-emerald-300">Valid: --</span>
+            </div>
+            <button type="button" onclick="openNotificationModal()" id="header-latest-ann-strip" class="hidden text-left truncate max-w-full sm:max-w-md bg-amber-500/15 hover:bg-amber-500/25 border border-amber-400/40 text-amber-200 px-2.5 py-0.5 rounded-lg font-bold transition">
+                <i class="fa-solid fa-bullhorn text-amber-400 mr-1"></i> <span id="header-latest-ann-text">New Announcement</span>
+            </button>
+        </div>
     </header>
+
+    <!-- ========================================================================= -->
+    <!-- OWNER MASTER CONTROL DASHBOARD (ONLY VISIBLE TO OWNER + DIRECT TERMINAL)  -->
+    <!-- ========================================================================= -->
+    <section id="owner-master-dashboard" class="hidden max-w-6xl mx-auto px-3 sm:px-4 mt-4 space-y-3">
+        <div class="glass-card rounded-2xl p-4 sm:p-5 border-2 border-amber-400/90 shadow-2xl space-y-4 bg-gradient-to-r from-gray-950 via-amber-950/20 to-gray-950">
+            <!-- Top Bar of Owner Dashboard -->
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-gray-800 pb-3">
+                <div class="flex items-center gap-2.5">
+                    <div class="bg-gradient-to-tr from-amber-400 to-orange-500 p-2 rounded-xl text-black font-black text-sm shadow-lg">
+                        <i class="fa-solid fa-crown"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-sm sm:text-base font-black text-amber-300 uppercase tracking-wider">Owner Master Control Center (ஓனர் கண்ட்ரோல் டேஷ்போர்டு)</h2>
+                        <p class="text-[10px] font-bold text-gray-300">பயனர்கள் அனுமதி, கால நீட்டிப்பு, தடை, அறிவிப்புகள் & நேரடி டிரேடிங் டெர்மினல் கட்டுப்பாடு</p>
+                    </div>
+                </div>
+                <div class="flex flex-wrap items-center gap-2">
+                    <!-- Direct Jump to Trading Terminal / Views from Owner Dashboard -->
+                    <button type="button" onclick="openDirectTerminalFromOwner('terminal')" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-xl text-xs font-black shadow-lg transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-chart-line"></i> <span>நேரடி டிரேடிங் டெர்மினல் பார் (Live Terminal)</span>
+                    </button>
+                    <button type="button" onclick="toggleOwnerControlPanel()" class="bg-gray-800 hover:bg-gray-700 text-gray-200 px-3 py-1.5 rounded-xl text-xs font-black border border-gray-700 transition">
+                        <i class="fa-solid fa-eye-slash mr-1"></i> Hide Owner Panel
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quick Summary Counters Strip -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs">
+                <div class="bg-gray-900/90 border border-indigo-500/35 rounded-xl p-3">
+                    <span class="text-[10px] font-black text-gray-400 uppercase block">Total Registered</span>
+                    <h4 id="own-stat-total" class="text-lg font-mono font-black text-white">0</h4>
+                </div>
+                <div class="bg-amber-950/30 border border-amber-500/40 rounded-xl p-3">
+                    <span class="text-[10px] font-black text-amber-300 uppercase block">⏳ Waiting Approval</span>
+                    <h4 id="own-stat-waiting" class="text-lg font-mono font-black text-amber-300">0</h4>
+                </div>
+                <div class="bg-emerald-950/30 border border-emerald-500/40 rounded-xl p-3">
+                    <span class="text-[10px] font-black text-emerald-300 uppercase block">✅ Current Active Users</span>
+                    <h4 id="own-stat-active" class="text-lg font-mono font-black text-emerald-400">0</h4>
+                </div>
+                <div class="bg-rose-950/30 border border-rose-500/40 rounded-xl p-3">
+                    <span class="text-[10px] font-black text-rose-300 uppercase block">🚫 Banned / Expired</span>
+                    <h4 id="own-stat-banned" class="text-lg font-mono font-black text-rose-400">0</h4>
+                </div>
+            </div>
+
+            <!-- MAIN ACCORDION BUTTONS (OPEN / CLOSE ON DEMAND) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+                <button type="button" onclick="toggleOwnerSection('sec-own-users')" id="btn-sec-own-users" class="py-2.5 px-3 rounded-xl bg-indigo-600 text-white text-xs font-black shadow-md flex items-center justify-between transition">
+                    <span><i class="fa-solid fa-users-gear mr-1.5"></i> 1. பயனர்கள் கண்ட்ரோல் (Users)</span>
+                    <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                </button>
+                <button type="button" onclick="toggleOwnerSection('sec-own-announce')" id="btn-sec-own-announce" class="py-2.5 px-3 rounded-xl bg-gray-900 hover:bg-gray-800 text-amber-300 border border-amber-500/40 text-xs font-black flex items-center justify-between transition">
+                    <span><i class="fa-solid fa-bullhorn mr-1.5"></i> 2. அனௌன்ஸ்மெண்ட் (2MB Photo)</span>
+                    <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                </button>
+                <button type="button" onclick="toggleOwnerSection('sec-own-terminal-nav')" id="btn-sec-own-terminal-nav" class="py-2.5 px-3 rounded-xl bg-gray-900 hover:bg-gray-800 text-emerald-300 border border-emerald-500/40 text-xs font-black flex items-center justify-between transition">
+                    <span><i class="fa-solid fa-desktop mr-1.5"></i> 3. டெர்மினல் நேரடிப் பார்வை</span>
+                    <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                </button>
+                <button type="button" onclick="toggleOwnerSection('sec-own-security')" id="btn-sec-own-security" class="py-2.5 px-3 rounded-xl bg-gray-900 hover:bg-gray-800 text-cyan-300 border border-cyan-500/40 text-xs font-black flex items-center justify-between transition">
+                    <span><i class="fa-solid fa-key mr-1.5"></i> 4. ஓனர் பாஸ்வேர்ட் & Backup</span>
+                    <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                </button>
+            </div>
+
+            <!-- SECTION 1: USERS MANAGEMENT (WAITING / CURRENT / BANNED + RE-APPROVE + EXTEND + DELETE) -->
+            <div id="sec-own-users" class="owner-acc-section bg-gray-950/90 border border-indigo-500/40 rounded-2xl p-4 space-y-3">
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-gray-800 pb-2.5">
+                    <div class="flex flex-wrap gap-1.5">
+                        <button type="button" onclick="switchOwnerUserTab('waiting')" id="own-utab-waiting" class="px-3 py-1.5 rounded-lg text-xs font-black bg-amber-500 text-black transition">
+                            ⏳ Waiting Users (<span id="cnt-utab-waiting">0</span>)
+                        </button>
+                        <button type="button" onclick="switchOwnerUserTab('current')" id="own-utab-current" class="px-3 py-1.5 rounded-lg text-xs font-black bg-gray-900 text-gray-300 hover:text-white transition">
+                            ✅ Current Users (<span id="cnt-utab-current">0</span>)
+                        </button>
+                        <button type="button" onclick="switchOwnerUserTab('banned')" id="own-utab-banned" class="px-3 py-1.5 rounded-lg text-xs font-black bg-gray-900 text-gray-300 hover:text-white transition">
+                            🚫 Banned / Expired (<span id="cnt-utab-banned">0</span>)
+                        </button>
+                        <button type="button" onclick="switchOwnerUserTab('all')" id="own-utab-all" class="px-3 py-1.5 rounded-lg text-xs font-black bg-gray-900 text-gray-300 hover:text-white transition">
+                            📋 All Users (<span id="cnt-utab-all">0</span>)
+                        </button>
+                    </div>
+                    <input type="text" id="own-user-search" oninput="renderOwnerUsersList()" placeholder="Search ID / Name / Mobile..." class="bg-gray-900 border border-gray-700 rounded-xl px-3 py-1.5 text-xs font-bold text-white outline-none w-full sm:w-56">
+                </div>
+
+                <!-- Quick Re-Approve / Extend by User ID Bar -->
+                <div class="bg-indigo-950/35 border border-indigo-500/30 rounded-xl p-3 flex flex-wrap items-center gap-2 text-xs">
+                    <span class="font-black text-indigo-300"><i class="fa-solid fa-user-check mr-1"></i> User ID மூலம் நேரடி அனுமதி / நீட்டிப்பு:</span>
+                    <input type="text" id="quick-action-uid" placeholder="iMR-591986" class="bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 font-mono font-black text-amber-300 text-xs w-32 outline-none">
+                    <select id="quick-action-duration" class="bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 font-bold text-white text-xs outline-none">
+                        <option value="30">1 Month (30 Days)</option>
+                        <option value="60">2 Months (60 Days)</option>
+                        <option value="90">3 Months (90 Days)</option>
+                        <option value="180">6 Months (180 Days)</option>
+                        <option value="365">1 Year (365 Days)</option>
+                        <option value="7">7 Days Trial</option>
+                        <option value="15">15 Days</option>
+                    </select>
+                    <button type="button" onclick="quickApproveOrExtendById('approve')" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-lg text-xs font-black transition">
+                        Approve / Re-Activate
+                    </button>
+                    <button type="button" onclick="quickApproveOrExtendById('extend')" class="bg-cyan-600 hover:bg-cyan-500 text-white px-3 py-1.5 rounded-lg text-xs font-black transition">
+                        + Extend Time
+                    </button>
+                </div>
+
+                <div id="owner-users-list-container" class="space-y-2.5 max-h-[420px] overflow-y-auto pr-1"></div>
+            </div>
+
+            <!-- SECTION 2: ANNOUNCEMENT & UP TO 2MB PHOTO BROADCASTER -->
+            <div id="sec-own-announce" class="owner-acc-section hidden bg-gray-950/90 border border-amber-500/40 rounded-2xl p-4 space-y-3.5">
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-gray-800 pb-2">
+                    <h3 class="text-xs sm:text-sm font-black text-amber-300 uppercase"><i class="fa-solid fa-bullhorn mr-1"></i> புதிய அனௌன்ஸ்மெண்ட் & புகைப்படம் (Max 2MB Image)</h3>
+                    <span class="text-[10px] font-mono font-black text-cyan-300 bg-cyan-950/60 px-2.5 py-0.5 rounded border border-cyan-500/30">Instant Bell Notification to All Users</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                    <div class="space-y-2.5">
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-black text-gray-300 uppercase">தலைப்பு (Announcement Title)</label>
+                            <input type="text" id="ann-title-input" placeholder="எ.கா: இன்றைய முக்கிய BTC மார்க்கெட் அறிவிப்பு" class="w-full bg-gray-900 border border-gray-700 focus:border-amber-400 rounded-xl px-3 py-2 text-xs font-bold text-white outline-none">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-black text-gray-300 uppercase">செய்தி (Message Text)</label>
+                            <textarea id="ann-message-input" rows="3" placeholder="பயனர்களுக்குத் தெரிய வேண்டிய செய்தியை இங்கே எழுதுங்கள்..." class="w-full bg-gray-900 border border-gray-700 focus:border-amber-400 rounded-xl px-3 py-2 text-xs font-bold text-white outline-none"></textarea>
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-[10px] font-black text-gray-300 uppercase block">புகைப்படம் பதிவேற்றம் (Upload Image — Max 2MB)</label>
+                            <div class="flex flex-wrap items-center gap-2">
+                                <input type="file" id="ann-image-input" accept="image/*" onchange="handleAnnouncementImageSelect(event)" class="hidden">
+                                <button type="button" onclick="document.getElementById('ann-image-input').click()" class="bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-2 rounded-xl text-xs font-black transition flex items-center gap-1.5">
+                                    <i class="fa-solid fa-image"></i> <span id="ann-img-pick-label">படம் தேர்வு செய் (Choose Image)</span>
+                                </button>
+                                <button type="button" id="ann-img-replace-btn" onclick="document.getElementById('ann-image-input').click()" class="hidden bg-amber-500 hover:bg-amber-400 text-black px-3 py-2 rounded-xl text-xs font-black transition">
+                                    <i class="fa-solid fa-arrows-rotate mr-1"></i> படத்தை மாற்று (Replace)
+                                </button>
+                                <button type="button" id="ann-img-clear-btn" onclick="clearSelectedAnnouncementImage()" class="hidden bg-rose-600 hover:bg-rose-500 text-white px-3 py-2 rounded-xl text-xs font-black transition">
+                                    <i class="fa-solid fa-trash mr-1"></i> நீக்கு
+                                </button>
+                            </div>
+                            <p id="ann-img-info-txt" class="text-[10px] font-bold text-gray-400">JPG, PNG, WEBP ஆதரிக்கப்படும் (அதிகபட்ச அளவு: 2 MB).</p>
+                        </div>
+
+                        <button type="button" onclick="publishOwnerAnnouncement()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-black font-black text-xs shadow-lg transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i> <span>Submit & Send Bell Notification</span>
+                        </button>
+                    </div>
+
+                    <!-- Live Image Preview + Active Broadcasts List -->
+                    <div class="space-y-2.5">
+                        <div id="ann-preview-wrapper" class="hidden bg-gray-900 border border-amber-400/50 rounded-xl p-2.5 space-y-1.5">
+                            <span class="text-[10px] font-black text-amber-300 uppercase block">Selected Photo Preview:</span>
+                            <img id="ann-preview-img" src="" alt="Preview" class="w-full max-h-40 object-contain rounded-lg bg-black/60 border border-gray-800">
+                        </div>
+
+                        <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-3 space-y-2">
+                            <span class="text-[10px] font-black text-cyan-300 uppercase block">வெளியிடப்பட்ட அனௌன்ஸ்மெண்ட்கள் (Manage / Delete):</span>
+                            <div id="owner-published-announcements-list" class="space-y-2 max-h-56 overflow-y-auto"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 3: DIRECT TRADING TERMINAL VIEWER FROM OWNER DASHBOARD -->
+            <div id="sec-own-terminal-nav" class="owner-acc-section hidden bg-gray-950/90 border border-emerald-500/40 rounded-2xl p-4 space-y-3">
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-gray-800 pb-2">
+                    <h3 class="text-xs sm:text-sm font-black text-emerald-300 uppercase"><i class="fa-solid fa-desktop mr-1"></i> நேரடி டிரேடிங் டெர்மினல் பிரிவுகள் (Direct Terminal Access)</h3>
+                    <span class="text-[10px] font-bold text-gray-300">கீழே உள்ள பொத்தான்களை அழுத்தி எந்தப் பகுதியையும் நேரடியாகப் பார்க்கலாம்</span>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-xs">
+                    <button type="button" onclick="openDirectTerminalFromOwner('terminal')" class="p-3 rounded-xl bg-indigo-950/70 hover:bg-indigo-600 border border-indigo-500/40 text-white font-black transition flex flex-col items-center gap-1">
+                        <i class="fa-solid fa-house text-base text-indigo-300"></i>
+                        <span>Home Terminal</span>
+                    </button>
+                    <button type="button" onclick="openDirectTerminalFromOwner('options')" class="p-3 rounded-xl bg-amber-950/50 hover:bg-amber-600 border border-amber-500/40 text-white font-black transition flex flex-col items-center gap-1">
+                        <i class="fa-solid fa-chart-pie text-base text-amber-300"></i>
+                        <span>Options Data</span>
+                    </button>
+                    <button type="button" onclick="openDirectTerminalFromOwner('mmintelligence')" class="p-3 rounded-xl bg-purple-950/60 hover:bg-purple-600 border border-purple-500/40 text-white font-black transition flex flex-col items-center gap-1">
+                        <i class="fa-solid fa-chess text-base text-purple-300"></i>
+                        <span>MM Intel</span>
+                    </button>
+                    <button type="button" onclick="openDirectTerminalFromOwner('orderflow')" class="p-3 rounded-xl bg-cyan-950/60 hover:bg-cyan-600 border border-cyan-500/40 text-white font-black transition flex flex-col items-center gap-1">
+                        <i class="fa-solid fa-layer-group text-base text-cyan-300"></i>
+                        <span>Order Flow</span>
+                    </button>
+                    <button type="button" onclick="openDirectTerminalFromOwner('charts')" class="p-3 rounded-xl bg-emerald-950/60 hover:bg-emerald-600 border border-emerald-500/40 text-white font-black transition flex flex-col items-center gap-1">
+                        <i class="fa-solid fa-chart-line text-base text-emerald-300"></i>
+                        <span>Chart & 5-Layer</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- SECTION 4: OWNER PASSWORD CHANGE & DATA BACKUP -->
+            <div id="sec-own-security" class="owner-acc-section hidden bg-gray-950/90 border border-cyan-500/40 rounded-2xl p-4 space-y-3">
+                <h3 class="text-xs sm:text-sm font-black text-cyan-300 uppercase border-b border-gray-800 pb-2"><i class="fa-solid fa-shield-halved mr-1"></i> ஓனர் பாஸ்வேர்ட் மாற்றம் & தரவு பாதுகாப்பு</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
+                    <input type="password" id="own-old-pass" placeholder="தற்போதைய பாஸ்வேர்ட்" class="bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 font-bold text-white outline-none">
+                    <input type="password" id="own-new-pass" placeholder="புதிய ஓனர் பாஸ்வேர்ட்" class="bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 font-bold text-white outline-none">
+                    <button type="button" onclick="changeOwnerPassword()" class="bg-cyan-600 hover:bg-cyan-500 text-white rounded-xl px-4 py-2 font-black transition">
+                        Update Owner Password
+                    </button>
+                </div>
+                <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-gray-800 text-[11px]">
+                    <span class="font-bold text-gray-300">Owner User ID: <strong class="font-mono text-amber-300">iMR-OWNER</strong></span>
+                    <div class="flex gap-2">
+                        <button type="button" onclick="exportUsersJsonBackup()" class="bg-gray-800 hover:bg-gray-700 text-emerald-300 border border-emerald-500/30 px-3 py-1.5 rounded-lg font-black transition">
+                            <i class="fa-solid fa-download mr-1"></i> Export Users Backup
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <!-- FIXED BOTTOM NAVIGATION BAR -->
     <div class="fixed bottom-0 left-0 right-0 z-50 bg-gray-950/95 backdrop-blur-md border-t border-gray-800 p-1.5 shadow-2xl">
@@ -1358,6 +1777,8 @@
         </div>
 
     </main>
+
+    </div> <!-- END #authenticated-app-shell -->
 
     <!-- ========================================== -->
     <!-- JAVASCRIPT TRADING ENGINE & VIEWS LOGIC -->
@@ -4998,6 +5419,9 @@
             const clkEl = document.getElementById('chart-ist-clock');
             if (clkEl) clkEl.innerText = 'IST ' + fullIst12;
 
+            const authClkEl = document.getElementById('auth-ist-clock');
+            if (authClkEl) authClkEl.innerText = 'IST ' + fullIst12;
+
             const sigEl = document.getElementById('signal-time');
             if (sigEl) sigEl.innerText = fullIst12;
 
@@ -5015,16 +5439,898 @@
         }
         setInterval(updateIstClockAndCandleCountdown, 1000);
 
-        window.onload = function() {
-            updateIstClockAndCandleCountdown();
+        // =========================================================================
+        // MEMBER REGISTRATION (iMR-591986+), OWNER APPROVAL, 2MB PHOTO & BELL SYSTEM
+        // =========================================================================
+        const STORAGE_KEYS = {
+            OWNER_CRED: 'imr_owner_cred_v1',
+            USERS_DB: 'imr_users_db_v1',
+            NEXT_SEQ: 'imr_next_uid_seq_v1',
+            SESSION: 'imr_active_session_v1',
+            ANNOUNCEMENTS: 'imr_announcements_v1',
+            SEEN_ANN: 'imr_seen_ann_ids_v1'
+        };
+
+        const OWNER_DEFAULT_ID = 'iMR-OWNER';
+        const OWNER_DEFAULT_PASS = 'Ramesh@591986';
+        let currentOwnerUserTab = 'waiting';
+        let pendingAnnouncementImageDataUrl = '';
+        let currentHoldUserId = null;
+
+        function getOwnerCredentials() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEYS.OWNER_CRED);
+                if (raw) {
+                    const parsed = JSON.parse(raw);
+                    if (parsed && parsed.id && parsed.password) return parsed;
+                }
+            } catch (e) {}
+            const def = { id: OWNER_DEFAULT_ID, password: OWNER_DEFAULT_PASS, name: 'K. Ramesh (Owner)' };
+            localStorage.setItem(STORAGE_KEYS.OWNER_CRED, JSON.stringify(def));
+            return def;
+        }
+
+        function getUsersDb() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEYS.USERS_DB);
+                if (raw) {
+                    const arr = JSON.parse(raw);
+                    if (Array.isArray(arr)) return arr;
+                }
+            } catch (e) {}
+            return [];
+        }
+
+        function saveUsersDb(arr) {
+            localStorage.setItem(STORAGE_KEYS.USERS_DB, JSON.stringify(arr));
+        }
+
+        function getNextUserIdPreview() {
+            let seq = parseInt(localStorage.getItem(STORAGE_KEYS.NEXT_SEQ) || '591986', 10);
+            if (isNaN(seq) || seq < 591986) seq = 591986;
+            const users = getUsersDb();
+            while (users.some(u => u.userId === `iMR-${seq}`)) {
+                seq++;
+            }
+            return `iMR-${seq}`;
+        }
+
+        function allocateNextUserId() {
+            const nextId = getNextUserIdPreview();
+            const num = parseInt(nextId.replace('iMR-', ''), 10);
+            localStorage.setItem(STORAGE_KEYS.NEXT_SEQ, String(num + 1));
+            return nextId;
+        }
+
+        function getAnnouncementsList() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEYS.ANNOUNCEMENTS);
+                if (raw) {
+                    const arr = JSON.parse(raw);
+                    if (Array.isArray(arr)) return arr;
+                }
+            } catch (e) {}
+            return [];
+        }
+
+        function saveAnnouncementsList(arr) {
+            localStorage.setItem(STORAGE_KEYS.ANNOUNCEMENTS, JSON.stringify(arr));
+        }
+
+        function getSeenAnnouncementIds(userId) {
+            try {
+                const raw = localStorage.getItem(`${STORAGE_KEYS.SEEN_ANN}_${userId}`);
+                if (raw) {
+                    const arr = JSON.parse(raw);
+                    if (Array.isArray(arr)) return arr;
+                }
+            } catch (e) {}
+            return [];
+        }
+
+        function markAllAnnouncementsSeen(userId) {
+            const allIds = getAnnouncementsList().map(a => a.id);
+            localStorage.setItem(`${STORAGE_KEYS.SEEN_ANN}_${userId}`, JSON.stringify(allIds));
+            updateBellNotificationIndicator();
+        }
+
+        function toggleInputVisibility(inputId) {
+            const inp = document.getElementById(inputId);
+            if (!inp) return;
+            inp.type = (inp.type === 'password') ? 'text' : 'password';
+        }
+
+        function clearSingleLoginInput(inputId) {
+            const inp = document.getElementById(inputId);
+            if (inp) {
+                inp.value = '';
+                inp.focus();
+            }
+            const fb = document.getElementById('login-feedback-box');
+            if (fb) fb.classList.add('hidden');
+        }
+
+        function clearAllLoginFields() {
+            const uidInp = document.getElementById('login-user-id');
+            const pwdInp = document.getElementById('login-password');
+            if (uidInp) {
+                uidInp.value = '';
+                uidInp.focus();
+            }
+            if (pwdInp) pwdInp.value = '';
+            const fb = document.getElementById('login-feedback-box');
+            if (fb) fb.classList.add('hidden');
+        }
+
+        function switchAuthTab(tab) {
+            const loginForm = document.getElementById('auth-login-form');
+            const regForm = document.getElementById('auth-register-form');
+            const receipt = document.getElementById('reg-success-receipt');
+            const holdBox = document.getElementById('account-status-hold-box');
+            const tabsBar = document.getElementById('auth-tabs-bar');
+            const btnLogin = document.getElementById('tab-btn-login');
+            const btnReg = document.getElementById('tab-btn-register');
+
+            if (tabsBar) tabsBar.classList.remove('hidden');
+            if (receipt) receipt.classList.add('hidden');
+            if (holdBox) holdBox.classList.add('hidden');
+
+            if (tab === 'login') {
+                if (loginForm) loginForm.classList.remove('hidden');
+                if (regForm) regForm.classList.add('hidden');
+                if (btnLogin) btnLogin.className = "py-2.5 px-3 rounded-xl text-xs font-black bg-indigo-600 text-white shadow-lg transition";
+                if (btnReg) btnReg.className = "py-2.5 px-3 rounded-xl text-xs font-black bg-transparent text-gray-300 hover:text-white transition";
+            } else {
+                if (loginForm) loginForm.classList.add('hidden');
+                if (regForm) regForm.classList.remove('hidden');
+                if (btnReg) btnReg.className = "py-2.5 px-3 rounded-xl text-xs font-black bg-emerald-600 text-white shadow-lg transition";
+                if (btnLogin) btnLogin.className = "py-2.5 px-3 rounded-xl text-xs font-black bg-transparent text-gray-300 hover:text-white transition";
+                const prevEl = document.getElementById('next-preview-uid');
+                if (prevEl) prevEl.innerText = getNextUserIdPreview();
+            }
+        }
+
+        function handleNewRegistration(e) {
+            e.preventDefault();
+            const fullName = (document.getElementById('reg-fullname').value || '').trim();
+            const address = (document.getElementById('reg-address').value || '').trim();
+            const mobile = (document.getElementById('reg-mobile').value || '').trim();
+            const dob = (document.getElementById('reg-dob').value || '').trim();
+            const password = (document.getElementById('reg-password').value || '').trim();
+
+            if (!fullName || !address || !mobile || !dob || !password) return;
+
+            const newUserId = allocateNextUserId();
+            const nowIst = getAccurateIstDate();
+            const createdIstStr = nowIst.toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata', day: '2-digit', month: '2-digit', year: 'numeric' }) + ', ' +
+                nowIst.toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour12: true, hour: '2-digit', minute: '2-digit' });
+
+            const users = getUsersDb();
+            users.push({
+                userId: newUserId,
+                fullName,
+                address,
+                mobile,
+                dob,
+                password,
+                status: 'waiting', // waiting | active | banned
+                createdAtMs: Date.now(),
+                createdIst: createdIstStr,
+                approvedAtMs: null,
+                expiresAtMs: null,
+                approvedDays: 0
+            });
+            saveUsersDb(users);
+
+            document.getElementById('auth-register-form').reset();
+            document.getElementById('auth-register-form').classList.add('hidden');
+            document.getElementById('auth-tabs-bar').classList.add('hidden');
+
+            const receipt = document.getElementById('reg-success-receipt');
+            const uidDisp = document.getElementById('generated-uid-display');
+            if (uidDisp) uidDisp.innerText = newUserId;
+            if (receipt) receipt.classList.remove('hidden');
+        }
+
+        function copyGeneratedUserId() {
+            const uid = document.getElementById('generated-uid-display')?.innerText || '';
+            if (uid && navigator.clipboard) {
+                navigator.clipboard.writeText(uid).catch(() => {});
+            }
+        }
+
+        function proceedToLoginWithGeneratedId() {
+            const uid = document.getElementById('generated-uid-display')?.innerText || '';
+            switchAuthTab('login');
+            const inp = document.getElementById('login-user-id');
+            if (inp) inp.value = uid;
+        }
+
+        function showHoldScreenForUser(userObj, mode) {
+            currentHoldUserId = userObj.userId;
+            document.getElementById('auth-tabs-bar').classList.add('hidden');
+            document.getElementById('auth-login-form').classList.add('hidden');
+            document.getElementById('auth-register-form').classList.add('hidden');
+            document.getElementById('reg-success-receipt').classList.add('hidden');
+
+            const holdBox = document.getElementById('account-status-hold-box');
+            const titleEl = document.getElementById('hold-title');
+            const metaEl = document.getElementById('hold-user-meta');
+            const msgEl = document.getElementById('hold-message');
+            const iconWrap = document.getElementById('hold-icon-wrap');
+
+            if (metaEl) metaEl.innerText = `User ID: ${userObj.userId} | Name: ${userObj.fullName}`;
+
+            if (mode === 'banned') {
+                if (iconWrap) {
+                    iconWrap.className = "inline-flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-300 border border-rose-400/50 text-xl";
+                    iconWrap.innerHTML = '<i class="fa-solid fa-ban"></i>';
+                }
+                if (titleEl) {
+                    titleEl.innerText = "Account Suspended / Banned (தடை செய்யப்பட்டுள்ளது)";
+                    titleEl.className = "text-sm sm:text-base font-black text-rose-400";
+                }
+                if (msgEl) msgEl.innerText = "உங்கள் கணக்கு நிர்வாகத்தால் (Owner) தற்காலிகமாக நிறுத்தி வைக்கப்பட்டுள்ளது. மேலும் விவரங்களுக்கு ஓனரைத் தொடர்பு கொள்ளவும்.";
+            } else if (mode === 'expired') {
+                if (iconWrap) {
+                    iconWrap.className = "inline-flex items-center justify-center w-12 h-12 rounded-full bg-orange-500/20 text-orange-300 border border-orange-400/50 text-xl";
+                    iconWrap.innerHTML = '<i class="fa-solid fa-calendar-xmark"></i>';
+                }
+                if (titleEl) {
+                    titleEl.innerText = "Subscription Expired (கால அவகாசம் முடிந்துவிட்டது)";
+                    titleEl.className = "text-sm sm:text-base font-black text-orange-300";
+                }
+                if (msgEl) msgEl.innerText = "உங்களுக்கு வழங்கப்பட்ட அணுகல் காலம் முடிவடைந்துவிட்டது. ஓனர் டேஷ்போர்டிலிருந்து கூடுதல் கால அவகாசம் (Extend) பெற்ற பிறகு மீண்டும் உள்நுழையலாம்.";
+            } else {
+                if (iconWrap) {
+                    iconWrap.className = "inline-flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/50 text-xl";
+                    iconWrap.innerHTML = '<i class="fa-solid fa-hourglass-half"></i>';
+                }
+                if (titleEl) {
+                    titleEl.innerText = "Waiting for Owner Approval (ஒப்புதலுக்காகக் காத்திருக்கிறது)";
+                    titleEl.className = "text-sm sm:text-base font-black text-amber-300";
+                }
+                if (msgEl) msgEl.innerText = "உங்கள் கணக்கு Waiting List-இல் உள்ளது. ஓனர் அப்ரூவல் (1/2/3 மாதங்கள்) வழங்கியவுடன் 'Approval நிலையைச் சரிபார்' பொத்தானை அழுத்தி உள்ளே செல்லலாம்.";
+            }
+
+            if (holdBox) holdBox.classList.remove('hidden');
+        }
+
+        function recheckCurrentHoldAccount() {
+            if (!currentHoldUserId) return;
+            const users = getUsersDb();
+            const u = users.find(x => x.userId.toUpperCase() === currentHoldUserId.toUpperCase());
+            if (!u) return;
+            const nowMs = Date.now();
+            if (u.status === 'active' && u.expiresAtMs && u.expiresAtMs > nowMs) {
+                localStorage.setItem(STORAGE_KEYS.SESSION, JSON.stringify({ role: 'member', userId: u.userId }));
+                enterAuthenticatedApp({ role: 'member', user: u });
+            } else if (u.status === 'banned') {
+                showHoldScreenForUser(u, 'banned');
+            } else if (u.status === 'active' && u.expiresAtMs && u.expiresAtMs <= nowMs) {
+                showHoldScreenForUser(u, 'expired');
+            } else {
+                showHoldScreenForUser(u, 'waiting');
+            }
+        }
+
+        function handleMemberLogin(e) {
+            e.preventDefault();
+            const rawId = (document.getElementById('login-user-id').value || '').trim();
+            const rawPass = (document.getElementById('login-password').value || '').trim();
+            const fb = document.getElementById('login-feedback-box');
+
+            const showErr = (msg) => {
+                if (!fb) return;
+                fb.innerText = msg;
+                fb.className = "rounded-xl p-3 text-xs font-bold bg-rose-950/80 border border-rose-500/50 text-rose-300";
+                fb.classList.remove('hidden');
+            };
+
+            if (fb) fb.classList.add('hidden');
+
+            // 1. Check Owner Login
+            const ownerCred = getOwnerCredentials();
+            if (rawId.toUpperCase() === ownerCred.id.toUpperCase()) {
+                if (rawPass === ownerCred.password) {
+                    localStorage.setItem(STORAGE_KEYS.SESSION, JSON.stringify({ role: 'owner', userId: ownerCred.id }));
+                    enterAuthenticatedApp({ role: 'owner' });
+                    return;
+                } else {
+                    showErr("❌ ஓனர் பாஸ்வேர்ட் தவறானது!");
+                    return;
+                }
+            }
+
+            // 2. Check Registered Members
+            const users = getUsersDb();
+            const found = users.find(u => u.userId.toUpperCase() === rawId.toUpperCase());
+            if (!found) {
+                showErr("❌ இந்த User ID பதிவு செய்யப்படவில்லை. முதலில் New Registration செய்யவும்.");
+                return;
+            }
+            if (found.password !== rawPass) {
+                showErr("❌ பாஸ்வேர்ட் தவறானது! சரியான பாஸ்வேர்டை உள்ளிடவும்.");
+                return;
+            }
+
+            const nowMs = Date.now();
+            if (found.status === 'banned') {
+                showHoldScreenForUser(found, 'banned');
+                return;
+            }
+            if (found.status !== 'active' || !found.expiresAtMs) {
+                showHoldScreenForUser(found, 'waiting');
+                return;
+            }
+            if (found.expiresAtMs <= nowMs) {
+                showHoldScreenForUser(found, 'expired');
+                return;
+            }
+
+            localStorage.setItem(STORAGE_KEYS.SESSION, JSON.stringify({ role: 'member', userId: found.userId }));
+            enterAuthenticatedApp({ role: 'member', user: found });
+        }
+
+        function enterAuthenticatedApp(ctx) {
+            document.getElementById('auth-gate-screen').classList.add('hidden');
+            document.getElementById('authenticated-app-shell').classList.remove('hidden');
+
+            const ownerBtn = document.getElementById('header-owner-panel-btn');
+            const ownerDash = document.getElementById('owner-master-dashboard');
+            const userPill = document.getElementById('session-user-pill');
+            const valPill = document.getElementById('session-validity-pill');
+
+            if (ctx.role === 'owner') {
+                if (ownerBtn) {
+                    ownerBtn.classList.remove('hidden');
+                    ownerBtn.classList.add('inline-flex');
+                }
+                if (ownerDash) ownerDash.classList.remove('hidden');
+                if (userPill) userPill.innerText = '👑 OWNER: iMR-OWNER (K. Ramesh)';
+                if (valPill) {
+                    valPill.innerText = 'Full Admin + Live Terminal';
+                    valPill.className = 'font-mono font-black text-amber-300';
+                }
+                refreshOwnerDashboardUi();
+            } else {
+                if (ownerBtn) ownerBtn.classList.add('hidden');
+                if (ownerDash) ownerDash.classList.add('hidden');
+                const u = ctx.user;
+                const remDays = Math.max(1, Math.ceil((u.expiresAtMs - Date.now()) / (1000 * 60 * 60 * 24)));
+                const expDate = new Date(u.expiresAtMs).toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata', day: '2-digit', month: '2-digit', year: 'numeric' });
+                if (userPill) userPill.innerText = `${u.userId} • ${u.fullName}`;
+                if (valPill) {
+                    valPill.innerText = `Active (${remDays}d left • Till ${expDate})`;
+                    valPill.className = 'font-mono font-bold text-emerald-300';
+                }
+            }
+
+            updateBellNotificationIndicator();
             try {
                 fetchAllData();
                 switchDashboardView('terminal');
-            } catch (e) { console.error("Init error:", e); }
+            } catch (e) { console.error("Terminal init error:", e); }
+        }
+
+        function logoutToAuthScreen() {
+            localStorage.removeItem(STORAGE_KEYS.SESSION);
+            clearAllLoginFields();
+            document.getElementById('authenticated-app-shell').classList.add('hidden');
+            document.getElementById('auth-gate-screen').classList.remove('hidden');
+            switchAuthTab('login');
+        }
+
+        function restoreSavedSessionOnLoad() {
+            clearAllLoginFields();
+            try {
+                const raw = localStorage.getItem(STORAGE_KEYS.SESSION);
+                if (!raw) {
+                    switchAuthTab('login');
+                    return;
+                }
+                const sess = JSON.parse(raw);
+                if (sess && sess.role === 'owner') {
+                    enterAuthenticatedApp({ role: 'owner' });
+                    return;
+                }
+                if (sess && sess.role === 'member' && sess.userId) {
+                    const users = getUsersDb();
+                    const found = users.find(u => u.userId === sess.userId);
+                    if (found && found.status === 'active' && found.expiresAtMs && found.expiresAtMs > Date.now()) {
+                        enterAuthenticatedApp({ role: 'member', user: found });
+                        return;
+                    }
+                }
+            } catch (e) {}
+            localStorage.removeItem(STORAGE_KEYS.SESSION);
+            switchAuthTab('login');
+        }
+
+        // Periodic live enforcement: if Owner bans or expires an active member while they are using the app, lock them out immediately!
+        setInterval(() => {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEYS.SESSION);
+                if (!raw) return;
+                const sess = JSON.parse(raw);
+                if (sess && sess.role === 'member' && sess.userId) {
+                    const users = getUsersDb();
+                    const found = users.find(u => u.userId === sess.userId);
+                    if (!found || found.status === 'banned') {
+                        localStorage.removeItem(STORAGE_KEYS.SESSION);
+                        document.getElementById('authenticated-app-shell').classList.add('hidden');
+                        document.getElementById('auth-gate-screen').classList.remove('hidden');
+                        if (found) showHoldScreenForUser(found, 'banned');
+                        else switchAuthTab('login');
+                    } else if (found.status !== 'active' || !found.expiresAtMs || found.expiresAtMs <= Date.now()) {
+                        localStorage.removeItem(STORAGE_KEYS.SESSION);
+                        document.getElementById('authenticated-app-shell').classList.add('hidden');
+                        document.getElementById('auth-gate-screen').classList.remove('hidden');
+                        showHoldScreenForUser(found, found.expiresAtMs && found.expiresAtMs <= Date.now() ? 'expired' : 'waiting');
+                    }
+                }
+                updateBellNotificationIndicator();
+            } catch (e) {}
+        }, 3000);
+
+        // =========================================================================
+        // OWNER CONTROL PANEL ACTIONS (USERS, DURATION APPROVAL, BAN, DELETE, 2MB PHOTO)
+        // =========================================================================
+        function toggleOwnerControlPanel() {
+            const panel = document.getElementById('owner-master-dashboard');
+            const lbl = document.getElementById('header-owner-btn-label');
+            if (!panel) return;
+            if (panel.classList.contains('hidden')) {
+                panel.classList.remove('hidden');
+                if (lbl) lbl.innerText = 'Hide Owner Panel';
+                refreshOwnerDashboardUi();
+            } else {
+                panel.classList.add('hidden');
+                if (lbl) lbl.innerText = 'Owner Panel';
+            }
+        }
+
+        function toggleOwnerSection(secId) {
+            const target = document.getElementById(secId);
+            if (!target) return;
+            const isHidden = target.classList.contains('hidden');
+            document.querySelectorAll('.owner-acc-section').forEach(el => el.classList.add('hidden'));
+            if (isHidden) {
+                target.classList.remove('hidden');
+            }
+        }
+
+        function openDirectTerminalFromOwner(viewName) {
+            switchDashboardView(viewName || 'terminal');
+            const mainEl = document.getElementById('main-container');
+            if (mainEl) {
+                mainEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function switchOwnerUserTab(tab) {
+            currentOwnerUserTab = tab;
+            ['waiting', 'current', 'banned', 'all'].forEach(t => {
+                const btn = document.getElementById(`own-utab-${t}`);
+                if (!btn) return;
+                if (t === tab) {
+                    btn.className = t === 'waiting'
+                        ? "px-3 py-1.5 rounded-lg text-xs font-black bg-amber-500 text-black transition"
+                        : (t === 'current'
+                            ? "px-3 py-1.5 rounded-lg text-xs font-black bg-emerald-500 text-black transition"
+                            : (t === 'banned'
+                                ? "px-3 py-1.5 rounded-lg text-xs font-black bg-rose-500 text-white transition"
+                                : "px-3 py-1.5 rounded-lg text-xs font-black bg-indigo-600 text-white transition"));
+                } else {
+                    btn.className = "px-3 py-1.5 rounded-lg text-xs font-black bg-gray-900 text-gray-300 hover:text-white transition";
+                }
+            });
+            renderOwnerUsersList();
+        }
+
+        function refreshOwnerDashboardUi() {
+            const users = getUsersDb();
+            const nowMs = Date.now();
+            const waitingCount = users.filter(u => u.status === 'waiting').length;
+            const activeCount = users.filter(u => u.status === 'active' && u.expiresAtMs && u.expiresAtMs > nowMs).length;
+            const bannedOrExpCount = users.filter(u => u.status === 'banned' || (u.status === 'active' && u.expiresAtMs && u.expiresAtMs <= nowMs)).length;
+
+            const setT = (id, v) => { const el = document.getElementById(id); if (el) el.innerText = v; };
+            setT('own-stat-total', users.length);
+            setT('own-stat-waiting', waitingCount);
+            setT('own-stat-active', activeCount);
+            setT('own-stat-banned', bannedOrExpCount);
+
+            setT('cnt-utab-waiting', waitingCount);
+            setT('cnt-utab-current', activeCount);
+            setT('cnt-utab-banned', bannedOrExpCount);
+            setT('cnt-utab-all', users.length);
+
+            renderOwnerUsersList();
+            renderOwnerPublishedAnnouncements();
+        }
+
+        function renderOwnerUsersList() {
+            const container = document.getElementById('owner-users-list-container');
+            if (!container) return;
+            const users = getUsersDb();
+            const nowMs = Date.now();
+            const q = (document.getElementById('own-user-search')?.value || '').trim().toLowerCase();
+
+            const filtered = users.filter(u => {
+                const isExpired = (u.status === 'active' && u.expiresAtMs && u.expiresAtMs <= nowMs);
+                const effectiveStatus = u.status === 'banned' ? 'banned' : (isExpired ? 'banned' : u.status);
+
+                if (currentOwnerUserTab === 'waiting' && effectiveStatus !== 'waiting') return false;
+                if (currentOwnerUserTab === 'current' && effectiveStatus !== 'active') return false;
+                if (currentOwnerUserTab === 'banned' && effectiveStatus !== 'banned') return false;
+
+                if (q) {
+                    const hay = `${u.userId} ${u.fullName} ${u.mobile} ${u.address}`.toLowerCase();
+                    if (!hay.includes(q)) return false;
+                }
+                return true;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="bg-gray-900/80 border border-gray-800 rounded-xl p-5 text-center text-xs font-bold text-gray-400">இந்தப் பிரிவில் பயனர்கள் யாரும் இல்லை.</div>`;
+                return;
+            }
+
+            container.innerHTML = filtered.map(u => {
+                const isExpired = (u.status === 'active' && u.expiresAtMs && u.expiresAtMs <= nowMs);
+                const remDays = u.expiresAtMs ? Math.max(0, Math.ceil((u.expiresAtMs - nowMs) / (1000 * 60 * 60 * 24))) : 0;
+                const expStr = u.expiresAtMs ? new Date(u.expiresAtMs).toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata', day: '2-digit', month: '2-digit', year: 'numeric' }) : '--';
+
+                let statusBadge = `<span class="text-[10px] font-mono font-black bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-400/40">⏳ Waiting</span>`;
+                if (u.status === 'banned') {
+                    statusBadge = `<span class="text-[10px] font-mono font-black bg-rose-500/20 text-rose-300 px-2 py-0.5 rounded border border-rose-400/40">🚫 Banned</span>`;
+                } else if (isExpired) {
+                    statusBadge = `<span class="text-[10px] font-mono font-black bg-orange-500/20 text-orange-300 px-2 py-0.5 rounded border border-orange-400/40">⌛ Expired</span>`;
+                } else if (u.status === 'active') {
+                    statusBadge = `<span class="text-[10px] font-mono font-black bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded border border-emerald-400/40">✅ Active (${remDays}d left • Till ${expStr})</span>`;
+                }
+
+                return `
+                <div class="bg-gray-900/95 border border-gray-800 rounded-xl p-3.5 space-y-2.5 text-xs">
+                    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-gray-800 pb-2">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span class="font-mono font-black text-amber-300 bg-gray-950 px-2.5 py-0.5 rounded border border-amber-500/40">${u.userId}</span>
+                            <span class="font-black text-white">${u.fullName}</span>
+                            ${statusBadge}
+                        </div>
+                        <span class="text-[10px] font-mono text-gray-400">Reg: ${u.createdIst || '--'}</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-1.5 text-[11px] font-bold text-gray-300">
+                        <div><i class="fa-solid fa-phone text-cyan-400 mr-1"></i> ${u.mobile}</div>
+                        <div><i class="fa-solid fa-cake-candles text-purple-400 mr-1"></i> DOB: ${u.dob}</div>
+                        <div class="truncate" title="${u.address}"><i class="fa-solid fa-location-dot text-rose-400 mr-1"></i> ${u.address}</div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center justify-between gap-2 pt-1.5 border-t border-gray-800/80">
+                        <div class="flex flex-wrap items-center gap-1.5">
+                            <select id="dur-sel-${u.userId}" class="bg-gray-950 border border-gray-700 rounded-lg px-2 py-1 text-[11px] font-bold text-white outline-none">
+                                <option value="30">1 Month (30d)</option>
+                                <option value="60">2 Months (60d)</option>
+                                <option value="90">3 Months (90d)</option>
+                                <option value="180">6 Months (180d)</option>
+                                <option value="365">1 Year (365d)</option>
+                                <option value="15">15 Days</option>
+                            </select>
+                            <button type="button" onclick="approveOrExtendUser('${u.userId}', 'approve')" class="bg-emerald-600 hover:bg-emerald-500 text-white px-2.5 py-1 rounded-lg text-[11px] font-black transition">
+                                <i class="fa-solid fa-check mr-1"></i> Approve
+                            </button>
+                            <button type="button" onclick="approveOrExtendUser('${u.userId}', 'extend')" class="bg-cyan-600 hover:bg-cyan-500 text-white px-2.5 py-1 rounded-lg text-[11px] font-black transition">
+                                + Extend
+                            </button>
+                        </div>
+
+                        <div class="flex items-center gap-1.5">
+                            ${u.status !== 'banned' ? `
+                                <button type="button" onclick="banUserById('${u.userId}')" class="bg-amber-600/90 hover:bg-amber-500 text-black px-2.5 py-1 rounded-lg text-[11px] font-black transition">
+                                    <i class="fa-solid fa-ban mr-1"></i> Ban
+                                </button>
+                            ` : `
+                                <button type="button" onclick="approveOrExtendUser('${u.userId}', 'approve')" class="bg-indigo-600 hover:bg-indigo-500 text-white px-2.5 py-1 rounded-lg text-[11px] font-black transition">
+                                    <i class="fa-solid fa-rotate-left mr-1"></i> Re-Approve
+                                </button>
+                            `}
+                            <button type="button" onclick="deleteUserById('${u.userId}')" class="bg-rose-700 hover:bg-rose-600 text-white px-2.5 py-1 rounded-lg text-[11px] font-black transition">
+                                <i class="fa-solid fa-trash mr-1"></i> Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function approveOrExtendUser(userId, mode, explicitDays) {
+            const users = getUsersDb();
+            const idx = users.findIndex(u => u.userId.toUpperCase() === userId.toUpperCase());
+            if (idx === -1) return;
+
+            const sel = document.getElementById(`dur-sel-${users[idx].userId}`);
+            const days = explicitDays || (sel ? parseInt(sel.value, 10) : 30) || 30;
+            const addMs = days * 24 * 60 * 60 * 1000;
+            const nowMs = Date.now();
+
+            if (mode === 'extend' && users[idx].status === 'active' && users[idx].expiresAtMs && users[idx].expiresAtMs > nowMs) {
+                users[idx].expiresAtMs += addMs;
+                users[idx].approvedDays = (users[idx].approvedDays || 0) + days;
+            } else {
+                users[idx].status = 'active';
+                users[idx].approvedAtMs = nowMs;
+                users[idx].expiresAtMs = nowMs + addMs;
+                users[idx].approvedDays = days;
+            }
+
+            saveUsersDb(users);
+            refreshOwnerDashboardUi();
+        }
+
+        function quickApproveOrExtendById(mode) {
+            const uid = (document.getElementById('quick-action-uid')?.value || '').trim();
+            const days = parseInt(document.getElementById('quick-action-duration')?.value || '30', 10) || 30;
+            if (!uid) return;
+            approveOrExtendUser(uid, mode, days);
+            document.getElementById('quick-action-uid').value = '';
+        }
+
+        function banUserById(userId) {
+            const users = getUsersDb();
+            const idx = users.findIndex(u => u.userId === userId);
+            if (idx === -1) return;
+            users[idx].status = 'banned';
+            saveUsersDb(users);
+            refreshOwnerDashboardUi();
+        }
+
+        function deleteUserById(userId) {
+            const users = getUsersDb().filter(u => u.userId !== userId);
+            saveUsersDb(users);
+            refreshOwnerDashboardUi();
+        }
+
+        // =========================================================================
+        // ANNOUNCEMENT + UP TO 2MB PHOTO UPLOAD / REPLACE / DELETE + BELL NOTIFICATION
+        // =========================================================================
+        function handleAnnouncementImageSelect(event) {
+            const file = event.target.files && event.target.files[0];
+            const infoTxt = document.getElementById('ann-img-info-txt');
+            if (!file) return;
+
+            const maxBytes = 2 * 1024 * 1024; // Exact 2 MB limit
+            if (file.size > maxBytes) {
+                if (infoTxt) {
+                    infoTxt.innerText = `⚠️ படத்தின் அளவு ${(file.size / (1024 * 1024)).toFixed(2)} MB உள்ளது! அதிகபட்சம் 2 MB-க்குள் உள்ள படத்தைத் தேர்வு செய்யவும்.`;
+                    infoTxt.className = "text-[10px] font-black text-rose-400";
+                }
+                event.target.value = '';
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                pendingAnnouncementImageDataUrl = ev.target.result || '';
+                const prevWrap = document.getElementById('ann-preview-wrapper');
+                const prevImg = document.getElementById('ann-preview-img');
+                const repBtn = document.getElementById('ann-img-replace-btn');
+                const clrBtn = document.getElementById('ann-img-clear-btn');
+                const pickLbl = document.getElementById('ann-img-pick-label');
+
+                if (prevImg) prevImg.src = pendingAnnouncementImageDataUrl;
+                if (prevWrap) prevWrap.classList.remove('hidden');
+                if (repBtn) repBtn.classList.remove('hidden');
+                if (clrBtn) clrBtn.classList.remove('hidden');
+                if (pickLbl) pickLbl.innerText = 'தேர்வு செய்யப்பட்டது';
+                if (infoTxt) {
+                    infoTxt.innerText = `✅ படம் தயார்: ${file.name} (${(file.size / 1024).toFixed(0)} KB / Max 2MB)`;
+                    infoTxt.className = "text-[10px] font-bold text-emerald-300";
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function clearSelectedAnnouncementImage() {
+            pendingAnnouncementImageDataUrl = '';
+            const inp = document.getElementById('ann-image-input');
+            const prevWrap = document.getElementById('ann-preview-wrapper');
+            const prevImg = document.getElementById('ann-preview-img');
+            const repBtn = document.getElementById('ann-img-replace-btn');
+            const clrBtn = document.getElementById('ann-img-clear-btn');
+            const pickLbl = document.getElementById('ann-img-pick-label');
+            const infoTxt = document.getElementById('ann-img-info-txt');
+
+            if (inp) inp.value = '';
+            if (prevImg) prevImg.src = '';
+            if (prevWrap) prevWrap.classList.add('hidden');
+            if (repBtn) repBtn.classList.add('hidden');
+            if (clrBtn) clrBtn.classList.add('hidden');
+            if (pickLbl) pickLbl.innerText = 'படம் தேர்வு செய் (Choose Image)';
+            if (infoTxt) {
+                infoTxt.innerText = 'JPG, PNG, WEBP ஆதரிக்கப்படும் (அதிகபட்ச அளவு: 2 MB).';
+                infoTxt.className = 'text-[10px] font-bold text-gray-400';
+            }
+        }
+
+        function publishOwnerAnnouncement() {
+            const title = (document.getElementById('ann-title-input')?.value || '').trim() || 'Owner Market Update';
+            const message = (document.getElementById('ann-message-input')?.value || '').trim();
+            if (!message && !pendingAnnouncementImageDataUrl) return;
+
+            const nowIst = getAccurateIstDate();
+            const timeIstStr = nowIst.toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata', day: '2-digit', month: '2-digit', year: 'numeric' }) + ', ' +
+                nowIst.toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour12: true, hour: '2-digit', minute: '2-digit' });
+
+            const list = getAnnouncementsList();
+            list.unshift({
+                id: 'ANN-' + Date.now(),
+                title,
+                message,
+                imageDataUrl: pendingAnnouncementImageDataUrl || '',
+                postedIst: timeIstStr
+            });
+            // Keep latest 15 announcements so localStorage stays fast & well within quota
+            saveAnnouncementsList(list.slice(0, 15));
+
+            document.getElementById('ann-title-input').value = '';
+            document.getElementById('ann-message-input').value = '';
+            clearSelectedAnnouncementImage();
+
+            renderOwnerPublishedAnnouncements();
+            updateBellNotificationIndicator();
+        }
+
+        function deleteAnnouncementById(annId) {
+            const updated = getAnnouncementsList().filter(a => a.id !== annId);
+            saveAnnouncementsList(updated);
+            renderOwnerPublishedAnnouncements();
+            updateBellNotificationIndicator();
+            renderUserNotificationModalContent();
+        }
+
+        function renderOwnerPublishedAnnouncements() {
+            const box = document.getElementById('owner-published-announcements-list');
+            if (!box) return;
+            const list = getAnnouncementsList();
+            if (list.length === 0) {
+                box.innerHTML = `<p class="text-[11px] font-bold text-gray-400">இன்னும் அனௌன்ஸ்மெண்ட் எதுவும் வெளியிடப்படவில்லை.</p>`;
+                return;
+            }
+            box.innerHTML = list.map(a => `
+                <div class="bg-gray-950 border border-gray-800 rounded-xl p-2.5 flex items-start justify-between gap-2 text-xs">
+                    <div class="min-w-0 space-y-1">
+                        <div class="flex items-center gap-2">
+                            <span class="font-black text-amber-300 truncate">${a.title}</span>
+                            <span class="text-[9px] font-mono text-gray-400 shrink-0">${a.postedIst}</span>
+                        </div>
+                        ${a.message ? `<p class="text-[11px] font-bold text-gray-200 line-clamp-2">${a.message}</p>` : ''}
+                        ${a.imageDataUrl ? `<span class="inline-block text-[9px] font-mono bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded"><i class="fa-solid fa-image mr-1"></i>Photo Attached</span>` : ''}
+                    </div>
+                    <button type="button" onclick="deleteAnnouncementById('${a.id}')" class="bg-rose-700 hover:bg-rose-600 text-white px-2.5 py-1 rounded-lg text-[10px] font-black shrink-0 transition">
+                        <i class="fa-solid fa-trash"></i> Delete
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function updateBellNotificationIndicator() {
+            const list = getAnnouncementsList();
+            const badge = document.getElementById('header-bell-badge');
+            const bellIcon = document.getElementById('header-bell-icon');
+            const stripBtn = document.getElementById('header-latest-ann-strip');
+            const stripTxt = document.getElementById('header-latest-ann-text');
+
+            let currentUid = 'guest';
+            try {
+                const raw = localStorage.getItem(STORAGE_KEYS.SESSION);
+                if (raw) currentUid = JSON.parse(raw).userId || 'guest';
+            } catch (e) {}
+
+            const seenIds = getSeenAnnouncementIds(currentUid);
+            const unread = list.filter(a => !seenIds.includes(a.id));
+
+            if (badge) {
+                if (unread.length > 0) {
+                    badge.innerText = unread.length;
+                    badge.classList.remove('hidden');
+                    if (bellIcon) bellIcon.classList.add('text-amber-300');
+                } else {
+                    badge.classList.add('hidden');
+                }
+            }
+
+            if (stripBtn && stripTxt) {
+                if (list.length > 0) {
+                    stripBtn.classList.remove('hidden');
+                    stripTxt.innerText = `${list[0].title}${list[0].message ? ' — ' + list[0].message : ''}`;
+                } else {
+                    stripBtn.classList.add('hidden');
+                }
+            }
+        }
+
+        function renderUserNotificationModalContent() {
+            const container = document.getElementById('user-notifications-list');
+            if (!container) return;
+            const list = getAnnouncementsList();
+            if (list.length === 0) {
+                container.innerHTML = `<p class="text-xs font-bold text-gray-400 text-center py-8">தற்போது புதிய அறிவிப்புகள் எதுவும் இல்லை.</p>`;
+                return;
+            }
+            container.innerHTML = list.map(a => `
+                <div class="bg-gray-900/95 border border-amber-400/40 rounded-2xl p-3.5 space-y-2.5 shadow-lg">
+                    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-gray-800 pb-1.5">
+                        <h4 class="text-xs sm:text-sm font-black text-amber-300"><i class="fa-solid fa-bullhorn mr-1.5"></i>${a.title}</h4>
+                        <span class="text-[10px] font-mono font-bold text-cyan-300 bg-gray-950 px-2 py-0.5 rounded">${a.postedIst}</span>
+                    </div>
+                    ${a.message ? `<p class="text-xs font-bold text-gray-100 leading-relaxed whitespace-pre-line">${a.message}</p>` : ''}
+                    ${a.imageDataUrl ? `<div class="rounded-xl overflow-hidden border border-gray-700 bg-black/70"><img src="${a.imageDataUrl}" alt="Announcement Photo" class="w-full max-h-80 object-contain mx-auto"></div>` : ''}
+                </div>
+            `).join('');
+        }
+
+        function openNotificationModal() {
+            const modal = document.getElementById('user-notification-modal');
+            if (!modal) return;
+            renderUserNotificationModalContent();
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+
+            try {
+                const raw = localStorage.getItem(STORAGE_KEYS.SESSION);
+                if (raw) {
+                    const uid = JSON.parse(raw).userId || 'guest';
+                    markAllAnnouncementsSeen(uid);
+                }
+            } catch (e) {}
+        }
+
+        function closeNotificationModal() {
+            const modal = document.getElementById('user-notification-modal');
+            if (!modal) return;
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function changeOwnerPassword() {
+            const oldP = (document.getElementById('own-old-pass')?.value || '').trim();
+            const newP = (document.getElementById('own-new-pass')?.value || '').trim();
+            const cred = getOwnerCredentials();
+            if (oldP !== cred.password || newP.length < 4) return;
+            cred.password = newP;
+            localStorage.setItem(STORAGE_KEYS.OWNER_CRED, JSON.stringify(cred));
+            document.getElementById('own-old-pass').value = '';
+            document.getElementById('own-new-pass').value = '';
+        }
+
+        function exportUsersJsonBackup() {
+            const payload = {
+                exportedAt: new Date().toISOString(),
+                users: getUsersDb(),
+                announcements: getAnnouncementsList()
+            };
+            const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'iMR_Users_Backup.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        window.onload = function() {
+            updateIstClockAndCandleCountdown();
+            getOwnerCredentials();
+            restoreSavedSessionOnLoad();
         };
 
         setInterval(() => {
-            fetchAllData();
+            const appShell = document.getElementById('authenticated-app-shell');
+            if (appShell && !appShell.classList.contains('hidden')) {
+                fetchAllData();
+            }
         }, 1000);
     </script>
 </body>
