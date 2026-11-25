@@ -451,6 +451,19 @@
                         Update Owner Password
                     </button>
                 </div>
+                <div class="pt-2 border-t border-gray-800 space-y-2 text-xs">
+                    <label class="text-[10px] font-black text-amber-300 uppercase block">
+                        <i class="fa-solid fa-cloud mr-1"></i> Global Cloud Sync URL (Firebase Realtime DB — உலகளாவிய அனைத்து சாதனங்களுக்கும்)
+                    </label>
+                    <div class="flex flex-col sm:flex-row gap-2">
+                        <input type="url" id="own-cloud-db-url" placeholder="https://your-project-default-rtdb.firebaseio.com" class="flex-1 bg-gray-900 border border-gray-700 focus:border-amber-400 rounded-xl px-3 py-2 font-mono text-xs text-cyan-200 outline-none">
+                        <button type="button" onclick="saveOwnerCloudDbUrl()" class="bg-amber-500 hover:bg-amber-400 text-black rounded-xl px-4 py-2 font-black transition shrink-0">
+                            Save & Sync Cloud
+                        </button>
+                    </div>
+                    <p id="cloud-sync-status-txt" class="text-[10px] font-bold text-gray-400">Cloud Mode: Ready (URL இணைத்தால் எந்த மொபைல்/கம்ப்யூட்டரிலும் உடனே ஒத்திசைக்கும்)</p>
+                </div>
+
                 <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-gray-800 text-[11px]">
                     <span class="font-bold text-gray-300">Owner User ID: <strong class="font-mono text-amber-300">iMR-OWNER</strong></span>
                     <div class="flex gap-2">
@@ -5442,14 +5455,127 @@
         // =========================================================================
         // MEMBER REGISTRATION (iMR-591986+), OWNER APPROVAL, 2MB PHOTO & BELL SYSTEM
         // =========================================================================
+        // Paste your Firebase Realtime Database URL below (or set it from Owner Panel -> 4. ஓனர் பாஸ்வேர்ட் & Backup)
+        const DEFAULT_CLOUD_DB_URL = "https://imr-trading-cloud-default-rtdb.asia-southeast1.firebasedatabase.app";
+
         const STORAGE_KEYS = {
             OWNER_CRED: 'imr_owner_cred_v1',
             USERS_DB: 'imr_users_db_v1',
             NEXT_SEQ: 'imr_next_uid_seq_v1',
             SESSION: 'imr_active_session_v1',
             ANNOUNCEMENTS: 'imr_announcements_v1',
-            SEEN_ANN: 'imr_seen_ann_ids_v1'
+            SEEN_ANN: 'imr_seen_ann_ids_v1',
+            CLOUD_URL: 'imr_cloud_db_url_v1'
         };
+
+        function getActiveCloudDbUrl() {
+            try {
+                const saved = (localStorage.getItem(STORAGE_KEYS.CLOUD_URL) || '').trim();
+                if (saved) return saved.replace(/\/+$/, '');
+            } catch (e) {}
+            return (DEFAULT_CLOUD_DB_URL || '').trim().replace(/\/+$/, '');
+        }
+
+        function saveOwnerCloudDbUrl() {
+            const inp = document.getElementById('own-cloud-db-url');
+            const st = document.getElementById('cloud-sync-status-txt');
+            const cleanUrl = (inp?.value || '').trim().replace(/\/+$/, '');
+            localStorage.setItem(STORAGE_KEYS.CLOUD_URL, cleanUrl);
+            if (st) {
+                if (cleanUrl) {
+                    st.innerText = `✅ Cloud Sync Active: ${cleanUrl}`;
+                    st.className = "text-[10px] font-bold text-emerald-300";
+                } else {
+                    st.innerText = "Cloud Mode: Local Browser Only (URL cleared)";
+                    st.className = "text-[10px] font-bold text-gray-400";
+                }
+            }
+            if (cleanUrl) syncGlobalStateFromCloud(true);
+        }
+
+        async function pushCloudNode(nodeName, payloadObj) {
+            const baseUrl = getActiveCloudDbUrl();
+            if (!baseUrl) return false;
+            try {
+                const res = await fetch(`${baseUrl}/imr_trading_app/${nodeName}.json`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payloadObj),
+                    cache: 'no-store'
+                });
+                return res.ok;
+            } catch (e) {
+                return false;
+            }
+        }
+
+        async function pullCloudNode(nodeName) {
+            const baseUrl = getActiveCloudDbUrl();
+            if (!baseUrl) return null;
+            try {
+                const res = await fetch(`${baseUrl}/imr_trading_app/${nodeName}.json`, { cache: 'no-store' });
+                if (!res.ok) return null;
+                return await res.json();
+            } catch (e) {
+                return null;
+            }
+        }
+
+        function pushAllStateToCloud() {
+            if (!getActiveCloudDbUrl()) return;
+            const users = getUsersDb();
+            const seq = parseInt(localStorage.getItem(STORAGE_KEYS.NEXT_SEQ) || '591986', 10) || 591986;
+            const anns = getAnnouncementsList();
+            pushCloudNode('users', users);
+            pushCloudNode('nextSeq', seq);
+            pushCloudNode('announcements', anns);
+        }
+
+        async function syncGlobalStateFromCloud(forceOwnerRefresh) {
+            const baseUrl = getActiveCloudDbUrl();
+            if (!baseUrl) return;
+            try {
+                const [cloudUsers, cloudSeq, cloudAnns] = await Promise.all([
+                    pullCloudNode('users'),
+                    pullCloudNode('nextSeq'),
+                    pullCloudNode('announcements')
+                ]);
+
+                if (Array.isArray(cloudUsers)) {
+                    saveUsersDb(cloudUsers);
+                } else if (cloudUsers && typeof cloudUsers === 'object') {
+                    saveUsersDb(Object.values(cloudUsers));
+                }
+
+                if (typeof cloudSeq === 'number' && cloudSeq >= 591986) {
+                    const curSeq = parseInt(localStorage.getItem(STORAGE_KEYS.NEXT_SEQ) || '591986', 10) || 591986;
+                    if (cloudSeq > curSeq) localStorage.setItem(STORAGE_KEYS.NEXT_SEQ, String(cloudSeq));
+                }
+
+                if (Array.isArray(cloudAnns)) {
+                    saveAnnouncementsList(cloudAnns);
+                } else if (cloudAnns && typeof cloudAnns === 'object') {
+                    saveAnnouncementsList(Object.values(cloudAnns));
+                }
+
+                const prevEl = document.getElementById('next-preview-uid');
+                if (prevEl) prevEl.innerText = getNextUserIdPreview();
+
+                updateBellNotificationIndicator();
+
+                const ownerDash = document.getElementById('owner-master-dashboard');
+                if (forceOwnerRefresh || (ownerDash && !ownerDash.classList.contains('hidden'))) {
+                    refreshOwnerDashboardUi();
+                }
+            } catch (e) {}
+        }
+
+        // Poll cloud every 3 seconds so registrations, approvals, bans & notifications sync across ALL devices
+        setInterval(() => {
+            if (getActiveCloudDbUrl()) {
+                syncGlobalStateFromCloud(false);
+            }
+        }, 3000);
 
         const OWNER_DEFAULT_ID = 'iMR-OWNER';
         const OWNER_DEFAULT_PASS = 'Ramesh@591986';
@@ -5621,6 +5747,7 @@
                 approvedDays: 0
             });
             saveUsersDb(users);
+            pushAllStateToCloud();
 
             document.getElementById('auth-register-form').reset();
             document.getElementById('auth-register-form').classList.add('hidden');
@@ -5696,8 +5823,9 @@
             if (holdBox) holdBox.classList.remove('hidden');
         }
 
-        function recheckCurrentHoldAccount() {
+        async function recheckCurrentHoldAccount() {
             if (!currentHoldUserId) return;
+            if (getActiveCloudDbUrl()) await syncGlobalStateFromCloud(false);
             const users = getUsersDb();
             const u = users.find(x => x.userId.toUpperCase() === currentHoldUserId.toUpperCase());
             if (!u) return;
@@ -5821,7 +5949,16 @@
             switchAuthTab('login');
         }
 
-        function restoreSavedSessionOnLoad() {
+        async function restoreSavedSessionOnLoad() {
+            const cInp = document.getElementById('own-cloud-db-url');
+            const cSt = document.getElementById('cloud-sync-status-txt');
+            const curCloud = getActiveCloudDbUrl();
+            if (cInp) cInp.value = curCloud;
+            if (cSt && curCloud) {
+                cSt.innerText = `✅ Cloud Sync Active: ${curCloud}`;
+                cSt.className = 'text-[10px] font-bold text-emerald-300';
+            }
+            if (curCloud) await syncGlobalStateFromCloud(false);
             clearAllLoginFields();
             try {
                 const raw = localStorage.getItem(STORAGE_KEYS.SESSION);
@@ -6066,6 +6203,7 @@
             }
 
             saveUsersDb(users);
+            pushAllStateToCloud();
             refreshOwnerDashboardUi();
         }
 
@@ -6089,6 +6227,7 @@
         function deleteUserById(userId) {
             const users = getUsersDb().filter(u => u.userId !== userId);
             saveUsersDb(users);
+            pushAllStateToCloud();
             refreshOwnerDashboardUi();
         }
 
@@ -6171,8 +6310,9 @@
                 imageDataUrl: pendingAnnouncementImageDataUrl || '',
                 postedIst: timeIstStr
             });
-            // Keep latest 15 announcements so localStorage stays fast & well within quota
+            // Keep latest 15 announcements so localStorage & cloud stay fast
             saveAnnouncementsList(list.slice(0, 15));
+            pushAllStateToCloud();
 
             document.getElementById('ann-title-input').value = '';
             document.getElementById('ann-message-input').value = '';
@@ -6185,6 +6325,7 @@
         function deleteAnnouncementById(annId) {
             const updated = getAnnouncementsList().filter(a => a.id !== annId);
             saveAnnouncementsList(updated);
+            pushAllStateToCloud();
             renderOwnerPublishedAnnouncements();
             updateBellNotificationIndicator();
             renderUserNotificationModalContent();
