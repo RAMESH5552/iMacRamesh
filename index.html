@@ -1283,29 +1283,31 @@
                             <div id="vbar4-note" class="text-gray-400">Opp ↑ $64,500</div>
                         </div>
                     </div>
-                <!-- NEXT PROBABLE MOVE & EARLY ALERT STRIP -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5 text-xs">
+                </div>
+
+                <!-- NEXT PROBABLE MOVE & EARLY ALERT STRIP (FULL WIDTH ON MOBILE) -->
+                <div class="grid grid-cols-1 gap-2.5 text-xs">
                     <div class="bg-gray-950/90 border border-amber-400/50 rounded-2xl p-3 space-y-1">
-                        <div class="flex items-center justify-between">
+                        <div class="flex items-center justify-between gap-2">
                             <span class="text-[10px] sm:text-[11px] font-black text-amber-300 uppercase tracking-wide"><i class="fa-solid fa-forward-step mr-1"></i> NEXT LIKELY MOVE</span>
-                            <span id="next-move-prob-badge" class="text-[10px] font-mono font-black bg-amber-500/20 text-amber-200 px-2 py-0.5 rounded border border-amber-400/40">--%</span>
+                            <span id="next-move-prob-badge" class="text-[10px] font-mono font-black bg-amber-500/20 text-amber-200 px-2 py-0.5 rounded border border-amber-400/40 shrink-0">--%</span>
                         </div>
                         <h4 id="next-move-title" class="text-xs sm:text-sm font-black text-white">Scanning...</h4>
                         <p id="next-move-reason" class="text-[11px] font-bold text-gray-300 leading-snug">Tracking target gap, crowding & OI delta...</p>
                     </div>
 
                     <div class="bg-gray-950/90 border border-cyan-400/50 rounded-2xl p-3 space-y-1">
-                        <div class="flex items-center justify-between">
+                        <div class="flex items-center justify-between gap-2">
                             <span class="text-[10px] sm:text-[11px] font-black text-cyan-300 uppercase tracking-wide"><i class="fa-solid fa-bell mr-1"></i> EARLY ALERT</span>
-                            <span id="early-alert-tag" class="text-[10px] font-mono font-black bg-cyan-500/20 text-cyan-200 px-2 py-0.5 rounded border border-cyan-400/40">Watch</span>
+                            <span id="early-alert-tag" class="text-[10px] font-mono font-black bg-cyan-500/20 text-cyan-200 px-2 py-0.5 rounded border border-cyan-400/40 shrink-0">Watch</span>
                         </div>
                         <h4 id="early-alert-title" class="text-xs sm:text-sm font-black text-cyan-200">Monitoring...</h4>
                         <p id="early-alert-desc" class="text-[11px] font-bold text-gray-300 leading-snug">Tracking ±100–200 pt buffer & short-close spikes...</p>
                     </div>
                 </div>
 
-                <!-- HORIZONTAL UNIFIED TREND BAR (LEFT TO RIGHT) -->
-                <div class="bg-gray-950/95 border-2 border-indigo-400/70 rounded-2xl p-3.5 sm:p-4 space-y-2.5 shadow-xl">
+                <!-- HORIZONTAL UNIFIED TREND BAR (FULL WIDTH LEFT TO RIGHT) -->
+                <div class="w-full bg-gray-950/95 border-2 border-indigo-400/70 rounded-2xl p-3.5 sm:p-4 space-y-2.5 shadow-xl">
                     <div class="flex flex-wrap justify-between items-center gap-2">
                         <h2 id="wr-main-verdict" class="text-sm sm:text-base font-black text-amber-300 tracking-wide">
                             UNIFIED TREND: EVALUATING...
