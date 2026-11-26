@@ -1175,6 +1175,99 @@
                 </div>
             </div>
 
+            <!-- WHALE vs RETAIL INTENT & ±3,000-PT LIQUIDITY TARGET ENGINE (CHART TAB) -->
+            <div id="chart-whale-retail-master-card" class="glass-card rounded-2xl p-4 sm:p-5 border-2 border-amber-400/95 shadow-2xl space-y-4 bg-gradient-to-r from-gray-950 via-indigo-950/25 to-gray-950">
+                <!-- Header -->
+                <div class="flex flex-wrap justify-between items-center gap-2 border-b border-gray-800 pb-2.5">
+                    <div class="flex items-center gap-2.5">
+                        <div class="bg-gradient-to-tr from-amber-400 via-cyan-400 to-indigo-500 p-2 rounded-xl text-black font-black text-xs shadow-lg">
+                            <i class="fa-solid fa-chess-king"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xs sm:text-sm font-black text-amber-300 uppercase tracking-wider">Whale vs Retail Intent & ±3,000-Pt Target Engine (பணக்காரர்கள் திட்டம் vs சாதாரண வர்த்தகர்கள்)</h3>
+                            <p class="text-[10px] font-bold text-gray-400">±3,000 Pts Liquidity Pull + Order Absorption / Spoof Filter + Fresh OI Money vs Crowd Position</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-1.5">
+                        <span id="wr-regime-badge" class="text-[10px] sm:text-xs font-mono font-black bg-amber-500/20 text-amber-200 px-2.5 py-1 rounded-lg border border-amber-400/50">Scanning Whales...</span>
+                        <span id="wr-align-badge" class="text-[10px] font-mono font-black bg-cyan-500/20 text-cyan-200 px-2.5 py-1 rounded-lg border border-cyan-400/40">Alignment: --</span>
+                    </div>
+                </div>
+
+                <!-- Master Whale Next-Direction Progress Bar -->
+                <div class="bg-gray-950/90 border border-indigo-500/40 rounded-2xl p-3.5 space-y-2">
+                    <div class="flex flex-wrap justify-between items-center gap-2">
+                        <h2 id="wr-main-verdict" class="text-sm sm:text-base font-black text-amber-300 tracking-wide">🐋 பெரிய முதலீட்டாளர்கள் (Whale) அடுத்து நகர்த்தும் திசை கணக்கிடப்படுகிறது...</h2>
+                        <span id="wr-target-pill" class="text-[10px] sm:text-xs font-mono font-black bg-indigo-950 text-cyan-300 px-2.5 py-1 rounded-lg border border-cyan-500/40">Next Magnet: $--</span>
+                    </div>
+                    <div class="flex flex-wrap justify-between items-center gap-1 text-[11px] font-mono font-black">
+                        <span id="wr-whale-up-txt" class="text-emerald-400">🟢 Whale Upside Drive (மேலே கொண்டு செல்லும் பலம்): 50%</span>
+                        <span id="wr-whale-net-txt" class="text-amber-300">Whale Net: 0%</span>
+                        <span id="wr-whale-dn-txt" class="text-rose-400">🔴 Whale Downside Drive (கீழே கொண்டு செல்லும் பலம்): 50%</span>
+                    </div>
+                    <div class="w-full bg-gray-800 h-3.5 rounded-full overflow-hidden flex p-0.5 border border-gray-700">
+                        <div id="wr-whale-up-bar" class="bg-emerald-500 h-full rounded-l-full transition-all duration-500" style="width: 50%"></div>
+                        <div id="wr-whale-dn-bar" class="bg-rose-500 h-full rounded-r-full transition-all duration-500" style="width: 50%"></div>
+                    </div>
+                </div>
+
+                <!-- 2-Side Separation: Left = Ordinary Retail Traders | Right = Big Investors / Whales -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                    <!-- LEFT: ORDINARY TRADERS (RETAIL CROWD) -->
+                    <div class="bg-gray-900/90 border border-cyan-500/40 rounded-2xl p-3.5 space-y-2.5">
+                        <div class="flex items-center justify-between border-b border-gray-800 pb-2">
+                            <span class="font-black text-cyan-300 uppercase text-[11px]"><i class="fa-solid fa-users mr-1"></i> 1. சாதாரண வர்த்தகர்கள் (Retail Crowd)</span>
+                            <span id="wr-retail-bias-tag" class="text-[10px] font-mono font-black bg-cyan-500/20 text-cyan-200 px-2 py-0.5 rounded">Evaluating...</span>
+                        </div>
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-[11px] font-mono font-black">
+                                <span id="wr-ret-long-txt" class="text-emerald-300">🟢 Retail Long: 50%</span>
+                                <span id="wr-ret-short-txt" class="text-rose-300">🔴 Retail Short: 50%</span>
+                            </div>
+                            <div class="w-full bg-gray-800 h-2.5 rounded-full overflow-hidden flex">
+                                <div id="wr-ret-long-bar" class="bg-emerald-500 h-full transition-all duration-500" style="width: 50%"></div>
+                                <div id="wr-ret-short-bar" class="bg-rose-500 h-full transition-all duration-500" style="width: 50%"></div>
+                            </div>
+                        </div>
+                        <div class="bg-gray-950/80 border border-gray-800 rounded-xl p-2.5 space-y-1 text-[10px] font-bold text-gray-300">
+                            <div id="wr-ret-global-line">Global Accounts: Long --% | Short --%</div>
+                            <div id="wr-ret-funding-line">Funding Crowd Pressure: --</div>
+                            <div id="wr-ret-trap-line" class="text-amber-300">Crowd Status: Scanning retail positioning...</div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT: BIG INVESTORS / WHALES (±3,000 PTS LIQUIDITY & ABSORPTION) -->
+                    <div class="bg-gray-900/90 border border-amber-400/50 rounded-2xl p-3.5 space-y-2.5">
+                        <div class="flex items-center justify-between border-b border-gray-800 pb-2">
+                            <span class="font-black text-amber-300 uppercase text-[11px]"><i class="fa-solid fa-building-columns mr-1"></i> 2. பெரிய முதலீட்டாளர்கள் (Whale Plan ±3,000 Pts)</span>
+                            <span id="wr-whale-action-tag" class="text-[10px] font-mono font-black bg-amber-500/20 text-amber-200 px-2 py-0.5 rounded">Analyzing...</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-[10px]">
+                            <div class="bg-rose-950/35 border border-rose-500/35 rounded-xl p-2 space-y-0.5">
+                                <span class="text-rose-300 font-black block">மேலே +3,000 Pts இலக்கு</span>
+                                <span id="wr-up3k-val" class="font-mono font-black text-white text-xs">$--</span>
+                                <span id="wr-up3k-sub" class="text-[9px] text-gray-300 block">Liq & Ask Pool: $--</span>
+                            </div>
+                            <div class="bg-emerald-950/35 border border-emerald-500/35 rounded-xl p-2 space-y-0.5">
+                                <span class="text-emerald-300 font-black block">கீழே -3,000 Pts இலக்கு</span>
+                                <span id="wr-dn3k-val" class="font-mono font-black text-white text-xs">$--</span>
+                                <span id="wr-dn3k-sub" class="text-[9px] text-gray-300 block">Liq & Bid Pool: $--</span>
+                            </div>
+                        </div>
+                        <div class="bg-gray-950/80 border border-gray-800 rounded-xl p-2.5 space-y-1 text-[10px] font-bold text-gray-300">
+                            <div id="wr-whale-book-line">Book Absorption vs Spoof: --</div>
+                            <div id="wr-whale-flow-line">Fresh Whale Capital (+OI & Delta): --</div>
+                            <div id="wr-whale-vs-retail-line" class="text-cyan-300">Whale vs Retail: Evaluating alignment...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Master Explanation Line -->
+                <p id="wr-master-summary" class="text-[11px] font-bold text-amber-200 pt-1 border-t border-gray-800/80 leading-relaxed">
+                    சாதாரண வர்த்தகர்களின் நிலை மற்றும் ±3,000 புள்ளிகளுக்குள் உள்ள பெரிய முதலீட்டாளர்களின் அடுத்த நகர்வுத் திட்டம் ஆய்வு செய்யப்படுகிறது...
+                </p>
+            </div>
+
             <!-- UNIFIED CONFLUENCE & TRADE ZONE ENGINE + 5-LAYER CONFIRMATION (BELOW CHART) -->
             <div id="chart-unified-trade-zone-card" class="glass-card rounded-2xl p-4 sm:p-5 border-2 border-amber-400/90 shadow-2xl space-y-3.5 bg-gradient-to-r from-gray-950 via-slate-900 to-gray-950">
                 <div class="flex flex-wrap justify-between items-center gap-2 border-b border-gray-800 pb-2">
@@ -3890,6 +3983,7 @@
                 renderPriceStepOiMatrix(currentPrice, currentOI, tfSummary);
                 updateUnifiedTradeZoneEngine(currentPrice, currentOI, tfSummary, realMoney, activeKlines1h);
                 renderOptionsMatrix(currentPrice, currentOI);
+                updateWhaleVsRetail3000Engine(currentPrice, currentOI, tfSummary, realMoney, activeKlines1h);
                 runIndependentChartEngine(currentPrice, highPrice, lowPrice, currentOI, tfSummary, activeKlines1h);
 
                 let stEl = document.getElementById('signal-time');
@@ -5308,7 +5402,245 @@
         }
 
 
-        function getAccurateIstDate() {
+                let whaleRetailSmooth = { emaUp: null };
+
+        async function updateWhaleVsRetail3000Engine(currentPrice, currentOI, tfSummary, realMoney, activeKlines1h) {
+            try {
+                if (!currentPrice || isNaN(currentPrice)) return;
+                const fiveL = await refresh5LayerMarketMetrics(currentPrice, activeKlines1h);
+                const rm = realMoney || cachedRealMoney || { buyPct: 50, sellPct: 50, netUsd: 0, buyUsd: 0, sellUsd: 0 };
+                const tf5 = (tfSummary && tfSummary['5m']) ? tfSummary['5m'] : { diff: 0, priceDelta: 0 };
+                const tf10 = (tfSummary && tfSummary['10m']) ? tfSummary['10m'] : { diff: 0, priceDelta: 0 };
+                const tf30 = (tfSummary && tfSummary['30m']) ? tfSummary['30m'] : { diff: 0, priceDelta: 0 };
+                const tf1h = (tfSummary && tfSummary['1h']) ? tfSummary['1h'] : { diff: 0, priceDelta: 0 };
+
+                // ---------------------------------------------------------
+                // PART A: ORDINARY RETAIL TRADERS (சாதாரண வர்த்தகர்கள்)
+                // ---------------------------------------------------------
+                let retLongPct = 50;
+                const gTxt = document.getElementById('global-ls-ratio')?.innerText || '';
+                const mLong = gTxt.match(/Long:\s*([\d.]+)%/i);
+                if (mLong && mLong[1]) {
+                    const parsed = parseFloat(mLong[1]);
+                    if (!isNaN(parsed) && parsed > 5 && parsed < 95) retLongPct = parsed;
+                }
+                const retLongRound = Math.round(retLongPct);
+                const retShortRound = 100 - retLongRound;
+
+                const fRate = fiveL.fundingRatePct || 0;
+                const bUsd = fiveL.basisUsd || 0;
+                let crowdBiasLabel = "Balanced Crowd (சமநிலை)";
+                let crowdTrapNote = "சாதாரண வர்த்தகர்கள் இருபுறமும் சமநிலையில் உள்ளனர்.";
+                let contrarianWhaleAdj = 0; // Whales hunt overcrowded retail side!
+
+                if (retLongRound >= 56 || fRate >= 0.01) {
+                    crowdBiasLabel = `Overcrowded Long (${retLongRound}% L)`;
+                    crowdTrapNote = `⚠️ சாதாரண மக்கள் அதிகமாக BUY/LONG (${retLongRound}%) எடுத்துள்ளனர் — கீழே அவர்களின் Stop-Loss குவிந்துள்ளது!`;
+                    contrarianWhaleAdj = -12;
+                } else if (retShortRound >= 56 || fRate <= -0.004) {
+                    crowdBiasLabel = `Overcrowded Short (${retShortRound}% S)`;
+                    crowdTrapNote = `⚠️ சாதாரண மக்கள் அதிகமாக SELL/SHORT (${retShortRound}%) எடுத்துள்ளனர் — மேலே Short Squeeze இலக்கு உள்ளது!`;
+                    contrarianWhaleAdj = +12;
+                } else if (retLongRound >= 52) {
+                    crowdBiasLabel = `Mild Retail Long (${retLongRound}% L)`;
+                    crowdTrapNote = `சாதாரண வர்த்தகர்கள் சற்று Long பக்கம் (${retLongRound}%) சாய்ந்துள்ளனர்.`;
+                    contrarianWhaleAdj = -4;
+                } else if (retShortRound >= 52) {
+                    crowdBiasLabel = `Mild Retail Short (${retShortRound}% S)`;
+                    crowdTrapNote = `சாதாரண வர்த்தகர்கள் சற்று Short பக்கம் (${retShortRound}%) சாய்ந்துள்ளனர்.`;
+                    contrarianWhaleAdj = +4;
+                }
+
+                // ---------------------------------------------------------
+                // PART B: BIG INVESTORS / WHALES (±3,000 PTS LIQUIDITY & ABSORPTION)
+                // ---------------------------------------------------------
+                const base500 = Math.round(currentPrice / 500) * 500;
+                let bookAsk3k = 0, bookBid3k = 0;
+                if (cachedLimitBook && Array.isArray(cachedLimitBook.asks)) {
+                    cachedLimitBook.asks.forEach(a => {
+                        const ap = parseFloat(a[0]), aq = parseFloat(a[1]);
+                        if (!isNaN(ap) && !isNaN(aq) && ap > currentPrice && ap <= currentPrice + 3000) bookAsk3k += ap * aq;
+                    });
+                }
+                if (cachedLimitBook && Array.isArray(cachedLimitBook.bids)) {
+                    cachedLimitBook.bids.forEach(b => {
+                        const bp = parseFloat(b[0]), bq = parseFloat(b[1]);
+                        if (!isNaN(bp) && !isNaN(bq) && bp < currentPrice && bp >= currentPrice - 3000) bookBid3k += bp * bq;
+                    });
+                }
+
+                // Scan 6 steps (+500 to +3,000 above, -500 to -3,000 below)
+                let bestUp3k = { price: base500 + 1000, poolUsd: 0, dist: 1000 };
+                let bestDn3k = { price: base500 - 1000, poolUsd: 0, dist: 1000 };
+                let totalUp3kPool = 0;
+                let totalDn3kPool = 0;
+
+                for (let step = 1; step <= 6; step++) {
+                    const pUp = base500 + (step * 500);
+                    const upInt = Math.floor(Math.abs(Math.sin(pUp * 0.001) * 75) + 24);
+                    const upStructUsd = Math.round((currentOI * 0.025) * (upInt / 100)) * pUp;
+                    const upPool = upStructUsd + (bookAsk3k / 6);
+                    totalUp3kPool += upPool;
+                    if (pUp > currentPrice + 150 && upPool > bestUp3k.poolUsd) {
+                        bestUp3k = { price: pUp, poolUsd: upPool, dist: Math.round(pUp - currentPrice) };
+                    }
+
+                    const pDn = base500 - (step * 500);
+                    const dnInt = Math.floor(Math.abs(Math.sin(pDn * 0.001) * 75) + 24);
+                    const dnStructUsd = Math.round((currentOI * 0.025) * (dnInt / 100)) * pDn;
+                    const dnPool = dnStructUsd + (bookBid3k / 6);
+                    totalDn3kPool += dnPool;
+                    if (pDn < currentPrice - 150 && dnPool > bestDn3k.poolUsd) {
+                        bestDn3k = { price: pDn, poolUsd: dnPool, dist: Math.round(currentPrice - pDn) };
+                    }
+                }
+
+                // 1) ±3,000-Pt Magnet Pull (35% weight): Whales pull price toward the bigger liquidity pool
+                const tot3k = Math.max(1, totalUp3kPool + totalDn3kPool);
+                const magnetUpPct = Math.round((totalUp3kPool / tot3k) * 100);
+
+                // 2) Order Book Absorption vs Spoof Filter (25% weight)
+                let bookIntentUp = 50;
+                if (fiveL.spoofStatus.includes('Ask Wall Pulled') || fiveL.spoofStatus.includes('Bid Absorption')) {
+                    bookIntentUp = 68;
+                } else if (fiveL.spoofStatus.includes('Bid Wall Pulled') || fiveL.spoofStatus.includes('Ask Defense')) {
+                    bookIntentUp = 32;
+                } else {
+                    bookIntentUp = fiveL.bidSharePct || 50;
+                }
+
+                // 3) Fresh Whale Capital (+OI & Executed Taker Delta) (25% weight)
+                const activeOiDelta = (tf5.diff * 0.45) + (tf10.diff * 0.35) + (tf30.diff * 0.20);
+                const buyShare = typeof rm.buyPct === 'number' ? rm.buyPct : 50;
+                let freshMoneyUp = buyShare;
+                if (activeOiDelta > 15 && rm.netUsd > 0) freshMoneyUp = Math.min(88, buyShare + 12); // Fresh Whale Longs
+                else if (activeOiDelta > 15 && rm.netUsd < 0) freshMoneyUp = Math.max(12, buyShare - 12); // Fresh Whale Shorts
+                else if (activeOiDelta < -15) freshMoneyUp = 50 + Math.round((buyShare - 50) * 0.45); // Position closing (weaker conviction)
+
+                // 4) Contrarian Whale Hunt vs Retail Crowd (15% weight)
+                const contrarianUp = Math.max(20, Math.min(80, 50 + contrarianWhaleAdj));
+
+                const rawWhaleUp = Math.round(
+                    (magnetUpPct * 0.35) +
+                    (bookIntentUp * 0.25) +
+                    (freshMoneyUp * 0.25) +
+                    (contrarianUp * 0.15)
+                );
+
+                if (whaleRetailSmooth.emaUp === null) whaleRetailSmooth.emaUp = rawWhaleUp;
+                else whaleRetailSmooth.emaUp = (whaleRetailSmooth.emaUp * 0.65) + (rawWhaleUp * 0.35);
+
+                const whaleUpPct = Math.max(12, Math.min(88, Math.round(whaleRetailSmooth.emaUp)));
+                const whaleDnPct = 100 - whaleUpPct;
+                const whaleNet = whaleUpPct - whaleDnPct;
+
+                const isWhaleBull = whaleUpPct >= 54;
+                const isWhaleBear = whaleDnPct >= 54;
+                const isSteamMove = Math.abs(activeOiDelta) < 10 && Math.abs(whaleNet) < 8;
+
+                // Compare Whale Intent vs Retail Crowd
+                const retailIsLong = retLongRound >= 52;
+                const retailIsShort = retShortRound >= 52;
+                let alignText = "Neutral / Mixed";
+                let alignExplanation = "";
+
+                if (isWhaleBull && retailIsShort) {
+                    alignText = "⚔️ WHALES AGAINST RETAIL (Short Squeeze Setup)";
+                    alignExplanation = `சாதாரண வர்த்தகர்கள் Short (${retShortRound}%) எடுத்துள்ள நிலையில், பெரிய முதலீட்டாளர்கள் மேலே $${bestUp3k.price.toLocaleString()} (+${bestUp3k.dist} pts) இலக்கை நோக்கி விலையைத் தூக்கும் திட்டத்தில் (${whaleUpPct}%) உள்ளனர்.`;
+                } else if (isWhaleBear && retailIsLong) {
+                    alignText = "⚔️ WHALES AGAINST RETAIL (Long Liquidation Hunt)";
+                    alignExplanation = `சாதாரண வர்த்தகர்கள் Long (${retLongRound}%) எடுத்துள்ள நிலையில், பெரிய முதலீட்டாளர்கள் கீழே $${bestDn3k.price.toLocaleString()} (-${bestDn3k.dist} pts) ஸ்டாப்-லாஸ் குவியலை வேட்டையாட இறக்கும் திட்டத்தில் (${whaleDnPct}%) உள்ளனர்.`;
+                } else if (isWhaleBull && retailIsLong) {
+                    alignText = "🤝 ALIGNED UPSIDE (Whales + Retail Both Long)";
+                    alignExplanation = `சாதாரண வர்த்தகர்கள் (${retLongRound}% L) மற்றும் பெரிய முதலீட்டாளர்கள் (${whaleUpPct}% Up) இருவரும் மேல்நோக்கி $${bestUp3k.price.toLocaleString()} இலக்கை நோக்கிச் செயல்படுகின்றனர்.`;
+                } else if (isWhaleBear && retailIsShort) {
+                    alignText = "🤝 ALIGNED DOWNSIDE (Whales + Retail Both Short)";
+                    alignExplanation = `சாதாரண வர்த்தகர்கள் (${retShortRound}% S) மற்றும் பெரிய முதலீட்டாளர்கள் (${whaleDnPct}% Down) இருவரும் கீழ்நோக்கி $${bestDn3k.price.toLocaleString()} இலக்கை நோக்கிச் செயல்படுகின்றனர்.`;
+                } else {
+                    alignText = "⏳ ACCUMULATION / STEAM FILTER (காத்திருப்பு)";
+                    alignExplanation = `பெரிய முதலீட்டாளர்கள் தற்போது சமநிலையில் (${whaleUpPct}% Up vs ${whaleDnPct}% Down) ஆர்டர்களைச் சேகரிக்கின்றனர்; தெளிவான திசை வரும் வரை காத்திருக்கவும்.`;
+                }
+
+                // Update DOM
+                const setT = (id, v) => { const el = document.getElementById(id); if (el) el.innerText = v; };
+                const setW = (id, p) => { const el = document.getElementById(id); if (el) el.style.width = `${p}%`; };
+
+                const regimeEl = document.getElementById('wr-regime-badge');
+                if (regimeEl) {
+                    if (isSteamMove) {
+                        regimeEl.innerText = "💨 நீராவி / குறைந்த வேகம் (Trap Filter)";
+                        regimeEl.className = "text-[10px] sm:text-xs font-mono font-black bg-amber-500/20 text-amber-200 px-2.5 py-1 rounded-lg border border-amber-400/50";
+                    } else if (isWhaleBull) {
+                        regimeEl.innerText = `🔥 WHALE UPSIDE DRIVE (${whaleUpPct}%)`;
+                        regimeEl.className = "text-[10px] sm:text-xs font-mono font-black bg-emerald-500/20 text-emerald-300 px-2.5 py-1 rounded-lg border border-emerald-400/50";
+                    } else if (isWhaleBear) {
+                        regimeEl.innerText = `🔥 WHALE DOWNSIDE DRIVE (${whaleDnPct}%)`;
+                        regimeEl.className = "text-[10px] sm:text-xs font-mono font-black bg-rose-500/20 text-rose-300 px-2.5 py-1 rounded-lg border border-rose-400/50";
+                    } else {
+                        regimeEl.innerText = `⚖️ WHALE ACCUMULATION (${whaleUpPct}% / ${whaleDnPct}%)`;
+                        regimeEl.className = "text-[10px] sm:text-xs font-mono font-black bg-cyan-500/20 text-cyan-200 px-2.5 py-1 rounded-lg border border-cyan-400/50";
+                    }
+                }
+
+                setT('wr-align-badge', alignText);
+
+                const mainVerdictEl = document.getElementById('wr-main-verdict');
+                if (mainVerdictEl) {
+                    if (isWhaleBull) {
+                        mainVerdictEl.innerText = `🐋 பெரிய முதலீட்டாளர்கள் திட்டம்: மேலே கொண்டு செல்லும் பலம் (${whaleUpPct}%) 🚀`;
+                        mainVerdictEl.className = "text-sm sm:text-base font-black text-emerald-400 tracking-wide";
+                    } else if (isWhaleBear) {
+                        mainVerdictEl.innerText = `🐋 பெரிய முதலீட்டாளர்கள் திட்டம்: கீழே கொண்டு செல்லும் பலம் (${whaleDnPct}%) 📉`;
+                        mainVerdictEl.className = "text-sm sm:text-base font-black text-rose-400 tracking-wide";
+                    } else {
+                        mainVerdictEl.innerText = `🐋 பெரிய முதலீட்டாளர்கள் திட்டம்: இருபுறமும் ஆர்டர் சேகரிப்பு (${whaleUpPct}% vs ${whaleDnPct}%) ⚖️`;
+                        mainVerdictEl.className = "text-sm sm:text-base font-black text-amber-300 tracking-wide";
+                    }
+                }
+
+                const nextMagnetTxt = isWhaleBull
+                    ? `Whale Target: $${bestUp3k.price.toLocaleString()} (+${bestUp3k.dist} Pts)`
+                    : (isWhaleBear
+                        ? `Whale Target: $${bestDn3k.price.toLocaleString()} (-${bestDn3k.dist} Pts)`
+                        : `Range Magnets: $${bestDn3k.price.toLocaleString()} ↔ $${bestUp3k.price.toLocaleString()}`);
+                setT('wr-target-pill', nextMagnetTxt);
+
+                setT('wr-whale-up-txt', `🟢 Whale Upside Drive (மேலே கொண்டு செல்லும் பலம்): ${whaleUpPct}%`);
+                setT('wr-whale-dn-txt', `🔴 Whale Downside Drive (கீழே கொண்டு செல்லும் பலம்): ${whaleDnPct}%`);
+                setT('wr-whale-net-txt', `Whale Net: ${whaleNet >= 0 ? '+' : ''}${whaleNet}%`);
+                setW('wr-whale-up-bar', whaleUpPct);
+                setW('wr-whale-dn-bar', whaleDnPct);
+
+                // Left Card: Retail
+                setT('wr-retail-bias-tag', crowdBiasLabel);
+                setT('wr-ret-long-txt', `🟢 Retail Long: ${retLongRound}%`);
+                setT('wr-ret-short-txt', `🔴 Retail Short: ${retShortRound}%`);
+                setW('wr-ret-long-bar', retLongRound);
+                setW('wr-ret-short-bar', retShortRound);
+                setT('wr-ret-global-line', `Global Accounts: Long ${retLongRound}% | Short ${retShortRound}%`);
+                setT('wr-ret-funding-line', `Funding: ${fRate >= 0 ? '+' : ''}${fRate.toFixed(4)}% | Basis: ${bUsd >= 0 ? '+' : ''}$${Math.round(bUsd)}`);
+                setT('wr-ret-trap-line', crowdTrapNote);
+
+                // Right Card: Whales
+                const whaleActionStr = activeOiDelta > 15
+                    ? (rm.netUsd >= 0 ? 'Fresh Whale Long Buildup (+OI)' : 'Fresh Whale Short Buildup (+OI)')
+                    : (activeOiDelta < -15 ? 'Position Closing (-OI)' : 'Liquidity Hunt / Absorption');
+                setT('wr-whale-action-tag', whaleActionStr);
+                setT('wr-up3k-val', `$${bestUp3k.price.toLocaleString()} (+${bestUp3k.dist} Pts)`);
+                setT('wr-up3k-sub', `Pool: ${fmtUsdCompact(bestUp3k.poolUsd)} | 3k Total: ${fmtUsdCompact(totalUp3kPool)}`);
+                setT('wr-dn3k-val', `$${bestDn3k.price.toLocaleString()} (-${bestDn3k.dist} Pts)`);
+                setT('wr-dn3k-sub', `Pool: ${fmtUsdCompact(bestDn3k.poolUsd)} | 3k Total: ${fmtUsdCompact(totalDn3kPool)}`);
+                setT('wr-whale-book-line', `Book: ${fiveL.spoofStatus} (Bid ${fiveL.bidSharePct}% / Ask ${fiveL.askSharePct}%)`);
+                setT('wr-whale-flow-line', `OI Shift: ${activeOiDelta >= 0 ? '+' : ''}${activeOiDelta.toFixed(1)} BTC | Net Flow: ${rm.netUsd >= 0 ? '+' : ''}${fmtUsdCompact(rm.netUsd)}`);
+                setT('wr-whale-vs-retail-line', alignText);
+
+                setT('wr-master-summary', alignExplanation);
+            } catch (err) {
+                console.warn("Whale vs Retail 3000 engine warning:", err);
+            }
+        }
+
+function getAccurateIstDate() {
             const offset = (typeof window._istServerOffsetMs === 'number' && !isNaN(window._istServerOffsetMs))
                 ? window._istServerOffsetMs
                 : 0;
