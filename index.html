@@ -1262,28 +1262,27 @@
                         </div>
                     </div>
 
-                    <!-- 4. BIG TRADERS (Whales Target & Strength/Weakness) -->
-                    <div class="bg-gray-900/95 border border-amber-400/50 rounded-xl sm:rounded-2xl p-2 sm:p-3.5 flex flex-col justify-between items-center space-y-2">
+                    <!-- 4. BIG TRADERS (Single Dominant Direction Arrow + Exact % + Targets) -->
+                    <div id="vbar4-card" class="bg-gray-900/95 border border-amber-400/50 rounded-xl sm:rounded-2xl p-2 sm:p-3.5 flex flex-col justify-between items-center space-y-2">
                         <div class="w-full space-y-0.5">
                             <div class="text-[10px] sm:text-xs font-black text-amber-300 truncate">4. BIG TRADERS</div>
-                            <div id="vbar4-pct-badge" class="text-xs sm:text-sm font-mono font-black text-amber-300">Str 50%</div>
-                            <div id="vbar4-wk-lbl" class="text-[9px] sm:text-[10px] font-mono font-bold text-purple-300">Wk 50%</div>
+                            <div id="vbar4-dir-banner" class="text-xs sm:text-sm font-mono font-black text-rose-400 bg-gray-950/90 border border-rose-500/40 rounded-lg py-0.5 px-1.5">↓ DOWN 69%</div>
+                            <div id="vbar4-pct-badge" class="text-[10px] sm:text-xs font-mono font-black text-amber-300">Str 69%</div>
+                            <div id="vbar4-wk-lbl" class="text-[9px] sm:text-[10px] font-mono font-bold text-purple-300">Wk 31%</div>
                         </div>
 
                         <div class="w-full h-32 sm:h-40 bg-gray-950/90 border border-gray-800 rounded-xl p-2 flex flex-col justify-between items-center">
-                            <span id="vbar4-str-lbl" class="text-[10px] sm:text-xs font-mono font-black text-amber-200">50%</span>
+                            <span id="vbar4-str-lbl" class="text-[10px] sm:text-xs font-mono font-black text-amber-200">69%</span>
                             <div class="w-7 sm:w-12 h-24 sm:h-28 bg-gray-800/90 rounded-lg overflow-hidden flex items-end border border-amber-400/35 p-0.5">
-                                <div id="vbar4-fill" class="w-full bg-gradient-to-t from-amber-600 to-amber-300 rounded-md transition-all duration-500" style="height: 50%"></div>
+                                <div id="vbar4-fill" class="w-full bg-gradient-to-t from-amber-600 to-amber-300 rounded-md transition-all duration-500" style="height: 69%"></div>
                             </div>
                         </div>
 
                         <div class="w-full space-y-0.5 text-[9px] sm:text-[10px] font-mono font-bold text-gray-300 leading-tight">
-                            <div id="vbar4-targets-sub" class="text-amber-200">↑$-- | ↓$--</div>
-                            <div id="vbar4-note" class="text-purple-200">↑+0% / ↓+0%</div>
+                            <div id="vbar4-targets-sub" class="text-rose-300 font-black">↓ TGT $58,000</div>
+                            <div id="vbar4-note" class="text-gray-400">Opp ↑ $64,500</div>
                         </div>
                     </div>
-                </div>
-
                 <!-- NEXT PROBABLE MOVE & EARLY ALERT STRIP -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5 text-xs">
                     <div class="bg-gray-950/90 border border-amber-400/50 rounded-2xl p-3 space-y-1">
@@ -5823,15 +5822,30 @@
                 setH('vbar3-fill', retailStrength);
                 setT('vbar3-note', `Fund ${fiveL.fundingRatePct >= 0 ? '+' : ''}${fiveL.fundingRatePct.toFixed(3)}%`);
 
+                // Single unambiguous direction & % for BIG TRADERS (no dual arrow confusion)
+                const bigDirIsUp = whaleUpPct >= whaleDnPct;
+                const bigDirArrow = bigDirIsUp ? '↑' : '↓';
+                const bigDirWord = bigDirIsUp ? 'UP' : 'DOWN';
+                const bigDirPct = bigDirIsUp ? whaleUpPct : whaleDnPct;
+                const bigOppPct = 100 - bigDirPct;
+                const bigFavTarget = bigDirIsUp ? upT.price : dnT.price;
+                const bigOppTarget = bigDirIsUp ? dnT.price : upT.price;
+                const bigOppArrow = bigDirIsUp ? '↓' : '↑';
+
+                const dirBannerEl = document.getElementById('vbar4-dir-banner');
+                if (dirBannerEl) {
+                    dirBannerEl.innerText = `${bigDirArrow} ${bigDirWord} ${bigDirPct}%`;
+                    dirBannerEl.className = bigDirIsUp
+                        ? "text-xs sm:text-sm font-mono font-black text-emerald-300 bg-emerald-950/60 border border-emerald-400/50 rounded-lg py-0.5 px-1.5"
+                        : "text-xs sm:text-sm font-mono font-black text-rose-300 bg-rose-950/60 border border-rose-400/50 rounded-lg py-0.5 px-1.5";
+                }
+
                 setT('vbar4-pct-badge', `Str ${whaleStrength}%`);
-                setT('vbar4-targets-sub', `↑$${upT.price.toLocaleString()} ↓$${dnT.price.toLocaleString()}`);
+                setT('vbar4-targets-sub', `${bigDirArrow} TGT $${bigFavTarget.toLocaleString()}`);
                 setT('vbar4-str-lbl', `${whaleStrength}%`);
-                setT('vbar4-wk-lbl', `Wk ${whaleWeakness}%`);
+                setT('vbar4-wk-lbl', `Wk ${whaleWeakness}% (Opp ${bigOppPct}%)`);
                 setH('vbar4-fill', whaleStrength);
-                setT(
-                    'vbar4-note',
-                    `${whaleIsUp ? '↑' : '↓'} ↑${upShiftPct >= 0 ? '+' : ''}${upShiftPct}% ↓${dnShiftPct >= 0 ? '+' : ''}${dnShiftPct}%`
-                );
+                setT('vbar4-note', `${bigOppArrow} Alt $${bigOppTarget.toLocaleString()}`);
 
                 // Target Details inside Whale card if present
                 const upDistNow = Math.round(upT.price - currentPrice);
