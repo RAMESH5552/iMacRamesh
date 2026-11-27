@@ -1297,8 +1297,8 @@
                     </div>
                 </div>
 
-                <!-- Main Post-Touch Verdict Banner -->
-                <div class="bg-gray-900/95 border border-amber-400/40 rounded-2xl p-3.5 space-y-2">
+                <!-- Main Post-Touch Verdict Banner + Both-Sides Probability Bar -->
+                <div class="bg-gray-900/95 border border-amber-400/40 rounded-2xl p-3.5 space-y-2.5">
                     <div class="flex flex-wrap justify-between items-center gap-2">
                         <span id="wsp-approach-tag" class="text-[10px] font-mono font-black bg-indigo-950 text-cyan-300 px-2.5 py-0.5 rounded border border-cyan-500/40">
                             Approaching Zone: Scanning...
@@ -1313,6 +1313,19 @@
                     <p id="wsp-post-touch-action" class="text-xs font-bold text-amber-200 leading-relaxed">
                         எல்லையைத் தொட்டவுடன் மேலே செல்லுமா அல்லது கீழே திரும்புமா & எத்தனை புள்ளிகள் நகரும் என்ற கணிப்பு தயாராகிறது...
                     </p>
+
+                    <!-- Both-Sides Direction Probability Comparison Bar (மேல் வாய்ப்பு vs கீழ் வாய்ப்பு) -->
+                    <div class="bg-gray-950/90 border border-gray-800 rounded-xl p-2.5 space-y-1.5 pt-2">
+                        <div class="flex flex-wrap justify-between items-center gap-1 text-[11px] font-mono font-black">
+                            <span id="wsp-up-prob-txt" class="text-emerald-400">🟢 மேல்நோக்கி செல்ல வாய்ப்பு: 50%</span>
+                            <span id="wsp-winner-side-txt" class="text-amber-300">அதிக வாய்ப்பு: சமநிலை</span>
+                            <span id="wsp-dn-prob-txt" class="text-rose-400">🔴 கீழ்நோக்கி செல்ல வாய்ப்பு: 50%</span>
+                        </div>
+                        <div class="w-full bg-gray-800 h-3 rounded-full overflow-hidden flex p-0.5 border border-gray-700">
+                            <div id="wsp-up-prob-bar" class="bg-gradient-to-r from-emerald-600 to-emerald-400 h-full rounded-l-full transition-all duration-500" style="width: 50%"></div>
+                            <div id="wsp-dn-prob-bar" class="bg-gradient-to-r from-rose-500 to-rose-600 h-full rounded-r-full transition-all duration-500" style="width: 50%"></div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- 2-Column Overhead vs Downside Order Pool & Post-Touch Forecast -->
@@ -5472,6 +5485,7 @@
             wickRadarState.lockedSinceMs = 0;
             wickRadarState.anchorPrice = 0;
             wickRadarState.emaBias = null;
+            wickRadarState.forceFreshScan = true;
             if (window.lastGlobalPrice && window.lastGlobalOI) {
                 updateWickSweepPredictor(
                     window.lastGlobalPrice,
@@ -5489,13 +5503,16 @@
             try {
                 if (!currentPrice || isNaN(currentPrice)) return;
                 const nowMs = Date.now();
+                const forceFresh = !!wickRadarState.forceFreshScan;
+                wickRadarState.forceFreshScan = false;
+
                 const fiveL = await refresh5LayerMarketMetrics(currentPrice, activeKlines1h);
                 const rm = realMoney || cachedRealMoney || { buyPct: 50, sellPct: 50, netUsd: 0 };
                 const tf5 = (tfSummary && tfSummary['5m']) ? tfSummary['5m'] : { diff: 0, priceDelta: 0 };
                 const tf10 = (tfSummary && tfSummary['10m']) ? tfSummary['10m'] : { diff: 0, priceDelta: 0 };
                 const tf30 = (tfSummary && tfSummary['30m']) ? tfSummary['30m'] : { diff: 0, priceDelta: 0 };
 
-                // 1. Scan 15m & 1h recent candles for long upper/lower wicks (rejection & sweep footprints)
+                // 1. Scan 15m recent candles for long upper/lower wicks
                 let maxUpperWickPts = 0, maxLowerWickPts = 0;
                 let upperWickPrice = 0, lowerWickPrice = 0;
                 const k15 = Array.isArray(cached5LayerIntel.klines15m) ? cached5LayerIntel.klines15m.slice(-16) : [];
@@ -5509,16 +5526,15 @@
                     }
                 });
 
-                // 2. Scan +-2,500 Pts in 250-pt steps combining resting Limit Book + Liquidation/SL Pools + Recent Wick Levels
+                // 2. Scan +-2,500 Pts in 250-pt steps around CURRENT price
                 const base250 = Math.round(currentPrice / 250) * 250;
                 let upCandidates = [];
                 let dnCandidates = [];
 
-                for (let step = 1; step <= 10; step++) { // 250 to 2,500 pts
+                for (let step = 1; step <= 10; step++) {
                     const upP = base250 + (step * 250);
                     const dnP = base250 - (step * 250);
 
-                    // Live Order Book resting money near upP and dnP
                     let bookAskNear = 0, bookBidNear = 0;
                     if (cachedLimitBook && Array.isArray(cachedLimitBook.asks)) {
                         cachedLimitBook.asks.forEach(a => {
@@ -5536,94 +5552,133 @@
                     const upM = getStepMetricsAtPrice(Math.round(upP / 500) * 500, currentOI, true);
                     const dnM = getStepMetricsAtPrice(Math.round(dnP / 500) * 500, currentOI, false);
 
-                    // Wick footprint boost if a previous long wick occurred near this level
                     const upWickBoost = (upperWickPrice > 0 && Math.abs(upP - upperWickPrice) <= 250) ? 1.25 : 1.0;
                     const dnWickBoost = (lowerWickPrice > 0 && Math.abs(dnP - lowerWickPrice) <= 250) ? 1.25 : 1.0;
 
-                    const upPoolTotal = (upM.liqClusterUsd + bookAskNear * 4) * upWickBoost;
-                    const dnPoolTotal = (dnM.liqClusterUsd + bookBidNear * 4) * dnWickBoost;
+                    // Slight near-range preference so active zones stay close (250..1,750 pts) to current price
+                    const upProx = 1.15 - ((step - 1) * 0.06);
+                    const dnProx = 1.15 - ((step - 1) * 0.06);
 
-                    if (upP > currentPrice + 180) {
-                        upCandidates.push({ price: upP, dist: Math.round(upP - currentPrice), poolUsd: upPoolTotal, bookUsd: bookAskNear, hasWick: upWickBoost > 1.0 });
+                    const upPoolTotal = (upM.liqClusterUsd + bookAskNear * 4) * upWickBoost * upProx;
+                    const dnPoolTotal = (dnM.liqClusterUsd + bookBidNear * 4) * dnWickBoost * dnProx;
+
+                    if (upP >= currentPrice + 150) {
+                        upCandidates.push({ price: upP, dist: Math.max(150, Math.round(upP - currentPrice)), poolUsd: upPoolTotal, bookUsd: bookAskNear, hasWick: upWickBoost > 1.0 });
                     }
-                    if (dnP < currentPrice - 180) {
-                        dnCandidates.push({ price: dnP, dist: Math.round(currentPrice - dnP), poolUsd: dnPoolTotal, bookUsd: bookBidNear, hasWick: dnWickBoost > 1.0 });
+                    if (dnP <= currentPrice - 150) {
+                        dnCandidates.push({ price: dnP, dist: Math.max(150, Math.round(currentPrice - dnP)), poolUsd: dnPoolTotal, bookUsd: bookBidNear, hasWick: dnWickBoost > 1.0 });
                     }
                 }
 
                 upCandidates.sort((a, b) => b.poolUsd - a.poolUsd);
                 dnCandidates.sort((a, b) => b.poolUsd - a.poolUsd);
 
-                const topUp = upCandidates[0] || { price: base250 + 750, dist: 750, poolUsd: 35000000, bookUsd: 0, hasWick: false };
-                const topDn = dnCandidates[0] || { price: base250 - 750, dist: 750, poolUsd: 35000000, bookUsd: 0, hasWick: false };
-                const secondUp = upCandidates.find(c => c.price > topUp.price + 250) || { price: topUp.price + 500 };
-                const secondDn = dnCandidates.find(c => c.price < topDn.price - 250) || { price: Math.max(500, topDn.price - 500) };
+                const topUp = upCandidates[0] || { price: base250 + 500, dist: 500, poolUsd: 35000000, bookUsd: 0, hasWick: false };
+                const topDn = dnCandidates[0] || { price: base250 - 500, dist: 500, poolUsd: 35000000, bookUsd: 0, hasWick: false };
+                const secondUp = upCandidates.find(c => c.price > topUp.price + 200) || { price: topUp.price + 500 };
+                const secondDn = dnCandidates.find(c => c.price < topDn.price - 200) || { price: Math.max(500, topDn.price - 500) };
 
-                // Stabilize locked zones until touched (+-80 pts) or invalidated
-                if (!wickRadarState.upZonePrice || currentPrice >= wickRadarState.upZonePrice + 120 || Math.abs(wickRadarState.upZonePrice - currentPrice) > 2600) {
+                // Smart zone re-anchoring:
+                // Re-anchor immediately if forced, or if price broke past a boundary (> +80 above upZone or < -80 below dnZone),
+                // or if currentPrice moved >= 300 pts away from wickRadarState.anchorPrice!
+                const movedFarFromAnchor = wickRadarState.anchorPrice > 0 && Math.abs(currentPrice - wickRadarState.anchorPrice) >= 300;
+                const brokeUpperZone = wickRadarState.upZonePrice > 0 && currentPrice >= wickRadarState.upZonePrice + 80;
+                const brokeLowerZone = wickRadarState.dnZonePrice > 0 && currentPrice <= wickRadarState.dnZonePrice - 80;
+
+                if (forceFresh || movedFarFromAnchor || brokeUpperZone || !wickRadarState.upZonePrice || wickRadarState.upZonePrice <= currentPrice + 120) {
                     wickRadarState.upZonePrice = topUp.price;
                 }
-                if (!wickRadarState.dnZonePrice || currentPrice <= wickRadarState.dnZonePrice - 120 || Math.abs(currentPrice - wickRadarState.dnZonePrice) > 2600) {
+                if (forceFresh || movedFarFromAnchor || brokeLowerZone || !wickRadarState.dnZonePrice || wickRadarState.dnZonePrice >= currentPrice - 120) {
                     wickRadarState.dnZonePrice = topDn.price;
                 }
 
                 const activeUpPrice = wickRadarState.upZonePrice;
                 const activeDnPrice = wickRadarState.dnZonePrice;
-                const distToUp = Math.max(0, Math.round(activeUpPrice - currentPrice));
-                const distToDn = Math.max(0, Math.round(currentPrice - activeDnPrice));
+                const distToUp = Math.max(50, Math.round(activeUpPrice - currentPrice));
+                const distToDn = Math.max(50, Math.round(currentPrice - activeDnPrice));
 
                 const activeUpObj = upCandidates.find(c => c.price === activeUpPrice) || topUp;
                 const activeDnObj = dnCandidates.find(c => c.price === activeDnPrice) || topDn;
 
-                // 3. Determine Post-Touch Outcome (Breakout Continuation vs Wick Sweep Reversal) + Exact Point Span
+                // 3. Evaluate BOTH Upper & Lower boundary reactions + exact point span
                 const stOi = (tf5.diff * 0.5) + (tf10.diff * 0.3) + (tf30.diff * 0.2);
+                const stPx = (tf5.priceDelta * 0.5) + (tf10.priceDelta * 0.3) + (tf30.priceDelta * 0.2);
                 const buyP = typeof rm.buyPct === 'number' ? rm.buyPct : 50;
                 const sellP = 100 - buyP;
 
-                // Upper Zone Touch Analysis:
-                // If +OI is rising strongly AND Buy flow >= 55% AND Ask wall is not overwhelming -> Breakout to secondUp
-                // Otherwise (heavy Sell Limit wall / +0.008%+ funding / prior upper wick rejection) -> Wick Sweep & Drop back toward POC / activeDnPrice
-                const upBreakoutLikely = (stOi > 25 && buyP >= 56 && fiveL.bidSharePct >= 50);
-                const upMovePts = upBreakoutLikely
-                    ? Math.max(400, Math.round(secondUp.price - activeUpPrice))
-                    : Math.max(450, Math.min(1100, Math.round(activeUpPrice - Math.max(fiveL.pocPrice, activeDnPrice))));
-                const upTargetAfterTouch = upBreakoutLikely
-                    ? secondUp.price
+                const upBreakoutLikely = (stOi > 20 && buyP >= 55 && stPx >= 0);
+                const isWickPushUp = (!upBreakoutLikely && stOi >= 5 && buyP >= 50 && stPx >= -15);
+                const upMovesHigherAfterTouch = upBreakoutLikely || isWickPushUp;
+                const upMovePts = upMovesHigherAfterTouch
+                    ? Math.max(400, Math.min(1100, Math.round(secondUp.price - activeUpPrice)))
+                    : Math.max(400, Math.min(1000, Math.round(activeUpPrice - Math.max(fiveL.pocPrice, activeDnPrice))));
+                const upTargetAfterTouch = upMovesHigherAfterTouch
+                    ? Math.round(activeUpPrice + upMovePts)
                     : Math.round(activeUpPrice - upMovePts);
 
-                // Lower Zone Touch Analysis:
-                // If +OI is rising with heavy selling AND Sell flow >= 55% -> Breakdown to secondDn
-                // Otherwise (heavy Buy Limit wall / prior lower wick bounce) -> Wick Sweep & Bounce back toward POC / activeUpPrice
-                const dnBreakdownLikely = (stOi > 25 && sellP >= 56 && fiveL.askSharePct >= 52);
+                const dnBreakdownLikely = (stOi > 20 && sellP >= 55 && stPx < 0);
                 const dnMovePts = dnBreakdownLikely
-                    ? Math.max(400, Math.round(activeDnPrice - secondDn.price))
-                    : Math.max(450, Math.min(1100, Math.round(Math.min(fiveL.pocPrice, activeUpPrice) - activeDnPrice)));
+                    ? Math.max(400, Math.min(1100, Math.round(activeDnPrice - secondDn.price)))
+                    : Math.max(400, Math.min(1000, Math.round(Math.min(fiveL.pocPrice, activeUpPrice) - activeDnPrice)));
                 const dnTargetAfterTouch = dnBreakdownLikely
-                    ? secondDn.price
+                    ? Math.round(activeDnPrice - dnMovePts)
                     : Math.round(activeDnPrice + dnMovePts);
 
-                // Which boundary is the market approaching right now?
                 const approachingUp = distToUp <= distToDn;
-                const rawScore = approachingUp
-                    ? (upBreakoutLikely ? 68 : 30)   // >50 = net upward continuation, <50 = downward turn/pressure
-                    : (dnBreakdownLikely ? 28 : 70);
+                const upScenarioScore = upMovesHigherAfterTouch
+                    ? Math.min(86, 62 + Math.round(Math.max(0, buyP - 50) * 0.8) + (approachingUp ? 5 : 0))
+                    : Math.max(20, 42 - Math.round(Math.max(0, sellP - 50) * 0.5) - (approachingUp ? 5 : 0));
 
-                if (wickRadarState.emaBias === null) wickRadarState.emaBias = rawScore;
-                else wickRadarState.emaBias = (wickRadarState.emaBias * 0.85) + (rawScore * 0.15);
+                const dnMoveUpwardScore = !dnBreakdownLikely
+                    ? Math.min(84, 60 + Math.round(Math.max(0, buyP - 45) * 0.7) + (maxLowerWickPts > maxUpperWickPts ? 5 : 0))
+                    : Math.max(18, 34 - Math.round(Math.max(0, sellP - 50) * 0.7));
 
-                const HOLD_MS = 300000; // 5-minute lock stability
+                const rawUpProb = Math.max(15, Math.min(85, Math.round((upScenarioScore * 0.50) + (dnMoveUpwardScore * 0.50))));
+
+                if (forceFresh || wickRadarState.emaBias === null) {
+                    wickRadarState.emaBias = rawUpProb;
+                } else {
+                    wickRadarState.emaBias = (wickRadarState.emaBias * 0.68) + (rawUpProb * 0.32);
+                }
+
+                const upProbFinal = Math.max(15, Math.min(85, Math.round(wickRadarState.emaBias)));
+                const dnProbFinal = 100 - upProbFinal;
+
+                // Anti-flicker hold: 90 seconds OR immediate re-anchor when price moves >= 300 pts or button clicked
+                const HOLD_MS = 90000;
                 const elapsed = nowMs - wickRadarState.lockedSinceMs;
-                const candidateDir = wickRadarState.emaBias >= 50 ? 'UP' : 'DOWN';
+                const candidateDir = upProbFinal >= dnProbFinal ? 'UP' : 'DOWN';
 
-                if (wickRadarState.lockedDir === 'SCAN' || (candidateDir !== wickRadarState.lockedDir && elapsed >= HOLD_MS && Math.abs(wickRadarState.emaBias - 50) >= 10)) {
+                if (forceFresh || movedFarFromAnchor || wickRadarState.lockedDir === 'SCAN' || (candidateDir !== wickRadarState.lockedDir && elapsed >= HOLD_MS && Math.abs(upProbFinal - 50) >= 5)) {
                     wickRadarState.lockedDir = candidateDir;
                     wickRadarState.lockedSinceMs = nowMs;
                     wickRadarState.anchorPrice = currentPrice;
                     saveWickLock(wickRadarState);
+                } else if (!wickRadarState.anchorPrice) {
+                    wickRadarState.anchorPrice = currentPrice;
                 }
+
+                const lockedIsUp = wickRadarState.lockedDir === 'SCAN' ? (upProbFinal >= dnProbFinal) : (wickRadarState.lockedDir === 'UP');
 
                 // Render UI
                 const setT = (id, v) => { const el = document.getElementById(id); if (el) el.innerText = v; };
+                const setW = (id, p) => { const el = document.getElementById(id); if (el) el.style.width = `${p}%`; };
+
+                setT('wsp-up-prob-txt', `🟢 மேல்நோக்கி செல்ல வாய்ப்பு: ${upProbFinal}%`);
+                setT('wsp-dn-prob-txt', `🔴 கீழ்நோக்கி செல்ல வாய்ப்பு: ${dnProbFinal}%`);
+                setW('wsp-up-prob-bar', upProbFinal);
+                setW('wsp-dn-prob-bar', dnProbFinal);
+
+                const winnerEl = document.getElementById('wsp-winner-side-txt');
+                if (winnerEl) {
+                    if (lockedIsUp) {
+                        winnerEl.innerText = `அதிக வாய்ப்பு: மேல்நோக்கி (${upProbFinal}%) ↑`;
+                        winnerEl.className = 'text-emerald-300';
+                    } else {
+                        winnerEl.innerText = `அதிக வாய்ப்பு: கீழ்நோக்கி (${dnProbFinal}%) ↓`;
+                        winnerEl.className = 'text-rose-300';
+                    }
+                }
 
                 setT('wsp-up-dist-badge', `+${distToUp.toLocaleString()} Pts`);
                 setT('wsp-up-price', `$${activeUpPrice.toLocaleString()}`);
@@ -5633,14 +5688,18 @@
                 if (upOutTag) {
                     upOutTag.innerText = upBreakoutLikely
                         ? `🚀 உடைத்து மேல் (+${upMovePts} Pts)`
-                        : `🪤 விக் அடித்து கீழே (-${upMovePts} Pts)`;
-                    upOutTag.className = upBreakoutLikely ? 'text-emerald-300' : 'text-rose-300';
+                        : (isWickPushUp
+                            ? `⚡ விக் முட்டி மேலும் மேல் (+${upMovePts} Pts)`
+                            : `🪤 விக் அடித்து கீழே (-${upMovePts} Pts)`);
+                    upOutTag.className = upMovesHigherAfterTouch ? 'text-emerald-300' : 'text-rose-300';
                 }
                 setT(
                     'wsp-up-forecast-txt',
                     upBreakoutLikely
                         ? `$${activeUpPrice.toLocaleString()} எல்லையைத் தொட்டால் +OI & Buy அழுத்தத்தால் உடைத்து $${upTargetAfterTouch.toLocaleString()} (+${upMovePts} Pts) வரை செல்ல வாய்ப்புள்ளது.`
-                        : `$${activeUpPrice.toLocaleString()} எல்லையைத் தொட்டவுடன் Sell Limit சுவரால் நீண்ட விக் அடித்து கீழே $${upTargetAfterTouch.toLocaleString()} (-${upMovePts} Pts) வரை திரும்ப வாய்ப்பு அதிகம்.`
+                        : (isWickPushUp
+                            ? `$${activeUpPrice.toLocaleString()} எல்லையில் முட்டி ஷார்ட் ஸ்டாப்-விக் அடித்து, அங்கிருந்து மேலும் மேல்நோக்கி $${upTargetAfterTouch.toLocaleString()} (+${upMovePts} Pts) வரை செல்ல வாய்ப்புள்ளது.`
+                            : `$${activeUpPrice.toLocaleString()} எல்லையைத் தொட்டவுடன் Sell Limit சுவரால் நீண்ட விக் அடித்து கீழே $${upTargetAfterTouch.toLocaleString()} (-${upMovePts} Pts) வரை திரும்ப வாய்ப்பு அதிகம்.`)
                 );
 
                 setT('wsp-dn-dist-badge', `-${distToDn.toLocaleString()} Pts`);
@@ -5661,93 +5720,72 @@
                         : `$${activeDnPrice.toLocaleString()} எல்லையைத் தொட்டவுடன் Buy Limit சுவரால் நீண்ட விக் அடித்து மேலே $${dnTargetAfterTouch.toLocaleString()} (+${dnMovePts} Pts) வரை திரும்ப வாய்ப்பு அதிகம்.`
                 );
 
-                // Top Main Verdict Banner
                 const badgeEl = document.getElementById('wsp-status-badge');
                 const approachEl = document.getElementById('wsp-approach-tag');
                 const ptsPill = document.getElementById('wsp-points-pill');
                 const verdictEl = document.getElementById('wsp-main-verdict');
                 const postTxtEl = document.getElementById('wsp-post-touch-action');
 
-                if (approachingUp) {
-                    const isTouched = distToUp <= 120;
-                    if (approachEl) approachEl.innerText = isTouched
-                        ? `🔥 மேல் எல்லை $${activeUpPrice.toLocaleString()} தொடப்பட்டது! (${distToUp} Pts)`
-                        : `📈 மேல் எல்லை $${activeUpPrice.toLocaleString()} நோக்கி நகர்கிறது (${distToUp} Pts தூரம்)`;
+                const nearZoneLabel = approachingUp
+                    ? `மேல் எல்லை $${activeUpPrice.toLocaleString()} (+${distToUp} Pts)`
+                    : `கீழ் எல்லை $${activeDnPrice.toLocaleString()} (-${distToDn} Pts)`;
+                if (approachEl) {
+                    approachEl.innerText = `Live @ $${Math.round(currentPrice).toLocaleString()} • அருகிலுள்ள எல்லை: ${nearZoneLabel} (↑${upProbFinal}% vs ↓${dnProbFinal}%)`;
+                }
 
-                    if (upBreakoutLikely) {
-                        if (badgeEl) {
-                            badgeEl.innerText = `🔒 LOCKED: BREAKOUT UP (+${upMovePts} Pts)`;
-                            badgeEl.className = "text-[10px] sm:text-xs font-mono font-black bg-emerald-500/25 text-emerald-300 px-3 py-1 rounded-lg border border-emerald-400/60";
-                        }
-                        if (ptsPill) {
-                            ptsPill.innerText = `மேலே +${upMovePts} Pts வரை`;
-                            ptsPill.className = "text-xs sm:text-sm font-mono font-black bg-emerald-500/25 text-emerald-300 px-3 py-1 rounded-xl border border-emerald-400/60";
-                        }
-                        if (verdictEl) {
-                            verdictEl.innerText = `$${activeUpPrice.toLocaleString()}-ஐத் தொட்டவுடன் உடைத்து மேலே $${upTargetAfterTouch.toLocaleString()} (+${upMovePts} Pts) செல்ல வாய்ப்புள்ளது 🚀`;
-                            verdictEl.className = "text-base sm:text-lg font-black text-emerald-400 tracking-wide";
-                        }
-                    } else {
-                        if (badgeEl) {
-                            badgeEl.innerText = `🔒 LOCKED: WICK REJECTION ↓ (-${upMovePts} Pts)`;
-                            badgeEl.className = "text-[10px] sm:text-xs font-mono font-black bg-rose-500/25 text-rose-300 px-3 py-1 rounded-lg border border-rose-400/60";
-                        }
-                        if (ptsPill) {
-                            ptsPill.innerText = `கீழே -${upMovePts} Pts வரை`;
-                            ptsPill.className = "text-xs sm:text-sm font-mono font-black bg-rose-500/25 text-rose-300 px-3 py-1 rounded-xl border border-rose-400/60";
-                        }
-                        if (verdictEl) {
-                            verdictEl.innerText = `$${activeUpPrice.toLocaleString()}-ஐத் தொட்டவுடன் விக் அடித்து கீழே $${upTargetAfterTouch.toLocaleString()} (-${upMovePts} Pts) திரும்ப வாய்ப்புள்ளது 📉`;
-                            verdictEl.className = "text-base sm:text-lg font-black text-rose-400 tracking-wide";
-                        }
+                if (lockedIsUp) {
+                    const useUpTarget = approachingUp || upMovesHigherAfterTouch;
+                    const chosenPts = useUpTarget ? upMovePts : dnMovePts;
+                    const chosenTgt = useUpTarget ? upTargetAfterTouch : dnTargetAfterTouch;
+
+                    if (badgeEl) {
+                        badgeEl.innerText = `🔒 UP HIGHER PROB (${upProbFinal}%): +${chosenPts} Pts`;
+                        badgeEl.className = "text-[10px] sm:text-xs font-mono font-black bg-emerald-500/25 text-emerald-300 px-3 py-1 rounded-lg border border-emerald-400/60";
+                    }
+                    if (ptsPill) {
+                        ptsPill.innerText = `மேலே +${chosenPts} Pts (${upProbFinal}%)`;
+                        ptsPill.className = "text-xs sm:text-sm font-mono font-black bg-emerald-500/25 text-emerald-300 px-3 py-1 rounded-xl border border-emerald-400/60";
+                    }
+                    if (verdictEl) {
+                        verdictEl.innerText = approachingUp
+                            ? (upMovesHigherAfterTouch
+                                ? `$${activeUpPrice.toLocaleString()}-இல் விக் முட்டி மேலும் மேல்நோக்கி $${chosenTgt.toLocaleString()} (+${chosenPts} Pts) செல்ல வாய்ப்பு அதிகம் (${upProbFinal}%) 🚀`
+                                : `இருபுற ஸ்கேன்: மேல் $${activeUpPrice.toLocaleString()} தடுப்பு இருந்தாலும் கீழ் விக் மீட்பு/வாங்குதல் பலத்தால் மேல்நோக்கி +${chosenPts} Pts (${upProbFinal}%) வாய்ப்பு அதிகம் ↑`)
+                            : `$${activeDnPrice.toLocaleString()}-ஐத் தொட்டவுடன் கீழ் விக் அடித்து மேலே $${chosenTgt.toLocaleString()} (+${chosenPts} Pts) திரும்ப வாய்ப்பு அதிகம் (${upProbFinal}%) 🚀`;
+                        verdictEl.className = "text-base sm:text-lg font-black text-emerald-400 tracking-wide";
                     }
                     if (postTxtEl) {
-                        postTxtEl.innerText = `காரணம்: மேல் மண்டலம் $${activeUpPrice.toLocaleString()}-இல் ${fmtUsdCompact(activeUpObj.poolUsd)} பணக் குவியல் உள்ளது. அங்கு தொட்டவுடன் ${upBreakoutLikely ? 'புதிய +OI வாங்குதலால் மேல் உடைப்பு' : 'Sell Limit சுவரால் மேல் விக் தள்ளுபடி (Rejection)'} எதிர்பார்க்கப்படுகிறது.`;
+                        postTxtEl.innerText = `இருபுற ஆய்வு முடிவு: மேல் ($${activeUpPrice.toLocaleString()} • ${fmtUsdCompact(activeUpObj.poolUsd)}) மற்றும் கீழ் ($${activeDnPrice.toLocaleString()} • ${fmtUsdCompact(activeDnObj.poolUsd)}) ஆகிய இரு மண்டலங்களையும் ஸ்கேன் செய்ததில், மேல்நோக்கி செல்லும் வாய்ப்பு (${upProbFinal}%) அதிகமாக உள்ளது (+${chosenPts} Pts -> $${chosenTgt.toLocaleString()}).`;
                     }
                 } else {
-                    const isTouched = distToDn <= 120;
-                    if (approachEl) approachEl.innerText = isTouched
-                        ? `🔥 கீழ் எல்லை $${activeDnPrice.toLocaleString()} தொடப்பட்டது! (${distToDn} Pts)`
-                        : `📉 கீழ் எல்லை $${activeDnPrice.toLocaleString()} நோக்கி நகர்கிறது (${distToDn} Pts தூரம்)`;
+                    const useDnTarget = (!approachingUp && dnBreakdownLikely) || (!upMovesHigherAfterTouch && approachingUp);
+                    const chosenPts = useDnTarget ? dnMovePts : upMovePts;
+                    const chosenTgt = useDnTarget ? dnTargetAfterTouch : upTargetAfterTouch;
 
-                    if (dnBreakdownLikely) {
-                        if (badgeEl) {
-                            badgeEl.innerText = `🔒 LOCKED: BREAKDOWN ↓ (-${dnMovePts} Pts)`;
-                            badgeEl.className = "text-[10px] sm:text-xs font-mono font-black bg-rose-500/25 text-rose-300 px-3 py-1 rounded-lg border border-rose-400/60";
-                        }
-                        if (ptsPill) {
-                            ptsPill.innerText = `கீழே -${dnMovePts} Pts வரை`;
-                            ptsPill.className = "text-xs sm:text-sm font-mono font-black bg-rose-500/25 text-rose-300 px-3 py-1 rounded-xl border border-rose-400/60";
-                        }
-                        if (verdictEl) {
-                            verdictEl.innerText = `$${activeDnPrice.toLocaleString()}-ஐத் தொட்டவுடன் உடைத்து கீழே $${dnTargetAfterTouch.toLocaleString()} (-${dnMovePts} Pts) இறங்க வாய்ப்புள்ளது 📉`;
-                            verdictEl.className = "text-base sm:text-lg font-black text-rose-400 tracking-wide";
-                        }
-                    } else {
-                        if (badgeEl) {
-                            badgeEl.innerText = `🔒 LOCKED: WICK BOUNCE ↑ (+${dnMovePts} Pts)`;
-                            badgeEl.className = "text-[10px] sm:text-xs font-mono font-black bg-emerald-500/25 text-emerald-300 px-3 py-1 rounded-lg border border-emerald-400/60";
-                        }
-                        if (ptsPill) {
-                            ptsPill.innerText = `மேலே +${dnMovePts} Pts வரை`;
-                            ptsPill.className = "text-xs sm:text-sm font-mono font-black bg-emerald-500/25 text-emerald-300 px-3 py-1 rounded-xl border border-emerald-400/60";
-                        }
-                        if (verdictEl) {
-                            verdictEl.innerText = `$${activeDnPrice.toLocaleString()}-ஐத் தொட்டவுடன் விக் அடித்து மேலே $${dnTargetAfterTouch.toLocaleString()} (+${dnMovePts} Pts) திரும்ப வாய்ப்புள்ளது 🚀`;
-                            verdictEl.className = "text-base sm:text-lg font-black text-emerald-400 tracking-wide";
-                        }
+                    if (badgeEl) {
+                        badgeEl.innerText = `🔒 DOWN HIGHER PROB (${dnProbFinal}%): -${chosenPts} Pts`;
+                        badgeEl.className = "text-[10px] sm:text-xs font-mono font-black bg-rose-500/25 text-rose-300 px-3 py-1 rounded-lg border border-rose-400/60";
+                    }
+                    if (ptsPill) {
+                        ptsPill.innerText = `கீழே -${chosenPts} Pts (${dnProbFinal}%)`;
+                        ptsPill.className = "text-xs sm:text-sm font-mono font-black bg-rose-500/25 text-rose-300 px-3 py-1 rounded-xl border border-rose-400/60";
+                    }
+                    if (verdictEl) {
+                        verdictEl.innerText = approachingUp
+                            ? `$${activeUpPrice.toLocaleString()}-ஐத் தொட்டவுடன் விக் அடித்து கீழே $${chosenTgt.toLocaleString()} (-${chosenPts} Pts) திரும்ப வாய்ப்பு அதிகம் (${dnProbFinal}%) 📉`
+                            : `இருபுற ஸ்கேன்: கீழ் $${activeDnPrice.toLocaleString()} ஆதரவு இருந்தாலும் மேல் விக் தள்ளுபடி/விற்பனை அழுத்தத்தால் கீழ்நோக்கி -${chosenPts} Pts (${dnProbFinal}%) வாய்ப்பு அதிகம் ↓`;
+                        verdictEl.className = "text-base sm:text-lg font-black text-rose-400 tracking-wide";
                     }
                     if (postTxtEl) {
-                        postTxtEl.innerText = `காரணம்: கீழ் மண்டலம் $${activeDnPrice.toLocaleString()}-இல் ${fmtUsdCompact(activeDnObj.poolUsd)} பணக் குவியல் உள்ளது. அங்கு தொட்டவுடன் ${dnBreakdownLikely ? 'புதிய +OI விற்பனையால் கீழ் உடைப்பு' : 'Buy Limit சுவரால் கீழ் விக் மீட்பு (Bounce)'} எதிர்பார்க்கப்படுகிறது.`;
+                        postTxtEl.innerText = `இருபுற ஆய்வு முடிவு: மேல் ($${activeUpPrice.toLocaleString()} • ${fmtUsdCompact(activeUpObj.poolUsd)}) மற்றும் கீழ் ($${activeDnPrice.toLocaleString()} • ${fmtUsdCompact(activeDnObj.poolUsd)}) ஆகிய இரு மண்டலங்களையும் ஸ்கேன் செய்ததில், கீழ்நோக்கி செல்லும் வாய்ப்பு (${dnProbFinal}%) அதிகமாக உள்ளது (-${chosenPts} Pts -> $${chosenTgt.toLocaleString()}).`;
                     }
                 }
 
-                // 4 Bottom Mini Metric Cards
                 setT('wsp-m1-val', `↑${maxUpperWickPts} Pts | ↓${maxLowerWickPts} Pts`);
                 setT('wsp-m1-sub', `Wick Peaks: $${upperWickPrice || '--'} / $${lowerWickPrice || '--'}`);
                 setT('wsp-m2-val', `Up ${fmtUsdCompact(activeUpObj.poolUsd)} | Dn ${fmtUsdCompact(activeDnObj.poolUsd)}`);
                 setT('wsp-m3-val', `${stOi >= 0 ? '+' : ''}${stOi.toFixed(1)} BTC (5m–30m)`);
-                setT('wsp-m4-val', approachingUp ? `${upMovePts} Pts (${upBreakoutLikely ? '↑' : '↓'})` : `${dnMovePts} Pts (${dnBreakdownLikely ? '↓' : '↑'})`);
+                setT('wsp-m4-val', approachingUp ? `${upMovePts} Pts (${upMovesHigherAfterTouch ? '↑' : '↓'})` : `${dnMovePts} Pts (${dnBreakdownLikely ? '↓' : '↑'})`);
             } catch (err) {
                 console.warn("Wick sweep predictor error:", err);
             }
@@ -5791,7 +5829,8 @@
             targetPrice: savedP500 ? savedP500.targetPrice : 0,
             triggerPrice: savedP500 ? savedP500.triggerPrice : 0,
             invalidPrice: savedP500 ? savedP500.invalidPrice : 0,
-            lockedIst: savedP500 ? savedP500.lockedIst : ''
+            lockedIst: savedP500 ? savedP500.lockedIst : '',
+            forceFreshLock: false
         };
 
         function resetNext500PredictorLock() {
@@ -5804,6 +5843,7 @@
             next500State.triggerPrice = 0;
             next500State.invalidPrice = 0;
             next500State.lockedIst = '';
+            next500State.forceFreshLock = true;
             if (window.lastGlobalPrice && window.lastGlobalOI) {
                 updateNext500To1000Predictor(
                     window.lastGlobalPrice,
@@ -5821,6 +5861,9 @@
             try {
                 if (!currentPrice || isNaN(currentPrice)) return;
                 const nowMs = Date.now();
+                const forceFresh = !!next500State.forceFreshLock;
+                next500State.forceFreshLock = false;
+
                 const fiveL = await refresh5LayerMarketMetrics(currentPrice, activeKlines1h);
                 const rm = realMoney || cachedRealMoney || { buyPct: 50, sellPct: 50, netUsd: 0 };
 
@@ -5830,14 +5873,13 @@
                 const tf1h = (tfSummary && tfSummary['1h']) ? tfSummary['1h'] : { diff: 0, priceDelta: 0 };
 
                 // 1. PILLAR 1 (35%): Near-Range Magnet (+400 to +1,200 Pts Above vs -400 to -1,200 Pts Below)
-                // Scans immediate 250-pt steps within 400..1,200 pts so targets are actionable 500-1,000 pt moves (not $58k/$64.5k)
                 const base250 = Math.round(currentPrice / 250) * 250;
                 let bestUpMagnet = { price: base250 + 750, poolUsd: 0, dist: 750 };
                 let bestDnMagnet = { price: base250 - 750, poolUsd: 0, dist: 750 };
                 let totalUpMagnetUsd = 0;
                 let totalDnMagnetUsd = 0;
 
-                for (let step = 2; step <= 5; step++) { // 500, 750, 1000, 1250 pts
+                for (let step = 2; step <= 5; step++) {
                     const upP = base250 + (step * 250);
                     const dnP = base250 - (step * 250);
                     const upDist = Math.max(400, Math.round(upP - currentPrice));
@@ -5846,7 +5888,6 @@
                     const upM = getStepMetricsAtPrice(Math.round(upP / 500) * 500, currentOI, true);
                     const dnM = getStepMetricsAtPrice(Math.round(dnP / 500) * 500, currentOI, false);
 
-                    // Proximity bonus: closer 500-900 pt magnets pull stronger than 1250 pt magnets
                     const upProx = 1.25 - (upDist / 2500);
                     const dnProx = 1.25 - (dnDist / 2500);
 
@@ -5862,23 +5903,23 @@
 
                 const magnetUpShare = (totalUpMagnetUsd / Math.max(1, totalUpMagnetUsd + totalDnMagnetUsd)) * 100;
 
-                // 2. PILLAR 2 (30%): Directional OI + Real Money Flow (Separating New Buyers vs New Sellers)
+                // 2. PILLAR 2 (30%): Directional OI + Real Money Flow
                 const stOi = (tf5.diff * 0.45) + (tf10.diff * 0.35) + (tf30.diff * 0.20);
                 const stPx = (tf5.priceDelta * 0.45) + (tf10.priceDelta * 0.35) + (tf30.priceDelta * 0.20);
                 const buyP = typeof rm.buyPct === 'number' ? rm.buyPct : 50;
 
                 let oiDirScore = 50;
                 let oiFlowLabel = 'Neutral OI';
-                if (stOi > 15 && stPx >= 0) {
+                if (stOi > 12 && stPx >= 0) {
                     oiDirScore = Math.min(88, 64 + Math.round(Math.min(24, stOi / 8)));
                     oiFlowLabel = `New Buyers (+OI ↑ ${stOi.toFixed(0)} BTC)`;
-                } else if (stOi > 15 && stPx < 0) {
+                } else if (stOi > 12 && stPx < 0) {
                     oiDirScore = Math.max(12, 36 - Math.round(Math.min(24, stOi / 8)));
                     oiFlowLabel = `New Sellers (+OI ↓ ${stOi.toFixed(0)} BTC)`;
-                } else if (stOi < -15 && stPx >= 0) {
-                    oiDirScore = 60;
+                } else if (stOi < -12 && stPx >= 0) {
+                    oiDirScore = 62;
                     oiFlowLabel = `Short Cover (-OI ↑ ${stOi.toFixed(0)} BTC)`;
-                } else if (stOi < -15 && stPx < 0) {
+                } else if (stOi < -12 && stPx < 0) {
                     oiDirScore = 38;
                     oiFlowLabel = `Long Close (-OI ↓ ${stOi.toFixed(0)} BTC)`;
                 } else {
@@ -5887,11 +5928,11 @@
                 }
                 const pillar2Up = Math.round((oiDirScore * 0.70) + (buyP * 0.30));
 
-                // 3. PILLAR 3 (20%): Volatility Compression & Breakout Energy (15m range compression + +OI buildup)
+                // 3. PILLAR 3 (20%): Range Compression & Candle Bias
                 let recentRangePts = 300;
                 const k15 = cached5LayerIntel.klines15m;
                 if (Array.isArray(k15) && k15.length >= 8) {
-                    const last8 = k15.slice(-8); // last 2 hours
+                    const last8 = k15.slice(-8);
                     const maxH = Math.max(...last8.map(k => parseFloat(k[2])));
                     const minL = Math.min(...last8.map(k => parseFloat(k[3])));
                     recentRangePts = Math.max(80, Math.round(maxH - minL));
@@ -5904,101 +5945,67 @@
                 const pocBias = currentPrice >= fiveL.pocPrice ? 58 : 42;
                 const pillar4Up = Math.round((fiveL.bidSharePct * 0.60) + (pocBias * 0.40));
 
-                // Weighted Raw Score (0..100)
                 const rawUpPct = (magnetUpShare * 0.35) + (pillar2Up * 0.30) + (pillar3Up * 0.20) + (pillar4Up * 0.15);
 
-                // Heavy EMA Smoothing (alpha = 0.14) so 1-2 minute noise NEVER flips the direction
-                if (next500State.emaUpPct === null) {
+                if (forceFresh || next500State.emaUpPct === null) {
                     next500State.emaUpPct = rawUpPct;
                 } else {
-                    next500State.emaUpPct = (next500State.emaUpPct * 0.86) + (rawUpPct * 0.14);
+                    next500State.emaUpPct = (next500State.emaUpPct * 0.68) + (rawUpPct * 0.32);
                 }
 
                 const upProb = Math.max(12, Math.min(88, Math.round(next500State.emaUpPct)));
                 const dnProb = 100 - upProb;
 
-                // Strong Direction Lock Hysteresis:
-                // - Requires >= 58% conviction to enter UP or DOWN lock
-                // - Once locked, holds direction for at least 5 minutes (300,000 ms) UNLESS price moves >= 180 pts against lock
-                // - Even after 5 minutes, requires >= 62% opposite conviction to flip!
-                const HOLD_MS = 300000;
+                // Smart Re-Anchor + Anti-Flicker Lock:
+                // - If price moved >= 280 pts away from anchorPrice, re-anchor immediately to current price!
+                // - Otherwise hold direction for 90 seconds unless invalidated or >= 58% opposite conviction.
+                const HOLD_MS = 90000;
                 const elapsedMs = nowMs - next500State.lockedSinceMs;
+                const driftedFromAnchor = next500State.anchorPrice > 0 && Math.abs(currentPrice - next500State.anchorPrice) >= 280;
                 const nowIst = getAccurateIstDate();
                 const istStr = nowIst.toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour12: true, hour: '2-digit', minute: '2-digit' });
 
-                if (next500State.lockedDir === 'WAIT') {
-                    if (upProb >= 57) {
-                        next500State.lockedDir = 'UP';
-                        next500State.anchorPrice = currentPrice;
-                        next500State.lockedSinceMs = nowMs;
-                        next500State.targetPrice = bestUpMagnet.price;
-                        next500State.triggerPrice = Math.round(currentPrice + 120);
-                        next500State.invalidPrice = Math.round(currentPrice - 220);
-                        next500State.lockedIst = istStr;
-                        saveP500LockState(next500State);
-                    } else if (dnProb >= 57) {
-                        next500State.lockedDir = 'DOWN';
-                        next500State.anchorPrice = currentPrice;
-                        next500State.lockedSinceMs = nowMs;
-                        next500State.targetPrice = bestDnMagnet.price;
-                        next500State.triggerPrice = Math.round(currentPrice - 120);
-                        next500State.invalidPrice = Math.round(currentPrice + 220);
-                        next500State.lockedIst = istStr;
-                        saveP500LockState(next500State);
+                const applyNewLock = (dir) => {
+                    next500State.lockedDir = dir;
+                    next500State.anchorPrice = currentPrice;
+                    next500State.lockedSinceMs = nowMs;
+                    next500State.lockedIst = istStr;
+                    if (dir === 'UP') {
+                        next500State.targetPrice = Math.max(Math.round(currentPrice + 450), bestUpMagnet.price);
+                        next500State.triggerPrice = Math.round(currentPrice + 100);
+                        next500State.invalidPrice = Math.round(currentPrice - 200);
+                    } else {
+                        next500State.targetPrice = Math.min(Math.round(currentPrice - 450), bestDnMagnet.price);
+                        next500State.triggerPrice = Math.round(currentPrice - 100);
+                        next500State.invalidPrice = Math.round(currentPrice + 200);
                     }
+                    saveP500LockState(next500State);
+                };
+
+                if (forceFresh || driftedFromAnchor) {
+                    applyNewLock(upProb >= dnProb ? 'UP' : 'DOWN');
+                } else if (next500State.lockedDir === 'WAIT') {
+                    if (upProb >= 53) applyNewLock('UP');
+                    else if (dnProb >= 53) applyNewLock('DOWN');
                 } else if (next500State.lockedDir === 'UP') {
                     const hitTarget = currentPrice >= next500State.targetPrice - 60;
                     const brokenInvalid = currentPrice <= next500State.invalidPrice;
-                    const strongFlip = (dnProb >= 62 && elapsedMs >= HOLD_MS);
+                    const oppositePush = (dnProb >= 57 && elapsedMs >= HOLD_MS);
                     if (hitTarget) {
-                        // Advance to next 500-1000 pt magnet upward
-                        next500State.anchorPrice = currentPrice;
-                        next500State.lockedSinceMs = nowMs;
-                        next500State.targetPrice = bestUpMagnet.price;
-                        next500State.triggerPrice = Math.round(currentPrice + 100);
-                        next500State.invalidPrice = Math.round(currentPrice - 220);
-                        next500State.lockedIst = istStr;
-                        saveP500LockState(next500State);
-                    } else if (brokenInvalid || strongFlip) {
-                        if (dnProb >= 56) {
-                            next500State.lockedDir = 'DOWN';
-                            next500State.anchorPrice = currentPrice;
-                            next500State.lockedSinceMs = nowMs;
-                            next500State.targetPrice = bestDnMagnet.price;
-                            next500State.triggerPrice = Math.round(currentPrice - 120);
-                            next500State.invalidPrice = Math.round(currentPrice + 220);
-                            next500State.lockedIst = istStr;
-                            saveP500LockState(next500State);
-                        } else {
-                            next500State.lockedDir = 'WAIT';
-                        }
+                        applyNewLock('UP');
+                    } else if (brokenInvalid || oppositePush) {
+                        if (dnProb >= 52) applyNewLock('DOWN');
+                        else next500State.lockedDir = 'WAIT';
                     }
                 } else if (next500State.lockedDir === 'DOWN') {
                     const hitTarget = currentPrice <= next500State.targetPrice + 60;
                     const brokenInvalid = currentPrice >= next500State.invalidPrice;
-                    const strongFlip = (upProb >= 62 && elapsedMs >= HOLD_MS);
+                    const oppositePush = (upProb >= 57 && elapsedMs >= HOLD_MS);
                     if (hitTarget) {
-                        // Advance to next 500-1000 pt magnet downward
-                        next500State.anchorPrice = currentPrice;
-                        next500State.lockedSinceMs = nowMs;
-                        next500State.targetPrice = bestDnMagnet.price;
-                        next500State.triggerPrice = Math.round(currentPrice - 100);
-                        next500State.invalidPrice = Math.round(currentPrice + 220);
-                        next500State.lockedIst = istStr;
-                        saveP500LockState(next500State);
-                    } else if (brokenInvalid || strongFlip) {
-                        if (upProb >= 56) {
-                            next500State.lockedDir = 'UP';
-                            next500State.anchorPrice = currentPrice;
-                            next500State.lockedSinceMs = nowMs;
-                            next500State.targetPrice = bestUpMagnet.price;
-                            next500State.triggerPrice = Math.round(currentPrice + 120);
-                            next500State.invalidPrice = Math.round(currentPrice - 220);
-                            next500State.lockedIst = istStr;
-                            saveP500LockState(next500State);
-                        } else {
-                            next500State.lockedDir = 'WAIT';
-                        }
+                        applyNewLock('DOWN');
+                    } else if (brokenInvalid || oppositePush) {
+                        if (upProb >= 52) applyNewLock('UP');
+                        else next500State.lockedDir = 'WAIT';
                     }
                 }
 
@@ -6028,16 +6035,16 @@
                 const metaEl = document.getElementById('p500-lock-meta');
 
                 if (next500State.lockedDir === 'UP') {
-                    const remPts = Math.round(next500State.targetPrice - currentPrice);
+                    const remPts = Math.max(100, Math.round(next500State.targetPrice - currentPrice));
                     if (badgeEl) {
                         badgeEl.innerText = `🔒 LOCKED UPWARD (${upProb}%) 🚀`;
                         badgeEl.className = "text-[10px] sm:text-xs font-mono font-black bg-emerald-500/25 text-emerald-300 px-3 py-1 rounded-lg border border-emerald-400/60";
                     }
                     if (verdictEl) {
-                        verdictEl.innerText = `அடுத்து மேல்நோக்கி $${next500State.targetPrice.toLocaleString()} (+${Math.max(100, remPts)} Pts) செல்ல வாய்ப்பு அதிகம் 🚀`;
+                        verdictEl.innerText = `அடுத்து மேல்நோக்கி $${next500State.targetPrice.toLocaleString()} (+${remPts} Pts) செல்ல வாய்ப்பு அதிகம் 🚀`;
                         verdictEl.className = "text-base sm:text-xl font-black text-emerald-400 tracking-wide";
                     }
-                    if (targetPill) targetPill.innerText = `↑ Target: $${next500State.targetPrice.toLocaleString()} (+${Math.max(100, remPts)} Pts)`;
+                    if (targetPill) targetPill.innerText = `↑ Target: $${next500State.targetPrice.toLocaleString()} (+${remPts} Pts)`;
                     if (probPill) {
                         probPill.innerText = `UP Prob: ${upProb}%`;
                         probPill.className = "text-xs sm:text-sm font-mono font-black bg-emerald-500/25 text-emerald-300 px-3 py-1.5 rounded-xl border border-emerald-400/60";
@@ -6046,19 +6053,19 @@
                     setT('p500-f4-val', `Go >$${next500State.triggerPrice.toLocaleString()} | SL <$${next500State.invalidPrice.toLocaleString()}`);
                     if (metaEl) metaEl.innerText = `Locked UP @ $${Math.round(next500State.anchorPrice).toLocaleString()} (${next500State.lockedIst}) • Invalid < $${next500State.invalidPrice.toLocaleString()}`;
                     if (sumEl) {
-                        sumEl.innerText = `நிலையான கணிப்பு (UPWARD ${upProb}%): $${next500State.triggerPrice.toLocaleString()}-க்கு மேல் நிலைத்தால் அடுத்த 500–1,000 பாயிண்ட் இலக்கான $${next500State.targetPrice.toLocaleString()} வரை செல்ல அதிக வாய்ப்புள்ளது ($${next500State.invalidPrice.toLocaleString()}-க்கு கீழ் இறங்கும் வரை திசை மாறாது).`;
+                        sumEl.innerText = `நிலையான கணிப்பு (UPWARD ${upProb}%): நடப்பு விலை $${Math.round(currentPrice).toLocaleString()} அடிப்படையில் $${next500State.targetPrice.toLocaleString()} (+${remPts} Pts) நோக்கிய மேல்நகர்வு கணிக்கப்பட்டுள்ளது ($${next500State.invalidPrice.toLocaleString()}-க்கு கீழ் இறங்கினால் மாறும்).`;
                     }
                 } else if (next500State.lockedDir === 'DOWN') {
-                    const remPts = Math.round(currentPrice - next500State.targetPrice);
+                    const remPts = Math.max(100, Math.round(currentPrice - next500State.targetPrice));
                     if (badgeEl) {
                         badgeEl.innerText = `🔒 LOCKED DOWNWARD (${dnProb}%) 📉`;
                         badgeEl.className = "text-[10px] sm:text-xs font-mono font-black bg-rose-500/25 text-rose-300 px-3 py-1 rounded-lg border border-rose-400/60";
                     }
                     if (verdictEl) {
-                        verdictEl.innerText = `அடுத்து கீழ்நோக்கி $${next500State.targetPrice.toLocaleString()} (-${Math.max(100, remPts)} Pts) செல்ல வாய்ப்பு அதிகம் 📉`;
+                        verdictEl.innerText = `அடுத்து கீழ்நோக்கி $${next500State.targetPrice.toLocaleString()} (-${remPts} Pts) செல்ல வாய்ப்பு அதிகம் 📉`;
                         verdictEl.className = "text-base sm:text-xl font-black text-rose-400 tracking-wide";
                     }
-                    if (targetPill) targetPill.innerText = `↓ Target: $${next500State.targetPrice.toLocaleString()} (-${Math.max(100, remPts)} Pts)`;
+                    if (targetPill) targetPill.innerText = `↓ Target: $${next500State.targetPrice.toLocaleString()} (-${remPts} Pts)`;
                     if (probPill) {
                         probPill.innerText = `DOWN Prob: ${dnProb}%`;
                         probPill.className = "text-xs sm:text-sm font-mono font-black bg-rose-500/25 text-rose-300 px-3 py-1.5 rounded-xl border border-rose-400/60";
@@ -6067,7 +6074,7 @@
                     setT('p500-f4-val', `Go <$${next500State.triggerPrice.toLocaleString()} | SL >$${next500State.invalidPrice.toLocaleString()}`);
                     if (metaEl) metaEl.innerText = `Locked DOWN @ $${Math.round(next500State.anchorPrice).toLocaleString()} (${next500State.lockedIst}) • Invalid > $${next500State.invalidPrice.toLocaleString()}`;
                     if (sumEl) {
-                        sumEl.innerText = `நிலையான கணிப்பு (DOWNWARD ${dnProb}%): $${next500State.triggerPrice.toLocaleString()}-க்கு கீழ் இறங்கினால் அடுத்த 500–1,000 பாயிண்ட் இலக்கான $${next500State.targetPrice.toLocaleString()} வரை செல்ல அதிக வாய்ப்புள்ளது ($${next500State.invalidPrice.toLocaleString()}-க்கு மேல் ஏறும் வரை திசை மாறாது).`;
+                        sumEl.innerText = `நிலையான கணிப்பு (DOWNWARD ${dnProb}%): நடப்பு விலை $${Math.round(currentPrice).toLocaleString()} அடிப்படையில் $${next500State.targetPrice.toLocaleString()} (-${remPts} Pts) நோக்கிய கீழ்நகர்வு கணிக்கப்பட்டுள்ளது ($${next500State.invalidPrice.toLocaleString()}-க்கு மேல் ஏறினால் மாறும்).`;
                     }
                 } else {
                     const upTrig = Math.round(currentPrice + 150);
@@ -6087,9 +6094,9 @@
                     }
                     setT('p500-trigger-txt', `Up >$${upTrig.toLocaleString()} | Dn <$${dnTrig.toLocaleString()}`);
                     setT('p500-f4-val', `↑$${upTrig.toLocaleString()} / ↓$${dnTrig.toLocaleString()}`);
-                    if (metaEl) metaEl.innerText = `Waiting for 57%+ conviction or Trigger breakout (No Flicker Lock)`;
+                    if (metaEl) metaEl.innerText = `Live @ $${Math.round(currentPrice).toLocaleString()} • Smart Re-Anchor Active`;
                     if (sumEl) {
-                        sumEl.innerText = `தற்போது மேல் (${upProb}%) மற்றும் கீழ் (${dnProb}%) அழுத்தம் சமநிலையில் உள்ளது. $${upTrig.toLocaleString()} மேல் உடைத்தால் $${bestUpMagnet.price.toLocaleString()} நோக்கியும், $${dnTrig.toLocaleString()} கீழ் உடைத்தால் $${bestDnMagnet.price.toLocaleString()} நோக்கியும் 500–1,000 பாயிண்ட் நகர்வு லாக் ஆகும்.`;
+                        sumEl.innerText = `தற்போது மேல் (${upProb}%) மற்றும் கீழ் (${dnProb}%) அழுத்தம் சமநிலையில் உள்ளது. $${upTrig.toLocaleString()} மேல் உடைத்தால் $${bestUpMagnet.price.toLocaleString()} நோக்கியும், $${dnTrig.toLocaleString()} கீழ் உடைத்தால் $${bestDnMagnet.price.toLocaleString()} நோக்கியும் நகர்வு லாக் ஆகும்.`;
                     }
                 }
             } catch (e) {
