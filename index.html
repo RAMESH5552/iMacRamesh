@@ -1328,22 +1328,26 @@
                     </div>
                 </div>
 
-                <!-- 2-Column Overhead vs Downside Order Pool & Post-Touch Forecast -->
+                <!-- 2-Column Overhead vs Downside Order Pool & Post-Touch Turn / Breakout Forecast -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
                     <!-- UPPER ZONE (+250 to +2,500 Pts) -->
                     <div class="bg-rose-950/25 border border-rose-500/45 rounded-2xl p-3.5 space-y-2">
                         <div class="flex justify-between items-center border-b border-rose-500/20 pb-1.5">
-                            <span class="text-[11px] font-black text-rose-300 uppercase">🔴 மேல் எல்லை (Upper Order & Wick Zone)</span>
+                            <span class="text-[11px] font-black text-rose-300 uppercase">🔴 மேல் லிக்விடிட்டி & ஆர்டர் எல்லை</span>
                             <span id="wsp-up-dist-badge" class="text-[10px] font-mono font-black bg-rose-500/20 text-rose-200 px-2 py-0.5 rounded">+-- Pts</span>
                         </div>
                         <div class="flex flex-wrap justify-between items-baseline gap-2">
                             <h4 id="wsp-up-price" class="text-base sm:text-lg font-mono font-black text-white">$--</h4>
                             <span id="wsp-up-money" class="text-xs font-mono font-black text-amber-300">Pool: $--</span>
                         </div>
-                        <div class="bg-gray-950/80 border border-gray-800 rounded-xl p-2.5 space-y-1 text-[11px]">
-                            <div class="flex justify-between font-mono font-black">
-                                <span class="text-gray-400">இந்த எல்லையைத் தொட்டால்:</span>
+                        <div class="bg-gray-950/85 border border-gray-800 rounded-xl p-2.5 space-y-1.5 text-[11px]">
+                            <div class="flex justify-between items-center font-mono font-black">
+                                <span class="text-gray-400">இங்கே தொட்டால்:</span>
                                 <span id="wsp-up-outcome-tag" class="text-rose-300">Evaluating...</span>
+                            </div>
+                            <div class="flex justify-between items-center text-[10px] font-mono font-bold text-cyan-300 border-t border-gray-800/80 pt-1">
+                                <span id="wsp-up-turn-prob">திரும்ப: --%</span>
+                                <span id="wsp-up-brk-prob">உடைத்து மேல்: --%</span>
                             </div>
                             <p id="wsp-up-forecast-txt" class="font-bold text-gray-200 leading-snug">
                                 மேல் எல்லையைத் தொட்டவுடன் விக் அடித்து கீழே திரும்புமா அல்லது உடைத்து மேலே செல்லுமா...
@@ -1354,17 +1358,21 @@
                     <!-- LOWER ZONE (-250 to -2,500 Pts) -->
                     <div class="bg-emerald-950/25 border border-emerald-500/45 rounded-2xl p-3.5 space-y-2">
                         <div class="flex justify-between items-center border-b border-emerald-500/20 pb-1.5">
-                            <span class="text-[11px] font-black text-emerald-300 uppercase">🟢 கீழ் எல்லை (Lower Order & Wick Zone)</span>
+                            <span class="text-[11px] font-black text-emerald-300 uppercase">🟢 கீழ் லிக்விடிட்டி & ஆர்டர் எல்லை</span>
                             <span id="wsp-dn-dist-badge" class="text-[10px] font-mono font-black bg-emerald-500/20 text-emerald-200 px-2 py-0.5 rounded">--- Pts</span>
                         </div>
                         <div class="flex flex-wrap justify-between items-baseline gap-2">
                             <h4 id="wsp-dn-price" class="text-base sm:text-lg font-mono font-black text-white">$--</h4>
                             <span id="wsp-dn-money" class="text-xs font-mono font-black text-amber-300">Pool: $--</span>
                         </div>
-                        <div class="bg-gray-950/80 border border-gray-800 rounded-xl p-2.5 space-y-1 text-[11px]">
-                            <div class="flex justify-between font-mono font-black">
-                                <span class="text-gray-400">இந்த எல்லையைத் தொட்டால்:</span>
+                        <div class="bg-gray-950/85 border border-gray-800 rounded-xl p-2.5 space-y-1.5 text-[11px]">
+                            <div class="flex justify-between items-center font-mono font-black">
+                                <span class="text-gray-400">இங்கே தொட்டால்:</span>
                                 <span id="wsp-dn-outcome-tag" class="text-emerald-300">Evaluating...</span>
+                            </div>
+                            <div class="flex justify-between items-center text-[10px] font-mono font-bold text-cyan-300 border-t border-gray-800/80 pt-1">
+                                <span id="wsp-dn-turn-prob">திரும்ப: --%</span>
+                                <span id="wsp-dn-brk-prob">உடைத்து கீழ்: --%</span>
                             </div>
                             <p id="wsp-dn-forecast-txt" class="font-bold text-gray-200 leading-snug">
                                 கீழ் எல்லையைத் தொட்டவுடன் விக் அடித்து மேலே திரும்புமா அல்லது உடைத்து கீழே செல்லுமா...
@@ -5688,33 +5696,43 @@
                 setT('wsp-up-price', `$${activeUpPrice.toLocaleString()}`);
                 setT('wsp-up-money', `Pool: ${fmtUsdCompact(activeUpObj.poolUsd)}${activeUpObj.hasWick ? ' • Wick Zone' : ''}`);
 
+                const upBrkPct = upBreakoutLikely ? Math.min(82, 58 + Math.round(Math.max(0, buyP - 50) * 0.8)) : Math.max(22, 42 - Math.round(Math.max(0, sellP - 50) * 0.6));
+                const upTurnPct = 100 - upBrkPct;
+                setT('wsp-up-turn-prob', `விக் & கீழே திரும்ப: ${upTurnPct}%`);
+                setT('wsp-up-brk-prob', `உடைத்து மேல் செல்ல: ${upBrkPct}%`);
+
                 const upOutTag = document.getElementById('wsp-up-outcome-tag');
                 if (upOutTag) {
                     upOutTag.innerText = upBreakoutLikely
                         ? `🚀 உடைத்து மேல் (+${upMovePts} Pts)`
                         : (isWickPushUp
                             ? `⚡ விக் முட்டி மேலும் மேல் (+${upMovePts} Pts)`
-                            : `🪤 விக் அடித்து கீழே (-${upMovePts} Pts)`);
+                            : `🪤 தொட்டு கீழே திரும்ப (-${upMovePts} Pts)`);
                     upOutTag.className = upMovesHigherAfterTouch ? 'text-emerald-300' : 'text-rose-300';
                 }
                 setT(
                     'wsp-up-forecast-txt',
                     upBreakoutLikely
-                        ? `$${activeUpPrice.toLocaleString()} எல்லையைத் தொட்டால் +OI & Buy அழுத்தத்தால் உடைத்து $${upTargetAfterTouch.toLocaleString()} (+${upMovePts} Pts) வரை செல்ல வாய்ப்புள்ளது.`
+                        ? `$${activeUpPrice.toLocaleString()} தடையை உடைத்து மேலே $${upTargetAfterTouch.toLocaleString()} (+${upMovePts} Pts) செல்ல வாய்ப்பு.`
                         : (isWickPushUp
-                            ? `$${activeUpPrice.toLocaleString()} எல்லையில் முட்டி ஷார்ட் ஸ்டாப்-விக் அடித்து, அங்கிருந்து மேலும் மேல்நோக்கி $${upTargetAfterTouch.toLocaleString()} (+${upMovePts} Pts) வரை செல்ல வாய்ப்புள்ளது.`
-                            : `$${activeUpPrice.toLocaleString()} எல்லையைத் தொட்டவுடன் Sell Limit சுவரால் நீண்ட விக் அடித்து கீழே $${upTargetAfterTouch.toLocaleString()} (-${upMovePts} Pts) வரை திரும்ப வாய்ப்பு அதிகம்.`)
+                            ? `$${activeUpPrice.toLocaleString()} முட்டி விக் அடித்து மேலும் மேல் $${upTargetAfterTouch.toLocaleString()} (+${upMovePts} Pts) செல்ல வாய்ப்பு.`
+                            : `$${activeUpPrice.toLocaleString()} தொட்டவுடன் விக் அடித்து கீழே $${upTargetAfterTouch.toLocaleString()} (-${upMovePts} Pts) திரும்ப வாய்ப்பு அதிகம்.`)
                 );
 
                 setT('wsp-dn-dist-badge', `-${distToDn.toLocaleString()} Pts`);
                 setT('wsp-dn-price', `$${activeDnPrice.toLocaleString()}`);
                 setT('wsp-dn-money', `Pool: ${fmtUsdCompact(activeDnObj.poolUsd)}${activeDnObj.hasWick ? ' • Wick Zone' : ''}`);
 
+                const dnBrkPct = dnBreakdownLikely ? Math.min(82, 58 + Math.round(Math.max(0, sellP - 50) * 0.8)) : Math.max(20, 38 - Math.round(Math.max(0, buyP - 50) * 0.6));
+                const dnTurnPct = 100 - dnBrkPct;
+                setT('wsp-dn-turn-prob', `விக் & மேல் திரும்ப: ${dnTurnPct}%`);
+                setT('wsp-dn-brk-prob', `உடைத்து கீழ் செல்ல: ${dnBrkPct}%`);
+
                 const dnOutTag = document.getElementById('wsp-dn-outcome-tag');
                 if (dnOutTag) {
                     dnOutTag.innerText = dnBreakdownLikely
                         ? `📉 உடைத்து கீழ் (-${dnMovePts} Pts)`
-                        : `⚡ விக் அடித்து மேலே (+${dnMovePts} Pts)`;
+                        : `⚡ தொட்டு மேல் திரும்ப (+${dnMovePts} Pts)`;
                     dnOutTag.className = dnBreakdownLikely ? 'text-rose-300' : 'text-emerald-300';
                 }
                 setT(
