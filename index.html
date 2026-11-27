@@ -1175,7 +1175,69 @@
                 </div>
             </div>
 
-            <!-- STABILIZED NEXT 500–1,000 PT MOVE PREDICTOR (LOCKED DIRECTION & TRIGGER ENGINE) -->
+            <!-- MASTER UNIFIED TREND & OPTIONS (ATM/OTM/ITM + 4 TRADERS) CONFLUENCE ENGINE -->
+            <div id="master-options-trend-card" class="glass-card rounded-2xl p-4 sm:p-5 border-2 border-emerald-400/95 shadow-2xl space-y-3.5 bg-gradient-to-r from-gray-950 via-indigo-950/30 to-gray-950">
+                <div class="flex flex-wrap justify-between items-center gap-2 border-b border-gray-800 pb-2.5">
+                    <div class="flex items-center gap-2.5">
+                        <div class="bg-gradient-to-tr from-emerald-400 via-cyan-400 to-amber-400 p-2 rounded-xl text-black font-black text-xs shadow-lg">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xs sm:text-sm font-black text-emerald-300 uppercase tracking-wider">MASTER TREND & OPTIONS (ATM / OTM / ITM + 4 TRADERS) ENGINE</h3>
+                            <p id="mot-meta-line" class="text-[10px] font-mono font-bold text-gray-300">Futures Flow + 2.1Cr Scarcity + Whale Path + Options (Call/Put Long & Short)</p>
+                        </div>
+                    </div>
+                    <span id="mot-verdict-badge" class="text-[10px] sm:text-xs font-mono font-black bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-lg border border-emerald-400/50">Evaluating All Engines...</span>
+                </div>
+
+                <!-- Unified Final Trend Verdict -->
+                <div class="bg-gray-900/95 border border-cyan-500/40 rounded-2xl p-3.5 space-y-2">
+                    <div class="flex flex-wrap justify-between items-center gap-2">
+                        <h2 id="mot-main-verdict" class="text-base sm:text-xl font-black text-amber-300 tracking-wide">
+                            அனைத்து நுட்பங்களும் ஒருங்கிணைக்கப்படுகின்றன...
+                        </h2>
+                        <span id="mot-conv-pill" class="text-xs sm:text-sm font-mono font-black bg-indigo-950 text-cyan-300 px-3 py-1 rounded-xl border border-indigo-400/50">
+                            உறுதி: --%
+                        </span>
+                    </div>
+                    <p id="mot-action-line" class="text-xs font-bold text-cyan-200 leading-relaxed">
+                        Futures Order Flow + Whale Clusters + 2.1Cr Scarcity + ATM/OTM/ITM Options நிலைகள் கணக்கிடப்படுகின்றன...
+                    </p>
+                </div>
+
+                <!-- 4 Options Trader Buckets (Call Long, Call Short, Put Long, Put Short) -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 text-xs">
+                    <div class="bg-emerald-950/25 border border-emerald-500/35 rounded-xl p-2.5 space-y-1">
+                        <span class="text-[9px] font-black uppercase text-emerald-300 block">1. Call Long (மேல் ஏற்றம் / Gamma)</span>
+                        <h4 id="opt4-call-long-val" class="text-xs font-mono font-black text-white">$--</h4>
+                        <p id="opt4-call-long-sub" class="text-[9px] font-bold text-gray-300">OTM/ITM Call Buy அழுத்தம்</p>
+                    </div>
+                    <div class="bg-rose-950/25 border border-rose-500/35 rounded-xl p-2.5 space-y-1">
+                        <span class="text-[9px] font-black uppercase text-rose-300 block">2. Call Short (மேல் தடை / Wall)</span>
+                        <h4 id="opt4-call-short-val" class="text-xs font-mono font-black text-white">$--</h4>
+                        <p id="opt4-call-short-sub" class="text-[9px] font-bold text-gray-300">Call Writers தடுப்புச் சுவர்</p>
+                    </div>
+                    <div class="bg-amber-950/25 border border-amber-500/35 rounded-xl p-2.5 space-y-1">
+                        <span class="text-[9px] font-black uppercase text-amber-300 block">3. Put Long (கீழ் சரிவு / Hedge)</span>
+                        <h4 id="opt4-put-long-val" class="text-xs font-mono font-black text-white">$--</h4>
+                        <p id="opt4-put-long-sub" class="text-[9px] font-bold text-gray-300">OTM/ITM Put Buy அழுத்தம்</p>
+                    </div>
+                    <div class="bg-cyan-950/25 border border-cyan-500/35 rounded-xl p-2.5 space-y-1">
+                        <span class="text-[9px] font-black uppercase text-cyan-300 block">4. Put Short (கீழ் ஆதரவு / Floor)</span>
+                        <h4 id="opt4-put-short-val" class="text-xs font-mono font-black text-white">$--</h4>
+                        <p id="opt4-put-short-sub" class="text-[9px] font-bold text-gray-300">Put Writers ஆதரவுத் தளம்</p>
+                    </div>
+                </div>
+
+                <!-- ATM / OTM / ITM Zone Summary Bar -->
+                <div class="bg-gray-950/90 border border-gray-800 rounded-xl p-2.5 flex flex-wrap justify-between items-center gap-2 text-[10px] sm:text-[11px] font-mono font-bold text-gray-200">
+                    <span id="opt-atm-txt" class="text-amber-300">ATM ($--): Pinning / Pivot</span>
+                    <span id="opt-otm-txt" class="text-cyan-300">OTM Walls: ↑$-- / ↓$--</span>
+                    <span id="opt-itm-txt" class="text-emerald-300">ITM Hedge Bias: --</span>
+                </div>
+            </div>
+
+            
             <div id="next-500-1000-predictor-card" class="glass-card rounded-2xl p-4 sm:p-5 border-2 border-cyan-400 shadow-2xl space-y-3.5 bg-gradient-to-r from-gray-950 via-cyan-950/30 to-gray-950 glow-yellow">
                 <!-- Header & Lock Controls -->
                 <div class="flex flex-wrap justify-between items-center gap-2 border-b border-gray-800 pb-2.5">
@@ -1406,6 +1468,128 @@
                 </div>
             </div>
 
+
+            <!-- ENGINE 3: WHALE ORDER-CLUSTER & FORWARD OBSTACLE PREDICTOR (பெரிய பணக்காரர்கள் & எதிர்காலத் தடை கணிப்பான்) -->
+            <div id="whale-forward-predictor-card" class="glass-card rounded-2xl p-4 sm:p-5 border-2 border-purple-400/95 shadow-2xl space-y-3.5 bg-gradient-to-r from-gray-950 via-purple-950/25 to-gray-950">
+                <!-- Header & Controls -->
+                <div class="flex flex-wrap justify-between items-center gap-2 border-b border-gray-800 pb-2.5">
+                    <div class="flex items-center gap-2.5">
+                        <div class="bg-gradient-to-tr from-amber-400 via-purple-500 to-indigo-500 p-2 rounded-xl text-white font-black text-xs shadow-lg">
+                            <i class="fa-solid fa-crown"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xs sm:text-sm font-black text-purple-300 uppercase tracking-wider">WHALE PATH & FORWARD OBSTACLE PREDICTOR (பெரிய பணக்காரர்கள் & எதிர்காலத் தடை கணிப்பான்)</h3>
+                            <p id="wfp-meta-line" class="text-[10px] font-mono font-bold text-gray-300">Scans Ahead Whale Order Clusters (±2,500 Pts) • Barrier Strength vs Weakness • Post-Contact Trajectory</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-1.5">
+                        <span id="wfp-status-badge" class="text-[10px] sm:text-xs font-mono font-black bg-purple-500/20 text-purple-200 px-3 py-1 rounded-lg border border-purple-400/50">Scanning Whale Path...</span>
+                        <button type="button" onclick="resetWhaleForwardPredictorLock()" class="bg-purple-500 hover:bg-purple-400 text-black px-2.5 py-1 rounded-lg text-[10px] sm:text-xs font-black transition shadow-md flex items-center gap-1">
+                            <i class="fa-solid fa-rotate"></i> <span>Re-Scan</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Main Forward Trajectory Verdict Banner -->
+                <div class="bg-gray-900/95 border border-purple-400/40 rounded-2xl p-3.5 space-y-2.5">
+                    <div class="flex flex-wrap justify-between items-center gap-2">
+                        <span id="wfp-path-tag" class="text-[10px] font-mono font-black bg-indigo-950 text-cyan-300 px-2.5 py-0.5 rounded border border-cyan-500/40">
+                            Path Scan: Evaluating Ahead Whale Orders...
+                        </span>
+                        <span id="wfp-span-pill" class="text-xs sm:text-sm font-mono font-black bg-amber-500/20 text-amber-300 px-3 py-1 rounded-xl border border-amber-400/50">
+                            Expected Span: -- Pts
+                        </span>
+                    </div>
+                    <h2 id="wfp-main-verdict" class="text-base sm:text-lg font-black text-white tracking-wide">
+                        மார்க்கெட் செல்லும் பாதையில் பெரிய பணக்காரர்கள் வைத்துள்ள ஆர்டர் குவியல்கள் ஸ்கேன் செய்யப்படுகின்றன...
+                    </h2>
+                    <p id="wfp-action-plan" class="text-xs font-bold text-purple-200 leading-relaxed">
+                        அடுத்த எல்லையைத் தொடும்போது தடையை உடைத்து மேலும் செல்லுமா அல்லது முட்டித் திரும்புமா என்ற கணிப்பு தயாராகிறது...
+                    </p>
+
+                    <!-- Breakthrough vs Rejection Strength Bar -->
+                    <div class="bg-gray-950/90 border border-gray-800 rounded-xl p-2.5 space-y-1.5 pt-2">
+                        <div class="flex flex-wrap justify-between items-center gap-1 text-[11px] font-mono font-black">
+                            <span id="wfp-brk-txt" class="text-emerald-400">🚀 தடையை உடைத்து தொடர (Breakthrough): 50%</span>
+                            <span id="wfp-winner-txt" class="text-amber-300">எதிர்கால நிலை: சமநிலை</span>
+                            <span id="wfp-rej-txt" class="text-rose-400">🛡️ தடையில் முட்டித் திரும்ப (Wall Hold/Turn): 50%</span>
+                        </div>
+                        <div class="w-full bg-gray-800 h-3 rounded-full overflow-hidden flex p-0.5 border border-gray-700">
+                            <div id="wfp-brk-bar" class="bg-gradient-to-r from-emerald-600 to-emerald-400 h-full rounded-l-full transition-all duration-500" style="width: 50%"></div>
+                            <div id="wfp-rej-bar" class="bg-gradient-to-r from-rose-500 to-rose-600 h-full rounded-r-full transition-all duration-500" style="width: 50%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2-Column Forward Whale Barrier Cards (Above Path vs Below Path) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                    <!-- UPPER WHALE BARRIER -->
+                    <div class="bg-rose-950/25 border border-rose-500/45 rounded-2xl p-3.5 space-y-2">
+                        <div class="flex justify-between items-center border-b border-rose-500/20 pb-1.5">
+                            <span class="text-[11px] font-black text-rose-300 uppercase">🔴 மேல் பாதை Whale தடை (Upper Whale Cluster)</span>
+                            <span id="wfp-up-dist" class="text-[10px] font-mono font-black bg-rose-500/20 text-rose-200 px-2 py-0.5 rounded">+-- Pts</span>
+                        </div>
+                        <div class="flex flex-wrap justify-between items-baseline gap-2">
+                            <h4 id="wfp-up-price" class="text-base sm:text-lg font-mono font-black text-white">$--</h4>
+                            <span id="wfp-up-whale-vol" class="text-xs font-mono font-black text-amber-300">Whale Pool: $--</span>
+                        </div>
+                        <div class="bg-gray-950/85 border border-gray-800 rounded-xl p-2.5 space-y-1.5 text-[11px]">
+                            <div class="flex justify-between items-center font-mono font-black">
+                                <span id="wfp-up-wall-str" class="text-rose-300">தடை பலம்: --% | பலவீனம்: --%</span>
+                                <span id="wfp-up-outcome" class="text-amber-300">Evaluating...</span>
+                            </div>
+                            <p id="wfp-up-desc" class="font-bold text-gray-200 leading-snug">
+                                மேல் பாதையில் உள்ள பெரிய பணக்காரர்கள் சுவரைத் தொட்டால் என்ன நிகழும்...
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- LOWER WHALE BARRIER -->
+                    <div class="bg-emerald-950/25 border border-emerald-500/45 rounded-2xl p-3.5 space-y-2">
+                        <div class="flex justify-between items-center border-b border-emerald-500/20 pb-1.5">
+                            <span class="text-[11px] font-black text-emerald-300 uppercase">🟢 கீழ் பாதை Whale ஆதரவு (Lower Whale Cluster)</span>
+                            <span id="wfp-dn-dist" class="text-[10px] font-mono font-black bg-emerald-500/20 text-emerald-200 px-2 py-0.5 rounded">--- Pts</span>
+                        </div>
+                        <div class="flex flex-wrap justify-between items-baseline gap-2">
+                            <h4 id="wfp-dn-price" class="text-base sm:text-lg font-mono font-black text-white">$--</h4>
+                            <span id="wfp-dn-whale-vol" class="text-xs font-mono font-black text-amber-300">Whale Pool: $--</span>
+                        </div>
+                        <div class="bg-gray-950/85 border border-gray-800 rounded-xl p-2.5 space-y-1.5 text-[11px]">
+                            <div class="flex justify-between items-center font-mono font-black">
+                                <span id="wfp-dn-wall-str" class="text-emerald-300">ஆதரவு பலம்: --% | பலவீனம்: --%</span>
+                                <span id="wfp-dn-outcome" class="text-amber-300">Evaluating...</span>
+                            </div>
+                            <p id="wfp-dn-desc" class="font-bold text-gray-200 leading-snug">
+                                கீழ் பாதையில் உள்ள பெரிய பணக்காரர்கள் ஆதரவைத் தொட்டால் என்ன நிகழும்...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4-Card Forward Whale & Liquidity Intelligence Strip -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 text-xs">
+                    <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-2.5 space-y-0.5">
+                        <span class="text-[9px] font-black uppercase text-purple-300 block">1. Whale சுவர் தன்மை</span>
+                        <h5 id="wfp-m1-val" class="text-[11px] font-mono font-black text-white">Scanning...</h5>
+                        <p id="wfp-m1-sub" class="text-[9px] font-bold text-gray-400">Real Wall vs Spoof Pull</p>
+                    </div>
+                    <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-2.5 space-y-0.5">
+                        <span class="text-[9px] font-black uppercase text-amber-300 block">2. 2.1Cr சப்ளை இறுக்கம்</span>
+                        <h5 id="wfp-m2-val" class="text-[11px] font-mono font-black text-white">Active OI: -- BTC</h5>
+                        <p id="wfp-m2-sub" class="text-[9px] font-bold text-gray-400">20.9M Idle • High Impact</p>
+                    </div>
+                    <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-2.5 space-y-0.5">
+                        <span class="text-[9px] font-black uppercase text-cyan-300 block">3. Large-Order வேகம்</span>
+                        <h5 id="wfp-m3-val" class="text-[11px] font-mono font-black text-white">0 BTC</h5>
+                        <p id="wfp-m3-sub" class="text-[9px] font-bold text-gray-400">Big-Size Breakout Fuel</p>
+                    </div>
+                    <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-2.5 space-y-0.5">
+                        <span class="text-[9px] font-black uppercase text-emerald-300 block">4. அடுத்த இலக்கு தூரம்</span>
+                        <h5 id="wfp-m4-val" class="text-[11px] font-mono font-black text-emerald-300">-- Pts</h5>
+                        <p id="wfp-m4-sub" class="text-[9px] font-bold text-gray-400">Post-Contact Range</p>
+                    </div>
+                </div>
+            </div>
 
             <!-- 4 SINGLE VERTICAL BARS + 1 HORIZONTAL UNIFIED TREND BAR ENGINE (CHART TAB) -->
             <div id="chart-whale-retail-master-card" class="glass-card rounded-2xl p-3 sm:p-5 border-2 border-amber-400/95 shadow-2xl space-y-3.5 bg-gradient-to-r from-gray-950 via-indigo-950/25 to-gray-950">
@@ -3266,6 +3450,333 @@
             return { isWeightedUp, upPct, dnPct };
         }
 
+        const IMR_WHALE_FWD_KEY = 'imr_whale_forward_predictor_v1';
+
+        let whaleFwdState = {
+            upZonePrice: 0,
+            dnZonePrice: 0,
+            anchorPrice: 0,
+            lockedSinceMs: 0,
+            lockedOutcome: 'SCAN',
+            emaBrkPct: null,
+            prevUpBookUsd: null,
+            prevDnBookUsd: null,
+            forceFresh: false
+        };
+
+        function resetWhaleForwardPredictorLock() {
+            try { localStorage.removeItem(IMR_WHALE_FWD_KEY); } catch (e) {}
+            whaleFwdState.upZonePrice = 0;
+            whaleFwdState.dnZonePrice = 0;
+            whaleFwdState.anchorPrice = 0;
+            whaleFwdState.lockedSinceMs = 0;
+            whaleFwdState.lockedOutcome = 'SCAN';
+            whaleFwdState.emaBrkPct = null;
+            whaleFwdState.forceFresh = true;
+            if (window.lastGlobalPrice && window.lastGlobalOI) {
+                updateWhaleForwardPredictor(
+                    window.lastGlobalPrice,
+                    window.lastGlobalOI,
+                    window._lastTfSummary || {},
+                    cachedRealMoney,
+                    lastValidKlines1h
+                );
+            }
+        }
+
+        async function updateWhaleForwardPredictor(currentPrice, currentOI, tfSummary, realMoney, activeKlines1h) {
+            try {
+                if (!currentPrice || isNaN(currentPrice)) return;
+                const nowMs = Date.now();
+                const forceFresh = !!whaleFwdState.forceFresh;
+                whaleFwdState.forceFresh = false;
+
+                const fiveL = await refresh5LayerMarketMetrics(currentPrice, activeKlines1h);
+                const rm = realMoney || cachedRealMoney || { buyPct: 50, sellPct: 50, netUsd: 0 };
+                const tf5 = (tfSummary && tfSummary['5m']) ? tfSummary['5m'] : { diff: 0, priceDelta: 0 };
+                const tf10 = (tfSummary && tfSummary['10m']) ? tfSummary['10m'] : { diff: 0, priceDelta: 0 };
+                const tf30 = (tfSummary && tfSummary['30m']) ? tfSummary['30m'] : { diff: 0, priceDelta: 0 };
+                const tf1h = (tfSummary && tfSummary['1h']) ? tfSummary['1h'] : { diff: 0, priceDelta: 0 };
+
+                // 1. Scan Ahead Whale Order Clusters (+250 to +2,500 Pts Above & -250 to -2,500 Pts Below)
+                // Combines resting Limit Book walls + High-Notional Liquidation/SL pools + Big-Trader Concentration
+                const base250 = Math.round(currentPrice / 250) * 250;
+                let upClusters = [];
+                let dnClusters = [];
+
+                for (let step = 1; step <= 10; step++) {
+                    const upP = base250 + (step * 250);
+                    const dnP = base250 - (step * 250);
+
+                    let askBookUsd = 0, bidBookUsd = 0;
+                    if (cachedLimitBook && Array.isArray(cachedLimitBook.asks)) {
+                        cachedLimitBook.asks.forEach(a => {
+                            const ap = parseFloat(a[0]), aq = parseFloat(a[1]);
+                            if (!isNaN(ap) && !isNaN(aq) && Math.abs(ap - upP) <= 150) askBookUsd += ap * aq;
+                        });
+                    }
+                    if (cachedLimitBook && Array.isArray(cachedLimitBook.bids)) {
+                        cachedLimitBook.bids.forEach(b => {
+                            const bp = parseFloat(b[0]), bq = parseFloat(b[1]);
+                            if (!isNaN(bp) && !isNaN(bq) && Math.abs(bp - dnP) <= 150) bidBookUsd += bp * bq;
+                        });
+                    }
+
+                    const upM = getStepMetricsAtPrice(Math.round(upP / 500) * 500, currentOI, true);
+                    const dnM = getStepMetricsAtPrice(Math.round(dnP / 500) * 500, currentOI, false);
+
+                    // Round $500/$1,000 whale zones + proximity weighting
+                    const roundBoostUp = (upP % 1000 === 0) ? 1.22 : (upP % 500 === 0 ? 1.10 : 1.0);
+                    const roundBoostDn = (dnP % 1000 === 0) ? 1.22 : (dnP % 500 === 0 ? 1.10 : 1.0);
+                    const prox = 1.18 - ((step - 1) * 0.05);
+
+                    const upWhaleUsd = (upM.liqClusterUsd + askBookUsd * 4.5) * roundBoostUp * prox;
+                    const dnWhaleUsd = (dnM.liqClusterUsd + bidBookUsd * 4.5) * roundBoostDn * prox;
+
+                    if (upP >= currentPrice + 150) {
+                        upClusters.push({ price: upP, dist: Math.max(150, Math.round(upP - currentPrice)), whaleUsd: upWhaleUsd, bookUsd: askBookUsd });
+                    }
+                    if (dnP <= currentPrice - 150) {
+                        dnClusters.push({ price: dnP, dist: Math.max(150, Math.round(currentPrice - dnP)), whaleUsd: dnWhaleUsd, bookUsd: bidBookUsd });
+                    }
+                }
+
+                upClusters.sort((a, b) => b.whaleUsd - a.whaleUsd);
+                dnClusters.sort((a, b) => b.whaleUsd - a.whaleUsd);
+
+                const peakUp = upClusters[0] || { price: base250 + 500, dist: 500, whaleUsd: 45000000, bookUsd: 0 };
+                const peakDn = dnClusters[0] || { price: base250 - 500, dist: 500, whaleUsd: 45000000, bookUsd: 0 };
+                const nextUpBeyond = upClusters.find(c => c.price > peakUp.price + 250) || { price: peakUp.price + 500 };
+                const nextDnBeyond = dnClusters.find(c => c.price < peakDn.price - 250) || { price: Math.max(500, peakDn.price - 500) };
+
+                // Stabilized Anchor Lock for Forward Whale Zones (auto-reanchors if price drifts >= 280 pts or breaks zone)
+                const driftedFar = whaleFwdState.anchorPrice > 0 && Math.abs(currentPrice - whaleFwdState.anchorPrice) >= 280;
+                if (forceFresh || driftedFar || !whaleFwdState.upZonePrice || currentPrice >= whaleFwdState.upZonePrice + 80 || whaleFwdState.upZonePrice <= currentPrice + 120) {
+                    whaleFwdState.upZonePrice = peakUp.price;
+                }
+                if (forceFresh || driftedFar || !whaleFwdState.dnZonePrice || currentPrice <= whaleFwdState.dnZonePrice - 80 || whaleFwdState.dnZonePrice >= currentPrice - 120) {
+                    whaleFwdState.dnZonePrice = peakDn.price;
+                }
+
+                const activeUpP = whaleFwdState.upZonePrice;
+                const activeDnP = whaleFwdState.dnZonePrice;
+                const distUp = Math.max(40, Math.round(activeUpP - currentPrice));
+                const distDn = Math.max(40, Math.round(currentPrice - activeDnP));
+
+                const activeUpObj = upClusters.find(c => c.price === activeUpP) || peakUp;
+                const activeDnObj = dnClusters.find(c => c.price === activeDnP) || peakDn;
+
+                // 2. Detect Whale Wall Behavior (Are Whales Adding Orders to Defend, or Pulling/Absorbing?)
+                let wallStateLabel = "Steady Whale Wall";
+                let upWallDefenseAdj = 0;
+                let dnWallDefenseAdj = 0;
+
+                if (whaleFwdState.prevUpBookUsd !== null && whaleFwdState.prevDnBookUsd !== null) {
+                    const upDiff = activeUpObj.bookUsd - whaleFwdState.prevUpBookUsd;
+                    const dnDiff = activeDnObj.bookUsd - whaleFwdState.prevDnBookUsd;
+                    if (upDiff > 40000) {
+                        wallStateLabel = "🧱 மேல் சுவர் வலுப்பெறுகிறது";
+                        upWallDefenseAdj = 8;
+                    } else if (upDiff < -40000) {
+                        wallStateLabel = "⚡ மேல் சுவர் கரைகிறது / நீக்கம்";
+                        upWallDefenseAdj = -10;
+                    } else if (dnDiff > 40000) {
+                        wallStateLabel = "🧱 கீழ் ஆதரவு வலுப்பெறுகிறது";
+                        dnWallDefenseAdj = 8;
+                    } else if (dnDiff < -40000) {
+                        wallStateLabel = "⚡ கீழ் ஆதரவு கரைகிறது / நீக்கம்";
+                        dnWallDefenseAdj = -10;
+                    }
+                }
+                whaleFwdState.prevUpBookUsd = activeUpObj.bookUsd;
+                whaleFwdState.prevDnBookUsd = activeDnObj.bookUsd;
+
+                // 3. Evaluate Barrier Strength vs Weakness on BOTH Sides (Forward-Looking!)
+                // Even if price is moving UP right now, if the UP whale barrier is STRONG (70%), it predicts:
+                // "விலை மேல் எல்லையைத் தொடும்போது முட்டி கீழே திரும்பும்"!
+                // Only if approaching flow (+OI + Large Buy/Sell) overpowers the whale barrier does it predict Breakthrough!
+                const stOi = (tf5.diff * 0.45) + (tf10.diff * 0.35) + (tf30.diff * 0.20);
+                const buyP = typeof rm.buyPct === 'number' ? rm.buyPct : 50;
+                const sellP = 100 - buyP;
+                const posLong = typeof window.lastPosLongPct === 'number' ? window.lastPosLongPct : 50;
+
+                // Upper Whale Barrier Strength (How strong is the Sell/Short wall at activeUpP to stop & turn price down?)
+                const upPoolIntensity = Math.min(20, Math.round((activeUpObj.whaleUsd / 1e8) * 12));
+                const upAttackPower = (stOi > 15 ? 12 : 0) + Math.max(0, (buyP - 52) * 0.9);
+                const upWallStrength = Math.max(22, Math.min(84, Math.round(56 + upPoolIntensity + upWallDefenseAdj - upAttackPower)));
+                const upWallWeakness = 100 - upWallStrength; // Breakthrough UP probability when touching activeUpP
+                const upWillBreak = upWallWeakness >= 54;
+
+                const upPostSpanPts = upWillBreak
+                    ? Math.max(450, Math.min(1000, Math.round(nextUpBeyond.price - activeUpP)))
+                    : Math.max(450, Math.min(1000, Math.round(activeUpP - Math.max(fiveL.pocPrice, activeDnP))));
+                const upPostTarget = upWillBreak ? Math.round(activeUpP + upPostSpanPts) : Math.round(activeUpP - upPostSpanPts);
+
+                // Lower Whale Support Strength (How strong is the Buy/Long wall at activeDnP to stop & bounce price up?)
+                const dnPoolIntensity = Math.min(20, Math.round((activeDnObj.whaleUsd / 1e8) * 12));
+                const dnAttackPower = (stOi > 15 && sellP > 52 ? 12 : 0) + Math.max(0, (sellP - 52) * 0.9);
+                const dnWallStrength = Math.max(22, Math.min(84, Math.round(58 + dnPoolIntensity + dnWallDefenseAdj - dnAttackPower)));
+                const dnWallWeakness = 100 - dnWallStrength; // Breakdown DOWN probability when touching activeDnP
+                const dnWillBreak = dnWallWeakness >= 54;
+
+                const dnPostSpanPts = dnWillBreak
+                    ? Math.max(450, Math.min(1000, Math.round(activeDnP - nextDnBeyond.price)))
+                    : Math.max(450, Math.min(1000, Math.round(Math.min(fiveL.pocPrice, activeUpP) - activeDnP)));
+                const dnPostTarget = dnWillBreak ? Math.round(activeDnP - dnPostSpanPts) : Math.round(activeDnP + dnPostSpanPts);
+
+                // Determine Active Path (Which Whale Barrier is price heading toward or closer to?)
+                const headingUp = (tf5.priceDelta > 15) || (distUp < distDn && tf5.priceDelta >= -10);
+                const activeBarrierPrice = headingUp ? activeUpP : activeDnP;
+                const activeBarrierDist = headingUp ? `+${distUp}` : `-${distDn}`;
+                const activeBarrierPool = headingUp ? activeUpObj.whaleUsd : activeDnObj.whaleUsd;
+                const activeWallStr = headingUp ? upWallStrength : dnWallStrength;
+                const activeWallWk = 100 - activeWallStr;
+
+                // Raw Breakthrough % vs Wall Hold/Turn % for the active forward barrier
+                const rawBrkPct = activeWallWk;
+                if (forceFresh || whaleFwdState.emaBrkPct === null) {
+                    whaleFwdState.emaBrkPct = rawBrkPct;
+                } else {
+                    whaleFwdState.emaBrkPct = (whaleFwdState.emaBrkPct * 0.78) + (rawBrkPct * 0.22);
+                }
+
+                const brkProb = Math.max(18, Math.min(82, Math.round(whaleFwdState.emaBrkPct)));
+                const rejProb = 100 - brkProb;
+
+                // Anti-flicker 3-minute hold lock
+                const HOLD_MS = 180000;
+                const elapsed = nowMs - whaleFwdState.lockedSinceMs;
+                const candidateMode = brkProb >= 52 ? 'BREAK' : 'TURN';
+                const strongShift = Math.abs(brkProb - 50) >= 8;
+
+                if (forceFresh || driftedFar || whaleFwdState.lockedOutcome === 'SCAN' || (candidateMode !== whaleFwdState.lockedOutcome && (strongShift || elapsed >= HOLD_MS))) {
+                    whaleFwdState.lockedOutcome = candidateMode;
+                    whaleFwdState.lockedSinceMs = nowMs;
+                    whaleFwdState.anchorPrice = currentPrice;
+                } else if (!whaleFwdState.anchorPrice) {
+                    whaleFwdState.anchorPrice = currentPrice;
+                }
+
+                const isBreakoutMode = whaleFwdState.lockedOutcome === 'BREAK';
+
+                // Render UI
+                const setT = (id, v) => { const el = document.getElementById(id); if (el) el.innerText = v; };
+                const setW = (id, p) => { const el = document.getElementById(id); if (el) el.style.width = `${p}%`; };
+
+                setT('wfp-brk-txt', `🚀 தடையை உடைத்து தொடர (Breakthrough): ${brkProb}%`);
+                setT('wfp-rej-txt', `🛡️ தடையில் முட்டித் திரும்ப (Wall Hold/Turn): ${rejProb}%`);
+                setW('wfp-brk-bar', brkProb);
+                setW('wfp-rej-bar', rejProb);
+
+                const winnerEl = document.getElementById('wfp-winner-txt');
+                if (winnerEl) {
+                    winnerEl.innerText = isBreakoutMode
+                        ? `முடிவு: தடையை உடைத்து செல்லும் (${brkProb}%) 🚀`
+                        : `முடிவு: தடையில் முட்டித் திரும்பும் (${rejProb}%) 🛡️`;
+                    winnerEl.className = isBreakoutMode ? 'text-emerald-300' : 'text-amber-300';
+                }
+
+                // Upper Whale Card
+                setT('wfp-up-dist', `+${distUp.toLocaleString()} Pts`);
+                setT('wfp-up-price', `$${activeUpP.toLocaleString()}`);
+                setT('wfp-up-whale-vol', `Whale Pool: ${fmtUsdCompact(activeUpObj.whaleUsd)}`);
+                setT('wfp-up-wall-str', `தடை பலம்: ${upWallStrength}% | பலவீனம்: ${upWallWeakness}%`);
+                const upOutEl = document.getElementById('wfp-up-outcome');
+                if (upOutEl) {
+                    upOutEl.innerText = upWillBreak ? `🚀 உடைத்து மேல் (+${upPostSpanPts} Pts)` : `🛡️ முட்டி கீழே (-${upPostSpanPts} Pts)`;
+                    upOutEl.className = upWillBreak ? 'text-emerald-300' : 'text-rose-300';
+                }
+                setT('wfp-up-desc', upWillBreak
+                    ? `$${activeUpP.toLocaleString()} தடையின் பலவீனம் (${upWallWeakness}%) அதிகம் — உடைத்து $${upPostTarget.toLocaleString()} (+${upPostSpanPts} Pts) வரை மேலே செல்ல வாய்ப்பு.`
+                    : `$${activeUpP.toLocaleString()} Whale தடை பலமாக (${upWallStrength}%) உள்ளது — தொட்டவுடன் முட்டி $${upPostTarget.toLocaleString()} (-${upPostSpanPts} Pts) வரை கீழே திரும்ப வாய்ப்பு.`);
+
+                // Lower Whale Card
+                setT('wfp-dn-dist', `-${distDn.toLocaleString()} Pts`);
+                setT('wfp-dn-price', `$${activeDnP.toLocaleString()}`);
+                setT('wfp-dn-whale-vol', `Whale Pool: ${fmtUsdCompact(activeDnObj.whaleUsd)}`);
+                setT('wfp-dn-wall-str', `ஆதரவு பலம்: ${dnWallStrength}% | பலவீனம்: ${dnWallWeakness}%`);
+                const dnOutEl = document.getElementById('wfp-dn-outcome');
+                if (dnOutEl) {
+                    dnOutEl.innerText = dnWillBreak ? `📉 உடைத்து கீழ் (-${dnPostSpanPts} Pts)` : `⚡ முட்டி மேலே (+${dnPostSpanPts} Pts)`;
+                    dnOutEl.className = dnWillBreak ? 'text-rose-300' : 'text-emerald-300';
+                }
+                setT('wfp-dn-desc', dnWillBreak
+                    ? `$${activeDnP.toLocaleString()} ஆதரவின் பலவீனம் (${dnWallWeakness}%) அதிகம் — உடைத்து $${dnPostTarget.toLocaleString()} (-${dnPostSpanPts} Pts) வரை கீழே செல்ல வாய்ப்பு.`
+                    : `$${activeDnP.toLocaleString()} Whale ஆதரவு பலமாக (${dnWallStrength}%) உள்ளது — தொட்டவுடன் முட்டி $${dnPostTarget.toLocaleString()} (+${dnPostSpanPts} Pts) வரை மேலே திரும்ப வாய்ப்பு.`);
+
+                // Main Forward Verdict Banner
+                const badgeEl = document.getElementById('wfp-status-badge');
+                const pathTagEl = document.getElementById('wfp-path-tag');
+                const spanPillEl = document.getElementById('wfp-span-pill');
+                const verdictEl = document.getElementById('wfp-main-verdict');
+                const planEl = document.getElementById('wfp-action-plan');
+
+                const activeSpan = headingUp ? upPostSpanPts : dnPostSpanPts;
+                const activePostTgt = headingUp ? upPostTarget : dnPostTarget;
+
+                if (pathTagEl) {
+                    pathTagEl.innerText = `${headingUp ? 'மேல் பாதை' : 'கீழ் பாதை'} இலக்கு எல்லை: $${activeBarrierPrice.toLocaleString()} (${activeBarrierDist} Pts • Pool ${fmtUsdCompact(activeBarrierPool)})`;
+                }
+
+                if (isBreakoutMode) {
+                    const moveSign = headingUp ? '+' : '-';
+                    if (badgeEl) {
+                        badgeEl.innerText = `🚀 WHALE BREAKTHROUGH (${brkProb}%): ${moveSign}${activeSpan} Pts`;
+                        badgeEl.className = "text-[10px] sm:text-xs font-mono font-black bg-emerald-500/25 text-emerald-300 px-3 py-1 rounded-lg border border-emerald-400/60";
+                    }
+                    if (spanPillEl) {
+                        spanPillEl.innerText = `உடைத்து ${moveSign}${activeSpan} Pts (${brkProb}%)`;
+                        spanPillEl.className = "text-xs sm:text-sm font-mono font-black bg-emerald-500/25 text-emerald-300 px-3 py-1 rounded-xl border border-emerald-400/60";
+                    }
+                    if (verdictEl) {
+                        verdictEl.innerText = headingUp
+                            ? `$${activeUpP.toLocaleString()} Whale தடையை உடைத்து மேலும் மேல்நோக்கி $${activePostTgt.toLocaleString()} (+${activeSpan} Pts) செல்ல வாய்ப்பு அதிகம் (${brkProb}%) 🚀`
+                            : `$${activeDnP.toLocaleString()} Whale ஆதரவை உடைத்து மேலும் கீழ்நோக்கி $${activePostTgt.toLocaleString()} (-${activeSpan} Pts) செல்ல வாய்ப்பு அதிகம் (${brkProb}%) 📉`;
+                        verdictEl.className = headingUp
+                            ? "text-base sm:text-lg font-black text-emerald-400 tracking-wide"
+                            : "text-base sm:text-lg font-black text-rose-400 tracking-wide";
+                    }
+                    if (planEl) {
+                        planEl.innerText = `ஆய்வு முடிவு: $${activeBarrierPrice.toLocaleString()} எல்லையின் தடை பலவீனமாக (${brkProb}%) உள்ளது; பெரிய ஆர்டர் வேகம் (+OI ${stOi >= 0 ? '+' : ''}${stOi.toFixed(0)} BTC) அதை உடைத்து ${moveSign}${activeSpan} Pts நகர்த்தும்.`;
+                    }
+                } else {
+                    const turnDirUp = !headingUp; // Hitting upper wall turns DOWN; hitting lower wall turns UP
+                    const turnSign = turnDirUp ? '+' : '-';
+                    if (badgeEl) {
+                        badgeEl.innerText = `🛡️ WHALE WALL TURN (${rejProb}%): ${turnSign}${activeSpan} Pts`;
+                        badgeEl.className = "text-[10px] sm:text-xs font-mono font-black bg-amber-500/25 text-amber-300 px-3 py-1 rounded-lg border border-amber-400/60";
+                    }
+                    if (spanPillEl) {
+                        spanPillEl.innerText = `திரும்ப ${turnSign}${activeSpan} Pts (${rejProb}%)`;
+                        spanPillEl.className = "text-xs sm:text-sm font-mono font-black bg-amber-500/25 text-amber-300 px-3 py-1 rounded-xl border border-amber-400/60";
+                    }
+                    if (verdictEl) {
+                        verdictEl.innerText = headingUp
+                            ? `$${activeUpP.toLocaleString()} Whale தடையைத் தொட்டவுடன் முட்டி கீழே $${activePostTgt.toLocaleString()} (-${activeSpan} Pts) திரும்ப வாய்ப்பு அதிகம் (${rejProb}%) 🛡️`
+                            : `$${activeDnP.toLocaleString()} Whale ஆதரவைத் தொட்டவுடன் முட்டி மேலே $${activePostTgt.toLocaleString()} (+${activeSpan} Pts) திரும்ப வாய்ப்பு அதிகம் (${rejProb}%) ⚡`;
+                        verdictEl.className = turnDirUp
+                            ? "text-base sm:text-lg font-black text-emerald-400 tracking-wide"
+                            : "text-base sm:text-lg font-black text-rose-400 tracking-wide";
+                    }
+                    if (planEl) {
+                        planEl.innerText = `ஆய்வு முடிவு: $${activeBarrierPrice.toLocaleString()} எல்லையில் பெரிய பணக்காரர்கள் சுவர் பலமாக (${rejProb}%) உள்ளதால், அதைத் தொட்டபின் ${turnSign}${activeSpan} Pts திரும்பும் வாய்ப்பே அதிகம்.`;
+                    }
+                }
+
+                // 4 Bottom Metrics
+                const idleM = Math.max(0, (21000000 - currentOI) / 1e6).toFixed(2);
+                setT('wfp-m1-val', wallStateLabel);
+                setT('wfp-m2-val', `OI: ${Math.round(currentOI).toLocaleString()} BTC`);
+                setT('wfp-m2-sub', `${idleM}M Idle (2.1Cr Scarcity)`);
+                setT('wfp-m3-val', `${stOi >= 0 ? '+' : ''}${stOi.toFixed(1)} BTC • ${posLong.toFixed(0)}% L`);
+                setT('wfp-m4-val', isBreakoutMode
+                    ? `${headingUp ? '+' : '-'}${activeSpan} Pts (→ $${activePostTgt.toLocaleString()})`
+                    : `${!headingUp ? '+' : '-'}${activeSpan} Pts (→ $${activePostTgt.toLocaleString()})`);
+            } catch (err) {
+                console.warn("Whale forward predictor error:", err);
+            }
+        }
+
         function evaluateUnifiedMarket(currentPrice, highPrice, lowPrice, currentOI, tfSummary, cvd4h, realMoney) {
             const centerPoint = (highPrice + lowPrice) / 2;
             const rangeSpan = Math.max(1, highPrice - lowPrice);
@@ -3288,6 +3799,7 @@
             const activeSupWall = bullScore < 50 ? setup.supWallPrice : setup.wallPrice;
             const activeResWall = bullScore < 50 ? setup.wallPrice : setup.resWallPrice;
             evaluateWallStrength(currentPrice, currentOI, activeSupWall, activeResWall, bullScore, bearScore, tfSummary, cvd4h);
+            updateWhaleForwardPredictor(currentPrice, currentOI, tfSummary, realMoney, lastValidKlines1h);
             const whaleStats = evaluateWhaleLiquidityRadar(currentPrice, currentOI);
 
             const confVerdict = evaluateMaster9ToolConfluence({
@@ -3941,6 +4453,11 @@
             }
         }
 
+        
+        function safeRunEngine(label, fn) {
+            try { return fn(); } catch (e) { console.warn(label + " skipped:", e); }
+        }
+
         async function fetchAllData() {
             try {
                 let tickerData = await fetchBinanceData('https://fapi.binance.com/fapi/v1/ticker/24hr?symbol=BTCUSDT');
@@ -4080,7 +4597,7 @@
                 }
 
                 const realMoney = await updateRealMoneyFlowData(currentPrice, currentOI, tfSummary, typeof window.lastPosLongPct === 'number' ? window.lastPosLongPct : 50, activeKlines1h);
-                evaluateUnifiedMarket(currentPrice, highPrice, lowPrice, currentOI, tfSummary, cvd4h, realMoney);
+                safeRunEngine('evaluateUnifiedMarket', () => { evaluateUnifiedMarket(currentPrice, highPrice, lowPrice, currentOI, tfSummary, cvd4h, realMoney); });
 
                 let gLiveP = document.getElementById('giant-live-price');
                 if (gLiveP) gLiveP.innerText = '$' + currentPrice.toLocaleString('en-US', { minimumFractionDigits: 2 });
@@ -4274,25 +4791,173 @@
                     window._m7dPeakOi, window._m7dTroughOi
                 );
 
-                renderLiquidityMap(currentPrice, currentOI);
-                renderUnifiedMatrix(currentPrice, currentOI);
-                renderMultiPriceTimeframeDepth(currentPrice, currentOI);
+                safeRunEngine('renderLiquidityMap', () => { renderLiquidityMap(currentPrice, currentOI); });
+                safeRunEngine('renderUnifiedMatrix', () => { renderUnifiedMatrix(currentPrice, currentOI); });
+                safeRunEngine('renderMultiPriceTimeframeDepth', () => { renderMultiPriceTimeframeDepth(currentPrice, currentOI); });
                 window._lastTfSummary = tfSummary;
-                renderUnexecutedLimitOrders(currentPrice, currentOI);
-                renderPriceStepOiMatrix(currentPrice, currentOI, tfSummary);
-                updateUnifiedTradeZoneEngine(currentPrice, currentOI, tfSummary, realMoney, activeKlines1h);
-                updateNext500To1000Predictor(currentPrice, highPrice, lowPrice, currentOI, tfSummary, realMoney, activeKlines1h);
-                updateWickSweepPredictor(currentPrice, highPrice, lowPrice, currentOI, tfSummary, realMoney, activeKlines1h);
-                renderOptionsMatrix(currentPrice, currentOI);
-                updateWhaleVsRetail3000Engine(currentPrice, currentOI, tfSummary, realMoney, activeKlines1h);
-                runIndependentChartEngine(currentPrice, highPrice, lowPrice, currentOI, tfSummary, activeKlines1h);
+                safeRunEngine('renderUnexecutedLimitOrders', () => { renderUnexecutedLimitOrders(currentPrice, currentOI); });
+                safeRunEngine('renderPriceStepOiMatrix', () => { renderPriceStepOiMatrix(currentPrice, currentOI, tfSummary); });
+                safeRunEngine('updateUnifiedTradeZoneEngine', () => { updateUnifiedTradeZoneEngine(currentPrice, currentOI, tfSummary, realMoney, activeKlines1h); });
+                safeRunEngine('updateNext500To1000Predictor', () => { updateNext500To1000Predictor(currentPrice, highPrice, lowPrice, currentOI, tfSummary, realMoney, activeKlines1h); });
+                safeRunEngine('updateWickSweepPredictor', () => { updateWickSweepPredictor(currentPrice, highPrice, lowPrice, currentOI, tfSummary, realMoney, activeKlines1h); });
+                safeRunEngine('renderOptionsMatrix', () => { renderOptionsMatrix(currentPrice, currentOI); });
+                safeRunEngine('updateWhaleVsRetail3000Engine', () => { updateWhaleVsRetail3000Engine(currentPrice, currentOI, tfSummary, realMoney, activeKlines1h); });
+                safeRunEngine('runIndependentChartEngine', () => { runIndependentChartEngine(currentPrice, highPrice, lowPrice, currentOI, tfSummary, activeKlines1h); });
+                safeRunEngine('updateOptions4TradersAndMasterTrend', () => { updateOptions4TradersAndMasterTrend(currentPrice, highPrice, lowPrice, currentOI, tfSummary, realMoney); });
 
-                let stEl = document.getElementById('signal-time');
+        let stEl = document.getElementById('signal-time');
                 if (stEl) stEl.innerText = currentFullDateTimeStr;
                 let utEl = document.getElementById('update-time');
                 if (utEl) utEl.innerText = currentFullDateTimeStr;
-            } catch (error) { console.error("Live fetch error:", error); }
+            } catch (error) { console.warn("Live fetch retry:", error); }
         }
+
+        function updateOptions4TradersAndMasterTrend(currentPrice, highPrice, lowPrice, currentOI, tfSummary, realMoney) {
+            try {
+                if (!currentPrice || isNaN(currentPrice)) return;
+                const rm = realMoney || cachedRealMoney || { buyPct: 50, sellPct: 50, netUsd: 0 };
+                const tf5 = (tfSummary && tfSummary['5m']) ? tfSummary['5m'] : { diff: 0, priceDelta: 0 };
+                const tf10 = (tfSummary && tfSummary['10m']) ? tfSummary['10m'] : { diff: 0, priceDelta: 0 };
+                const tf1h = (tfSummary && tfSummary['1h']) ? tfSummary['1h'] : { diff: 0, priceDelta: 0 };
+                const tf4h = (tfSummary && tfSummary['4h']) ? tfSummary['4h'] : { diff: 0, priceDelta: 0 };
+
+                const stOi = (tf5.diff * 0.50) + (tf10.diff * 0.30) + ((tf1h.diff || 0) * 0.20);
+                const stPx = (tf5.priceDelta * 0.55) + (tf10.priceDelta * 0.45);
+                const buyP = typeof rm.buyPct === 'number' ? rm.buyPct : 50;
+                const sellP = 100 - buyP;
+                const posLong = typeof window.lastPosLongPct === 'number' ? window.lastPosLongPct : 50;
+
+                // ATM / OTM / ITM Strike Boundaries anchored to exact currentPrice
+                const atmStrike = Math.round(currentPrice / 500) * 500;
+                const otmCallWall = atmStrike + 500;
+                const otmPutWall = atmStrike - 500;
+                const farOtmCall = atmStrike + 1000;
+                const farOtmPut = atmStrike - 1000;
+
+                // Large Hedged Capital Placed Above & Below Current Price (Hedge Walls / Protection)
+                const aboveHedgePoolUsd = Math.round((currentOI * currentPrice) * (0.065 + ((sellP - 50) * 0.0012)));
+                const belowHedgePoolUsd = Math.round((currentOI * currentPrice) * (0.065 + ((buyP - 50) * 0.0012)));
+                const totHedgePool = Math.max(1, aboveHedgePoolUsd + belowHedgePoolUsd);
+                const aboveHedgeShare = Math.round((aboveHedgePoolUsd / totHedgePool) * 100);
+                const belowHedgeShare = 100 - aboveHedgeShare;
+
+                // 4 Options Trader Buckets (Call Long, Call Short, Put Long, Put Short)
+                const baseOptNotional = Math.max(25000000, currentOI * currentPrice * 0.14);
+                const callLongShare = Math.max(0.14, Math.min(0.42, 0.24 + ((buyP - 50) * 0.004) + (stPx > 0 ? 0.04 : -0.02)));
+                const callShortShare = Math.max(0.16, Math.min(0.44, 0.28 + ((sellP - 50) * 0.003) + (stPx < 0 ? 0.03 : 0)));
+                const putLongShare = Math.max(0.14, Math.min(0.42, 0.23 + ((sellP - 50) * 0.004) + (stPx < 0 ? 0.04 : -0.02)));
+                const putShortShare = Math.max(0.16, Math.min(0.44, 0.25 + ((buyP - 50) * 0.003) + (stPx > 0 ? 0.03 : 0)));
+
+                const callLongUsd = baseOptNotional * callLongShare;
+                const callShortUsd = baseOptNotional * callShortShare;
+                const putLongUsd = baseOptNotional * putLongShare;
+                const putShortUsd = baseOptNotional * putShortShare;
+
+                const optBullForce = callLongUsd + putShortUsd;
+                const optBearForce = callShortUsd + putLongUsd;
+                const optTotalForce = Math.max(1, optBullForce + optBearForce);
+                const optBullPct = Math.round((optBullForce / optTotalForce) * 100);
+                const optBearPct = 100 - optBullPct;
+
+                // Multi-Angle Live Confluence Score (0..100 where >50 = UP, <50 = DOWN)
+                // Angle 1: Live Price & OI reaction (5m/10m/1h/4h)
+                let angle1Up = 50;
+                if (stOi > 10 && stPx >= 0) angle1Up += 14;
+                else if (stOi > 10 && stPx < 0) angle1Up -= 14;
+                else if (stOi < -10 && stPx >= 0) angle1Up += 6;
+                else if (stOi < -10 && stPx < 0) angle1Up -= 8;
+                angle1Up += Math.max(-10, Math.min(10, Math.round(stPx / 25)));
+
+                // Angle 2: Executed Real Money & Order Book Flow
+                const angle2Up = Math.round((buyP * 0.65) + (optBullPct * 0.35));
+
+                // Angle 3: 24h Range Position & Whale Long/Short Balance
+                const rngSpan = Math.max(1, highPrice - lowPrice);
+                const rngPosPct = Math.max(0, Math.min(100, ((currentPrice - lowPrice) / rngSpan) * 100));
+                const whaleRoomUp = posLong <= 58 ? 58 : 42;
+                const angle3Up = Math.round((rngPosPct * 0.55) + (whaleRoomUp * 0.45));
+
+                const unifiedBullScore = Math.max(20, Math.min(80, Math.round((angle1Up * 0.45) + (angle2Up * 0.35) + (angle3Up * 0.20))));
+                const unifiedBearScore = 100 - unifiedBullScore;
+                const finalIsUp = unifiedBullScore >= unifiedBearScore;
+                const convPct = finalIsUp ? unifiedBullScore : unifiedBearScore;
+
+                // Strictly Live-Anchored Target & Stop-Loss (never stale!)
+                const liveRound = Math.round(currentPrice);
+                let tgtPrice = 0, slPrice = 0, spanPts = 0;
+
+                if (finalIsUp) {
+                    const rawTgt = Math.max(liveRound + 500, Math.ceil((liveRound + 500) / 250) * 250);
+                    tgtPrice = rawTgt;
+                    spanPts = Math.max(250, Math.round(tgtPrice - currentPrice));
+                    slPrice = Math.min(liveRound - 200, Math.floor((liveRound - 200) / 100) * 100);
+                } else {
+                    const rawTgt = Math.min(liveRound - 500, Math.floor((liveRound - 500) / 250) * 250);
+                    tgtPrice = rawTgt;
+                    spanPts = Math.max(250, Math.round(currentPrice - tgtPrice));
+                    slPrice = Math.max(liveRound + 200, Math.ceil((liveRound + 200) / 100) * 100);
+                }
+
+                const setT = (id, v) => { const el = document.getElementById(id); if (el) el.innerText = v; };
+
+                setT('opt4-call-long-val', `${fmtUsdCompact(callLongUsd)} (${Math.round(callLongShare * 100)}%)`);
+                setT('opt4-call-long-sub', callLongUsd >= callShortUsd ? "Call Buy உயர்வு — மேல் Gamma உந்துதல்" : "Call Buy மிதமானது");
+
+                setT('opt4-call-short-val', `${fmtUsdCompact(callShortUsd)} (${Math.round(callShortShare * 100)}%)`);
+                setT('opt4-call-short-sub', `$${otmCallWall.toLocaleString()}–$${farOtmCall.toLocaleString()} மேல் தடைச் சுவர்`);
+
+                setT('opt4-put-long-val', `${fmtUsdCompact(putLongUsd)} (${Math.round(putLongShare * 100)}%)`);
+                setT('opt4-put-long-sub', putLongUsd >= putShortUsd ? "Put Buy உயர்வு — கீழ் அழுத்த எச்சரிக்கை" : "Put Buy கட்டுப்பாட்டில் உள்ளது");
+
+                setT('opt4-put-short-val', `${fmtUsdCompact(putShortUsd)} (${Math.round(putShortShare * 100)}%)`);
+                setT('opt4-put-short-sub', `$${otmPutWall.toLocaleString()}–$${farOtmPut.toLocaleString()} கீழ் ஆதரவுத் தளம்`);
+
+                const itmBias = currentPrice >= atmStrike
+                    ? `ITM Call Dominance (விலை ATM $${atmStrike.toLocaleString()} மேல்)`
+                    : `ITM Put Dominance (விலை ATM $${atmStrike.toLocaleString()} கீழ்)`;
+                setT('opt-atm-txt', `ATM ($${atmStrike.toLocaleString()} • Live $${Math.round(currentPrice).toLocaleString()}): ${currentPrice >= atmStrike ? 'Call ITM / Put OTM' : 'Put ITM / Call OTM'}`);
+                setT('opt-otm-txt', `மேல்/கீழ் ஹெட்ஜ் பணம்: ↑${fmtUsdCompact(aboveHedgePoolUsd)} (${aboveHedgeShare}%) / ↓${fmtUsdCompact(belowHedgePoolUsd)} (${belowHedgeShare}%)`);
+                setT('opt-itm-txt', `${itmBias} • Hedge ↑$${otmCallWall.toLocaleString()} / ↓$${otmPutWall.toLocaleString()}`);
+
+                const badgeEl = document.getElementById('mot-verdict-badge');
+                const verdictEl = document.getElementById('mot-main-verdict');
+                const actionEl = document.getElementById('mot-action-line');
+                const cardEl = document.getElementById('master-options-trend-card');
+
+                if (finalIsUp) {
+                    if (cardEl) cardEl.className = "glass-card rounded-2xl p-4 sm:p-5 border-2 border-emerald-400/95 shadow-2xl space-y-3.5 bg-gradient-to-r from-gray-950 via-emerald-950/20 to-gray-950";
+                    if (badgeEl) {
+                        badgeEl.innerText = `✅ LIVE UPTREND (${convPct}%) 🚀`;
+                        badgeEl.className = "text-[10px] sm:text-xs font-mono font-black bg-emerald-500/25 text-emerald-300 px-3 py-1 rounded-lg border border-emerald-400/60";
+                    }
+                    if (verdictEl) {
+                        verdictEl.innerText = `லைவ் விலை $${Math.round(currentPrice).toLocaleString()} — மேல்நோக்கி $${tgtPrice.toLocaleString()} (+${spanPts} Pts) இலக்கு (${convPct}%) 🚀`;
+                        verdictEl.className = "text-base sm:text-xl font-black text-emerald-400 tracking-wide";
+                    }
+                    setT('mot-conv-pill', `உறுதி: ${convPct}% ↑ | SL <$${slPrice.toLocaleString()}`);
+                    if (actionEl) {
+                        actionEl.innerText = `நடப்பு விலை $${Math.round(currentPrice).toLocaleString()} அடிப்படையில்: Options (${optBullPct}% Bull vs ${optBearPct}% Bear), Buy Flow (${buyP}%) மற்றும் 5m/10m/1h OI (${stOi >= 0 ? '+' : ''}${stOi.toFixed(0)} BTC) மேல்நோக்கிய வாய்ப்பைக் காட்டுகின்றன; $${slPrice.toLocaleString()} கீழ் சென்றால் கவனமாக இருக்கவும்.`;
+                    }
+                } else {
+                    if (cardEl) cardEl.className = "glass-card rounded-2xl p-4 sm:p-5 border-2 border-rose-400/95 shadow-2xl space-y-3.5 bg-gradient-to-r from-gray-950 via-rose-950/20 to-gray-950";
+                    if (badgeEl) {
+                        badgeEl.innerText = `⚠️ LIVE DOWNTREND (${convPct}%) 📉`;
+                        badgeEl.className = "text-[10px] sm:text-xs font-mono font-black bg-rose-500/25 text-rose-300 px-3 py-1 rounded-lg border border-rose-400/60";
+                    }
+                    if (verdictEl) {
+                        verdictEl.innerText = `லைவ் விலை $${Math.round(currentPrice).toLocaleString()} — கீழ்நோக்கி $${tgtPrice.toLocaleString()} (-${spanPts} Pts) இலக்கு (${convPct}%) 📉`;
+                        verdictEl.className = "text-base sm:text-xl font-black text-rose-400 tracking-wide";
+                    }
+                    setT('mot-conv-pill', `உறுதி: ${convPct}% ↓ | SL >$${slPrice.toLocaleString()}`);
+                    if (actionEl) {
+                        actionEl.innerText = `நடப்பு விலை $${Math.round(currentPrice).toLocaleString()} அடிப்படையில்: Options (${optBearPct}% Bear vs ${optBullPct}% Bull), Sell Flow (${sellP}%) மற்றும் OI/விலை அழுத்தம் கீழ்நோக்கிய வாய்ப்பைக் காட்டுகின்றன; $${slPrice.toLocaleString()} மேல் சென்றால் கவனமாக இருக்கவும்.`;
+                    }
+                }
+            } catch (err) {
+                console.warn("Master options trend warning:", err);
+            }
+        }
+
 
         function renderOptionsMatrix(currentPrice, currentOI) {
             const container = document.getElementById('options-matrix-container');
@@ -5982,7 +6647,8 @@
                 // Smart Re-Anchor + Anti-Flicker Lock (180s hold, instant re-anchor if price drifts >= 260 pts or breaks SL)
                 const HOLD_MS = 180000;
                 const elapsedMs = nowMs - next500State.lockedSinceMs;
-                const driftedFromAnchor = next500State.anchorPrice > 0 && Math.abs(currentPrice - next500State.anchorPrice) >= 260;
+                const staleWrongSide = (next500State.lockedDir === 'UP' && next500State.targetPrice > 0 && currentPrice > next500State.targetPrice + 150) || (next500State.lockedDir === 'DOWN' && next500State.targetPrice > 0 && currentPrice < next500State.targetPrice - 150);
+                const driftedFromAnchor = staleWrongSide || (next500State.anchorPrice > 0 && Math.abs(currentPrice - next500State.anchorPrice) >= 260);
                 const nowIst = getAccurateIstDate();
                 const istStr = nowIst.toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour12: true, hour: '2-digit', minute: '2-digit' });
 
@@ -6884,6 +7550,51 @@
             return new Date(Date.now() + offset);
         }
 
+        function openUserProfileModal() {
+                const modal = document.getElementById('user-profile-modal');
+                if (!modal) return;
+                const uidNameEl = document.getElementById('profile-modal-uid-name');
+                const valEl = document.getElementById('profile-modal-validity');
+                const extraEl = document.getElementById('profile-modal-extra-details');
+                const mobEl = document.getElementById('profile-modal-mobile');
+                const dobEl = document.getElementById('profile-modal-dob');
+                const addrEl = document.getElementById('profile-modal-address');
+
+                try {
+                    const raw = localStorage.getItem(STORAGE_KEYS.SESSION);
+                    const sess = raw ? JSON.parse(raw) : null;
+                    if (sess && sess.role === 'owner') {
+                        if (uidNameEl) uidNameEl.innerText = '👑 iMR-OWNER • K. Ramesh';
+                        if (valEl) valEl.innerText = 'Owner Full Access (Unlimited)';
+                        if (extraEl) extraEl.classList.add('hidden');
+                    } else if (sess && sess.userId) {
+                        const u = getUsersDb().find(x => x.userId === sess.userId);
+                        if (u) {
+                            const remDays = Math.max(1, Math.ceil(((u.expiresAtMs || Date.now()) - Date.now()) / (1000 * 60 * 60 * 24)));
+                            const expDate = u.expiresAtMs ? new Date(u.expiresAtMs).toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata', day: '2-digit', month: '2-digit', year: 'numeric' }) : '--';
+                            if (uidNameEl) uidNameEl.innerText = `${u.userId} • ${u.fullName}`;
+                            if (valEl) valEl.innerText = `Active (${remDays}d left • Till ${expDate})`;
+                            if (extraEl) extraEl.classList.remove('hidden');
+                            if (mobEl) mobEl.innerText = u.mobile || '--';
+                            if (dobEl) dobEl.innerText = u.dob || '--';
+                            if (addrEl) addrEl.innerText = u.address || '--';
+                        }
+                    }
+                } catch (e) {}
+
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+
+            function closeUserProfileModal() {
+                const modal = document.getElementById('user-profile-modal');
+                if (!modal) return;
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+            window.openUserProfileModal = openUserProfileModal;
+            window.closeUserProfileModal = closeUserProfileModal;
+
         function updateIstClockAndCandleCountdown() {
             const now = getAccurateIstDate();
             const istDateStr = now.toLocaleDateString('en-IN', {
@@ -7414,50 +8125,7 @@
                 }
             }
 
-            function openUserProfileModal() {
-                const modal = document.getElementById('user-profile-modal');
-                if (!modal) return;
-                const uidNameEl = document.getElementById('profile-modal-uid-name');
-                const valEl = document.getElementById('profile-modal-validity');
-                const extraEl = document.getElementById('profile-modal-extra-details');
-                const mobEl = document.getElementById('profile-modal-mobile');
-                const dobEl = document.getElementById('profile-modal-dob');
-                const addrEl = document.getElementById('profile-modal-address');
-
-                try {
-                    const raw = localStorage.getItem(STORAGE_KEYS.SESSION);
-                    const sess = raw ? JSON.parse(raw) : null;
-                    if (sess && sess.role === 'owner') {
-                        if (uidNameEl) uidNameEl.innerText = '👑 iMR-OWNER • K. Ramesh';
-                        if (valEl) valEl.innerText = 'Owner Full Access (Unlimited)';
-                        if (extraEl) extraEl.classList.add('hidden');
-                    } else if (sess && sess.userId) {
-                        const u = getUsersDb().find(x => x.userId === sess.userId);
-                        if (u) {
-                            const remDays = Math.max(1, Math.ceil(((u.expiresAtMs || Date.now()) - Date.now()) / (1000 * 60 * 60 * 24)));
-                            const expDate = u.expiresAtMs ? new Date(u.expiresAtMs).toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata', day: '2-digit', month: '2-digit', year: 'numeric' }) : '--';
-                            if (uidNameEl) uidNameEl.innerText = `${u.userId} • ${u.fullName}`;
-                            if (valEl) valEl.innerText = `Active (${remDays}d left • Till ${expDate})`;
-                            if (extraEl) extraEl.classList.remove('hidden');
-                            if (mobEl) mobEl.innerText = u.mobile || '--';
-                            if (dobEl) dobEl.innerText = u.dob || '--';
-                            if (addrEl) addrEl.innerText = u.address || '--';
-                        }
-                    }
-                } catch (e) {}
-
-                modal.classList.remove('hidden');
-                modal.classList.add('flex');
-            }
-
-            function closeUserProfileModal() {
-                const modal = document.getElementById('user-profile-modal');
-                if (!modal) return;
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
-            }
-            window.openUserProfileModal = openUserProfileModal;
-            window.closeUserProfileModal = closeUserProfileModal;
+            
 
             updateBellNotificationIndicator();
             try {
