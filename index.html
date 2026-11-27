@@ -1276,6 +1276,116 @@
             </div>
 
 
+            <!-- WICK-SWEEP, ORDER POOL & POST-TOUCH DIRECTION RADAR (மேல்/கீழ் விக் & எல்லைத் தொடுதல் கணிப்பான்) -->
+            <div id="wick-sweep-predictor-card" class="glass-card rounded-2xl p-4 sm:p-5 border-2 border-amber-400/95 shadow-2xl space-y-3.5 bg-gradient-to-r from-gray-950 via-amber-950/20 to-gray-950">
+                <!-- Header & Controls -->
+                <div class="flex flex-wrap justify-between items-center gap-2 border-b border-gray-800 pb-2.5">
+                    <div class="flex items-center gap-2.5">
+                        <div class="bg-gradient-to-tr from-amber-400 via-rose-500 to-emerald-400 p-2 rounded-xl text-black font-black text-xs shadow-lg">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xs sm:text-sm font-black text-amber-300 uppercase tracking-wider">WICK-SWEEP & ORDER POOL REACTION RADAR (விக், ஆர்டர் பணக் குவியல் & எல்லைத் தொடுதல் கணிப்பான்)</h3>
+                            <p id="wsp-meta-line" class="text-[10px] font-mono font-bold text-gray-300">Scans ±2,500 Pts Order Pools + Live 15m/1h Wicks • Stabilized Post-Touch Forecast</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-1.5">
+                        <span id="wsp-status-badge" class="text-[10px] sm:text-xs font-mono font-black bg-amber-500/20 text-amber-300 px-3 py-1 rounded-lg border border-amber-400/50">Scanning Zones...</span>
+                        <button type="button" onclick="resetWickSweepRadarLock()" class="bg-amber-500 hover:bg-amber-400 text-black px-2.5 py-1 rounded-lg text-[10px] sm:text-xs font-black transition shadow-md flex items-center gap-1">
+                            <i class="fa-solid fa-rotate"></i> <span>Re-Scan</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Main Post-Touch Verdict Banner -->
+                <div class="bg-gray-900/95 border border-amber-400/40 rounded-2xl p-3.5 space-y-2">
+                    <div class="flex flex-wrap justify-between items-center gap-2">
+                        <span id="wsp-approach-tag" class="text-[10px] font-mono font-black bg-indigo-950 text-cyan-300 px-2.5 py-0.5 rounded border border-cyan-500/40">
+                            Approaching Zone: Scanning...
+                        </span>
+                        <span id="wsp-points-pill" class="text-xs sm:text-sm font-mono font-black bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-xl border border-emerald-400/50">
+                            Expected Move: -- Pts
+                        </span>
+                    </div>
+                    <h2 id="wsp-main-verdict" class="text-base sm:text-lg font-black text-white tracking-wide">
+                        மேலே / கீழே உள்ள ஆர்டர் பணக் குவியல் & விக் மண்டலங்கள் ஸ்கேன் செய்யப்படுகின்றன...
+                    </h2>
+                    <p id="wsp-post-touch-action" class="text-xs font-bold text-amber-200 leading-relaxed">
+                        எல்லையைத் தொட்டவுடன் மேலே செல்லுமா அல்லது கீழே திரும்புமா & எத்தனை புள்ளிகள் நகரும் என்ற கணிப்பு தயாராகிறது...
+                    </p>
+                </div>
+
+                <!-- 2-Column Overhead vs Downside Order Pool & Post-Touch Forecast -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                    <!-- UPPER ZONE (+250 to +2,500 Pts) -->
+                    <div class="bg-rose-950/25 border border-rose-500/45 rounded-2xl p-3.5 space-y-2">
+                        <div class="flex justify-between items-center border-b border-rose-500/20 pb-1.5">
+                            <span class="text-[11px] font-black text-rose-300 uppercase">🔴 மேல் எல்லை (Upper Order & Wick Zone)</span>
+                            <span id="wsp-up-dist-badge" class="text-[10px] font-mono font-black bg-rose-500/20 text-rose-200 px-2 py-0.5 rounded">+-- Pts</span>
+                        </div>
+                        <div class="flex flex-wrap justify-between items-baseline gap-2">
+                            <h4 id="wsp-up-price" class="text-base sm:text-lg font-mono font-black text-white">$--</h4>
+                            <span id="wsp-up-money" class="text-xs font-mono font-black text-amber-300">Pool: $--</span>
+                        </div>
+                        <div class="bg-gray-950/80 border border-gray-800 rounded-xl p-2.5 space-y-1 text-[11px]">
+                            <div class="flex justify-between font-mono font-black">
+                                <span class="text-gray-400">இந்த எல்லையைத் தொட்டால்:</span>
+                                <span id="wsp-up-outcome-tag" class="text-rose-300">Evaluating...</span>
+                            </div>
+                            <p id="wsp-up-forecast-txt" class="font-bold text-gray-200 leading-snug">
+                                மேல் எல்லையைத் தொட்டவுடன் விக் அடித்து கீழே திரும்புமா அல்லது உடைத்து மேலே செல்லுமா...
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- LOWER ZONE (-250 to -2,500 Pts) -->
+                    <div class="bg-emerald-950/25 border border-emerald-500/45 rounded-2xl p-3.5 space-y-2">
+                        <div class="flex justify-between items-center border-b border-emerald-500/20 pb-1.5">
+                            <span class="text-[11px] font-black text-emerald-300 uppercase">🟢 கீழ் எல்லை (Lower Order & Wick Zone)</span>
+                            <span id="wsp-dn-dist-badge" class="text-[10px] font-mono font-black bg-emerald-500/20 text-emerald-200 px-2 py-0.5 rounded">--- Pts</span>
+                        </div>
+                        <div class="flex flex-wrap justify-between items-baseline gap-2">
+                            <h4 id="wsp-dn-price" class="text-base sm:text-lg font-mono font-black text-white">$--</h4>
+                            <span id="wsp-dn-money" class="text-xs font-mono font-black text-amber-300">Pool: $--</span>
+                        </div>
+                        <div class="bg-gray-950/80 border border-gray-800 rounded-xl p-2.5 space-y-1 text-[11px]">
+                            <div class="flex justify-between font-mono font-black">
+                                <span class="text-gray-400">இந்த எல்லையைத் தொட்டால்:</span>
+                                <span id="wsp-dn-outcome-tag" class="text-emerald-300">Evaluating...</span>
+                            </div>
+                            <p id="wsp-dn-forecast-txt" class="font-bold text-gray-200 leading-snug">
+                                கீழ் எல்லையைத் தொட்டவுடன் விக் அடித்து மேலே திரும்புமா அல்லது உடைத்து கீழே செல்லுமா...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4-Card Live Wick & Liquidity Metrics Strip -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 text-xs">
+                    <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-2.5 space-y-0.5">
+                        <span class="text-[9px] font-black uppercase text-cyan-300 block">1. சமீபத்திய 15m/1h விக்</span>
+                        <h5 id="wsp-m1-val" class="text-[11px] font-mono font-black text-white">Scanning...</h5>
+                        <p id="wsp-m1-sub" class="text-[9px] font-bold text-gray-400">Upper vs Lower Wick Pts</p>
+                    </div>
+                    <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-2.5 space-y-0.5">
+                        <span class="text-[9px] font-black uppercase text-amber-300 block">2. எல்லைப் பண அழுத்தம்</span>
+                        <h5 id="wsp-m2-val" class="text-[11px] font-mono font-black text-white">Up $-- | Dn $--</h5>
+                        <p id="wsp-m2-sub" class="text-[9px] font-bold text-gray-400">Limit + SL + Liq Concentration</p>
+                    </div>
+                    <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-2.5 space-y-0.5">
+                        <span class="text-[9px] font-black uppercase text-purple-300 block">3. +OI எரிபொருள் நிலை</span>
+                        <h5 id="wsp-m3-val" class="text-[11px] font-mono font-black text-white">0 BTC</h5>
+                        <p id="wsp-m3-sub" class="text-[9px] font-bold text-gray-400">Breakout vs Wick Trap Fuel</p>
+                    </div>
+                    <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-2.5 space-y-0.5">
+                        <span class="text-[9px] font-black uppercase text-emerald-300 block">4. எதிர்பார்க்கும் நகர்வு தூரம்</span>
+                        <h5 id="wsp-m4-val" class="text-[11px] font-mono font-black text-emerald-300">500–900 Pts</h5>
+                        <p id="wsp-m4-sub" class="text-[9px] font-bold text-gray-400">Next Magnet Span</p>
+                    </div>
+                </div>
+            </div>
+
+
             <!-- 4 SINGLE VERTICAL BARS + 1 HORIZONTAL UNIFIED TREND BAR ENGINE (CHART TAB) -->
             <div id="chart-whale-retail-master-card" class="glass-card rounded-2xl p-3 sm:p-5 border-2 border-amber-400/95 shadow-2xl space-y-3.5 bg-gradient-to-r from-gray-950 via-indigo-950/25 to-gray-950">
                 <!-- Top Header & Snapshot Controls -->
@@ -1433,115 +1543,6 @@
                     <p id="wr-master-summary" class="text-[11px] font-mono font-bold text-gray-200 leading-relaxed pt-1 border-t border-gray-800/80">
                         Syncing 4 vertical bars & unified trend bar...
                     </p>
-                </div>
-            </div>
-
-            <!-- WICK-SWEEP, ORDER POOL & POST-TOUCH DIRECTION RADAR (மேல்/கீழ் விக் & எல்லைத் தொடுதல் கணிப்பான்) -->
-            <div id="wick-sweep-predictor-card" class="glass-card rounded-2xl p-4 sm:p-5 border-2 border-amber-400/95 shadow-2xl space-y-3.5 bg-gradient-to-r from-gray-950 via-amber-950/20 to-gray-950">
-                <!-- Header & Controls -->
-                <div class="flex flex-wrap justify-between items-center gap-2 border-b border-gray-800 pb-2.5">
-                    <div class="flex items-center gap-2.5">
-                        <div class="bg-gradient-to-tr from-amber-400 via-rose-500 to-emerald-400 p-2 rounded-xl text-black font-black text-xs shadow-lg">
-                            <i class="fa-solid fa-bolt"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xs sm:text-sm font-black text-amber-300 uppercase tracking-wider">WICK-SWEEP & ORDER POOL REACTION RADAR (விக், ஆர்டர் பணக் குவியல் & எல்லைத் தொடுதல் கணிப்பான்)</h3>
-                            <p id="wsp-meta-line" class="text-[10px] font-mono font-bold text-gray-300">Scans ±2,500 Pts Order Pools + Live 15m/1h Wicks • Stabilized Post-Touch Forecast</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap items-center gap-1.5">
-                        <span id="wsp-status-badge" class="text-[10px] sm:text-xs font-mono font-black bg-amber-500/20 text-amber-300 px-3 py-1 rounded-lg border border-amber-400/50">Scanning Zones...</span>
-                        <button type="button" onclick="resetWickSweepRadarLock()" class="bg-amber-500 hover:bg-amber-400 text-black px-2.5 py-1 rounded-lg text-[10px] sm:text-xs font-black transition shadow-md flex items-center gap-1">
-                            <i class="fa-solid fa-rotate"></i> <span>Re-Scan</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Main Post-Touch Verdict Banner -->
-                <div class="bg-gray-900/95 border border-amber-400/40 rounded-2xl p-3.5 space-y-2">
-                    <div class="flex flex-wrap justify-between items-center gap-2">
-                        <span id="wsp-approach-tag" class="text-[10px] font-mono font-black bg-indigo-950 text-cyan-300 px-2.5 py-0.5 rounded border border-cyan-500/40">
-                            Approaching Zone: Scanning...
-                        </span>
-                        <span id="wsp-points-pill" class="text-xs sm:text-sm font-mono font-black bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-xl border border-emerald-400/50">
-                            Expected Move: -- Pts
-                        </span>
-                    </div>
-                    <h2 id="wsp-main-verdict" class="text-base sm:text-lg font-black text-white tracking-wide">
-                        மேலே / கீழே உள்ள ஆர்டர் பணக் குவியல் & விக் மண்டலங்கள் ஸ்கேன் செய்யப்படுகின்றன...
-                    </h2>
-                    <p id="wsp-post-touch-action" class="text-xs font-bold text-amber-200 leading-relaxed">
-                        எல்லையைத் தொட்டவுடன் மேலே செல்லுமா அல்லது கீழே திரும்புமா & எத்தனை புள்ளிகள் நகரும் என்ற கணிப்பு தயாராகிறது...
-                    </p>
-                </div>
-
-                <!-- 2-Column Overhead vs Downside Order Pool & Post-Touch Forecast -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-                    <!-- UPPER ZONE (+250 to +2,500 Pts) -->
-                    <div class="bg-rose-950/25 border border-rose-500/45 rounded-2xl p-3.5 space-y-2">
-                        <div class="flex justify-between items-center border-b border-rose-500/20 pb-1.5">
-                            <span class="text-[11px] font-black text-rose-300 uppercase">🔴 மேல் எல்லை (Upper Order & Wick Zone)</span>
-                            <span id="wsp-up-dist-badge" class="text-[10px] font-mono font-black bg-rose-500/20 text-rose-200 px-2 py-0.5 rounded">+-- Pts</span>
-                        </div>
-                        <div class="flex flex-wrap justify-between items-baseline gap-2">
-                            <h4 id="wsp-up-price" class="text-base sm:text-lg font-mono font-black text-white">$--</h4>
-                            <span id="wsp-up-money" class="text-xs font-mono font-black text-amber-300">Pool: $--</span>
-                        </div>
-                        <div class="bg-gray-950/80 border border-gray-800 rounded-xl p-2.5 space-y-1 text-[11px]">
-                            <div class="flex justify-between font-mono font-black">
-                                <span class="text-gray-400">இந்த எல்லையைத் தொட்டால்:</span>
-                                <span id="wsp-up-outcome-tag" class="text-rose-300">Evaluating...</span>
-                            </div>
-                            <p id="wsp-up-forecast-txt" class="font-bold text-gray-200 leading-snug">
-                                மேல் எல்லையைத் தொட்டவுடன் விக் அடித்து கீழே திரும்புமா அல்லது உடைத்து மேலே செல்லுமா...
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- LOWER ZONE (-250 to -2,500 Pts) -->
-                    <div class="bg-emerald-950/25 border border-emerald-500/45 rounded-2xl p-3.5 space-y-2">
-                        <div class="flex justify-between items-center border-b border-emerald-500/20 pb-1.5">
-                            <span class="text-[11px] font-black text-emerald-300 uppercase">🟢 கீழ் எல்லை (Lower Order & Wick Zone)</span>
-                            <span id="wsp-dn-dist-badge" class="text-[10px] font-mono font-black bg-emerald-500/20 text-emerald-200 px-2 py-0.5 rounded">--- Pts</span>
-                        </div>
-                        <div class="flex flex-wrap justify-between items-baseline gap-2">
-                            <h4 id="wsp-dn-price" class="text-base sm:text-lg font-mono font-black text-white">$--</h4>
-                            <span id="wsp-dn-money" class="text-xs font-mono font-black text-amber-300">Pool: $--</span>
-                        </div>
-                        <div class="bg-gray-950/80 border border-gray-800 rounded-xl p-2.5 space-y-1 text-[11px]">
-                            <div class="flex justify-between font-mono font-black">
-                                <span class="text-gray-400">இந்த எல்லையைத் தொட்டால்:</span>
-                                <span id="wsp-dn-outcome-tag" class="text-emerald-300">Evaluating...</span>
-                            </div>
-                            <p id="wsp-dn-forecast-txt" class="font-bold text-gray-200 leading-snug">
-                                கீழ் எல்லையைத் தொட்டவுடன் விக் அடித்து மேலே திரும்புமா அல்லது உடைத்து கீழே செல்லுமா...
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 4-Card Live Wick & Liquidity Metrics Strip -->
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 text-xs">
-                    <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-2.5 space-y-0.5">
-                        <span class="text-[9px] font-black uppercase text-cyan-300 block">1. சமீபத்திய 15m/1h விக்</span>
-                        <h5 id="wsp-m1-val" class="text-[11px] font-mono font-black text-white">Scanning...</h5>
-                        <p id="wsp-m1-sub" class="text-[9px] font-bold text-gray-400">Upper vs Lower Wick Pts</p>
-                    </div>
-                    <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-2.5 space-y-0.5">
-                        <span class="text-[9px] font-black uppercase text-amber-300 block">2. எல்லைப் பண அழுத்தம்</span>
-                        <h5 id="wsp-m2-val" class="text-[11px] font-mono font-black text-white">Up $-- | Dn $--</h5>
-                        <p id="wsp-m2-sub" class="text-[9px] font-bold text-gray-400">Limit + SL + Liq Concentration</p>
-                    </div>
-                    <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-2.5 space-y-0.5">
-                        <span class="text-[9px] font-black uppercase text-purple-300 block">3. +OI எரிபொருள் நிலை</span>
-                        <h5 id="wsp-m3-val" class="text-[11px] font-mono font-black text-white">0 BTC</h5>
-                        <p id="wsp-m3-sub" class="text-[9px] font-bold text-gray-400">Breakout vs Wick Trap Fuel</p>
-                    </div>
-                    <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-2.5 space-y-0.5">
-                        <span class="text-[9px] font-black uppercase text-emerald-300 block">4. எதிர்பார்க்கும் நகர்வு தூரம்</span>
-                        <h5 id="wsp-m4-val" class="text-[11px] font-mono font-black text-emerald-300">500–900 Pts</h5>
-                        <p id="wsp-m4-sub" class="text-[9px] font-bold text-gray-400">Next Magnet Span</p>
-                    </div>
                 </div>
             </div>
 
