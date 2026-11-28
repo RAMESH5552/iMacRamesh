@@ -586,6 +586,135 @@
                 <p id="signal-desc" class="text-xs font-bold text-gray-200">Near-Range Structural Walls & Per-Timeframe OI Confluence active.</p>
             </div>
 
+            <!-- ENGINE A: MULTI-YEAR BTCUSDT PRICE & VOLUME CONCENTRATION + ORDER ACTIVITY ENGINE -->
+            <div id="multi-year-vp-card" class="glass-card rounded-2xl p-4 sm:p-5 border-2 border-amber-400/90 shadow-2xl space-y-3.5 bg-gradient-to-r from-gray-950 via-amber-950/20 to-gray-950">
+                <div class="flex flex-wrap justify-between items-center gap-2 border-b border-gray-800 pb-2.5">
+                    <div class="flex items-center gap-2.5">
+                        <div class="bg-gradient-to-tr from-amber-400 to-orange-500 p-2 rounded-xl text-black font-black text-xs shadow-lg">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xs sm:text-sm font-black text-amber-300 uppercase tracking-wider">MULTI-YEAR BTCUSDT ORDER CONCENTRATION & VOLUME PROFILE</h3>
+                            <p id="myvp-meta-line" class="text-[10px] font-mono font-bold text-gray-300">All-Time / Multi-Year Historical Buy-Sell Clusters • Live Price Position • Boundary Breakout Forecast</p>
+                        </div>
+                    </div>
+                    <span id="myvp-pos-badge" class="text-[10px] sm:text-xs font-mono font-black bg-amber-500/20 text-amber-300 px-3 py-1 rounded-lg border border-amber-400/50">Scanning History...</span>
+                </div>
+
+                <!-- Main Multi-Year Position & Next Boundary Verdict -->
+                <div class="bg-gray-900/95 border border-amber-500/40 rounded-2xl p-3.5 space-y-2">
+                    <div class="flex flex-wrap justify-between items-center gap-2">
+                        <h2 id="myvp-main-verdict" class="text-sm sm:text-lg font-black text-amber-300 tracking-wide">
+                            பல ஆண்டுகால BTCUSDT வர்த்தகக் குவியல் கணக்கிடப்படுகிறது...
+                        </h2>
+                        <span id="myvp-poc-pill" class="text-xs font-mono font-black bg-indigo-950 text-cyan-300 px-3 py-1 rounded-xl border border-indigo-400/50">
+                            Peak Volume Node: $--
+                        </span>
+                    </div>
+                    <p id="myvp-next-move-txt" class="text-xs font-bold text-gray-200 leading-relaxed">
+                        அதிக வர்த்தகம் நடந்த விலை மட்டத்திற்கு மேலே உள்ளதா அல்லது கீழே உள்ளதா & எல்லையைக் கடந்தால் அடுத்து என்ன நடக்கும்...
+                    </p>
+                </div>
+
+                <!-- Historical Buy vs Sell & Whale vs Crowd Dominance Bar -->
+                <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-3 space-y-1.5">
+                    <div class="flex flex-wrap justify-between items-center gap-1 text-[11px] font-mono font-black">
+                        <span id="myvp-buy-vol-txt" class="text-emerald-400">🟢 Multi-Year Buy Dominance: 50%</span>
+                        <span id="myvp-participant-txt" class="text-cyan-300">Participants: Evaluating...</span>
+                        <span id="myvp-sell-vol-txt" class="text-rose-400">🔴 Multi-Year Sell Dominance: 50%</span>
+                    </div>
+                    <div class="w-full bg-gray-800 h-3 rounded-full overflow-hidden flex p-0.5 border border-gray-700">
+                        <div id="myvp-buy-bar" class="bg-gradient-to-r from-emerald-600 to-emerald-400 h-full rounded-l-full transition-all duration-500" style="width: 50%"></div>
+                        <div id="myvp-sell-bar" class="bg-gradient-to-r from-rose-500 to-rose-600 h-full rounded-r-full transition-all duration-500" style="width: 50%"></div>
+                    </div>
+                </div>
+
+                <!-- 4-Card Summary: Nearest Overhead | Nearest Downside | Whale vs Crowd | Order Open vs Close -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 text-xs">
+                    <div class="bg-rose-950/25 border border-rose-500/35 rounded-xl p-3 space-y-1">
+                        <span class="text-[9px] font-black uppercase text-rose-300 block">1. அருகிலுள்ள மேல் குவியல் (Overhead)</span>
+                        <h4 id="myvp-above-zone" class="text-xs sm:text-sm font-mono font-black text-white">$--</h4>
+                        <p id="myvp-above-sub" class="text-[10px] font-bold text-gray-300">அதிகம் விற்பனை / ஆர்டர் குவிந்த மேல் எல்லை</p>
+                    </div>
+                    <div class="bg-emerald-950/25 border border-emerald-500/35 rounded-xl p-3 space-y-1">
+                        <span class="text-[9px] font-black uppercase text-emerald-300 block">2. அருகிலுள்ள கீழ் குவியல் (Support)</span>
+                        <h4 id="myvp-below-zone" class="text-xs sm:text-sm font-mono font-black text-white">$--</h4>
+                        <p id="myvp-below-sub" class="text-[10px] font-bold text-gray-300">அதிகம் வாங்குதல் நடந்த கீழ் எல்லை</p>
+                    </div>
+                    <div class="bg-purple-950/25 border border-purple-500/35 rounded-xl p-3 space-y-1">
+                        <span class="text-[9px] font-black uppercase text-purple-300 block">3. முதலீட்டாளர் வகை (Whale vs Crowd)</span>
+                        <h4 id="myvp-cohort-val" class="text-xs sm:text-sm font-mono font-black text-purple-300">Scanning...</h4>
+                        <p id="myvp-cohort-sub" class="text-[10px] font-bold text-gray-300">பெரிய முதலீட்டாளர்கள் vs பல மக்கள் கூட்டு</p>
+                    </div>
+                    <div class="bg-cyan-950/25 border border-cyan-500/35 rounded-xl p-3 space-y-1">
+                        <span class="text-[9px] font-black uppercase text-cyan-300 block">4. ஆர்டர் நிலை (Open vs Closing)</span>
+                        <h4 id="myvp-order-state" class="text-xs sm:text-sm font-mono font-black text-cyan-300">Evaluating...</h4>
+                        <p id="myvp-order-sub" class="text-[10px] font-bold text-gray-300">புதிய ஆர்டர் குவியல் vs பழைய க்ளோசிங்</p>
+                    </div>
+                </div>
+
+                <!-- MULTI-TIER ABNORMAL HIGH-VOLUME CLUSTERS LADDER (உச்சபட்ச பலம் -> 2-வது -> 3-வது -> 4-வது மட்டங்கள் + Touch/Breakout Rules) -->
+                <div class="bg-gray-950/90 border border-amber-400/40 rounded-2xl p-3.5 space-y-2.5">
+                    <div class="flex flex-wrap justify-between items-center gap-2 border-b border-gray-800 pb-2">
+                        <span class="text-[11px] font-black text-amber-300 uppercase tracking-wider">
+                            📊 வழக்கத்திற்கு மாறாக அதிக ஆர்டர்கள் குவிந்த பல நிலை மண்டலங்கள் (Multi-Tier Heavy Clusters & Touch/Break Rules)
+                        </span>
+                        <span id="myvp-avg-norm-pill" class="text-[10px] font-mono font-black bg-gray-900 text-cyan-300 px-2.5 py-0.5 rounded border border-cyan-500/30">
+                            Normal Avg Vol: $--
+                        </span>
+                    </div>
+                    <div id="myvp-tiers-grid" class="grid grid-cols-1 md:grid-cols-2 gap-2.5 text-xs">
+                        <div class="bg-gray-900/80 border border-gray-800 rounded-xl p-3 text-gray-400 font-bold">
+                            Scanning multi-year abnormal volume tiers...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ENGINE B: BITCOIN-ONLY GLOBAL NEWS & MARKET IMPACT ENGINE -->
+            <div id="btc-news-impact-card" class="glass-card rounded-2xl p-4 sm:p-5 border-2 border-cyan-400/90 shadow-2xl space-y-3.5 bg-gradient-to-r from-gray-950 via-cyan-950/20 to-gray-950">
+                <div class="flex flex-wrap justify-between items-center gap-2 border-b border-gray-800 pb-2.5">
+                    <div class="flex items-center gap-2.5">
+                        <div class="bg-gradient-to-tr from-cyan-400 to-indigo-500 p-2 rounded-xl text-black font-black text-xs shadow-lg">
+                            <i class="fa-solid fa-newspaper"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xs sm:text-sm font-black text-cyan-300 uppercase tracking-wider">BITCOIN (BTC) GLOBAL NEWS & MARKET IMPACT ENGINE</h3>
+                            <p id="btcnews-meta-line" class="text-[10px] font-mono font-bold text-gray-300">Strict BTC-Only Global News Filter • Sentiment & Price Impact Forecast</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <span id="btcnews-impact-badge" class="text-[10px] sm:text-xs font-mono font-black bg-cyan-500/20 text-cyan-300 px-3 py-1 rounded-lg border border-cyan-400/50">Fetching BTC News...</span>
+                        <button type="button" onclick="refreshBitcoinGlobalNews(true)" class="bg-cyan-600 hover:bg-cyan-500 text-black px-2.5 py-1 rounded-lg text-[10px] font-black transition">
+                            <i class="fa-solid fa-rotate"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Overall BTC News Impact Summary -->
+                <div class="bg-gray-900/95 border border-indigo-500/40 rounded-2xl p-3.5 space-y-2">
+                    <div class="flex flex-wrap justify-between items-center gap-2">
+                        <h2 id="btcnews-main-verdict" class="text-sm sm:text-base font-black text-white tracking-wide">
+                            உலகளாவிய பிட்காயின் (BTC) செய்திகள் ஆய்வு செய்யப்படுகின்றன...
+                        </h2>
+                        <span id="btcnews-score-pill" class="text-xs font-mono font-black bg-indigo-950 text-amber-300 px-3 py-1 rounded-xl border border-amber-400/40">
+                            Impact: --
+                        </span>
+                    </div>
+                    <p id="btcnews-effect-desc" class="text-xs font-bold text-cyan-200 leading-relaxed">
+                        பிட்காயின் சார்ந்த முக்கிய செய்திகள் மட்டும் வடிகட்டப்பட்டு சந்தையில் ஏற்படுத்தும் தாக்கம் கணக்கிடப்படுகிறது...
+                    </p>
+                </div>
+
+                <!-- Latest BTC-Only Headlines List -->
+                <div id="btcnews-headlines-list" class="grid grid-cols-1 md:grid-cols-2 gap-2.5 text-xs">
+                    <div class="bg-gray-900/85 border border-gray-800 rounded-xl p-3 text-gray-400 font-bold">
+                        Loading Bitcoin global headlines...
+                    </div>
+                </div>
+            </div>
+
+
             <!-- LIVE DUAL-SIDE DIRECTION & STRENGTH ENGINE -->
             <div class="glass-card rounded-2xl p-4 border-2 border-indigo-500/80 shadow-xl space-y-3 bg-gradient-to-r from-gray-950 via-indigo-950/20 to-gray-950">
                 <div class="flex justify-between items-center border-b border-gray-800 pb-2">
@@ -1175,69 +1304,6 @@
                 </div>
             </div>
 
-            <!-- MASTER UNIFIED TREND & OPTIONS (ATM/OTM/ITM + 4 TRADERS) CONFLUENCE ENGINE -->
-            <div id="master-options-trend-card" class="glass-card rounded-2xl p-4 sm:p-5 border-2 border-emerald-400/95 shadow-2xl space-y-3.5 bg-gradient-to-r from-gray-950 via-indigo-950/30 to-gray-950">
-                <div class="flex flex-wrap justify-between items-center gap-2 border-b border-gray-800 pb-2.5">
-                    <div class="flex items-center gap-2.5">
-                        <div class="bg-gradient-to-tr from-emerald-400 via-cyan-400 to-amber-400 p-2 rounded-xl text-black font-black text-xs shadow-lg">
-                            <i class="fa-solid fa-shield-halved"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xs sm:text-sm font-black text-emerald-300 uppercase tracking-wider">MASTER TREND & OPTIONS (ATM / OTM / ITM + 4 TRADERS) ENGINE</h3>
-                            <p id="mot-meta-line" class="text-[10px] font-mono font-bold text-gray-300">Futures Flow + 2.1Cr Scarcity + Whale Path + Options (Call/Put Long & Short)</p>
-                        </div>
-                    </div>
-                    <span id="mot-verdict-badge" class="text-[10px] sm:text-xs font-mono font-black bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-lg border border-emerald-400/50">Evaluating All Engines...</span>
-                </div>
-
-                <!-- Unified Final Trend Verdict -->
-                <div class="bg-gray-900/95 border border-cyan-500/40 rounded-2xl p-3.5 space-y-2">
-                    <div class="flex flex-wrap justify-between items-center gap-2">
-                        <h2 id="mot-main-verdict" class="text-base sm:text-xl font-black text-amber-300 tracking-wide">
-                            அனைத்து நுட்பங்களும் ஒருங்கிணைக்கப்படுகின்றன...
-                        </h2>
-                        <span id="mot-conv-pill" class="text-xs sm:text-sm font-mono font-black bg-indigo-950 text-cyan-300 px-3 py-1 rounded-xl border border-indigo-400/50">
-                            உறுதி: --%
-                        </span>
-                    </div>
-                    <p id="mot-action-line" class="text-xs font-bold text-cyan-200 leading-relaxed">
-                        Futures Order Flow + Whale Clusters + 2.1Cr Scarcity + ATM/OTM/ITM Options நிலைகள் கணக்கிடப்படுகின்றன...
-                    </p>
-                </div>
-
-                <!-- 4 Options Trader Buckets (Call Long, Call Short, Put Long, Put Short) -->
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 text-xs">
-                    <div class="bg-emerald-950/25 border border-emerald-500/35 rounded-xl p-2.5 space-y-1">
-                        <span class="text-[9px] font-black uppercase text-emerald-300 block">1. Call Long (மேல் ஏற்றம் / Gamma)</span>
-                        <h4 id="opt4-call-long-val" class="text-xs font-mono font-black text-white">$--</h4>
-                        <p id="opt4-call-long-sub" class="text-[9px] font-bold text-gray-300">OTM/ITM Call Buy அழுத்தம்</p>
-                    </div>
-                    <div class="bg-rose-950/25 border border-rose-500/35 rounded-xl p-2.5 space-y-1">
-                        <span class="text-[9px] font-black uppercase text-rose-300 block">2. Call Short (மேல் தடை / Wall)</span>
-                        <h4 id="opt4-call-short-val" class="text-xs font-mono font-black text-white">$--</h4>
-                        <p id="opt4-call-short-sub" class="text-[9px] font-bold text-gray-300">Call Writers தடுப்புச் சுவர்</p>
-                    </div>
-                    <div class="bg-amber-950/25 border border-amber-500/35 rounded-xl p-2.5 space-y-1">
-                        <span class="text-[9px] font-black uppercase text-amber-300 block">3. Put Long (கீழ் சரிவு / Hedge)</span>
-                        <h4 id="opt4-put-long-val" class="text-xs font-mono font-black text-white">$--</h4>
-                        <p id="opt4-put-long-sub" class="text-[9px] font-bold text-gray-300">OTM/ITM Put Buy அழுத்தம்</p>
-                    </div>
-                    <div class="bg-cyan-950/25 border border-cyan-500/35 rounded-xl p-2.5 space-y-1">
-                        <span class="text-[9px] font-black uppercase text-cyan-300 block">4. Put Short (கீழ் ஆதரவு / Floor)</span>
-                        <h4 id="opt4-put-short-val" class="text-xs font-mono font-black text-white">$--</h4>
-                        <p id="opt4-put-short-sub" class="text-[9px] font-bold text-gray-300">Put Writers ஆதரவுத் தளம்</p>
-                    </div>
-                </div>
-
-                <!-- ATM / OTM / ITM Zone Summary Bar -->
-                <div class="bg-gray-950/90 border border-gray-800 rounded-xl p-2.5 flex flex-wrap justify-between items-center gap-2 text-[10px] sm:text-[11px] font-mono font-bold text-gray-200">
-                    <span id="opt-atm-txt" class="text-amber-300">ATM ($--): Pinning / Pivot</span>
-                    <span id="opt-otm-txt" class="text-cyan-300">OTM Walls: ↑$-- / ↓$--</span>
-                    <span id="opt-itm-txt" class="text-emerald-300">ITM Hedge Bias: --</span>
-                </div>
-            </div>
-
-            
             <div id="next-500-1000-predictor-card" class="glass-card rounded-2xl p-4 sm:p-5 border-2 border-cyan-400 shadow-2xl space-y-3.5 bg-gradient-to-r from-gray-950 via-cyan-950/30 to-gray-950 glow-yellow">
                 <!-- Header & Lock Controls -->
                 <div class="flex flex-wrap justify-between items-center gap-2 border-b border-gray-800 pb-2.5">
@@ -1468,6 +1534,107 @@
                 </div>
             </div>
 
+
+            <!-- PRIME HOME INTELLIGENCE ENGINE: OPTIONS + MM INTEL + ORDER FLOW + LIVE INFLOW/OUTFLOW & ORDER REACTION -->
+            <div id="prime-home-confluence-engine" class="glass-card rounded-2xl p-4 sm:p-5 border-2 border-emerald-400/95 shadow-2xl space-y-4 bg-gradient-to-r from-gray-950 via-indigo-950/25 to-gray-950">
+                <div class="flex flex-wrap justify-between items-center gap-2 border-b border-gray-800 pb-2.5">
+                    <div class="flex items-center gap-2.5">
+                        <div class="bg-gradient-to-tr from-emerald-400 via-cyan-400 to-amber-400 p-2 rounded-xl text-black font-black text-xs shadow-lg">
+                            <i class="fa-solid fa-satellite-dish"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xs sm:text-sm font-black text-emerald-300 uppercase tracking-wider">3RD ENGINE • PRIME CONFLUENCE (OPTIONS + MM INTEL + ORDER FLOW & LIVE REACTION)</h3>
+                            <p id="phe-meta-line" class="text-[10px] font-mono font-bold text-gray-300">Above vs Below Scans • Strength vs Weakness • Projected Reach • Live Inflow/Outflow & Open/Close</p>
+                        </div>
+                    </div>
+                    <span id="phe-status-badge" class="text-[10px] sm:text-xs font-mono font-black bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-lg border border-emerald-400/50">Scanning All Pillars...</span>
+                </div>
+
+                <!-- Master Synthesis Verdict + Reachable Target & Distance -->
+                <div class="bg-gray-900/95 border border-cyan-500/40 rounded-2xl p-3.5 space-y-2">
+                    <div class="flex flex-wrap justify-between items-center gap-2">
+                        <h2 id="phe-main-verdict" class="text-base sm:text-lg font-black text-amber-300 tracking-wide">
+                            Options, MM Intel, Order Flow & லைவ் பண ஓட்டத் தரவுகள் ஒருங்கிணைக்கப்படுகின்றன...
+                        </h2>
+                        <span id="phe-target-pill" class="text-xs sm:text-sm font-mono font-black bg-indigo-950 text-cyan-300 px-3 py-1 rounded-xl border border-indigo-400/50">
+                            Projected: $-- (-- Pts)
+                        </span>
+                    </div>
+                    <p id="phe-action-desc" class="text-xs font-bold text-cyan-200 leading-relaxed">
+                        விலைக்கு மேலே மற்றும் கீழே உள்ள பணம், லிக்விடிட்டி, புதிய பையர்ஸ்/செல்லர்ஸ் மற்றும் க்ளோசிங் நிலைகள் கணக்கிடப்படுகின்றன...
+                    </p>
+                </div>
+
+                <!-- Above vs Below Total Pressure & Strength Bar -->
+                <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-3 space-y-1.5">
+                    <div class="flex flex-wrap justify-between items-center gap-1 text-[11px] font-mono font-black">
+                        <span id="phe-up-pressure-txt" class="text-emerald-400">🟢 மேல் திசை பலம்: 50% (Weakness: 50%)</span>
+                        <span id="phe-flow-mode-txt" class="text-amber-300">Live Flow: Evaluating...</span>
+                        <span id="phe-dn-pressure-txt" class="text-rose-400">🔴 கீழ் திசை பலம்: 50% (Weakness: 50%)</span>
+                    </div>
+                    <div class="w-full bg-gray-800 h-3 rounded-full overflow-hidden flex p-0.5 border border-gray-700">
+                        <div id="phe-up-pressure-bar" class="bg-gradient-to-r from-emerald-600 to-emerald-400 h-full rounded-l-full transition-all duration-500" style="width: 50%"></div>
+                        <div id="phe-dn-pressure-bar" class="bg-gradient-to-r from-rose-500 to-rose-600 h-full rounded-r-full transition-all duration-500" style="width: 50%"></div>
+                    </div>
+                </div>
+
+                <!-- 3 Dedicated Sub-Structures: (1) Options Data | (2) MM Intel | (3) Order Flow & Liquidity Map -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5 text-xs">
+                    <!-- Sub-structure 1: Options Data Above vs Below -->
+                    <div class="bg-gray-900/90 border border-amber-500/40 rounded-xl p-3 space-y-1.5">
+                        <div class="flex justify-between items-center border-b border-amber-500/20 pb-1">
+                            <span class="text-[10px] font-black uppercase text-amber-300">1. Options Data (மேல் vs கீழ்)</span>
+                            <span id="phe-opt-bias-tag" class="text-[10px] font-mono font-black bg-amber-500/20 text-amber-200 px-2 py-0.5 rounded">--%</span>
+                        </div>
+                        <h4 id="phe-opt-val" class="text-xs font-mono font-black text-white">Above $-- | Below $--</h4>
+                        <p id="phe-opt-sub" class="text-[10px] font-bold text-gray-300 leading-snug">Call/Put OI & Liquidity scan above & below live price...</p>
+                    </div>
+
+                    <!-- Sub-structure 2: MM Intel Above vs Below -->
+                    <div class="bg-gray-900/90 border border-purple-500/40 rounded-xl p-3 space-y-1.5">
+                        <div class="flex justify-between items-center border-b border-purple-500/20 pb-1">
+                            <span class="text-[10px] font-black uppercase text-purple-300">2. MM Intel (மேல் vs கீழ்)</span>
+                            <span id="phe-mm-bias-tag" class="text-[10px] font-mono font-black bg-purple-500/20 text-purple-200 px-2 py-0.5 rounded">--%</span>
+                        </div>
+                        <h4 id="phe-mm-val" class="text-xs font-mono font-black text-white">Up Pool $-- | Dn Pool $--</h4>
+                        <p id="phe-mm-sub" class="text-[10px] font-bold text-gray-300 leading-snug">Long/Short & Liquidation pools above & below live price...</p>
+                    </div>
+
+                    <!-- Sub-structure 3: Order Flow & Liquidity Map -->
+                    <div class="bg-gray-900/90 border border-cyan-500/40 rounded-xl p-3 space-y-1.5">
+                        <div class="flex justify-between items-center border-b border-cyan-500/20 pb-1">
+                            <span class="text-[10px] font-black uppercase text-cyan-300">3. Order Flow & Liq Map</span>
+                            <span id="phe-of-bias-tag" class="text-[10px] font-mono font-black bg-cyan-500/20 text-cyan-200 px-2 py-0.5 rounded">--%</span>
+                        </div>
+                        <h4 id="phe-of-val" class="text-xs font-mono font-black text-white">Bid $-- | Ask $--</h4>
+                        <p id="phe-of-sub" class="text-[10px] font-bold text-gray-300 leading-snug">Liquidity Map, Limit & +OI/-OI flow above & below...</p>
+                    </div>
+                </div>
+
+                <!-- Live Market Participant & Order Action Strip (Inflow/Outflow + New Buyers/Sellers + Close/Exit) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 text-xs">
+                    <div class="bg-gray-950/90 border border-emerald-500/30 rounded-xl p-2.5 space-y-0.5">
+                        <span class="text-[9px] font-black uppercase text-emerald-300 block">பணம் உள்ளே vs வெளியே</span>
+                        <h5 id="phe-in-out-val" class="text-[11px] font-mono font-black text-white">In $-- | Out $--</h5>
+                        <p id="phe-in-out-sub" class="text-[9px] font-bold text-gray-400">Net Money Flow</p>
+                    </div>
+                    <div class="bg-gray-950/90 border border-cyan-500/30 rounded-xl p-2.5 space-y-0.5">
+                        <span class="text-[9px] font-black uppercase text-cyan-300 block">புதிய பையர்ஸ் / செல்லர்ஸ்</span>
+                        <h5 id="phe-new-pos-val" class="text-[11px] font-mono font-black text-white">Evaluating...</h5>
+                        <p id="phe-new-pos-sub" class="text-[9px] font-bold text-gray-400">Fresh +OI Buildup</p>
+                    </div>
+                    <div class="bg-gray-950/90 border border-amber-500/30 rounded-xl p-2.5 space-y-0.5">
+                        <span class="text-[9px] font-black uppercase text-amber-300 block">ஆர்டர் க்ளோஸ் / வெளியேற்றம்</span>
+                        <h5 id="phe-close-pos-val" class="text-[11px] font-mono font-black text-white">Evaluating...</h5>
+                        <p id="phe-close-pos-sub" class="text-[9px] font-bold text-gray-400">Short Cover / Long Unwind</p>
+                    </div>
+                    <div class="bg-gray-950/90 border border-purple-500/30 rounded-xl p-2.5 space-y-0.5">
+                        <span class="text-[9px] font-black uppercase text-purple-300 block">எதிர்பார்க்கும் தூரம் (Reach)</span>
+                        <h5 id="phe-reach-val" class="text-[11px] font-mono font-black text-emerald-300">-- Pts</h5>
+                        <p id="phe-reach-sub" class="text-[9px] font-bold text-gray-400">Strong vs Weak Side Span</p>
+                    </div>
+                </div>
+            </div>
 
             <!-- ENGINE 3: WHALE ORDER-CLUSTER & FORWARD OBSTACLE PREDICTOR (பெரிய பணக்காரர்கள் & எதிர்காலத் தடை கணிப்பான்) -->
             <div id="whale-forward-predictor-card" class="glass-card rounded-2xl p-4 sm:p-5 border-2 border-purple-400/95 shadow-2xl space-y-3.5 bg-gradient-to-r from-gray-950 via-purple-950/25 to-gray-950">
@@ -2519,10 +2686,36 @@
 
         let smoothedWallState = { bucket: null, supHold: null, resHold: null };
 
+        function getRealBookUsdAroundPrice(targetPrice, radiusPts) {
+            const r = radiusPts || 250;
+            let usdSum = 0;
+            if (cachedLimitBook) {
+                if (Array.isArray(cachedLimitBook.bids)) {
+                    for (const b of cachedLimitBook.bids) {
+                        const bp = parseFloat(b[0]), bq = parseFloat(b[1]);
+                        if (!isNaN(bp) && !isNaN(bq) && Math.abs(bp - targetPrice) <= r) usdSum += bp * bq;
+                    }
+                }
+                if (Array.isArray(cachedLimitBook.asks)) {
+                    for (const a of cachedLimitBook.asks) {
+                        const ap = parseFloat(a[0]), aq = parseFloat(a[1]);
+                        if (!isNaN(ap) && !isNaN(aq) && Math.abs(ap - targetPrice) <= r) usdSum += ap * aq;
+                    }
+                }
+            }
+            return usdSum;
+        }
+
         function computeLevelPoolIntensity(levelPrice, currentOI) {
-            const intensity = Math.floor(Math.abs(Math.sin(levelPrice * 0.001) * 75) + 24);
-            const btcAtLevel = Math.round((currentOI * 0.08) * (intensity / 100));
-            const poolUsd = btcAtLevel * levelPrice;
+            const livePrice = (typeof window.lastGlobalPrice === 'number' && window.lastGlobalPrice > 0) ? window.lastGlobalPrice : levelPrice;
+            const distPts = Math.abs(levelPrice - livePrice);
+            const realBookUsd = getRealBookUsdAroundPrice(levelPrice, 250);
+            const oiBaseBtc = Math.max(10, currentOI * 0.045 * Math.exp(-distPts / 6000));
+            const bookBtc = realBookUsd / Math.max(1, levelPrice);
+            const btcAtLevel = Math.max(1, Math.round(oiBaseBtc + bookBtc));
+            const poolUsd = Math.round(btcAtLevel * levelPrice);
+            const relRatio = Math.min(0.96, Math.max(0.15, (btcAtLevel / Math.max(1, currentOI * 0.08)) * 100));
+            const intensity = Math.round(relRatio);
             return { intensity, btcAtLevel, poolUsd };
         }
 
@@ -3549,8 +3742,14 @@
                 const nextUpBeyond = upClusters.find(c => c.price > peakUp.price + 250) || { price: peakUp.price + 500 };
                 const nextDnBeyond = dnClusters.find(c => c.price < peakDn.price - 250) || { price: Math.max(500, peakDn.price - 500) };
 
-                // Stabilized Anchor Lock for Forward Whale Zones (auto-reanchors if price drifts >= 280 pts or breaks zone)
-                const driftedFar = whaleFwdState.anchorPrice > 0 && Math.abs(currentPrice - whaleFwdState.anchorPrice) >= 280;
+                const wfpRapidDrop = (tf5.priceDelta <= -180) ||
+                    (whaleFwdState.dnZonePrice > 0 && currentPrice <= whaleFwdState.dnZonePrice - 40 && tf5.priceDelta < -50);
+                const wfpRapidUp = (tf5.priceDelta >= 180) ||
+                    (whaleFwdState.upZonePrice > 0 && currentPrice >= whaleFwdState.upZonePrice + 40 && tf5.priceDelta > 50);
+
+                // Stabilized Anchor Lock for Forward Whale Zones (auto-reanchors on rapid drop/break or >= 220 pts drift)
+                const driftedFar = wfpRapidDrop || wfpRapidUp ||
+                    (whaleFwdState.anchorPrice > 0 && Math.abs(currentPrice - whaleFwdState.anchorPrice) >= 220);
                 if (forceFresh || driftedFar || !whaleFwdState.upZonePrice || currentPrice >= whaleFwdState.upZonePrice + 80 || whaleFwdState.upZonePrice <= currentPrice + 120) {
                     whaleFwdState.upZonePrice = peakUp.price;
                 }
@@ -3634,10 +3833,10 @@
 
                 // Raw Breakthrough % vs Wall Hold/Turn % for the active forward barrier
                 const rawBrkPct = activeWallWk;
-                if (forceFresh || whaleFwdState.emaBrkPct === null) {
+                if (forceFresh || wfpRapidDrop || wfpRapidUp || whaleFwdState.emaBrkPct === null) {
                     whaleFwdState.emaBrkPct = rawBrkPct;
                 } else {
-                    whaleFwdState.emaBrkPct = (whaleFwdState.emaBrkPct * 0.78) + (rawBrkPct * 0.22);
+                    whaleFwdState.emaBrkPct = (whaleFwdState.emaBrkPct * 0.55) + (rawBrkPct * 0.45);
                 }
 
                 const brkProb = Math.max(18, Math.min(82, Math.round(whaleFwdState.emaBrkPct)));
@@ -4458,6 +4657,791 @@
             try { return fn(); } catch (e) { console.warn(label + " skipped:", e); }
         }
 
+
+        // =========================================================================
+        // HOME ENGINE A: MULTI-YEAR BTCUSDT ORDER CONCENTRATION & VOLUME PROFILE
+        // =========================================================================
+        let cachedMultiYearState = {
+            lastFetchMs: 0,
+            klines1w: [],
+            klines1d: []
+        };
+
+        async function updateMultiYearVolumeProfileEngine(currentPrice, currentOI, tfSummary, realMoney) {
+            try {
+                if (!currentPrice || isNaN(currentPrice)) return;
+                const nowMs = Date.now();
+                if (nowMs - cachedMultiYearState.lastFetchMs >= 60000 || cachedMultiYearState.klines1w.length === 0) {
+                    cachedMultiYearState.lastFetchMs = nowMs;
+                    const [wRes, dRes] = await Promise.all([
+                        fetchBinanceData('https://fapi.binance.com/fapi/v1/klines?symbol=BTCUSDT&interval=1w&limit=500'),
+                        fetchBinanceData('https://fapi.binance.com/fapi/v1/klines?symbol=BTCUSDT&interval=1d&limit=365')
+                    ]);
+                    if (Array.isArray(wRes) && wRes.length > 0) cachedMultiYearState.klines1w = wRes;
+                    if (Array.isArray(dRes) && dRes.length > 0) cachedMultiYearState.klines1d = dRes;
+                }
+
+                const wList = cachedMultiYearState.klines1w;
+                const dList = cachedMultiYearState.klines1d;
+                if (wList.length === 0 && dList.length === 0) return;
+
+                let fineBuckets = {};
+                let allTimeHigh = 0;
+                let totalBuyQuote = 0;
+                let totalSellQuote = 0;
+
+                const addFine = (arr, w) => {
+                    for (const k of arr) {
+                        const o = parseFloat(k[1]), h = parseFloat(k[2]), l = parseFloat(k[3]), c = parseFloat(k[4]);
+                        const qVol = parseFloat(k[7]) || 0;
+                        const bBuy = parseFloat(k[10]) || (c >= o ? qVol * 0.55 : qVol * 0.45);
+                        const bSell = Math.max(0, qVol - bBuy);
+                        if (!isNaN(h) && h > allTimeHigh) allTimeHigh = h;
+                        const mid = (h + l + c) / 3;
+                        const b1000 = Math.round(mid / 1000) * 1000;
+                        if (!fineBuckets[b1000]) fineBuckets[b1000] = { price: b1000, totalUsd: 0, buyUsd: 0, sellUsd: 0 };
+                        fineBuckets[b1000].totalUsd += qVol * w;
+                        fineBuckets[b1000].buyUsd += bBuy * w;
+                        fineBuckets[b1000].sellUsd += bSell * w;
+                        totalBuyQuote += bBuy * w;
+                        totalSellQuote += bSell * w;
+                    }
+                };
+                addFine(wList, 1.0);
+                addFine(dList, 0.5);
+
+                const fineSorted = Object.values(fineBuckets).sort((a, b) => b.totalUsd - a.totalUsd);
+                const pocNode = fineSorted[0] || { price: Math.round(currentPrice / 1000) * 1000, totalUsd: 0 };
+
+                // Avg volume across active $1,000 zones in current macro band (±15,000 pts)
+                const nearbyPool = fineSorted.filter(n => Math.abs(n.price - currentPrice) <= 15000);
+                const refNodes = nearbyPool.length >= 4 ? nearbyPool : fineSorted;
+                const avgRefVol = Math.max(1, refNodes.reduce((s, x) => s + x.totalUsd, 0) / refNodes.length);
+
+                // Nearest practical high-volume nodes within +-10,000 pts of currentPrice
+                const nearAboveList = fineSorted
+                    .filter(n => n.price >= currentPrice + 300 && n.price <= currentPrice + 10000)
+                    .sort((a, b) => b.totalUsd - a.totalUsd);
+                const nearBelowList = fineSorted
+                    .filter(n => n.price <= currentPrice - 300 && n.price >= currentPrice - 10000)
+                    .sort((a, b) => b.totalUsd - a.totalUsd);
+
+                const fallbackUp = Math.ceil((currentPrice + 1500) / 1000) * 1000;
+                const fallbackDn = Math.floor((currentPrice - 1500) / 1000) * 1000;
+                const nearHeavyAbove = nearAboveList[0] || { price: fallbackUp, totalUsd: avgRefVol * 1.4 };
+                const nearHeavyBelow = nearBelowList[0] || { price: fallbackDn, totalUsd: avgRefVol * 1.4 };
+
+                // Select Top 6 distinct heavy clusters prioritizing actionable proximity (±12,000 pts) while including major macro tiers
+                let heavyTiers = [];
+                const nearHeavyAll = fineSorted
+                    .filter(n => Math.abs(n.price - currentPrice) <= 12000)
+                    .sort((a, b) => b.totalUsd - a.totalUsd);
+
+                for (const node of nearHeavyAll) {
+                    if (heavyTiers.every(existing => Math.abs(existing.price - node.price) >= 1500)) {
+                        heavyTiers.push(node);
+                    }
+                    if (heavyTiers.length >= 6) break;
+                }
+                for (const node of fineSorted) {
+                    if (heavyTiers.length >= 6) break;
+                    if (heavyTiers.every(existing => Math.abs(existing.price - node.price) >= 2000)) {
+                        heavyTiers.push(node);
+                    }
+                }
+
+                const totMacroQuote = Math.max(1, totalBuyQuote + totalSellQuote);
+                const histBuyPct = Math.round((totalBuyQuote / totMacroQuote) * 100);
+                const histSellPct = 100 - histBuyPct;
+
+                const diffFromPoc = Math.round(currentPrice - pocNode.price);
+                const isAbovePoc = diffFromPoc >= 0;
+
+                // Consistent Participant & Order State classification (zero contradiction!)
+                const tf1h = (tfSummary && tfSummary['1h']) ? tfSummary['1h'] : { diff: 0, priceDelta: 0 };
+                const tf4h = (tfSummary && tfSummary['4h']) ? tfSummary['4h'] : { diff: 0, priceDelta: 0 };
+                const posLong = typeof window.lastPosLongPct === 'number' ? window.lastPosLongPct : 50;
+                const macroOiShift = (tf1h.diff * 0.5) + (tf4h.diff * 0.5);
+                const macroPxShift = (tf1h.priceDelta * 0.5) + (tf4h.priceDelta * 0.5);
+
+                let orderStateLabel = '⚖️ Balanced Order Flow';
+                let orderStateSub = 'புதிய ஆர்டர்களும் க்ளோசிங்கும் சமநிலையில் உள்ளன';
+                let cohortLabel = '👥 Crowd / Multi-Retail Mix';
+
+                if (macroOiShift > 20 && macroPxShift >= 0) {
+                    orderStateLabel = '🟢 New Long Buildup (+OI)';
+                    orderStateSub = `புதிய Long ஆர்டர்கள் (+${macroOiShift.toFixed(0)} BTC OI, Price ↑)`;
+                    cohortLabel = posLong >= 53 ? '🐋 Whales & Buyers Long Buildup' : '🟢 Fresh Long Buyers Active';
+                } else if (macroOiShift > 20 && macroPxShift < 0) {
+                    orderStateLabel = '🔴 New Short Buildup (+OI)';
+                    orderStateSub = `புதிய Short ஆர்டர்கள் (+${macroOiShift.toFixed(0)} BTC OI, Price ↓)`;
+                    cohortLabel = posLong <= 52 ? '🔴 Short Sellers Adding Pressure' : '⚠️ Longs Facing New Shorts';
+                } else if (macroOiShift < -20 && macroPxShift >= 0) {
+                    orderStateLabel = '⚡ Short Covering (-OI)';
+                    orderStateSub = `பழைய Short க்ளோசிங் (${macroOiShift.toFixed(0)} BTC OI, Price ↑)`;
+                    cohortLabel = '⚡ Short Squeeze / Cover Relief';
+                } else if (macroOiShift < -20 && macroPxShift < 0) {
+                    orderStateLabel = '⚠️ Long Unwinding (-OI)';
+                    orderStateSub = `பழைய Long க்ளோசிங் (${macroOiShift.toFixed(0)} BTC OI, Price ↓)`;
+                    cohortLabel = posLong >= 58 ? '⚠️ Crowded Longs Unwinding' : '📉 Long Position Closing';
+                } else {
+                    cohortLabel = posLong >= 58 ? '🐋 Whales Long Skew (' + posLong.toFixed(0) + '% L)' : '👥 Balanced Market Mix';
+                }
+
+                const setT = (id, v) => { const el = document.getElementById(id); if (el) el.innerText = v; };
+                const setW = (id, p) => { const el = document.getElementById(id); if (el) el.style.width = `${p}%`; };
+
+                const badgeEl = document.getElementById('myvp-pos-badge');
+                if (badgeEl) {
+                    badgeEl.innerText = isAbovePoc
+                        ? `ABOVE POC (+$${Math.abs(diffFromPoc).toLocaleString()}) 🟢`
+                        : `BELOW POC (-$${Math.abs(diffFromPoc).toLocaleString()}) 🔴`;
+                    badgeEl.className = isAbovePoc
+                        ? "text-[10px] sm:text-xs font-mono font-black bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-lg border border-emerald-400/50"
+                        : "text-[10px] sm:text-xs font-mono font-black bg-rose-500/20 text-rose-300 px-3 py-1 rounded-lg border border-rose-400/50";
+                }
+
+                setT('myvp-poc-pill', `Major POC: $${pocNode.price.toLocaleString()} (ATH $${Math.round(allTimeHigh).toLocaleString()})`);
+                setT('myvp-buy-vol-txt', `🟢 Historical Buy Volume: ${histBuyPct}%`);
+                setT('myvp-sell-vol-txt', `🔴 Historical Sell Volume: ${histSellPct}%`);
+                setT('myvp-participant-txt', `${cohortLabel} • Top Pos ${posLong.toFixed(0)}% L`);
+                setW('myvp-buy-bar', histBuyPct);
+                setW('myvp-sell-bar', histSellPct);
+
+                setT('myvp-avg-norm-pill', `Zone Avg Vol: ${fmtUsdCompact(avgRefVol)}`);
+
+                const distAbove = Math.max(100, Math.round(nearHeavyAbove.price - currentPrice));
+                const distBelow = Math.max(100, Math.round(currentPrice - nearHeavyBelow.price));
+                setT('myvp-above-zone', `$${nearHeavyAbove.price.toLocaleString()} (+${distAbove.toLocaleString()} Pts)`);
+                setT('myvp-above-sub', `Vol: ${fmtUsdCompact(nearHeavyAbove.totalUsd)} (${(nearHeavyAbove.totalUsd / avgRefVol).toFixed(1)}x Zone Avg)`);
+                setT('myvp-below-zone', `$${nearHeavyBelow.price.toLocaleString()} (-${distBelow.toLocaleString()} Pts)`);
+                setT('myvp-below-sub', `Vol: ${fmtUsdCompact(nearHeavyBelow.totalUsd)} (${(nearHeavyBelow.totalUsd / avgRefVol).toFixed(1)}x Zone Avg)`);
+                setT('myvp-cohort-val', cohortLabel);
+                setT('myvp-order-state', orderStateLabel);
+                setT('myvp-order-sub', orderStateSub);
+
+                const tiersContainer = document.getElementById('myvp-tiers-grid');
+                if (tiersContainer && heavyTiers.length > 0) {
+                    const rankTitles = [
+                        '🥇 1. உச்சபட்ச பலம் (Rank #1 Peak)',
+                        '🥈 2. இரண்டாவது பலம் (Rank #2 Strong)',
+                        '🥉 3. மூன்றாவது பலம் (Rank #3 Major)',
+                        '🏅 4. நான்காவது பலம் (Rank #4 Key)',
+                        '⭐ 5. ஐந்தாவது பலம் (Rank #5 Zone)',
+                        '🔹 6. ஆறாவது பலம் (Rank #6 Zone)'
+                    ];
+                    tiersContainer.innerHTML = heavyTiers.map((tier, idx) => {
+                        const mult = (tier.totalUsd / avgRefVol).toFixed(1);
+                        const isTierAbove = tier.price >= currentPrice;
+                        const distPts = Math.abs(Math.round(tier.price - currentPrice));
+                        const dirTag = isTierAbove
+                            ? `<span class="text-rose-300">மேலே +${distPts.toLocaleString()} Pts</span>`
+                            : `<span class="text-emerald-300">கீழே -${distPts.toLocaleString()} Pts</span>`;
+                        const cardBorder = idx === 0
+                            ? 'border-amber-400/80 bg-amber-950/20'
+                            : (isTierAbove ? 'border-rose-500/35 bg-gray-900/90' : 'border-emerald-500/35 bg-gray-900/90');
+
+                        const nextHigher = heavyTiers.filter(x => x.price > tier.price).sort((a, b) => a.price - b.price)[0];
+                        const nextLower = heavyTiers.filter(x => x.price < tier.price).sort((a, b) => b.price - a.price)[0];
+                        const nextUpTxt = nextHigher ? `$${nextHigher.price.toLocaleString()}` : `$${(tier.price + 2000).toLocaleString()}`;
+                        const nextDnTxt = nextLower ? `$${nextLower.price.toLocaleString()}` : `$${Math.max(1000, tier.price - 2000).toLocaleString()}`;
+
+                        const touchBreakExplain = isTierAbove
+                            ? `• தொட்டால்: மேல் தடையால் கீழே திரும்ப வாய்ப்பு | உடைத்து மேல் நிலைத்தால்: அடுத்து ${nextUpTxt} நோக்கி மேல் செல்ல வாய்ப்பு அதிகம்.`
+                            : `• தொட்டால்: கீழ் ஆதரவால் மேலே திரும்ப வாய்ப்பு | உடைத்து கீழ் இறங்கினால்: அடுத்து ${nextDnTxt} நோக்கி கீழ் செல்ல வாய்ப்பு அதிகம்.`;
+
+                        return `<div class="border ${cardBorder} rounded-xl p-3 space-y-1.5">
+                            <div class="flex flex-wrap justify-between items-center gap-1">
+                                <span class="text-[10px] font-black text-amber-300">${rankTitles[idx] || ('Rank #' + (idx + 1))}</span>
+                                <span class="text-[10px] font-mono font-black bg-gray-950 px-2 py-0.5 rounded border border-gray-700">${dirTag}</span>
+                            </div>
+                            <div class="flex flex-wrap justify-between items-baseline gap-2">
+                                <span class="text-sm font-mono font-black text-white">$${tier.price.toLocaleString()}</span>
+                                <span class="text-[10px] font-mono font-black text-cyan-300">Vol: ${fmtUsdCompact(tier.totalUsd)} (${mult}x Avg)</span>
+                            </div>
+                            <p class="text-[10px] font-bold text-gray-200 leading-snug">${touchBreakExplain}</p>
+                        </div>`;
+                    }).join('');
+                }
+
+                const verdictEl = document.getElementById('myvp-main-verdict');
+                const descEl = document.getElementById('myvp-next-move-txt');
+                if (isAbovePoc) {
+                    if (verdictEl) {
+                        verdictEl.innerText = `முக்கிய வர்த்தகக் குவியல் ($${pocNode.price.toLocaleString()})-க்கு மேலே விலை உள்ளது (+$${Math.abs(diffFromPoc).toLocaleString()}) 🟢`;
+                        verdictEl.className = "text-sm sm:text-lg font-black text-emerald-400 tracking-wide";
+                    }
+                    if (descEl) {
+                        descEl.innerText = `நிலை ஆய்வு: $${pocNode.price.toLocaleString()} ஆதரவாக உள்ளது; மேலே உள்ள $${nearHeavyAbove.price.toLocaleString()} (+${distAbove.toLocaleString()} Pts) எல்லையைக் கடந்தால் அடுத்த மேல் மட்டத்திற்குச் செல்ல வாய்ப்பு அதிகம். $${nearHeavyBelow.price.toLocaleString()}-க்கு கீழ் இறங்கினால் கீழ்நோக்கிய அழுத்தம் கூடும்.`;
+                    }
+                } else {
+                    if (verdictEl) {
+                        verdictEl.innerText = `முக்கிய வர்த்தகக் குவியல் ($${pocNode.price.toLocaleString()})-க்கு கீழே விலை உள்ளது (-$${Math.abs(diffFromPoc).toLocaleString()}) 🔴`;
+                        verdictEl.className = "text-sm sm:text-lg font-black text-rose-400 tracking-wide";
+                    }
+                    if (descEl) {
+                        descEl.innerText = `நிலை ஆய்வு: மேலே உள்ள $${nearHeavyAbove.price.toLocaleString()} (+${distAbove.toLocaleString()} Pts) தடையாக இருக்கும்; கீழே உள்ள $${nearHeavyBelow.price.toLocaleString()} (-${distBelow.toLocaleString()} Pts) எல்லையை உடைத்தால் அடுத்த கீழ் மட்டத்திற்கு வேகமாக இறங்க வாய்ப்புள்ளது.`;
+                    }
+                }
+            } catch (e) {
+                console.warn("Multi-year VP engine warning:", e);
+            }
+        }
+
+        // =========================================================================
+        // HOME ENGINE B: BITCOIN-ONLY GLOBAL NEWS & MARKET IMPACT ENGINE
+        // =========================================================================
+        let cachedBtcNewsState = {
+            lastFetchMs: 0,
+            items: []
+        };
+
+        async function refreshBitcoinGlobalNews(forceReload) {
+            try {
+                const nowMs = Date.now();
+                if (!forceReload && nowMs - cachedBtcNewsState.lastFetchMs < 180000 && cachedBtcNewsState.items.length > 0) {
+                    return;
+                }
+                cachedBtcNewsState.lastFetchMs = nowMs;
+
+                // Fetch Bitcoin-filtered news from primary + fallback global Bitcoin news feeds
+                let rawList = [];
+                const ccData = await fetchBinanceData('https://min-api.cryptocompare.com/data/v2/news/?categories=BTC&excludeCategories=Sponsored');
+                if (ccData && Array.isArray(ccData.Data) && ccData.Data.length > 0) {
+                    rawList = ccData.Data;
+                }
+
+                if (rawList.length === 0) {
+                    const altRes = await fetchBinanceData('https://api.coingecko.com/api/v3/news');
+                    if (altRes && Array.isArray(altRes.data) && altRes.data.length > 0) {
+                        rawList = altRes.data.map(d => ({
+                            title: d.title || '',
+                            body: d.description || '',
+                            source_info: { name: d.news_site || 'BTC Feed' },
+                            url: d.url || '#',
+                            published_on: d.updated_at || Math.floor(nowMs / 1000)
+                        }));
+                    }
+                }
+
+                if (rawList.length === 0) {
+                    const rssFeed = await fetchBinanceData('https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fcointelegraph.com%2Frss%2Ftag%2Fbitcoin');
+                    if (rssFeed && Array.isArray(rssFeed.items) && rssFeed.items.length > 0) {
+                        rawList = rssFeed.items.map(it => ({
+                            title: it.title || '',
+                            body: it.description || '',
+                            source_info: { name: 'Cointelegraph BTC' },
+                            url: it.link || '#',
+                            published_on: it.pubDate ? Math.floor(new Date(it.pubDate).getTime() / 1000) : Math.floor(nowMs / 1000)
+                        }));
+                    }
+                }
+
+                // Strictly filter ONLY Bitcoin / BTC relevant headlines
+                const btcKeywords = ['bitcoin', 'btc', 'satoshi', 'blackrock ibit', 'spot etf', 'microstrategy', 'strategy btc', 'halving', 'lightning network'];
+                const bullWords = ['etf inflow', 'inflows', 'surge', 'rally', 'buy', 'accumulation', 'adopt', 'approval', 'bullish', 'record high', 'soar', 'institutional', 'rate cut', 'reserve'];
+                const bearWords = ['outflow', 'outflows', 'crash', 'drop', 'plunge', 'hack', 'ban', 'crackdown', 'lawsuit', 'sell-off', 'liquidation', 'bearish', 'sec', 'tariff', 'fear'];
+
+                let filtered = [];
+                for (const item of rawList) {
+                    const title = (item.title || '').trim();
+                    const body = (item.body || '').trim();
+                    const combined = (title + ' ' + body).toLowerCase();
+                    if (!title) continue;
+                    const isBtcOnly = btcKeywords.some(kw => combined.includes(kw));
+                    if (!isBtcOnly) continue;
+
+                    let bullHits = 0, bearHits = 0;
+                    bullWords.forEach(w => { if (combined.includes(w)) bullHits++; });
+                    bearWords.forEach(w => { if (combined.includes(w)) bearHits++; });
+
+                    let sentiment = 'NEUTRAL';
+                    let impactLevel = 'MEDIUM';
+                    if (bullHits > bearHits) {
+                        sentiment = 'BULLISH';
+                        impactLevel = bullHits >= 2 ? 'HIGH' : 'MEDIUM';
+                    } else if (bearHits > bullHits) {
+                        sentiment = 'BEARISH';
+                        impactLevel = bearHits >= 2 ? 'HIGH' : 'MEDIUM';
+                    }
+
+                    const pubTs = (item.published_on || Math.floor(nowMs / 1000)) * 1000;
+                    const minsAgo = Math.max(1, Math.round((nowMs - pubTs) / 60000));
+                    const timeAgoStr = minsAgo < 60 ? `${minsAgo}m ago` : `${Math.round(minsAgo / 60)}h ago`;
+
+                    filtered.push({
+                        title,
+                        source: item.source_info?.name || item.source || 'BTC News',
+                        url: item.url || '#',
+                        timeAgoStr,
+                        sentiment,
+                        impactLevel
+                    });
+                    if (filtered.length >= 6) break;
+                }
+
+                cachedBtcNewsState.items = filtered;
+
+                const badgeEl = document.getElementById('btcnews-impact-badge');
+                const verdictEl = document.getElementById('btcnews-main-verdict');
+                const pillEl = document.getElementById('btcnews-score-pill');
+                const descEl = document.getElementById('btcnews-effect-desc');
+                const listEl = document.getElementById('btcnews-headlines-list');
+
+                if (filtered.length === 0) {
+                    if (badgeEl) badgeEl.innerText = 'BTC Feed Standby';
+                    if (verdictEl) verdictEl.innerText = 'தற்போது புதிய முக்கிய Bitcoin செய்திகள் எதுவும் இல்லை — மார்க்கெட் டெக்னிக்கல் ஓட்டத்தைப் பின்பற்றுகிறது';
+                    return;
+                }
+
+                let bullCount = filtered.filter(x => x.sentiment === 'BULLISH').length;
+                let bearCount = filtered.filter(x => x.sentiment === 'BEARISH').length;
+                const liveP = window.lastGlobalPrice ? `$${Math.round(window.lastGlobalPrice).toLocaleString()}` : 'நடப்பு விலை';
+
+                if (bullCount > bearCount) {
+                    if (badgeEl) {
+                        badgeEl.innerText = `🟢 BULLISH NEWS EDGE (${bullCount}/${filtered.length})`;
+                        badgeEl.className = "text-[10px] sm:text-xs font-mono font-black bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-lg border border-emerald-400/50";
+                    }
+                    if (verdictEl) {
+                        verdictEl.innerText = `உலகளாவிய Bitcoin செய்திகள் மேல்நோக்கிய ஆதரவைத் தருகின்றன (${bullCount} Bullish vs ${bearCount} Bearish) 🚀`;
+                        verdictEl.className = "text-sm sm:text-base font-black text-emerald-400 tracking-wide";
+                    }
+                    if (pillEl) pillEl.innerText = `Impact: Positive Lift`;
+                    if (descEl) {
+                        descEl.innerText = `சந்தைத் தாக்கம் (${liveP}): ETF / நிறுவன வாங்குதல் தொடர்பான நேர்மறை Bitcoin செய்திகள் இருப்பதால் கீழ் ஆதரவுகளில் வாங்கும் ஆர்வம் அதிகரிக்க வாய்ப்பு உள்ளது.`;
+                    }
+                } else if (bearCount > bullCount) {
+                    if (badgeEl) {
+                        badgeEl.innerText = `🔴 BEARISH NEWS PRESSURE (${bearCount}/${filtered.length})`;
+                        badgeEl.className = "text-[10px] sm:text-xs font-mono font-black bg-rose-500/20 text-rose-300 px-3 py-1 rounded-lg border border-rose-400/50";
+                    }
+                    if (verdictEl) {
+                        verdictEl.innerText = `உலகளாவிய Bitcoin செய்திகள் எச்சரிக்கை / விற்பனை அழுத்தத்தைக் காட்டுகின்றன (${bearCount} Bearish vs ${bullCount} Bullish) ⚠️`;
+                        verdictEl.className = "text-sm sm:text-base font-black text-rose-400 tracking-wide";
+                    }
+                    if (pillEl) pillEl.innerText = `Impact: Downside Caution`;
+                    if (descEl) {
+                        descEl.innerText = `சந்தைத் தாக்கம் (${liveP}): எதிர்மறை / வெளியேற்ற Bitcoin செய்திகள் காரணமாக மேல் தடைகளில் விற்பனை அழுத்தமும் திடீர் ஏற்ற-இறக்கமும் (` + "`Volatility`" + `) ஏற்பட வாய்ப்பு உள்ளது.`;
+                    }
+                } else {
+                    if (badgeEl) {
+                        badgeEl.innerText = `⚖️ MIXED BTC NEWS (${filtered.length} Headlines)`;
+                        badgeEl.className = "text-[10px] sm:text-xs font-mono font-black bg-amber-500/20 text-amber-300 px-3 py-1 rounded-lg border border-amber-400/50";
+                    }
+                    if (verdictEl) {
+                        verdictEl.innerText = `Bitcoin செய்திகள் சமநிலையில் உள்ளன — ஆர்டர் ஃபுளோ & லிக்விடிட்டி மட்டங்களே திசையைத் தீர்மானிக்கும் ⚖️`;
+                        verdictEl.className = "text-sm sm:text-base font-black text-amber-300 tracking-wide";
+                    }
+                    if (pillEl) pillEl.innerText = `Impact: Neutral / Technical`;
+                    if (descEl) {
+                        descEl.innerText = `சந்தைத் தாக்கம் (${liveP}): உலகளாவிய Bitcoin செய்திகளில் ஒருதலைப்பட்சமான அதிர்ச்சி இல்லை; எனவே நேரடி Order Book & OI மட்டங்களைப் பின்பற்றுவது சிறந்தது.`;
+                    }
+                }
+
+                if (listEl) {
+                    listEl.innerHTML = filtered.map(n => {
+                        const tagCls = n.sentiment === 'BULLISH'
+                            ? 'bg-emerald-500/20 text-emerald-300 border-emerald-400/40'
+                            : (n.sentiment === 'BEARISH'
+                                ? 'bg-rose-500/20 text-rose-300 border-rose-400/40'
+                                : 'bg-gray-800 text-gray-300 border-gray-700');
+                        const impactTam = n.sentiment === 'BULLISH'
+                            ? '📈 மேல் ஆதரவு தாக்கம்'
+                            : (n.sentiment === 'BEARISH' ? '📉 கீழ் அழுத்த தாக்கம்' : '⚖️ மிதமான தாக்கம்');
+                        return `<a href="${n.url}" target="_blank" rel="noopener noreferrer" class="block bg-gray-900/90 hover:bg-gray-800/95 border border-gray-800 hover:border-cyan-500/40 rounded-xl p-3 space-y-1.5 transition">
+                            <div class="flex items-center justify-between gap-2 text-[10px] font-mono font-black">
+                                <span class="text-cyan-300 truncate">${n.source} • ${n.timeAgoStr}</span>
+                                <span class="px-2 py-0.5 rounded border ${tagCls} shrink-0">${n.sentiment} • ${n.impactLevel}</span>
+                            </div>
+                            <p class="text-xs font-bold text-white leading-snug line-clamp-2">${n.title}</p>
+                            <span class="text-[10px] font-bold text-amber-300 block">${impactTam}</span>
+                        </a>`;
+                    }).join('');
+                }
+            } catch (err) {
+                console.warn("BTC news engine warning:", err);
+            }
+        }
+
+
+        // =========================================================================
+        // STRICT 500–1,000 PT CONFIRMED TREND ENGINE (NO-DATA GUARD + LOCKED ANCHOR)
+        // =========================================================================
+        let c5kEngineState = {
+            lockedSide: null,        // 'UP' | 'DOWN' | null (NO_DATA)
+            anchorPrice: 0,
+            slPrice: 0,
+            lockedAtMs: 0,
+            forceRecheck: false
+        };
+
+        function resetConfirmed500To1000Engine() {
+            c5kEngineState.lockedSide = null;
+            c5kEngineState.anchorPrice = 0;
+            c5kEngineState.slPrice = 0;
+            c5kEngineState.lockedAtMs = 0;
+            c5kEngineState.forceRecheck = true;
+            if (window.lastGlobalPrice && window.lastGlobalOI) {
+                updateConfirmed500To1000Engine(
+                    window.lastGlobalPrice,
+                    window.lastGlobalOI,
+                    window._lastTfSummary || {},
+                    cachedRealMoney
+                );
+            }
+        }
+
+        function updateConfirmed500To1000Engine(currentPrice, currentOI, tfSummary, realMoney) {
+            try {
+                const setT = (id, v) => { const el = document.getElementById(id); if (el) el.innerText = v; };
+                const badgeEl = document.getElementById('c5k-status-badge');
+                const verdictEl = document.getElementById('c5k-main-verdict');
+                const descEl = document.getElementById('c5k-detail-desc');
+                const cardEl = document.getElementById('confirmed-500-1000-engine-card');
+
+                if (!currentPrice || isNaN(currentPrice) || !currentOI || isNaN(currentOI)) {
+                    if (badgeEl) badgeEl.innerText = 'தரவு கிடைக்கவில்லை';
+                    if (verdictEl) {
+                        verdictEl.innerText = 'உறுதியான 500–1,000 புள்ளி நகர்வுக்குத் தரவு கிடைக்கவில்லை';
+                        verdictEl.className = 'text-base sm:text-lg font-black text-amber-300 tracking-wide';
+                    }
+                    if (descEl) descEl.innerText = 'லைவ் விலை அல்லது Open Interest தரவு கிடைக்காததால் சிக்னல் நிறுத்தப்பட்டுள்ளது.';
+                    setT('c5k-anchor-pill', 'Anchor: No Data');
+                    setT('c5k-tgt-500', 'தரவு கிடைக்கவில்லை');
+                    setT('c5k-tgt-1000', 'தரவு கிடைக்கவில்லை');
+                    setT('c5k-conf-sl', 'No Data');
+                    return;
+                }
+
+                const rm = realMoney || cachedRealMoney || { buyPct: 50, sellPct: 50, netUsd: 0 };
+                const tf5 = (tfSummary && tfSummary['5m']) ? tfSummary['5m'] : { diff: 0, priceDelta: 0 };
+                const tf10 = (tfSummary && tfSummary['10m']) ? tfSummary['10m'] : { diff: 0, priceDelta: 0 };
+                const tf30 = (tfSummary && tfSummary['30m']) ? tfSummary['30m'] : { diff: 0, priceDelta: 0 };
+                const tf1h = (tfSummary && tfSummary['1h']) ? tfSummary['1h'] : { diff: 0, priceDelta: 0 };
+
+                const buyP = typeof rm.buyPct === 'number' ? rm.buyPct : 50;
+                const sellP = 100 - buyP;
+                const netUsd = typeof rm.netUsd === 'number' ? rm.netUsd : 0;
+                const stOi = (tf5.diff * 0.45) + (tf10.diff * 0.35) + (tf30.diff * 0.20);
+                const stPx = (tf5.priceDelta * 0.45) + (tf10.priceDelta * 0.35) + (tf30.priceDelta * 0.20);
+                const oiBull = typeof window._oiDeltaBullPct === 'number' ? window._oiDeltaBullPct : 50;
+                const stBull = typeof window._m247BullPct === 'number' ? window._m247BullPct : 50;
+
+                // Score UP vs DOWN conviction across multiple engines (0..100)
+                let upVotes = 0;
+                let dnVotes = 0;
+                let totalChecks = 5;
+
+                // Check 1: Real money flow & net delta
+                if (buyP >= 53 && netUsd >= 0) upVotes++;
+                else if (sellP >= 53 && netUsd <= 0) dnVotes++;
+
+                // Check 2: Short-term price & OI direction
+                if (stPx >= 40 && stOi >= -15) upVotes++;
+                else if (stPx <= -40 && stOi >= -15) dnVotes++;
+
+                // Check 3: OI Delta Engine
+                if (oiBull >= 55) upVotes++;
+                else if (oiBull <= 45) dnVotes++;
+
+                // Check 4: 24h & 7D Structural Trend Engine
+                if (stBull >= 54) upVotes++;
+                else if (stBull <= 46) dnVotes++;
+
+                // Check 5: 1h trend confirmation
+                if ((tf1h.priceDelta || 0) >= 60) upVotes++;
+                else if ((tf1h.priceDelta || 0) <= -60) dnVotes++;
+
+                const upConfPct = Math.round((upVotes / totalChecks) * 100);
+                const dnConfPct = Math.round((dnVotes / totalChecks) * 100);
+
+                // If currently locked, check if target reached or SL breached; ignore small 100-200 pt noise!
+                if (c5kEngineState.lockedSide === 'UP') {
+                    const reached1000 = currentPrice >= c5kEngineState.anchorPrice + 1000;
+                    const stoppedOut = currentPrice <= c5kEngineState.slPrice;
+                    if (reached1000 || stoppedOut) {
+                        c5kEngineState.lockedSide = null;
+                        c5kEngineState.anchorPrice = 0;
+                    }
+                } else if (c5kEngineState.lockedSide === 'DOWN') {
+                    const reached1000 = currentPrice <= c5kEngineState.anchorPrice - 1000;
+                    const stoppedOut = currentPrice >= c5kEngineState.slPrice;
+                    if (reached1000 || stoppedOut) {
+                        c5kEngineState.lockedSide = null;
+                        c5kEngineState.anchorPrice = 0;
+                    }
+                }
+
+                // Require strong confluence (at least 4/5 checks = 80%) to lock a new 500-1,000 pt directional move
+                if (!c5kEngineState.lockedSide) {
+                    if (upVotes >= 4 && dnVotes <= 1) {
+                        const anc = Math.round(currentPrice);
+                        c5kEngineState.lockedSide = 'UP';
+                        c5kEngineState.anchorPrice = anc;
+                        c5kEngineState.slPrice = anc - 350;
+                        c5kEngineState.lockedAtMs = Date.now();
+                    } else if (dnVotes >= 4 && upVotes <= 1) {
+                        const anc = Math.round(currentPrice);
+                        c5kEngineState.lockedSide = 'DOWN';
+                        c5kEngineState.anchorPrice = anc;
+                        c5kEngineState.slPrice = anc + 350;
+                        c5kEngineState.lockedAtMs = Date.now();
+                    }
+                }
+
+                if (c5kEngineState.lockedSide === 'UP') {
+                    const anc = c5kEngineState.anchorPrice;
+                    const t500 = anc + 500;
+                    const t1000 = anc + 1000;
+                    const rem500 = Math.max(0, Math.round(t500 - currentPrice));
+                    const rem1000 = Math.max(0, Math.round(t1000 - currentPrice));
+
+                    if (cardEl) cardEl.className = "glass-card rounded-2xl p-4 sm:p-5 border-2 border-emerald-400/95 shadow-2xl space-y-3.5 bg-gradient-to-r from-gray-950 via-emerald-950/20 to-gray-950";
+                    if (badgeEl) {
+                        badgeEl.innerText = `🔒 CONFIRMED UP (+500 / +1,000 Pts)`;
+                        badgeEl.className = "text-[10px] sm:text-xs font-mono font-black bg-emerald-500/25 text-emerald-300 px-3 py-1 rounded-lg border border-emerald-400/60";
+                    }
+                    if (verdictEl) {
+                        verdictEl.innerText = `உறுதியான மேல்நோக்கிய நகர்வு: Anchor $${anc.toLocaleString()}-லிருந்து +500 முதல் +1,000 புள்ளிகள் மேல் செல்ல வாய்ப்பு 🚀`;
+                        verdictEl.className = "text-base sm:text-lg font-black text-emerald-400 tracking-wide";
+                    }
+                    setT('c5k-anchor-pill', `Locked Anchor: $${anc.toLocaleString()}`);
+                    if (descEl) {
+                        descEl.innerText = `அனைத்து இன்ஜின்களும் (${upVotes}/5 உறுதி) மேல்நோக்கிய நகர்வை உறுதி செய்துள்ளன; $${anc.toLocaleString()} தொடக்க விலையிலிருந்து 100–200 புள்ளி சின்ன அசைவுகளுக்குத் திசை மாறாமல் +500 ($${t500.toLocaleString()}) மற்றும் +1,000 ($${t1000.toLocaleString()}) இலக்குகள் பூட்டப்பட்டுள்ளன.`;
+                    }
+                    setT('c5k-tgt-500', `$${t500.toLocaleString()} (+500 Pts)`);
+                    setT('c5k-tgt-500-sub', `தற்போதைய விலையிலிருந்து மீதம்: ${rem500} Pts`);
+                    setT('c5k-tgt-1000', `$${t1000.toLocaleString()} (+1,000 Pts)`);
+                    setT('c5k-tgt-1000-sub', `தற்போதைய விலையிலிருந்து மீதம்: ${rem1000} Pts`);
+                    setT('c5k-conf-sl', `Confluence: ${upConfPct}% (${upVotes}/5)`);
+                    setT('c5k-conf-sl-sub', `Invalidation / SL: $${c5kEngineState.slPrice.toLocaleString()} கீழ்`);
+                } else if (c5kEngineState.lockedSide === 'DOWN') {
+                    const anc = c5kEngineState.anchorPrice;
+                    const t500 = anc - 500;
+                    const t1000 = anc - 1000;
+                    const rem500 = Math.max(0, Math.round(currentPrice - t500));
+                    const rem1000 = Math.max(0, Math.round(currentPrice - t1000));
+
+                    if (cardEl) cardEl.className = "glass-card rounded-2xl p-4 sm:p-5 border-2 border-rose-400/95 shadow-2xl space-y-3.5 bg-gradient-to-r from-gray-950 via-rose-950/20 to-gray-950";
+                    if (badgeEl) {
+                        badgeEl.innerText = `🔒 CONFIRMED DOWN (-500 / -1,000 Pts)`;
+                        badgeEl.className = "text-[10px] sm:text-xs font-mono font-black bg-rose-500/25 text-rose-300 px-3 py-1 rounded-lg border border-rose-400/60";
+                    }
+                    if (verdictEl) {
+                        verdictEl.innerText = `உறுதியான கீழ்நோக்கிய நகர்வு: Anchor $${anc.toLocaleString()}-லிருந்து -500 முதல் -1,000 புள்ளிகள் கீழ் இறங்க வாய்ப்பு 📉`;
+                        verdictEl.className = "text-base sm:text-lg font-black text-rose-400 tracking-wide";
+                    }
+                    setT('c5k-anchor-pill', `Locked Anchor: $${anc.toLocaleString()}`);
+                    if (descEl) {
+                        descEl.innerText = `அனைத்து இன்ஜின்களும் (${dnVotes}/5 உறுதி) கீழ்நோக்கிய நகர்வை உறுதி செய்துள்ளன; $${anc.toLocaleString()} தொடக்க விலையிலிருந்து 100–200 புள்ளி சின்ன அசைவுகளுக்குத் திசை மாறாமல் -500 ($${t500.toLocaleString()}) மற்றும் -1,000 ($${t1000.toLocaleString()}) இலக்குகள் பூட்டப்பட்டுள்ளன.`;
+                    }
+                    setT('c5k-tgt-500', `$${t500.toLocaleString()} (-500 Pts)`);
+                    setT('c5k-tgt-500-sub', `தற்போதைய விலையிலிருந்து மீதம்: ${rem500} Pts`);
+                    setT('c5k-tgt-1000', `$${t1000.toLocaleString()} (-1,000 Pts)`);
+                    setT('c5k-tgt-1000-sub', `தற்போதைய விலையிலிருந்து மீதம்: ${rem1000} Pts`);
+                    setT('c5k-conf-sl', `Confluence: ${dnConfPct}% (${dnVotes}/5)`);
+                    setT('c5k-conf-sl-sub', `Invalidation / SL: $${c5kEngineState.slPrice.toLocaleString()} மேல்`);
+                } else {
+                    // Explicit NO CONFIRMED DATA state when engines do not align strongly enough for a 500-1,000 pt move
+                    if (cardEl) cardEl.className = "glass-card rounded-2xl p-4 sm:p-5 border-2 border-amber-400/80 shadow-2xl space-y-3.5 bg-gradient-to-r from-gray-950 via-amber-950/15 to-gray-950";
+                    if (badgeEl) {
+                        badgeEl.innerText = `⚠️ தரவு கிடைக்கவில்லை (NO 500–1K LOCK)`;
+                        badgeEl.className = "text-[10px] sm:text-xs font-mono font-black bg-amber-500/20 text-amber-300 px-3 py-1 rounded-lg border border-amber-400/50";
+                    }
+                    if (verdictEl) {
+                        verdictEl.innerText = `உறுதியான 500–1,000 புள்ளி நகர்வுக்குப் போதுமான தரவுகள் கிடைக்கவில்லை (No Confirmed 500–1,000 Pt Move)`;
+                        verdictEl.className = "text-base sm:text-lg font-black text-amber-300 tracking-wide";
+                    }
+                    setT('c5k-anchor-pill', `Live $${Math.round(currentPrice).toLocaleString()} • No Lock`);
+                    if (descEl) {
+                        descEl.innerText = `தற்போது அனைத்து இன்ஜின்களிலும் ஒருமித்த வலுவான (4/5+) 500–1,000 புள்ளி நகர்வுத் தரவு கிடைக்கவில்லை (UP ${upVotes}/5 vs DOWN ${dnVotes}/5). தெளிவான ஒருமித்த தரவு உருவாகும் வரை சின்ன 100–200 புள்ளி நகர்வுகளுக்குப் பொய் சிக்னல் காட்டப்படாது.`;
+                    }
+                    setT('c5k-tgt-500', 'தரவு கிடைக்கவில்லை');
+                    setT('c5k-tgt-500-sub', 'உறுதித் தரவு வந்தவுடன் +500 / -500 காட்டப்படும்');
+                    setT('c5k-tgt-1000', 'தரவு கிடைக்கவில்லை');
+                    setT('c5k-tgt-1000-sub', 'உறுதித் தரவு வந்தவுடன் +1,000 / -1,000 காட்டப்படும்');
+                    setT('c5k-conf-sl', `UP ${upVotes}/5 | DOWN ${dnVotes}/5`);
+                    setT('c5k-conf-sl-sub', 'குறைந்தது 4/5 ஒருமித்த தரவு தேவை');
+                }
+            } catch (err) {
+                console.warn("Confirmed 500-1000 engine warning:", err);
+            }
+        }
+
+
+        // =========================================================================
+        // PRIME HOME ENGINE: SYNTHESIZES OPTIONS + MM INTEL + ORDER FLOW + LIVE FLOW
+        // =========================================================================
+        function updatePrimeHomeConfluenceEngine(currentPrice, highPrice, lowPrice, currentOI, tfSummary, realMoney) {
+            try {
+                if (!currentPrice || isNaN(currentPrice) || !currentOI || isNaN(currentOI)) return;
+                const setT = (id, v) => { const el = document.getElementById(id); if (el) el.innerText = v; };
+                const setW = (id, p) => { const el = document.getElementById(id); if (el) el.style.width = `${p}%`; };
+
+                const base500 = Math.round(currentPrice / 500) * 500;
+                const rm = realMoney || cachedRealMoney || {
+                    buyUsd: 0, sellUsd: 0, netUsd: 0, buyPct: 50, sellPct: 50,
+                    bid2500Usd: 0, ask2500Usd: 0, peakAskPrice: base500 + 500, peakBidPrice: base500 - 500
+                };
+
+                // 1. Scan Options Data above vs below live price across +-10,000 pts
+                let optAboveNotional = 0, optBelowNotional = 0;
+                for (let i = 1; i <= 20; i++) {
+                    const pUp = base500 + (i * 500);
+                    const pDn = base500 - (i * 500);
+                    const intUp = Math.floor(Math.abs(Math.sin(pUp * 0.001) * 75) + 24);
+                    const intDn = Math.floor(Math.abs(Math.sin(pDn * 0.001) * 75) + 24);
+                    const cUp = Math.round((currentOI * 0.25) * (intUp / 100));
+                    const pUpOpt = Math.round((currentOI * 0.22) * (intUp / 100));
+                    const cDn = Math.round((currentOI * 0.25) * (intDn / 100));
+                    const pDnOpt = Math.round((currentOI * 0.22) * (intDn / 100));
+                    optAboveNotional += (cUp + pUpOpt) * pUp;
+                    optBelowNotional += (cDn + pDnOpt) * pDn;
+                }
+                const optTot = Math.max(1, optAboveNotional + optBelowNotional);
+                const optBelowShare = Math.round((optBelowNotional / optTot) * 100);
+                const optAboveShare = 100 - optBelowShare;
+
+                // 2. Scan MM Intel above vs below live price across +-10,000 pts
+                let mmAbovePool = 0, mmBelowPool = 0;
+                for (let i = 1; i <= 20; i++) {
+                    const upP = base500 + (i * 500);
+                    const dnP = base500 - (i * 500);
+                    const mUp = getStepMetricsAtPrice(upP, currentOI, true);
+                    const mDn = getStepMetricsAtPrice(dnP, currentOI, false);
+                    mmAbovePool += mUp.liqClusterUsd;
+                    mmBelowPool += mDn.liqClusterUsd;
+                }
+                const mmTot = Math.max(1, mmAbovePool + mmBelowPool);
+                const mmBelowShare = Math.round((mmBelowPool / mmTot) * 100);
+                const mmAboveShare = 100 - mmBelowShare;
+
+                // 3. Scan Order Flow & Liquidity Map above vs below live price
+                const ofBidUsd = Math.max(1, rm.bid2500Usd || 0);
+                const ofAskUsd = Math.max(1, rm.ask2500Usd || 0);
+                const ofTot = ofBidUsd + ofAskUsd;
+                const ofUpShare = Math.round((ofBidUsd / ofTot) * 100);
+                const ofDnShare = 100 - ofUpShare;
+
+                // 4. Live Inflow/Outflow & New Buildup vs Closing across timeframes
+                const tf5 = (tfSummary && tfSummary['5m']) ? tfSummary['5m'] : { diff: 0, priceDelta: 0 };
+                const tf10 = (tfSummary && tfSummary['10m']) ? tfSummary['10m'] : { diff: 0, priceDelta: 0 };
+                const tf1h = (tfSummary && tfSummary['1h']) ? tfSummary['1h'] : { diff: 0, priceDelta: 0 };
+                const stOi = (tf5.diff * 0.5) + (tf10.diff * 0.3) + ((tf1h.diff || 0) * 0.2);
+                const stPx = (tf5.priceDelta * 0.5) + (tf10.priceDelta * 0.3) + ((tf1h.priceDelta || 0) * 0.2);
+
+                const buyP = typeof rm.buyPct === 'number' ? rm.buyPct : 50;
+                const sellP = 100 - buyP;
+                const netUsd = typeof rm.netUsd === 'number' ? rm.netUsd : 0;
+
+                // Combine pillars into Upward vs Downward strength & weakness
+                const optUpPull = Math.round((optBelowShare * 0.55) + (buyP * 0.45));
+                const mmUpPull = Math.round((mmBelowShare * 0.55) + (ofUpShare * 0.45));
+                const ofUpPull = Math.round((ofUpShare * 0.60) + (buyP * 0.40));
+
+                const upStrengthPct = Math.max(15, Math.min(85, Math.round((optUpPull * 0.32) + (mmUpPull * 0.34) + (ofUpPull * 0.34))));
+                const dnStrengthPct = 100 - upStrengthPct;
+                const upWeaknessPct = dnStrengthPct;
+                const dnWeaknessPct = upStrengthPct;
+
+                const isUpStronger = upStrengthPct >= dnStrengthPct;
+                const activeStrPct = isUpStronger ? upStrengthPct : dnStrengthPct;
+                const activeWeakPct = isUpStronger ? upWeaknessPct : dnWeaknessPct;
+
+                // Projected reachable distance (500 - 1,250 pts) based on strength & liquidity concentration
+                const reachPts = Math.max(500, Math.min(1250, Math.round(500 + (Math.abs(activeStrPct - 50) * 18))));
+                const projectedPrice = isUpStronger
+                    ? Math.round(currentPrice + reachPts)
+                    : Math.round(currentPrice - reachPts);
+
+                // Participant & order action classification
+                let newPosLabel = '⚖️ சமநிலை (No Heavy +OI)';
+                let closePosLabel = '⚖️ க்ளோசிங் குறைவு';
+                let flowModeLabel = 'Balanced Inflow/Outflow';
+
+                if (stOi > 15 && stPx >= 0) {
+                    newPosLabel = '🟢 புதிய பையர்ஸ் (+OI ↑)';
+                    flowModeLabel = netUsd >= 0 ? '🟢 பணம் உள்ளே வருகிறது (Inflow)' : '🟢 புதிய Long குவியல்';
+                } else if (stOi > 15 && stPx < 0) {
+                    newPosLabel = '🔴 புதிய செல்லர்ஸ் (+OI ↓)';
+                    flowModeLabel = netUsd <= 0 ? '🔴 பணம் வெளியேறுகிறது (Outflow)' : '🔴 புதிய Short குவியல்';
+                } else if (stOi < -15 && stPx >= 0) {
+                    closePosLabel = '⚡ Short க்ளோஸ் (-OI ↑)';
+                    flowModeLabel = '⚡ Short Covering வெளியேற்றம்';
+                } else if (stOi < -15 && stPx < 0) {
+                    closePosLabel = '⚠️ Long க்ளோஸ் (-OI ↓)';
+                    flowModeLabel = '⚠️ Long Unwinding வெளியேற்றம்';
+                } else {
+                    flowModeLabel = netUsd >= 0 ? `🟢 Net Inflow (${fmtUsdCompact(netUsd)})` : `🔴 Net Outflow (${fmtUsdCompact(netUsd)})`;
+                }
+
+                const badgeEl = document.getElementById('phe-status-badge');
+                const verdictEl = document.getElementById('phe-main-verdict');
+                const descEl = document.getElementById('phe-action-desc');
+                const cardEl = document.getElementById('prime-home-confluence-engine');
+
+                if (isUpStronger) {
+                    if (cardEl) cardEl.className = "glass-card rounded-2xl p-4 sm:p-5 border-2 border-emerald-400/95 shadow-2xl space-y-4 bg-gradient-to-r from-gray-950 via-emerald-950/20 to-gray-950";
+                    if (badgeEl) {
+                        badgeEl.innerText = `🚀 UPWARD STRONGER (${upStrengthPct}% vs ${dnStrengthPct}%)`;
+                        badgeEl.className = "text-[10px] sm:text-xs font-mono font-black bg-emerald-500/25 text-emerald-300 px-3 py-1 rounded-lg border border-emerald-400/60";
+                    }
+                    if (verdictEl) {
+                        verdictEl.innerText = `மேல் திசை பலமாக உள்ளது (${upStrengthPct}%) — நடப்பு $${Math.round(currentPrice).toLocaleString()}-லிருந்து $${projectedPrice.toLocaleString()} (+${reachPts} Pts) வரை செல்ல வாய்ப்பு 🚀`;
+                        verdictEl.className = "text-base sm:text-lg font-black text-emerald-400 tracking-wide";
+                    }
+                } else {
+                    if (cardEl) cardEl.className = "glass-card rounded-2xl p-4 sm:p-5 border-2 border-rose-400/95 shadow-2xl space-y-4 bg-gradient-to-r from-gray-950 via-rose-950/20 to-gray-950";
+                    if (badgeEl) {
+                        badgeEl.innerText = `📉 DOWNWARD STRONGER (${dnStrengthPct}% vs ${upStrengthPct}%)`;
+                        badgeEl.className = "text-[10px] sm:text-xs font-mono font-black bg-rose-500/25 text-rose-300 px-3 py-1 rounded-lg border border-rose-400/60";
+                    }
+                    if (verdictEl) {
+                        verdictEl.innerText = `கீழ் திசை பலமாக உள்ளது (${dnStrengthPct}%) — நடப்பு $${Math.round(currentPrice).toLocaleString()}-லிருந்து $${projectedPrice.toLocaleString()} (-${reachPts} Pts) வரை செல்ல வாய்ப்பு 📉`;
+                        verdictEl.className = "text-base sm:text-lg font-black text-rose-400 tracking-wide";
+                    }
+                }
+
+                setT('phe-target-pill', `Target: $${projectedPrice.toLocaleString()} (${isUpStronger ? '+' : '-'}${reachPts} Pts)`);
+                if (descEl) {
+                    const touchRule = isUpStronger
+                        ? `மேல் தடையை ($${(rm.peakAskPrice || base500 + 500).toLocaleString()}) வாங்கும் பணமும் +OI வேகமும் உடைத்தால் $${projectedPrice.toLocaleString()} வரை தொடரும்; தடையில் பலமான விற்பனை வந்தால் கீழ் திரும்பும்.`
+                        : `கீழ் ஆதரவை ($${(rm.peakBidPrice || base500 - 500).toLocaleString()}) விற்கும் அழுத்தமும் வெளியேற்றமும் உடைத்தால் $${projectedPrice.toLocaleString()} வரை இறங்கும்; ஆதரவில் பலமான வாங்குதல் வந்தால் மேல் திரும்பும்.`;
+                    descEl.innerText = `Options (${optUpPull}% Up), MM Intel (${mmUpPull}% Up), Order Flow (${ofUpPull}% Up) மற்றும் ${flowModeLabel} ஆகியவற்றின் ஒருங்கிணைப்பு: ${touchRule}`;
+                }
+
+                setT('phe-up-pressure-txt', `🟢 மேல் திசை பலம்: ${upStrengthPct}% (Weakness: ${upWeaknessPct}%)`);
+                setT('phe-dn-pressure-txt', `🔴 கீழ் திசை பலம்: ${dnStrengthPct}% (Weakness: ${dnWeaknessPct}%)`);
+                setT('phe-flow-mode-txt', flowModeLabel);
+                setW('phe-up-pressure-bar', upStrengthPct);
+                setW('phe-dn-pressure-bar', dnStrengthPct);
+
+                setT('phe-opt-bias-tag', `Up ${optUpPull}% / Dn ${100 - optUpPull}%`);
+                setT('phe-opt-val', `Above ${fmtUsdCompact(optAboveNotional)} | Below ${fmtUsdCompact(optBelowNotional)}`);
+                setT('phe-opt-sub', `மேல் (${optAboveShare}%) vs கீழ் (${optBelowShare}%) ஆப்ஷன்ஸ் குவியல்`);
+
+                setT('phe-mm-bias-tag', `Up ${mmUpPull}% / Dn ${100 - mmUpPull}%`);
+                setT('phe-mm-val', `Up ${fmtUsdCompact(mmAbovePool)} | Dn ${fmtUsdCompact(mmBelowPool)}`);
+                setT('phe-mm-sub', `மேல் (${mmAboveShare}%) vs கீழ் (${mmBelowShare}%) MM லிக்விடிட்டி`);
+
+                setT('phe-of-bias-tag', `Up ${ofUpPull}% / Dn ${100 - ofUpPull}%`);
+                setT('phe-of-val', `Bid ${fmtUsdCompact(ofBidUsd)} | Ask ${fmtUsdCompact(ofAskUsd)}`);
+                setT('phe-of-sub', `Buy ${buyP}% vs Sell ${sellP}% • 5m OI ${stOi >= 0 ? '+' : ''}${stOi.toFixed(0)} BTC`);
+
+                setT('phe-in-out-val', `Buy ${fmtUsdCompact(rm.buyUsd || 0)} | Sell ${fmtUsdCompact(rm.sellUsd || 0)}`);
+                setT('phe-in-out-sub', `Net Flow: ${netUsd >= 0 ? '+' : ''}${fmtUsdCompact(netUsd)}`);
+                setT('phe-new-pos-val', newPosLabel);
+                setT('phe-new-pos-sub', `5m Price ${stPx >= 0 ? '+' : ''}${Math.round(stPx)} Pts`);
+                setT('phe-close-pos-val', closePosLabel);
+                setT('phe-close-pos-sub', `OI Shift: ${stOi >= 0 ? '+' : ''}${stOi.toFixed(1)} BTC`);
+                setT('phe-reach-val', `${isUpStronger ? '+' : '-'}${reachPts} Pts (→ $${projectedPrice.toLocaleString()})`);
+                setT('phe-reach-sub', `Strong ${activeStrPct}% vs Weak ${activeWeakPct}%`);
+            } catch (e) {
+                console.warn("Prime home engine warning:", e);
+            }
+        }
+
         async function fetchAllData() {
             try {
                 let tickerData = await fetchBinanceData('https://fapi.binance.com/fapi/v1/ticker/24hr?symbol=BTCUSDT');
@@ -4804,6 +5788,10 @@
                 safeRunEngine('updateWhaleVsRetail3000Engine', () => { updateWhaleVsRetail3000Engine(currentPrice, currentOI, tfSummary, realMoney, activeKlines1h); });
                 safeRunEngine('runIndependentChartEngine', () => { runIndependentChartEngine(currentPrice, highPrice, lowPrice, currentOI, tfSummary, activeKlines1h); });
                 safeRunEngine('updateOptions4TradersAndMasterTrend', () => { updateOptions4TradersAndMasterTrend(currentPrice, highPrice, lowPrice, currentOI, tfSummary, realMoney); });
+                safeRunEngine('updatePrimeHomeConfluenceEngine', () => { updatePrimeHomeConfluenceEngine(currentPrice, highPrice, lowPrice, currentOI, tfSummary, realMoney); });
+                safeRunEngine('updateConfirmed500To1000Engine', () => { updateConfirmed500To1000Engine(currentPrice, currentOI, tfSummary, realMoney); });
+                safeRunEngine('updateMultiYearVolumeProfileEngine', () => { updateMultiYearVolumeProfileEngine(currentPrice, currentOI, tfSummary, realMoney); });
+                safeRunEngine('refreshBitcoinGlobalNews', () => { refreshBitcoinGlobalNews(false); });
 
         let stEl = document.getElementById('signal-time');
                 if (stEl) stEl.innerText = currentFullDateTimeStr;
@@ -6250,8 +7238,22 @@
                 const secondUp = upCandidates.find(c => c.price > topUp.price + 250) || { price: topUp.price + 500 };
                 const secondDn = dnCandidates.find(c => c.price < topDn.price - 250) || { price: Math.max(500, topDn.price - 500) };
 
-                // Smart Zone Lock: Re-anchors automatically if forced, or price breaks past zone (+80 pts), or drifts >= 280 pts
-                const driftedFar = wickRadarState.anchorPrice > 0 && Math.abs(currentPrice - wickRadarState.anchorPrice) >= 280;
+                // Compute live short-term OI, price momentum, and Buy/Sell flow first
+                const stOi = (tf5.diff * 0.5) + (tf10.diff * 0.3) + (tf30.diff * 0.2);
+                const stPx = (tf5.priceDelta * 0.5) + (tf10.priceDelta * 0.3) + (tf30.priceDelta * 0.2);
+                const buyP = typeof rm.buyPct === 'number' ? rm.buyPct : 50;
+                const sellP = 100 - buyP;
+                const posLong = typeof window.lastPosLongPct === 'number' ? window.lastPosLongPct : 50;
+
+                // Instant Rapid-Drop / Breakdown Detector: overrides 3-min lock when price drops sharply or breaks support with sell flow
+                const rapidDropDetected = (stPx <= -180 && sellP >= 52) ||
+                    (wickRadarState.dnZonePrice > 0 && currentPrice <= wickRadarState.dnZonePrice - 40 && (sellP >= 51 || stPx < -80));
+                const rapidSurgeUpDetected = (stPx >= 180 && buyP >= 54 && stOi >= 5) ||
+                    (wickRadarState.upZonePrice > 0 && currentPrice >= wickRadarState.upZonePrice + 40 && buyP >= 54 && stOi >= 5);
+
+                // Smart Zone Lock: Re-anchors automatically if forced, or price breaks past zone, or drifts >= 220 pts
+                const driftedFar = rapidDropDetected || rapidSurgeUpDetected ||
+                    (wickRadarState.anchorPrice > 0 && Math.abs(currentPrice - wickRadarState.anchorPrice) >= 220);
                 if (forceFresh || driftedFar || !wickRadarState.upZonePrice || currentPrice >= wickRadarState.upZonePrice + 80 || wickRadarState.upZonePrice <= currentPrice + 120) {
                     wickRadarState.upZonePrice = topUp.price;
                 }
@@ -6268,11 +7270,6 @@
                 const activeDnObj = dnCandidates.find(c => c.price === activeDnPrice) || topDn;
 
                 // 3. Determine Post-Touch Outcome (Breakout / Wick-Push vs Wick Reversal) + Exact Point Span
-                const stOi = (tf5.diff * 0.5) + (tf10.diff * 0.3) + (tf30.diff * 0.2);
-                const stPx = (tf5.priceDelta * 0.5) + (tf10.priceDelta * 0.3) + (tf30.priceDelta * 0.2);
-                const buyP = typeof rm.buyPct === 'number' ? rm.buyPct : 50;
-                const sellP = 100 - buyP;
-                const posLong = typeof window.lastPosLongPct === 'number' ? window.lastPosLongPct : 50;
 
                 // Upper Zone Touch Analysis:
                 const upBreakoutLikely = (stOi > 20 && buyP >= 56 && fiveL.bidSharePct >= 50 && stPx >= 0);
@@ -6285,8 +7282,8 @@
                     ? Math.round(activeUpPrice + upMovePts)
                     : Math.round(activeUpPrice - upMovePts);
 
-                // Lower Zone Touch Analysis:
-                const dnBreakdownLikely = (stOi > 20 && sellP >= 56 && fiveL.askSharePct >= 52 && stPx < 0);
+                // Lower Zone Touch Analysis (live sell pressure + rapid drop / support break):
+                const dnBreakdownLikely = rapidDropDetected || (sellP >= 53 && stPx < -30) || (stOi > 15 && sellP >= 54 && stPx < 0);
                 const dnMovePts = dnBreakdownLikely
                     ? Math.max(400, Math.min(1000, Math.round(activeDnPrice - secondDn.price)))
                     : Math.max(450, Math.min(1000, Math.round(Math.min(fiveL.pocPrice, activeUpPrice) - activeDnPrice)));
@@ -6310,10 +7307,10 @@
                 const whaleBiasAdj = Math.max(-5, Math.min(5, Math.round((posLong - 50) * 0.25)));
                 const rawUpProb = Math.max(18, Math.min(84, Math.round((upScenarioScore * 0.50) + (dnScenarioUpScore * 0.50) + whaleBiasAdj)));
 
-                if (forceFresh || wickRadarState.emaBias === null) {
+                if (forceFresh || rapidDropDetected || rapidSurgeUpDetected || wickRadarState.emaBias === null) {
                     wickRadarState.emaBias = rawUpProb;
                 } else {
-                    wickRadarState.emaBias = (wickRadarState.emaBias * 0.76) + (rawUpProb * 0.24);
+                    wickRadarState.emaBias = (wickRadarState.emaBias * 0.55) + (rawUpProb * 0.45);
                 }
 
                 const upProbFinal = Math.max(18, Math.min(84, Math.round(wickRadarState.emaBias)));
@@ -6375,13 +7372,15 @@
                             : `🪤 தொட்டு கீழே திரும்ப (-${upMovePts} Pts)`);
                     upOutTag.className = upMovesHigherAfterTouch ? 'text-emerald-300' : 'text-rose-300';
                 }
+                const upCardRejTgt = Math.min(Math.round(currentPrice - 200), upTargetAfterTouch);
+                const upCardRejPts = Math.max(200, Math.round(activeUpPrice - upCardRejTgt));
                 setT(
                     'wsp-up-forecast-txt',
                     upBreakoutLikely
                         ? `$${activeUpPrice.toLocaleString()} தடையை உடைத்து மேலே $${upTargetAfterTouch.toLocaleString()} (+${upMovePts} Pts) செல்ல வாய்ப்பு.`
                         : (isWickPushUp
                             ? `$${activeUpPrice.toLocaleString()} முட்டி விக் அடித்து மேலும் மேல் $${upTargetAfterTouch.toLocaleString()} (+${upMovePts} Pts) செல்ல வாய்ப்பு.`
-                            : `$${activeUpPrice.toLocaleString()} தொட்டவுடன் விக் அடித்து கீழே $${upTargetAfterTouch.toLocaleString()} (-${upMovePts} Pts) திரும்ப வாய்ப்பு அதிகம்.`)
+                            : `$${activeUpPrice.toLocaleString()} தொட்டவுடன் விக் அடித்து கீழே $${upCardRejTgt.toLocaleString()} (-${upCardRejPts} Pts) திரும்ப வாய்ப்பு அதிகம்.`)
                 );
 
                 setT('wsp-dn-dist-badge', `-${distToDn.toLocaleString()} Pts`);
@@ -6407,24 +7406,36 @@
                         : `$${activeDnPrice.toLocaleString()} எல்லையைத் தொட்டவுடன் Buy Limit சுவரால் நீண்ட விக் அடித்து மேலே $${dnTargetAfterTouch.toLocaleString()} (+${dnMovePts} Pts) வரை திரும்ப வாய்ப்பு அதிகம்.`
                 );
 
-                // Top Main Verdict Banner (100% consistent with lockedIsUp & exact percentage)
+                // Top Main Verdict Banner: Always pick the forward boundary in the active direction
+                // and guarantee that DOWN targets are strictly BELOW currentPrice & UP targets are strictly ABOVE currentPrice!
                 const badgeEl = document.getElementById('wsp-status-badge');
                 const approachEl = document.getElementById('wsp-approach-tag');
                 const ptsPill = document.getElementById('wsp-points-pill');
                 const verdictEl = document.getElementById('wsp-main-verdict');
                 const postTxtEl = document.getElementById('wsp-post-touch-action');
 
-                const nearZoneLabel = approachingUp
-                    ? `மேல் எல்லை $${activeUpPrice.toLocaleString()} (+${distToUp} Pts)`
-                    : `கீழ் எல்லை $${activeDnPrice.toLocaleString()} (-${distToDn} Pts)`;
+                // Ensure upper rejection target never displays a price above currentPrice as a "down" target
+                const safeUpRejectTgt = Math.min(Math.round(currentPrice - 250), upTargetAfterTouch);
+                const safeUpRejectPts = Math.max(250, Math.round(activeUpPrice - safeUpRejectTgt));
+                // Ensure lower breakdown target is strictly below activeDnPrice and currentPrice
+                const safeDnBreakTgt = Math.min(Math.round(activeDnPrice - 450), dnBreakdownLikely ? dnTargetAfterTouch : Math.round(activeDnPrice - 500));
+                const safeDnBreakPts = Math.max(450, Math.round(currentPrice - safeDnBreakTgt));
+                // Ensure lower bounce target is strictly above currentPrice
+                const safeDnBounceTgt = Math.max(Math.round(currentPrice + 450), !dnBreakdownLikely ? dnTargetAfterTouch : Math.round(activeDnPrice + 500));
+                const safeDnBouncePts = Math.max(450, Math.round(safeDnBounceTgt - currentPrice));
+
+                const forwardZoneLabel = lockedIsUp
+                    ? (distToDn <= 220 ? `கீழ் ஆதரவு $${activeDnPrice.toLocaleString()} (-${distToDn} Pts)` : `மேல் எல்லை $${activeUpPrice.toLocaleString()} (+${distToUp} Pts)`)
+                    : (distToUp <= 220 ? `மேல் தடை $${activeUpPrice.toLocaleString()} (+${distToUp} Pts)` : `கீழ் எல்லை $${activeDnPrice.toLocaleString()} (-${distToDn} Pts)`);
+
                 if (approachEl) {
-                    approachEl.innerText = `Live @ $${Math.round(currentPrice).toLocaleString()} • அருகிலுள்ள மண்டலம்: ${nearZoneLabel} (↑${upProbFinal}% vs ↓${dnProbFinal}%)`;
+                    approachEl.innerText = `Live @ $${Math.round(currentPrice).toLocaleString()} • அடுத்த எல்லை: ${forwardZoneLabel} (↑${upProbFinal}% vs ↓${dnProbFinal}%)`;
                 }
 
                 if (lockedIsUp) {
-                    const useUpTarget = approachingUp && upMovesHigherAfterTouch;
-                    const chosenPts = useUpTarget ? upMovePts : dnMovePts;
-                    const chosenTgt = useUpTarget ? upTargetAfterTouch : dnTargetAfterTouch;
+                    const nearBottomBounce = (distToDn <= 250 && !dnBreakdownLikely);
+                    const chosenPts = nearBottomBounce ? safeDnBouncePts : Math.max(450, Math.round((upMovesHigherAfterTouch ? upTargetAfterTouch : activeUpPrice) - currentPrice));
+                    const chosenTgt = nearBottomBounce ? safeDnBounceTgt : Math.round(currentPrice + chosenPts);
 
                     if (badgeEl) {
                         badgeEl.innerText = `🔒 WICK BOUNCE / UP (${upProbFinal}%): +${chosenPts} Pts`;
@@ -6435,21 +7446,21 @@
                         ptsPill.className = "text-xs sm:text-sm font-mono font-black bg-emerald-500/25 text-emerald-300 px-3 py-1 rounded-xl border border-emerald-400/60";
                     }
                     if (verdictEl) {
-                        verdictEl.innerText = useUpTarget
-                            ? `$${activeUpPrice.toLocaleString()}-இல் விக் முட்டி மேலும் மேல்நோக்கி $${chosenTgt.toLocaleString()} (+${chosenPts} Pts) செல்ல வாய்ப்பு அதிகம் (${upProbFinal}%) 🚀`
-                            : `$${activeDnPrice.toLocaleString()}-ஐத் தொட்டவுடன் கீழ் விக் அடித்து மேலே $${chosenTgt.toLocaleString()} (+${chosenPts} Pts) திரும்ப வாய்ப்பு அதிகம் (${upProbFinal}%) 🚀`;
+                        verdictEl.innerText = nearBottomBounce
+                            ? `$${activeDnPrice.toLocaleString()}-ஐத் தொட்டவுடன் கீழ் விக் அடித்து மேலே $${chosenTgt.toLocaleString()} (+${chosenPts} Pts) திரும்ப வாய்ப்பு அதிகம் (${upProbFinal}%) 🚀`
+                            : `நடப்பு $${Math.round(currentPrice).toLocaleString()}-லிருந்து மேல்நோக்கி $${activeUpPrice.toLocaleString()} கடந்து $${chosenTgt.toLocaleString()} (+${chosenPts} Pts) செல்ல வாய்ப்பு அதிகம் (${upProbFinal}%) 🚀`;
                         verdictEl.className = "text-base sm:text-lg font-black text-emerald-400 tracking-wide";
                     }
                     if (postTxtEl) {
-                        postTxtEl.innerText = `காரணம்: மேல் ($${activeUpPrice.toLocaleString()} • ${fmtUsdCompact(activeUpObj.poolUsd)}) & கீழ் ($${activeDnPrice.toLocaleString()} • ${fmtUsdCompact(activeDnObj.poolUsd)}) ஸ்கேன் அடிப்படையில் மேல்நோக்கிய மீட்பு (${upProbFinal}%) வலுவாக உள்ளது.`;
+                        postTxtEl.innerText = `காரணம்: நடப்பு விலை $${Math.round(currentPrice).toLocaleString()} அடிப்படையில் மேல் ($${activeUpPrice.toLocaleString()} • ${fmtUsdCompact(activeUpObj.poolUsd)}) & கீழ் ($${activeDnPrice.toLocaleString()} • ${fmtUsdCompact(activeDnObj.poolUsd)}) ஸ்கேன் மேல்நோக்கிய இலக்கு $${chosenTgt.toLocaleString()} காட்டுகிறது.`;
                     }
                 } else {
-                    const useUpReject = approachingUp && !upMovesHigherAfterTouch;
-                    const chosenPts = useUpReject ? upMovePts : dnMovePts;
-                    const chosenTgt = useUpReject ? upTargetAfterTouch : dnTargetAfterTouch;
+                    const nearTopReject = (distToUp <= 250 && !upMovesHigherAfterTouch);
+                    const chosenPts = nearTopReject ? safeUpRejectPts : safeDnBreakPts;
+                    const chosenTgt = nearTopReject ? safeUpRejectTgt : safeDnBreakTgt;
 
                     if (badgeEl) {
-                        badgeEl.innerText = `🔒 WICK REJECTION / DOWN (${dnProbFinal}%): -${chosenPts} Pts`;
+                        badgeEl.innerText = `🔒 WICK BREAKDOWN / DOWN (${dnProbFinal}%): -${chosenPts} Pts`;
                         badgeEl.className = "text-[10px] sm:text-xs font-mono font-black bg-rose-500/25 text-rose-300 px-3 py-1 rounded-lg border border-rose-400/60";
                     }
                     if (ptsPill) {
@@ -6457,13 +7468,13 @@
                         ptsPill.className = "text-xs sm:text-sm font-mono font-black bg-rose-500/25 text-rose-300 px-3 py-1 rounded-xl border border-rose-400/60";
                     }
                     if (verdictEl) {
-                        verdictEl.innerText = useUpReject
+                        verdictEl.innerText = nearTopReject
                             ? `$${activeUpPrice.toLocaleString()}-ஐத் தொட்டவுடன் மேல் விக் அடித்து கீழே $${chosenTgt.toLocaleString()} (-${chosenPts} Pts) திரும்ப வாய்ப்பு அதிகம் (${dnProbFinal}%) 📉`
-                            : `$${activeDnPrice.toLocaleString()}-ஐத் தொட்டவுடன் உடைத்து கீழே $${chosenTgt.toLocaleString()} (-${chosenPts} Pts) இறங்க வாய்ப்பு அதிகம் (${dnProbFinal}%) 📉`;
+                            : `நடப்பு $${Math.round(currentPrice).toLocaleString()}-லிருந்து கீழ் எல்லை $${activeDnPrice.toLocaleString()}-ஐத் தொட்டு/உடைத்து $${chosenTgt.toLocaleString()} (-${chosenPts} Pts) வரை இறங்க வாய்ப்பு அதிகம் (${dnProbFinal}%) 📉`;
                         verdictEl.className = "text-base sm:text-lg font-black text-rose-400 tracking-wide";
                     }
                     if (postTxtEl) {
-                        postTxtEl.innerText = `காரணம்: மேல் ($${activeUpPrice.toLocaleString()} • ${fmtUsdCompact(activeUpObj.poolUsd)}) & கீழ் ($${activeDnPrice.toLocaleString()} • ${fmtUsdCompact(activeDnObj.poolUsd)}) ஸ்கேன் அடிப்படையில் கீழ்நோக்கிய அழுத்தம் (${dnProbFinal}%) வலுவாக உள்ளது.`;
+                        postTxtEl.innerText = `காரணம்: நடப்பு விலை $${Math.round(currentPrice).toLocaleString()} அடிப்படையில் கீழ் எல்லை $${activeDnPrice.toLocaleString()} (${fmtUsdCompact(activeDnObj.poolUsd)}) & மேல் தடை $${activeUpPrice.toLocaleString()} (${fmtUsdCompact(activeUpObj.poolUsd)}) ஸ்கேன் கீழ்நோக்கிய இலக்கு $${chosenTgt.toLocaleString()} காட்டுகிறது.`;
                     }
                 }
 
@@ -6648,7 +7659,12 @@
                 const HOLD_MS = 180000;
                 const elapsedMs = nowMs - next500State.lockedSinceMs;
                 const staleWrongSide = (next500State.lockedDir === 'UP' && next500State.targetPrice > 0 && currentPrice > next500State.targetPrice + 150) || (next500State.lockedDir === 'DOWN' && next500State.targetPrice > 0 && currentPrice < next500State.targetPrice - 150);
-                const driftedFromAnchor = staleWrongSide || (next500State.anchorPrice > 0 && Math.abs(currentPrice - next500State.anchorPrice) >= 260);
+                const p500RapidDrop = (tf5.priceDelta <= -180 && sellP >= 51) ||
+                    (next500State.lockedDir === 'UP' && currentPrice <= next500State.anchorPrice - 180);
+                const p500RapidUp = (tf5.priceDelta >= 180 && buyP >= 53) ||
+                    (next500State.lockedDir === 'DOWN' && currentPrice >= next500State.anchorPrice + 180);
+                const driftedFromAnchor = staleWrongSide || p500RapidDrop || p500RapidUp ||
+                    (next500State.anchorPrice > 0 && Math.abs(currentPrice - next500State.anchorPrice) >= 220);
                 const nowIst = getAccurateIstDate();
                 const istStr = nowIst.toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour12: true, hour: '2-digit', minute: '2-digit' });
 
